@@ -2,7 +2,7 @@
 
 > **"Best of Both Worlds"**: Combining high-fidelity semantic segmentation with targeted in-context learning for precise food analysis.
 
-![Result Showcase](assets/results/result1.jpg)
+![Result Showcase](assets/results/mixed_1_hybrid_vis.jpg)
 
 ## 🚀 Overview
 
@@ -12,6 +12,16 @@ This pipeline integrates **FoodSAM** (Segment Anything Model + Semantic Experts)
 1.  **Segmentation (FoodSAM)**: Generates high-quality candidate masks, filtering out plates, utensils, and background noise.
 2.  **Targeted Classification (PictSure)**: A few-shot Vision Transformer classifies specific food items (e.g., *Chicken, Fish, Rice*) by comparing them against a set of context images.
 3.  **Visual Discovery**: Uses a greedy multi-color discovery algorithm to visualize every distinct food item with neon overlays and shadow-text labels.
+
+## 🖼️ Context Images
+
+These reference images are used by the PictSure model for in-context learning to identify specific food items.
+
+<p align="center">
+  <img src="assets/context/CHICKEN.jpg" width="30%" alt="Chicken Context" />
+  <img src="assets/context/FISH.jpg" width="30%" alt="Fish Context" />
+  <img src="assets/context/RICE.jpg" width="30%" alt="Rice Context" />
+</p>
 
 ## 📂 Project Structure
 
@@ -76,9 +86,12 @@ python src/pipeline.py \
 
 The pipeline produces high-contrast, aesthetically pleasing visualizations where each food segment is isolated, classified, and overlaid with a unique vibrant color.
 
-| Input | Hybrid Output |
-|---|---|
-| *Original Image* | ![Hybrid Vis](assets/results/result2.jpg) |
+| Input (Original Video Frame) | Hybrid Output (FoodSAM + PictSure) |
+| :---: | :---: |
+| *Mixed Food Platter 1* | ![Result 1](assets/results/mixed_1_hybrid_vis.jpg) |
+| *Mixed Food Platter 2* | ![Result 2](assets/results/mixed_2.jpg) |
+| *Mixed Food Platter 3* | ![Result 3](assets/results/mixed_3_hybrid_vis.jpg) |
+| *Mixed Food Platter 4* | ![Result 4](assets/results/mixed_4_hybrid_vis.jpg) |
 
 ---
 **Status**: 🟢 Fully Functional  
