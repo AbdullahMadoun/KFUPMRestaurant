@@ -79,3 +79,4 @@ The pipeline produces high-contrast, aesthetically pleasing visualizations where
 **Status**: 🟢 Fully Functional  
 **Python**: 3.9+  
 **License**: MIT
+
