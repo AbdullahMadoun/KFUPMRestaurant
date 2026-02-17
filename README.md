@@ -16,15 +16,20 @@ This pipeline integrates **FoodSAM** (Segment Anything Model + Semantic Experts)
 ## 📂 Project Structure
 
 ```
-food-analysis-pipeline/
+KFUPMRestaurant/
 ├── assets/
-│   ├── context/          # Reference images for few-shot learning (Chicken, Fish, Rice)
-│   └── results/          # Visualization outputs
+│   ├── context/          # Reference images for PictSure in-context learning
+│   │   ├── CHICKEN.jpg
+│   │   ├── FISH.jpg
+│   │   └── RICE.jpg
+│   └── results/          # Pipeline output visualizations
+│       ├── mixed_1_hybrid_vis.jpg
+│       ├── mixed_2.jpg
+│       ├── mixed_3_hybrid_vis.jpg
+│       └── mixed_4_hybrid_vis.jpg
 ├── src/
-│   ├── FoodSAM/          # Core segmentation engine
-│   ├── mmseg/            # Patched mmsegmentation library
-│   └── pipeline.py       # Main hybrid inference script
-└── requirements.txt
+└── README.md
+
 ```
 
 ## 🛠️ Installation
@@ -79,4 +84,5 @@ The pipeline produces high-contrast, aesthetically pleasing visualizations where
 **Status**: 🟢 Fully Functional  
 **Python**: 3.9+  
 **License**: MIT
+
 
