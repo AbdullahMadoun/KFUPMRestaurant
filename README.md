@@ -86,12 +86,12 @@ python src/pipeline.py \
 
 The pipeline produces high-contrast, aesthetically pleasing visualizations where each food segment is isolated, classified, and overlaid with a unique vibrant color.
 
-| Input (Original Video Frame) | Hybrid Output (FoodSAM + PictSure) |
-| :---: | :---: |
-| *Mixed Food Platter 1* | ![Result 1](assets/results/mixed_1_hybrid_vis.jpg) |
-| *Mixed Food Platter 2* | ![Result 2](assets/results/mixed_2.jpg) |
-| *Mixed Food Platter 3* | ![Result 3](assets/results/mixed_3_hybrid_vis.jpg) |
-| *Mixed Food Platter 4* | ![Result 4](assets/results/mixed_4_hybrid_vis.jpg) |
+<p align="center">
+  <img src="assets/results/mixed_1_hybrid_vis.jpg" width="22%" alt="Mixed Platter 1" />
+  <img src="assets/results/mixed_2.jpg" width="22%" alt="Mixed Platter 2" />
+  <img src="assets/results/mixed_3_hybrid_vis.jpg" width="22%" alt="Mixed Platter 3" />
+  <img src="assets/results/mixed_4_hybrid_vis.jpg" width="22%" alt="Mixed Platter 4" />
+</p>
 
 ---
 **Status**: 🟢 Fully Functional  
