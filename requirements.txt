@@ -1,0 +1,18 @@
+# Core Dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy
+opencv-python
+Pillow
+tqdm
+pathlib
+
+# FoodSAM Specifics
+mmcv-full==1.7.2
+timm
+einops
+scipy
+
+# In-Context Learning
+# PictSure is expected to be installed manually or added here if available on PyPI
+# git+https://github.com/YourUsername/PictSure.git

@@ -1,0 +1,81 @@
+# 🥗 Hybrid FoodSAM-PictSure Analysis Pipeline
+
+> **"Best of Both Worlds"**: Combining high-fidelity semantic segmentation with targeted in-context learning for precise food analysis.
+
+![Result Showcase](assets/results/result1.jpg)
+
+## 🚀 Overview
+
+This pipeline integrates **FoodSAM** (Segment Anything Model + Semantic Experts) with **PictSure** (In-Context Few-Shot Learner) to solve complex food recognition tasks.
+
+### The Architecture
+1.  **Segmentation (FoodSAM)**: Generates high-quality candidate masks, filtering out plates, utensils, and background noise.
+2.  **Targeted Classification (PictSure)**: A few-shot Vision Transformer classifies specific food items (e.g., *Chicken, Fish, Rice*) by comparing them against a set of context images.
+3.  **Visual Discovery**: Uses a greedy multi-color discovery algorithm to visualize every distinct food item with neon overlays and shadow-text labels.
+
+## 📂 Project Structure
+
+```
+food-analysis-pipeline/
+├── assets/
+│   ├── context/          # Reference images for few-shot learning (Chicken, Fish, Rice)
+│   └── results/          # Visualization outputs
+├── src/
+│   ├── FoodSAM/          # Core segmentation engine
+│   ├── mmseg/            # Patched mmsegmentation library
+│   └── pipeline.py       # Main hybrid inference script
+└── requirements.txt
+```
+
+## 🛠️ Installation
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/food-analysis-pipeline.git
+    cd food-analysis-pipeline
+    ```
+
+2.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    *Note: You may need to install `PictSure` separately if you haven't already.*
+
+3.  **Environment Setup**:
+    Ensure you have `HF_TOKEN` set if using private HuggingFace models:
+    ```bash
+    export HF_TOKEN="your_token_here"  # Linux/Mac
+    set HF_TOKEN="your_token_here"     # Windows
+    ```
+
+## 💻 Usage
+
+Run the pipeline on a directory of FoodSAM outputs:
+
+```bash
+python src/pipeline.py \
+    --input_dir /path/to/foodsam/outputs \
+    --output_dir results/ \
+    --device cuda
+```
+
+### Arguments
+| Argument | Description | Default |
+|---|---|---|
+| `--input_dir` | Directory containing subfolders with `input.jpg` and `enhance_mask.png` | **Required** |
+| `--output_dir` | Where to save the visualized hybrid results | `results` |
+| `--device` | Inference device (`cuda` or `cpu`) | `cuda` |
+| `--assets_dir` | Location of context images and assets | `../assets` |
+
+## 📊 Results
+
+The pipeline produces high-contrast, aesthetically pleasing visualizations where each food segment is isolated, classified, and overlaid with a unique vibrant color.
+
+| Input | Hybrid Output |
+|---|---|
+| *Original Image* | ![Hybrid Vis](assets/results/result2.jpg) |
+
+---
+**Status**: 🟢 Fully Functional  
+**Python**: 3.9+  
+**License**: MIT
