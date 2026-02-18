@@ -1,101 +1,71 @@
-# 🥗 Hybrid FoodSAM-PictSure Analysis Pipeline
+# 🍴 Intelligent Food Analysis & Segmentation Showcase
 
-> **"Best of Both Worlds"**: Combining high-fidelity semantic segmentation with targeted in-context learning for precise food analysis.
+This repository documents the evolution of specialized food recognition technology, transitioning from few-shot classification to advanced multimodal reasoning.
 
-![Result Showcase](assets/results/mixed_1_hybrid_vis.jpg)
-
-## 🚀 Overview
-
-This pipeline integrates **FoodSAM** (Segment Anything Model + Semantic Experts) with **PictSure** (In-Context Few-Shot Learner) to solve complex food recognition tasks.
-
-### The Architecture
-1.  **Segmentation (FoodSAM)**: Generates high-quality candidate masks, filtering out plates, utensils, and background noise.
-2.  **Targeted Classification (PictSure)**: A few-shot Vision Transformer classifies specific food items (e.g., *Chicken, Fish, Rice*) by comparing them against a set of context images.
-3.  **Visual Discovery**: Uses a greedy multi-color discovery algorithm to visualize every distinct food item with neon overlays and shadow-text labels.
-
-## 🖼️ Context Images
-
-These reference images are used by the PictSure model for in-context learning to identify specific food items.
-
-<p align="center">
-  <img src="assets/context/CHICKEN.jpg" width="30%" alt="Chicken Context" />
-  <img src="assets/context/FISH.jpg" width="30%" alt="Fish Context" />
-  <img src="assets/context/RICE.jpg" width="30%" alt="Rice Context" />
-</p>
-
-## 📂 Project Structure
-
-```
-KFUPMRestaurant/
-├── assets/
-│   ├── context/          # Reference images for PictSure in-context learning
-│   │   ├── CHICKEN.jpg
-│   │   ├── FISH.jpg
-│   │   └── RICE.jpg
-│   └── results/          # Pipeline output visualizations
-│       ├── mixed_1_hybrid_vis.jpg
-│       ├── mixed_2.jpg
-│       ├── mixed_3_hybrid_vis.jpg
-│       └── mixed_4_hybrid_vis.jpg
-├── src/
-└── README.md
-
-```
-
-## 🛠️ Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/food-analysis-pipeline.git
-    cd food-analysis-pipeline
-    ```
-
-2.  **Install Dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *Note: You may need to install `PictSure` separately if you haven't already.*
-
-3.  **Environment Setup**:
-    Ensure you have `HF_TOKEN` set if using private HuggingFace models:
-    ```bash
-    export HF_TOKEN="your_token_here"  # Linux/Mac
-    set HF_TOKEN="your_token_here"     # Windows
-    ```
-
-## 💻 Usage
-
-Run the pipeline on a directory of FoodSAM outputs:
-
-```bash
-python src/pipeline.py \
-    --input_dir /path/to/foodsam/outputs \
-    --output_dir results/ \
-    --device cuda
-```
-
-### Arguments
-| Argument | Description | Default |
-|---|---|---|
-| `--input_dir` | Directory containing subfolders with `input.jpg` and `enhance_mask.png` | **Required** |
-| `--output_dir` | Where to save the visualized hybrid results | `results` |
-| `--device` | Inference device (`cuda` or `cpu`) | `cuda` |
-| `--assets_dir` | Location of context images and assets | `../assets` |
-
-## 📊 Results
-
-The pipeline produces high-contrast, aesthetically pleasing visualizations where each food segment is isolated, classified, and overlaid with a unique vibrant color.
-
-<p align="center">
-  <img src="assets/results/mixed_1_hybrid_vis.jpg" width="22%" alt="Mixed Platter 1" />
-  <img src="assets/results/mixed_2.jpg" width="22%" alt="Mixed Platter 2" />
-  <img src="assets/results/mixed_3_hybrid_vis.jpg" width="22%" alt="Mixed Platter 3" />
-  <img src="assets/results/mixed_4_hybrid_vis.jpg" width="22%" alt="Mixed Platter 4" />
-</p>
+[![Main Showcase](assets/v2/run6_final/segmented_mixed_3.jpg)](experiments/v2_sam3_qwen_vl/)
 
 ---
-**Status**: 🟢 Fully Functional  
-**Python**: 3.9+  
-**License**: MIT
 
+## 🏆 The Evolution of the Pipeline
 
+We present two distinct generations of our food analysis engine. While both achieve high-quality results, the transition to V2 represents a paradigm shift in how AI understands culinary scenes.
+
+| Feature | **V1: Hybrid Classification** | **V2: Multimodal Reasoning** |
+| :--- | :--- | :--- |
+| **Logic** | Few-shot comparison against refs | Zero-shot visual reasoning |
+| **Models** | FoodSAM + PictSure | **Qwen2.5-VL + SAM3** |
+| **Context** | Required manually provided context images | Understands scene context natively |
+| **Thresholding** | Fixed confidence scores | **Dynamic Auto-Retry Logic** |
+| **Precision** | Standard segmentation | **Global NMS** (Overlapping detection fix) |
+
+---
+
+## 🔬 Experiment V2: SAM3 + Qwen-VL (State of the Art)
+
+The current production-grade pipeline uses **Qwen2.5-VL-3B** for reasoning and **SAM3** for precise pixel-level masking. It was developed through 6 rigorous experimental iterations to reach peak performance.
+
+### 🖼️ The 6-Run Innovation Gallery
+We meticulously refined the pipeline through these major phases:
+
+| Run 1: Baseline | Run 2: Visual Descriptions | Run 3: Instance Counting |
+| :---: | :---: | :---: |
+| ![R1](assets/v2/run1_baseline/segmented_mixed_1.jpg) | ![R2](assets/v2/run2_visual/segmented_mixed_1.jpg) | ![R3](assets/v2/run3_refined/segmented_mixed_1.jpg) |
+| *Semantic Prompts* | *Color/Shape Prompts* | *High Recall (0.01)* |
+
+| Run 4: Precision (NMS) | Run 5: Aesthetic Polish | Run 6: Final (Dynamic) |
+| :---: | :---: | :---: |
+| ![R4](assets/v2/run4_nms/segmented_mixed_1.jpg) | ![R5](assets/v2/run5_bold/segmented_mixed_1.jpg) | ![R6](assets/v2/run6_final/segmented_mixed_3.jpg) |
+| *No Ghosting* | *Bold Visuals (4px)* | *Guaranteed Detection* |
+
+👉 **[Explore V2 Code & Guide](./experiments/v2_sam3_qwen_vl/)**
+
+---
+
+## 🥗 Experiment V1: FoodSAM + PictSure (Legacy)
+
+Our first successful iteration utilized a hybrid approach combining semantic experts with a few-shot learner. While effective, it required high-quality reference "context" images to function.
+
+<p align="center">
+  <img src="assets/v1/results/mixed_1_hybrid_vis.jpg" width="45%" />
+  <img src="assets/v1/results/mixed_2.jpg" width="45%" />
+</p>
+
+👉 **[Explore V1 Legacy Code](./experiments/v1_hybrid_foodsam_pictsure/)**
+
+---
+
+## 🛠️ Quick Start (V2)
+
+1. **Setup Environment**:
+   ```bash
+   pip install -r experiments/v2_sam3_qwen_vl/requirements.txt
+   ```
+2. **Run Inference**:
+   ```bash
+   python experiments/v2_sam3_qwen_vl/main.py "/path/to/images" --output_dir "./results"
+   ```
+
+Check the [V2 Reproduction Guide](experiments/v2_sam3_qwen_vl/REPRODUCTION_GUIDE.md) for full hardware requirements and troubleshooting.
+
+---
+**Developed by Antigravity**
