@@ -2,7 +2,7 @@
 
 This repository documents the evolution of specialized food recognition technology, transitioning from few-shot classification to advanced multimodal reasoning.
 
-[![Main Showcase](assets/v2/run6_final/segmented_mixed_3.jpg)](experiments/v2_sam3_qwen_vl/)
+[![Main Showcase](assets/v2/run6_final/segmented_mixed3.jpg)](experiments/v2_sam3_qwen_vl/)
 
 ---
 
@@ -29,12 +29,12 @@ We meticulously refined the pipeline through these major phases:
 
 | Run 1: Baseline | Run 2: Visual Descriptions | Run 3: Instance Counting |
 | :---: | :---: | :---: |
-| ![R1](assets/v2/run1_baseline/segmented_mixed_1.jpg) | ![R2](assets/v2/run2_visual/segmented_mixed_1.jpg) | ![R3](assets/v2/run3_refined/segmented_mixed_1.jpg) |
+| ![R1](assets/v2/run1_baseline/segmented_mixed_1.jpg) | ![R2](assets/v2/run2_visual/segmented_mixed1.jpg) | ![R3](assets/v2/run3_refined/segmented_mixed1.jpg) |
 | *Semantic Prompts* | *Color/Shape Prompts* | *High Recall (0.01)* |
 
 | Run 4: Precision (NMS) | Run 5: Aesthetic Polish | Run 6: Final (Dynamic) |
 | :---: | :---: | :---: |
-| ![R4](assets/v2/run4_nms/segmented_mixed_1.jpg) | ![R5](assets/v2/run5_bold/segmented_mixed_1.jpg) | ![R6](assets/v2/run6_final/segmented_mixed_3.jpg) |
+| ![R4](assets/v2/run4_nms/segmented_mixed1.jpg) | ![R5](assets/v2/run5_bold/segmented_mixed1.jpg) | ![R6](assets/v2/run6_final/segmented_mixed3.jpg) |
 | *No Ghosting* | *Bold Visuals (4px)* | *Guaranteed Detection* |
 
 👉 **[Explore V2 Code & Guide](./experiments/v2_sam3_qwen_vl/)**
