@@ -24,20 +24,77 @@ We present two distinct generations of our food analysis engine. While both achi
 
 The current production-grade pipeline uses **Qwen2.5-VL-3B** for reasoning and **SAM3** for precise pixel-level masking. It was developed through 6 rigorous experimental iterations to reach peak performance.
 
-### 🖼️ The 6-Run Innovation Gallery
-We meticulously refined the pipeline through these major phases:
+### 🖼️ The Innovation Journey: 6-Run Analysis
 
-| Run 1: Baseline | Run 2: Visual Descriptions | Run 3: Instance Counting |
-| :---: | :---: | :---: |
-| ![R1](assets/v2/run1_baseline/segmented_mixed_1.jpg) | ![R2](assets/v2/run2_visual/segmented_mixed1.jpg) | ![R3](assets/v2/run3_refined/segmented_mixed1.jpg) |
-| *Semantic Prompts* | *Color/Shape Prompts* | *High Recall (0.01)* |
+We meticulously refined the pipeline through these major phases. Click to expand each run and view the evolution.
 
-| Run 4: Precision (NMS) | Run 5: Aesthetic Polish | Run 6: Final (Dynamic) |
-| :---: | :---: | :---: |
-| ![R4](assets/v2/run4_nms/segmented_mixed1.jpg) | ![R5](assets/v2/run5_bold/segmented_mixed1.jpg) | ![R6](assets/v2/run6_final/segmented_mixed3.jpg) |
-| *No Ghosting* | *Bold Visuals (4px)* | *Guaranteed Detection* |
+<details>
+<summary><b>🔬 Run 1: Baseline (Semantic Identifying)</b></summary>
+*Standard food naming prompts.*
+<p align="center">
+  <img src="assets/v2/run1_baseline/segmented_CHICKEN.jpg" width="24%" alt="R1 Chicken" />
+  <img src="assets/v2/run1_baseline/segmented_FISH.jpg" width="24%" alt="R1 Fish" />
+  <img src="assets/v2/run1_baseline/segmented_mixed_1.jpg" width="24%" alt="R1 Mixed 1" />
+  <img src="assets/v2/run1_baseline/segmented_mixed_2.jpg" width="24%" alt="R1 Mixed 2" />
+</p>
+</details>
 
-👉 **[Explore V2 Code & Guide](./experiments/v2_sam3_qwen_vl/)**
+<details>
+<summary><b>🎨 Run 2: Visual Descriptions</b></summary>
+*Color and Shape based prompting for improved boundary alignment.*
+<p align="center">
+  <img src="assets/v2/run2_visual/segmented_CHICKEN.jpg" width="24%" alt="R2 Chicken" />
+  <img src="assets/v2/run2_visual/segmented_FISH.jpg" width="24%" alt="R2 Fish" />
+  <img src="assets/v2/run2_visual/segmented_mixed1.jpg" width="24%" alt="R2 Mixed 1" />
+  <img src="assets/v2/run2_visual/segmented_mixed2.jpg" width="24%" alt="R2 Mixed 2" />
+</p>
+</details>
+
+<details>
+<summary><b>📊 Run 3: High Recall (Instance Counting)</b></summary>
+*Extremely low threshold (0.01) to find every potential item.*
+<p align="center">
+  <img src="assets/v2/run3_refined/segmented_CHICKEN.jpg" width="24%" alt="R3 Chicken" />
+  <img src="assets/v2/run3_refined/segmented_FISH.jpg" width="24%" alt="R3 Fish" />
+  <img src="assets/v2/run3_refined/segmented_mixed1.jpg" width="24%" alt="R3 Mixed 1" />
+  <img src="assets/v2/run3_refined/segmented_mixed2.jpg" width="24%" alt="R3 Mixed 2" />
+</p>
+</details>
+
+<details>
+<summary><b>🎯 Run 4: Precision Refinement (Global NMS)</b></summary>
+*Eliminating "Ghost" results and overlapping detections using standard NMS.*
+<p align="center">
+  <img src="assets/v2/run4_nms/segmented_CHICKEN.jpg" width="24%" alt="R4 Chicken" />
+  <img src="assets/v2/run4_nms/segmented_FISH.jpg" width="24%" alt="R4 Fish" />
+  <img src="assets/v2/run4_nms/segmented_mixed1.jpg" width="24%" alt="R4 Mixed 1" />
+  <img src="assets/v2/run4_nms/segmented_mixed2.jpg" width="24%" alt="R4 Mixed 2" />
+</p>
+</details>
+
+<details>
+<summary><b>✨ Run 5: Bold Visuals & Aesthetic Polish</b></summary>
+*Thicker 4px boundaries and high-opacity overlays for human review.*
+<p align="center">
+  <img src="assets/v2/run5_bold/segmented_CHICKEN.jpg" width="24%" alt="R5 Chicken" />
+  <img src="assets/v2/run5_bold/segmented_FISH.jpg" width="24%" alt="R5 Fish" />
+  <img src="assets/v2/run5_bold/segmented_mixed1.jpg" width="24%" alt="R5 Mixed 1" />
+  <img src="assets/v2/run5_bold/segmented_mixed2.jpg" width="24%" alt="R5 Mixed 2" />
+</p>
+</details>
+
+<details open>
+<summary><b>🚀 Run 6: Final (Dynamic Auto-Retry Logic)</b></summary>
+*The production version. Guaranteed detection via intelligent threshold retries.*
+<p align="center">
+  <img src="assets/v2/run6_final/segmented_CHICKEN.jpg" width="24%" alt="R6 Chicken" />
+  <img src="assets/v2/run6_final/segmented_FISH.jpg" width="24%" alt="R6 Fish" />
+  <img src="assets/v2/run6_final/segmented_mixed1.jpg" width="24%" alt="R6 Mixed 1" />
+  <img src="assets/v2/run6_final/segmented_mixed3.jpg" width="24%" alt="R6 Mixed 2" />
+</p>
+</details>
+
+👉 **[Explore V2 Code & Reproduction Guide](./experiments/v2_sam3_qwen_vl/)**
 
 ---
 
