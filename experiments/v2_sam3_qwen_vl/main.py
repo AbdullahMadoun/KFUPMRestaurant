@@ -11,7 +11,7 @@ from pathlib import Path
 import torch
 
 from config import PipelineConfig
-from pipeline_types import apply_nms, group_detections
+from pipeline_types import GroundedPrompt, apply_nms, group_detections
 from logger import RunTracker, ImageMetrics
 
 logger = logging.getLogger("pipeline")
@@ -52,6 +52,8 @@ def build_config_from_args(args) -> PipelineConfig:
     # --skip_boxes is a flag: only override when explicitly passed
     if args.skip_boxes:
         config.viz.draw_boxes = False
+    if args.prompt_mode is not None:
+        config.prompt.prompt_mode = args.prompt_mode
 
     return config
 
@@ -62,17 +64,21 @@ def process_image(image_path, prompter, segmenter, tracker, config):
     # Step 1: Generate prompts with Qwen
     start_time = time.time()
     try:
-        prompts = prompter.generate_prompts(image_path)
+        if config.prompt.prompt_mode == "grounded":
+            grounded = prompter.generate_grounded_prompts(image_path)
+        else:
+            grounded = [GroundedPrompt(label=p) for p in prompter.generate_prompts(image_path)]
         metrics.qwen_time = time.time() - start_time
-        metrics.prompts = prompts
-        logger.info(f"Generated prompts ({metrics.qwen_time:.2f}s): {prompts}")
+        metrics.prompts = [g.label for g in grounded]
+        logger.info(f"Generated prompts ({metrics.qwen_time:.2f}s, mode={config.prompt.prompt_mode}): "
+                     f"{[(g.label, g.bbox) for g in grounded]}")
     except Exception as e:
         logger.error(f"Error during prompt generation: {e}")
         metrics.error = str(e)
         tracker.add_image_metrics(metrics)
         return metrics
 
-    if not prompts:
+    if not grounded:
         logger.warning("No prompts generated for this image.")
         tracker.add_image_metrics(metrics)
         return metrics
@@ -80,7 +86,7 @@ def process_image(image_path, prompter, segmenter, tracker, config):
     # Step 2: Segment with SAM3
     start_time = time.time()
     try:
-        raw_detections, threshold_used = segmenter.segment(image_path, prompts)
+        raw_detections, threshold_used = segmenter.segment(image_path, grounded)
         metrics.sam3_time = time.time() - start_time
         metrics.num_detections_raw = len(raw_detections)
         metrics.threshold_used = threshold_used
@@ -128,6 +134,8 @@ def main():
     parser.add_argument("--skip_boxes", action="store_true", help="Do not draw bounding boxes in visualization")
     parser.add_argument("--alpha", type=float, default=None, help="Mask opacity 0-1 (default: 0.7)")
     parser.add_argument("--thickness", type=int, default=None, help="Boundary thickness (default: 3)")
+    parser.add_argument("--prompt_mode", default=None, choices=["text", "grounded"],
+                        help="Prompt mode: 'text' (default) or 'grounded' (text+bbox)")
     args = parser.parse_args()
 
     config = build_config_from_args(args)

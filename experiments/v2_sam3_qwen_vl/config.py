@@ -45,6 +45,13 @@ class PromptConfig:
         "\n"
         "Ensure the JSON is syntactically valid and contains no additional text."
     )
+    grounding_template: str = (
+        'Locate the "{label}" in this image. '
+        'Return a JSON object with the bounding box: '
+        '{{"bbox_2d": [x1, y1, x2, y2]}} '
+        'where coordinates are pixel positions. Return ONLY the JSON.'
+    )
+    prompt_mode: str = "text"  # "text" or "grounded"
 
 
 @dataclass

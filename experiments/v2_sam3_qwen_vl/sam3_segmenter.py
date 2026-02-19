@@ -6,7 +6,7 @@ import torch
 from PIL import Image
 
 from config import SAM3Config
-from pipeline_types import Detection
+from pipeline_types import Detection, GroundedPrompt
 
 logger = logging.getLogger("pipeline")
 
@@ -48,8 +48,8 @@ class SAM3Segmenter:
         self.model = build_sam3_image_model(bpe_path=bpe_path, device=device)
         self.processor = Sam3Processor(self.model, device=device, confidence_threshold=config.confidence_threshold)
 
-    def segment(self, image_path: str, prompts: List[str]) -> Tuple[List[Detection], float]:
-        """Segment an image with the given text prompts.
+    def segment(self, image_path: str, prompts: List[GroundedPrompt]) -> Tuple[List[Detection], float]:
+        """Segment an image with the given prompts (text, or text+bbox).
 
         Returns:
             (raw_detections, threshold_used) -- caller is responsible for NMS.
@@ -59,6 +59,7 @@ class SAM3Segmenter:
             return [], self.config.confidence_threshold
 
         image = Image.open(image_path).convert("RGB")
+        img_w, img_h = image.size
 
         thresholds = [self.config.confidence_threshold] + [
             f for f in self.config.fallback_thresholds if f < self.config.confidence_threshold
@@ -70,9 +71,21 @@ class SAM3Segmenter:
 
             detections: List[Detection] = []
             for prompt in prompts:
-                logger.info(f"Segmenting prompt: {prompt}")
+                logger.info(f"Segmenting prompt: {prompt.label}"
+                            + (f" with bbox {prompt.bbox}" if prompt.bbox else ""))
                 state = self.processor.set_image(image)
-                state = self.processor.set_text_prompt(prompt, state)
+                state = self.processor.set_text_prompt(prompt.label, state)
+
+                if prompt.bbox is not None:
+                    # Convert xyxy pixel coords → cxcywh normalized (0-1)
+                    x1, y1, x2, y2 = prompt.bbox
+                    cx = (x1 + x2) / 2 / img_w
+                    cy = (y1 + y2) / 2 / img_h
+                    w = (x2 - x1) / img_w
+                    h = (y2 - y1) / img_h
+                    state = self.processor.add_geometric_prompt(
+                        [cx, cy, w, h], 1, state
+                    )
 
                 if "masks" in state and state["masks"] is not None:
                     masks = state["masks"]
@@ -81,7 +94,7 @@ class SAM3Segmenter:
 
                     for i in range(masks.shape[0]):
                         detections.append(Detection(
-                            label=prompt,
+                            label=prompt.label,
                             mask=masks[i].squeeze(),
                             box=boxes[i],
                             score=float(scores[i]),

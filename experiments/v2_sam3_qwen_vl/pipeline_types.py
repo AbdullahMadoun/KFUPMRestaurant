@@ -1,10 +1,17 @@
 """Typed data structures and NMS for the segmentation pipeline."""
 
-from dataclasses import dataclass
-from typing import List
+from dataclasses import dataclass, field
+from typing import List, Optional
 
 import numpy as np
 import torch
+
+
+@dataclass
+class GroundedPrompt:
+    """Unified prompt: text label with an optional bounding box."""
+    label: str
+    bbox: Optional[List[float]] = None  # [x1, y1, x2, y2] pixel coords; None = text-only
 
 
 @dataclass
