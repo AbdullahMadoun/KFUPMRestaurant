@@ -1,152 +1,187 @@
 import argparse
-import os
-import torch
 import gc
+import logging
+import os
 import sys
 import time
-import json
+import traceback
+from dataclasses import asdict
 from pathlib import Path
 
-# Add current directory to path so we can import our modules
-# Add sam3 repository to path
-# Assuming sam3 is cloned in the current directory or a subdirectory
-sam3_repo_path = os.path.join(os.getcwd(), "sam3")
-if os.path.exists(sam3_repo_path):
-    sys.path.append(sam3_repo_path)
-else:
-    # Fallback to the known location if current dir does not contain it
-    sys.path.append("/root/.gemini/antigravity/brain/e35023a3-cf38-42a1-abe0-70c93c6f9f59/sam3")
+import torch
 
-sys.path.append(os.getcwd())
+from config import PipelineConfig
+from pipeline_types import apply_nms, group_detections
+from logger import RunTracker, ImageMetrics
 
-from qwen_food_prompter import QwenFoodPrompter
-from sam3_segmenter import SAM3Segmenter
-from visualizer import visualize
+logger = logging.getLogger("pipeline")
+
 
 def cleanup_gpu():
     gc.collect()
     torch.cuda.empty_cache()
 
-def process_image(image_path, prompter, segmenter, output_dir, device, max_objects=5, draw_boxes=True, iou_threshold=0.7, alpha=0.7, thickness=3):
-    print(f"\nProcessing: {image_path}")
-    metrics = {"image": str(image_path)}
-    
-    # Step 1: Generate Prompts with Qwen
+
+def build_config_from_args(args) -> PipelineConfig:
+    """Build PipelineConfig from CLI args, with optional JSON config as base.
+
+    When --config is provided, the JSON file sets the base and only
+    explicitly-provided CLI flags override on top.  Without --config,
+    PipelineConfig defaults are used (which match the old argparse defaults).
+    """
+    if args.config:
+        config = PipelineConfig.from_json(args.config)
+    else:
+        config = PipelineConfig()
+
+    # CLI overrides -- None means "not provided by user"
+    if args.device is not None:
+        config.device = args.device
+    if args.output_dir is not None:
+        config.output_dir = args.output_dir
+    if args.threshold is not None:
+        config.sam3.confidence_threshold = args.threshold
+    if args.max_objects is not None:
+        config.nms.max_objects = args.max_objects
+    if args.iou_threshold is not None:
+        config.nms.iou_threshold = args.iou_threshold
+    if args.alpha is not None:
+        config.viz.alpha = args.alpha
+    if args.thickness is not None:
+        config.viz.thickness = args.thickness
+    # --skip_boxes is a flag: only override when explicitly passed
+    if args.skip_boxes:
+        config.viz.draw_boxes = False
+
+    return config
+
+
+def process_image(image_path, prompter, segmenter, tracker, config):
+    metrics = ImageMetrics(image_path=str(image_path))
+
+    # Step 1: Generate prompts with Qwen
     start_time = time.time()
     try:
-        if isinstance(prompter, QwenFoodPrompter):
-            prompts = prompter.generate_prompts(image_path)
-        else:
-            prompts = prompter.run_inference(image_path)
-            
-        qwen_time = time.time() - start_time
-        metrics["qwen_time_seconds"] = qwen_time
-        metrics["prompts"] = prompts
-        print(f"Generated prompts ({qwen_time:.2f}s): {prompts}")
-        
+        prompts = prompter.generate_prompts(image_path)
+        metrics.qwen_time = time.time() - start_time
+        metrics.prompts = prompts
+        logger.info(f"Generated prompts ({metrics.qwen_time:.2f}s): {prompts}")
     except Exception as e:
-        print(f"Error during prompt generation: {e}")
-        return None
+        logger.error(f"Error during prompt generation: {e}")
+        metrics.error = str(e)
+        tracker.add_image_metrics(metrics)
+        return metrics
 
     if not prompts:
-        print("No prompts generated for this image.")
+        logger.warning("No prompts generated for this image.")
+        tracker.add_image_metrics(metrics)
         return metrics
 
     # Step 2: Segment with SAM3
     start_time = time.time()
     try:
-        results = segmenter.segment(image_path, prompts, max_objects=max_objects, iou_threshold=iou_threshold)
-        sam3_time = time.time() - start_time
-        metrics["sam3_time_seconds"] = sam3_time
-        metrics["num_detected_items"] = len(results)
-        print(f"Segmentation complete ({sam3_time:.2f}s). Found {len(results)} items.")
-        
+        raw_detections, threshold_used = segmenter.segment(image_path, prompts)
+        metrics.sam3_time = time.time() - start_time
+        metrics.num_detections_raw = len(raw_detections)
+        metrics.threshold_used = threshold_used
+        logger.info(f"Segmentation complete ({metrics.sam3_time:.2f}s). "
+                     f"{len(raw_detections)} raw detections.")
     except Exception as e:
-        import traceback
-        traceback.print_exc()
-        print(f"Error during segmentation: {e}")
+        logger.error(f"Error during segmentation: {e}\n{traceback.format_exc()}")
+        metrics.error = str(e)
+        tracker.add_image_metrics(metrics)
         return metrics
 
-    # Step 3: Visualize
-    try:
-        image_name = Path(image_path).name
-        output_filename = f"segmented_{image_name}"
-        output_path = os.path.join(output_dir, output_filename)
-        visualize(image_path, results, output_path, draw_boxes=draw_boxes, alpha=alpha, thickness=thickness)
-        metrics["visualization_path"] = output_path
-        print(f"Visualization saved to: {output_path}")
-    except Exception as e:
-        print(f"Error during visualization: {e}")
+    # Step 3: NMS
+    kept = apply_nms(raw_detections, config.nms.max_objects, config.nms.iou_threshold)
+    metrics.num_detections_after_nms = len(kept)
 
+    # Step 4: Group for visualization
+    results = group_detections(kept)
+    metrics.num_labels = len(results)
+    logger.info(f"After NMS: {len(kept)} detections, {len(results)} labels.")
+
+    # Step 5: Visualize
+    try:
+        from visualizer import visualize
+
+        image_name = Path(image_path).name
+        output_path = str(tracker.viz_dir / f"segmented_{image_name}")
+        visualize(image_path, results, output_path, config.viz)
+        metrics.visualization_path = output_path
+    except Exception as e:
+        logger.error(f"Error during visualization: {e}")
+
+    tracker.add_image_metrics(metrics)
     return metrics
+
 
 def main():
     parser = argparse.ArgumentParser(description="Food Segmentation on Directory or File")
     parser.add_argument("input_path", help="Path to input image or directory")
-    parser.add_argument("--device", default="cuda", help="Device to run on")
-    parser.add_argument("--output_dir", default="bold_results", help="Directory to save results")
-    parser.add_argument("--threshold", type=float, default=0.1, help="Confidence threshold for SAM3")
-    parser.add_argument("--max_objects", type=int, default=5, help="Maximum number of objects to keep (NMS)")
-    parser.add_argument("--iou_threshold", type=float, default=0.7, help="IOU threshold for NMS")
+    parser.add_argument("--config", default=None, help="Path to JSON config file")
+    parser.add_argument("--device", default=None, help="Device to run on (default: cuda)")
+    parser.add_argument("--output_dir", default=None, help="Directory to save results (default: bold_results)")
+    parser.add_argument("--threshold", type=float, default=None, help="Confidence threshold for SAM3 (default: 0.1)")
+    parser.add_argument("--max_objects", type=int, default=None, help="Maximum number of objects to keep via NMS (default: 5)")
+    parser.add_argument("--iou_threshold", type=float, default=None, help="IOU threshold for NMS (default: 0.7)")
     parser.add_argument("--skip_boxes", action="store_true", help="Do not draw bounding boxes in visualization")
-    parser.add_argument("--alpha", type=float, default=0.7, help="Mask opacity (0-1)")
-    parser.add_argument("--thickness", type=int, default=3, help="Boundary thickness")
+    parser.add_argument("--alpha", type=float, default=None, help="Mask opacity 0-1 (default: 0.7)")
+    parser.add_argument("--thickness", type=int, default=None, help="Boundary thickness (default: 3)")
     args = parser.parse_args()
+
+    config = build_config_from_args(args)
+
+    # Add sam3 repo to sys.path
+    sam3_path = os.path.abspath(config.sam3_repo_path)
+    if os.path.exists(sam3_path):
+        sys.path.insert(0, sam3_path)
 
     input_path = Path(args.input_path)
     if not input_path.exists():
         print(f"Error: Path {input_path} not found.")
         return
 
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # Initialize run tracker (creates timestamped run dir + logger)
+    tracker = RunTracker(config.output_dir, asdict(config))
+    logger.info(f"Run {tracker.run_id} started. Output: {tracker.run_dir}")
 
-    # Initialize models once
-    print(f"--- Initializing Models (Threshold: {args.threshold}) ---")
+    # Initialize models
+    logger.info(f"Initializing models (threshold: {config.sam3.confidence_threshold})")
     try:
-        prompter = QwenFoodPrompter()
-        segmenter = SAM3Segmenter(device=args.device, confidence_threshold=args.threshold)
+        from qwen_food_prompter import QwenFoodPrompter
+        from sam3_segmenter import SAM3Segmenter
+
+        prompter = QwenFoodPrompter(config.qwen, config.prompt)
+        segmenter = SAM3Segmenter(config.sam3, config.device)
     except Exception as e:
-        print(f"Failed to initialize models: {e}")
+        logger.error(f"Failed to initialize models: {e}")
         return
 
-    all_metrics = []
-
+    # Collect images
     if input_path.is_file():
         image_paths = [input_path]
     else:
-        # Process all common image extensions
-        extensions = ['*.jpg', '*.jpeg', '*.png', '*.bmp', '*.webp']
         image_paths = []
-        for ext in extensions:
+        for ext in config.image_extensions:
             image_paths.extend(list(input_path.glob(ext.lower())))
             image_paths.extend(list(input_path.glob(ext.upper())))
-                
-    image_paths = sorted(list(set(image_paths)))
-    print(f"Found {len(image_paths)} images to process.")
+
+    image_paths = sorted(set(image_paths))
+    logger.info(f"Found {len(image_paths)} images to process.")
 
     for img_path in image_paths:
-        metrics = process_image(str(img_path), prompter, segmenter, str(output_dir), args.device, 
-                               max_objects=args.max_objects, draw_boxes=not args.skip_boxes, 
-                               iou_threshold=args.iou_threshold, alpha=args.alpha, thickness=args.thickness)
-        if metrics:
-            all_metrics.append(metrics)
+        logger.info(f"Processing: {img_path}")
+        process_image(str(img_path), prompter, segmenter, tracker, config)
 
-    # Save aggregated metrics
-    metrics_path = output_dir / "inference_metrics.json"
-    with open(metrics_path, "w") as f:
-        json.dump(all_metrics, f, indent=2)
-    
-    print(f"\nProcessing complete. Metrics saved to {metrics_path}")
+    # Finalize run
+    summary = tracker.finalize()
+    logger.info(f"Run complete. {summary.total_images} images, "
+                f"{summary.total_detections} detections.")
+    logger.info(f"Summary saved to {tracker.run_dir / 'run_summary.json'}")
 
-# Wrapper class to handle Qwen logic which might need specific instantiation
-# (kept for backward compatibility if code relies on it, but main uses direct class now)
-class QwenFoodPrompter_wrapper:
-    def __init__(self):
-        self.prompter = QwenFoodPrompter()
-        
-    def run_inference(self, image_path):
-        return self.prompter.generate_prompts(image_path)
+    cleanup_gpu()
+
 
 if __name__ == "__main__":
     main()
