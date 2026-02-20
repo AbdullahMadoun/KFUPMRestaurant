@@ -61,7 +61,7 @@ def main():
     # Load SigLIP 2 model
     logger.info(f"Loading embedding model: {args.model}")
     start = time.time()
-    model = AutoModel.from_pretrained(args.model).to(args.device).eval()
+    model = AutoModel.from_pretrained(args.model, torch_dtype=torch.float16).to(args.device).eval()
     processor = AutoProcessor.from_pretrained(args.model)
     logger.info(f"Model loaded in {time.time() - start:.1f}s")
 

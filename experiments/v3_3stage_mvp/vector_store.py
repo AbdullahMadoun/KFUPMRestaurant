@@ -56,8 +56,24 @@ class VectorStore:
                         "category": item_info.get("category", "unknown"),
                         "price": item_info.get("price", 0.0),
                         "source_image": str(img_path),
+                        "source_type": "image",
                     })
                     logger.info(f"Encoded: {img_path.name} -> {item_name}")
+
+            # Encode menu description text into the same embedding space
+            description = item_info.get("description", "")
+            if description:
+                text_emb = self._encode_text(description, model, processor, device)
+                if text_emb is not None:
+                    embeddings.append(text_emb)
+                    metadata.append({
+                        "name": item_name,
+                        "category": item_info.get("category", "unknown"),
+                        "price": item_info.get("price", 0.0),
+                        "source_type": "text",
+                        "source_text": description,
+                    })
+                    logger.info(f"Encoded text: '{description[:50]}...' -> {item_name}")
 
         if not embeddings:
             raise ValueError("No embeddings were generated. Check menu_dir and schema.")
@@ -97,6 +113,36 @@ class VectorStore:
         self.index = faiss.read_index(index_path)
         self.metadata = json.loads(Path(metadata_path).read_text())
         logger.info(f"Loaded FAISS index: {self.index.ntotal} vectors, {len(self.metadata)} metadata entries")
+
+    def query_batch(self, embeddings: np.ndarray, top_k: int = 3) -> List[List[Tuple[dict, float]]]:
+        """Batch query: (N, dim) → List of N result lists.
+
+        Args:
+            embeddings: (N, dim) or (dim,) float32 array, L2-normalized.
+            top_k: Number of nearest neighbors per query.
+
+        Returns:
+            List of N lists, each containing (metadata_dict, similarity_score) tuples.
+        """
+        if self.index is None:
+            raise RuntimeError("No index loaded. Call load() or build() first.")
+
+        if embeddings.ndim == 1:
+            embeddings = embeddings.reshape(1, -1)
+
+        embeddings = embeddings.astype("float32")
+        k = min(top_k, self.index.ntotal)
+        distances, indices = self.index.search(embeddings, k)
+
+        batch_results = []
+        for row_idx in range(len(embeddings)):
+            results = []
+            for idx, dist in zip(indices[row_idx], distances[row_idx]):
+                if idx < 0:
+                    continue
+                results.append((self.metadata[idx], float(dist)))
+            batch_results.append(results)
+        return batch_results
 
     def query(self, embedding: np.ndarray, top_k: int = 3) -> List[Tuple[dict, float]]:
         """Query the index with a single embedding.
@@ -142,4 +188,19 @@ class VectorStore:
             return embedding.cpu().numpy().squeeze()
         except Exception as e:
             logger.warning(f"Failed to encode {image_path}: {e}")
+            return None
+
+    @staticmethod
+    def _encode_text(text: str, model, processor, device: str) -> np.ndarray:
+        """Encode a text description to a normalized embedding vector."""
+        try:
+            inputs = processor(text=[text], return_tensors="pt", padding=True).to(device)
+
+            with torch.no_grad():
+                embedding = model.get_text_features(**inputs)
+                embedding = F.normalize(embedding, dim=-1)
+
+            return embedding.cpu().numpy().squeeze()
+        except Exception as e:
+            logger.warning(f"Failed to encode text '{text[:50]}...': {e}")
             return None
