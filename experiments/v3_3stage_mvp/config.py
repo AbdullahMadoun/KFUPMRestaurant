@@ -8,54 +8,67 @@ from typing import List
 
 @dataclass
 class VLMConfig:
-    model_name: str = "Qwen/Qwen2.5-VL-3B-Instruct"
-    gpu_memory_utilization: float = 0.4
+    model_name: str = "Qwen/Qwen3-VL-8B-Instruct"
+    gpu_memory_utilization: float = 0.6
     max_model_len: int = 4096
     enforce_eager: bool = True
     allowed_local_media_path: str = "/root"
-    temperature: float = 0.1
-    max_tokens: int = 512
+    temperature: float = 0.3
+    max_tokens: int = 768
+    top_p: float = 0.8
+    top_k: int = 20
+    system_prompt: str = (
+        "You are a food visual analyzer. You describe exactly what you see "
+        "in images — colors, textures, shapes, positions. You never guess "
+        "food names. You output only valid JSON."
+    )
     describe_template: str = (
-        "Examine this cafeteria plate carefully. There are usually 2-4 separate food "
-        "portions served together (e.g. a protein, a carb like rice, and a side).\n"
+        "Look at this cafeteria plate and identify every distinct food portion.\n"
         "\n"
-        "For EACH distinct food portion you can see:\n"
-        "1. Describe its VISUAL APPEARANCE: color, texture, shape, surface pattern, "
-        "approximate size relative to the plate\n"
-        "2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n"
+        "For EACH portion, describe ONLY what your eyes see:\n"
+        "- Main color(s) and any color variations\n"
+        "- Surface texture (glossy, matte, grainy, smooth, rough, flaky)\n"
+        "- Shape and form (mound, flat spread, scattered pieces, slices, chunks, strips)\n"
+        "- Position on plate (left, right, center, top, bottom)\n"
+        "- Relative size (fraction of plate area)\n"
         "\n"
-        "RULES:\n"
-        "- Describe what you SEE, not what you think it is called\n"
-        "- Look carefully for items partially hidden under or next to other items\n"
-        "- A portion of rice next to a portion of meat = TWO separate items, even if touching\n"
-        "- If the same type of item appears in two different places, treat them as TWO separate "
-        "items with TWO separate bounding boxes\n"
-        "- A mixed dish (stew, salad with mixed ingredients) = ONE item\n"
-        "- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n"
-        "- Each description must be UNIQUE — differentiate items by their specific visual traits\n"
-        "- Bounding boxes should tightly fit each item, not the whole plate\n"
+        "GROUPING RULES:\n"
+        "- Multiple scattered pieces of the SAME food = ONE item with ONE bbox around all of them\n"
+        "  (e.g. several small chunks spread across a region = single item, single bbox)\n"
+        "- A mixed dish (salad, stew, stir-fry with mixed ingredients) = ONE item\n"
+        "- Visually DIFFERENT foods that touch or overlap = SEPARATE items\n"
+        "- Same food in clearly separated areas with a visible gap = SEPARATE items\n"
+        "- Small garnishes (lemon slice, herbs) = separate item only if clearly visible\n"
         "\n"
-        'Return strictly as JSON:\n'
+        "Count carefully. Cafeteria plates typically have 1-5 portions but "
+        "do NOT default to any specific number. Count what you actually see.\n"
+        "\n"
+        "Return strictly as JSON:\n"
         '{"items": [\n'
-        '  {"description": "yellowish rice grains with small orange carrot pieces, '
-        'mound covering left half of plate", "bbox": [x1, y1, x2, y2]},\n'
-        '  {"description": "dark brown glazed meat pieces with irregular chunky shape, '
-        'right side of plate", "bbox": [x1, y1, x2, y2]},\n'
-        '  ...\n'
-        ']}\n'
-        "Return ONLY the JSON."
+        '  {"description": "<main_colors> <surface_texture> <shape_and_form>, '
+        '<position_on_plate>", "bbox": [x1, y1, x2, y2]},\n'
+        "  ...\n"
+        "]}\n"
+        "\n"
+        "The description template above shows the FORMAT — you MUST replace every "
+        "<placeholder> with actual visual details from THIS specific image. "
+        "Never output angle brackets or placeholder text.\n"
+        "Bounding boxes are pixel coordinates [x1, y1, x2, y2] tightly fitting each item.\n"
+        "Return ONLY the JSON, no other text."
     )
 
 
 @dataclass
 class SAMConfig:
     model_path: str = "facebook/sam3"
-    confidence_threshold: float = 0.1
+    confidence_threshold: float = 0.15
     fallback_thresholds: List[float] = field(default_factory=lambda: [0.05, 0.02, 0.01])
-    crop_padding: int = 5
+    crop_padding: int = 10
     bpe_search_paths: List[str] = field(default_factory=lambda: [
         "/root/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz",
     ])
+    multi_box_prompt: bool = True     # send 2x2 sub-box grid + full bbox (5 total)
+    multi_box_grid: int = 2           # NxN sub-box grid (2 = 4 sub-boxes + 1 full = 5 prompts)
 
 
 @dataclass

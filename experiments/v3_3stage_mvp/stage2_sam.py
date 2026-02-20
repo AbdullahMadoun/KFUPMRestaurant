@@ -1,4 +1,9 @@
-"""Stage 2: SAM3 Segment + Crop — text + bbox prompts → masks → masked crops."""
+"""Stage 2: SAM3 Segment + Crop — text + bbox prompts → masks → masked crops.
+
+Supports multi-box prompting: instead of a single bbox, sends an NxN grid of
+sub-boxes plus the full bbox to give SAM stronger spatial guidance. Controlled
+by SAMConfig.multi_box_prompt (default True) and SAMConfig.multi_box_grid.
+"""
 
 import logging
 import os
@@ -105,39 +110,72 @@ class FoodSegmenter:
             f for f in self.config.fallback_thresholds if f < self.config.confidence_threshold
         ]
 
+        # Encode image once (biggest perf win — avoids N re-encodes per plate)
+        image_state = self.processor.set_image(pil_image)
+
         all_segmented: List[SegmentedItem] = []
 
         for item in items:
-            segmented = self._segment_item(pil_image, bgr_image, item, img_w, img_h, thresholds)
+            segmented = self._segment_item(pil_image, bgr_image, item, img_w, img_h, thresholds, image_state)
             if segmented is not None:
                 all_segmented.append(segmented)
 
         logger.info(f"Segmented {len(all_segmented)} items from {len(items)} visual descriptions")
         return all_segmented
 
+    def _build_box_prompts(self, bbox, img_w: int, img_h: int) -> List[List[float]]:
+        """Build list of [cx, cy, w, h] normalized box prompts for a single item.
+
+        When multi_box_prompt is enabled, returns the full bbox plus an NxN grid
+        of sub-boxes within it. Otherwise returns just the full bbox.
+        """
+        x1, y1, x2, y2 = bbox
+        cx = (x1 + x2) / 2 / img_w
+        cy = (y1 + y2) / 2 / img_h
+        w = (x2 - x1) / img_w
+        h = (y2 - y1) / img_h
+        full_box = [cx, cy, w, h]
+
+        if not self.config.multi_box_prompt:
+            return [full_box]
+
+        n = self.config.multi_box_grid
+        sub_w = w / n
+        sub_h = h / n
+        # Normalized top-left of the full box
+        box_x0 = cx - w / 2
+        box_y0 = cy - h / 2
+
+        boxes = [full_box]
+        for row in range(n):
+            for col in range(n):
+                sub_cx = box_x0 + sub_w * (col + 0.5)
+                sub_cy = box_y0 + sub_h * (row + 0.5)
+                boxes.append([sub_cx, sub_cy, sub_w, sub_h])
+
+        return boxes
+
     def _segment_item(
         self, pil_image: Image.Image, bgr_image: np.ndarray,
         item: VisualItem, img_w: int, img_h: int,
-        thresholds: List[float],
+        thresholds: List[float], image_state: dict,
     ) -> SegmentedItem:
         """Segment a single item with text + bbox prompting and dynamic thresholding."""
+
+        box_prompts = self._build_box_prompts(item.bbox, img_w, img_h)
 
         for thresh in thresholds:
             self.processor.confidence_threshold = thresh
 
-            state = self.processor.set_image(pil_image)
+            # Deep-copy cached image state (prompts mutate the dict)
+            state = {k: v.clone() if isinstance(v, torch.Tensor) else v for k, v in image_state.items()}
 
             # Text prompt: visual description
             state = self.processor.set_text_prompt(item.description, state)
 
-            # Bbox geometric prompt (normalized center-x, center-y, width, height)
-            # NOTE: add_geometric_prompt expects [cx, cy, w, h] in normalized coords — verify on GPU server
-            x1, y1, x2, y2 = item.bbox
-            cx = (x1 + x2) / 2 / img_w
-            cy = (y1 + y2) / 2 / img_h
-            w = (x2 - x1) / img_w
-            h = (y2 - y1) / img_h
-            state = self.processor.add_geometric_prompt([cx, cy, w, h], 1, state)
+            # Bbox geometric prompts (accumulated — full box + sub-box grid)
+            for box in box_prompts:
+                state = self.processor.add_geometric_prompt(box, 1, state)
 
             if "masks" in state and state["masks"] is not None:
                 masks = state["masks"]

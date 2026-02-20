@@ -1,4 +1,4 @@
-"""Stage 1: VLM Visual Description — Qwen2.5-VL generates visual descriptions + bounding boxes."""
+"""Stage 1: VLM Visual Description — Qwen3-VL generates visual descriptions + bounding boxes."""
 
 import json
 import logging
@@ -15,7 +15,7 @@ logger = logging.getLogger("pipeline")
 
 
 class VisualDescriber:
-    """Uses Qwen2.5-VL-3B via vLLM to describe food items with visual patterns and bounding boxes.
+    """Uses Qwen3-VL via vLLM to describe food items with visual patterns and bounding boxes.
 
     Single VLM call per image: returns both visual descriptions and bboxes together.
     Visual descriptions (colors, textures, shapes) are better SAM3 prompts than food names.
@@ -35,6 +35,8 @@ class VisualDescriber:
             self.sampling_params = SamplingParams(
                 temperature=config.temperature,
                 max_tokens=config.max_tokens,
+                top_p=config.top_p,
+                top_k=config.top_k,
             )
         except Exception as e:
             logger.error(f"Error initializing vLLM: {e}")
@@ -51,15 +53,16 @@ class VisualDescriber:
             logger.warning(f"Image not found: {image_path}")
             return []
 
-        messages = [
-            {
-                "role": "user",
-                "content": [
-                    {"type": "image_url", "image_url": {"url": f"file://{image_path}"}},
-                    {"type": "text", "text": self.config.describe_template},
-                ],
-            }
-        ]
+        messages = []
+        if self.config.system_prompt:
+            messages.append({"role": "system", "content": self.config.system_prompt})
+        messages.append({
+            "role": "user",
+            "content": [
+                {"type": "image_url", "image_url": {"url": f"file://{image_path}"}},
+                {"type": "text", "text": self.config.describe_template},
+            ],
+        })
 
         try:
             outputs = self.llm.chat(messages=messages, sampling_params=self.sampling_params)
