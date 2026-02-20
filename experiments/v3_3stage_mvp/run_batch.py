@@ -46,6 +46,9 @@ def build_config(args) -> PipelineConfig:
     config.device = args.device
     config.output_dir = args.output_dir
 
+    # Set allowed_local_media_path to source_dir so vLLM can read the images
+    config.vlm.allowed_local_media_path = str(Path(args.source_dir).resolve().parent)
+
     if args.index is not None:
         config.match.index_path = args.index
     if args.meta is not None:
