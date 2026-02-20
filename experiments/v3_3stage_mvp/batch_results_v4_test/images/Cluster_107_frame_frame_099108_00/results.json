@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_107_frame_frame_099108_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "green chopped leafy vegetable mixture with small red pieces and a yellow lemon wedge on top, filling the center of the bowl",
+      "bbox": [
+        134,
+        74,
+        972,
+        890
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.933
+    }
+  ],
+  "stage1_time": 2.77,
+  "stage2_time": 0.91,
+  "match_results": null
+}

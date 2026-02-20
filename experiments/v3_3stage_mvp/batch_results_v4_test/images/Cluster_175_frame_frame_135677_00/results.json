@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_175_frame_frame_135677_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "a single piece of cooked meat with a browned, glazed surface, irregularly shaped, occupying the center of the plate",
+      "bbox": [
+        252,
+        158,
+        806,
+        598
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9595
+    }
+  ],
+  "stage1_time": 2.77,
+  "stage2_time": 0.52,
+  "match_results": null
+}
