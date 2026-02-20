@@ -1,10 +1,4 @@
-"""Stage 2: SAM3 Segment + Crop — text + bbox + point prompts → masks → masked crops.
-
-Prompting strategy:
-  - Text: short visual description from VLM (~10 words, SAM CLIP-friendly)
-  - Box:  tight bbox from VLM (single or multi-box grid)
-  - Points: 2-3 foreground points placed by VLM directly on food surface
-"""
+"""Stage 2: SAM3 Segment + Crop — text + bbox prompts → masks → masked crops."""
 
 import logging
 import os
@@ -111,102 +105,39 @@ class FoodSegmenter:
             f for f in self.config.fallback_thresholds if f < self.config.confidence_threshold
         ]
 
-        # Encode image once (biggest perf win — avoids N re-encodes per plate)
-        image_state = self.processor.set_image(pil_image)
-
         all_segmented: List[SegmentedItem] = []
 
         for item in items:
-            segmented = self._segment_item(pil_image, bgr_image, item, img_w, img_h, thresholds, image_state)
+            segmented = self._segment_item(pil_image, bgr_image, item, img_w, img_h, thresholds)
             if segmented is not None:
                 all_segmented.append(segmented)
 
         logger.info(f"Segmented {len(all_segmented)} items from {len(items)} visual descriptions")
         return all_segmented
 
-    def _expand_bbox(self, bbox, img_w: int, img_h: int) -> List[float]:
-        """Expand VLM bbox by config fraction. SAM works better with generous bboxes."""
-        e = self.config.bbox_expand
-        x1, y1, x2, y2 = bbox
-        bw, bh = x2 - x1, y2 - y1
-        x1 = max(0, x1 - bw * e)
-        y1 = max(0, y1 - bh * e)
-        x2 = min(img_w, x2 + bw * e)
-        y2 = min(img_h, y2 + bh * e)
-        return [x1, y1, x2, y2]
-
-    def _build_box_prompts(self, bbox, img_w: int, img_h: int) -> List[List[float]]:
-        """Build list of [cx, cy, w, h] normalized box prompts for a single item.
-
-        When multi_box_prompt is enabled, returns the full bbox plus an NxN grid
-        of sub-boxes within it. Otherwise returns just the full bbox.
-        """
-        x1, y1, x2, y2 = self._expand_bbox(bbox, img_w, img_h)
-        cx = (x1 + x2) / 2 / img_w
-        cy = (y1 + y2) / 2 / img_h
-        w = (x2 - x1) / img_w
-        h = (y2 - y1) / img_h
-        full_box = [cx, cy, w, h]
-
-        if not self.config.multi_box_prompt:
-            return [full_box]
-
-        n = self.config.multi_box_grid
-        sub_w = w / n
-        sub_h = h / n
-        # Normalized top-left of the full box
-        box_x0 = cx - w / 2
-        box_y0 = cy - h / 2
-
-        boxes = [full_box]
-        for row in range(n):
-            for col in range(n):
-                sub_cx = box_x0 + sub_w * (col + 0.5)
-                sub_cy = box_y0 + sub_h * (row + 0.5)
-                boxes.append([sub_cx, sub_cy, sub_w, sub_h])
-
-        return boxes
-
-    def _normalize_vlm_points(self, points: List[List[float]], img_w: int, img_h: int) -> List[List[float]]:
-        """Convert VLM pixel-coordinate points to normalized [x, y] for SAM3."""
-        if not self.config.use_vlm_points or not points:
-            return []
-        return [[px / img_w, py / img_h] for px, py in points]
-
     def _segment_item(
         self, pil_image: Image.Image, bgr_image: np.ndarray,
         item: VisualItem, img_w: int, img_h: int,
-        thresholds: List[float], image_state: dict,
+        thresholds: List[float],
     ) -> SegmentedItem:
-        """Segment a single item with text + bbox + VLM point prompting."""
-
-        box_prompts = self._build_box_prompts(item.bbox, img_w, img_h)
-        point_prompts = self._normalize_vlm_points(item.points, img_w, img_h)
+        """Segment a single item with text + bbox prompting and dynamic thresholding."""
 
         for thresh in thresholds:
             self.processor.confidence_threshold = thresh
 
-            # Deep-copy cached image state (prompts mutate the dict)
-            state = {k: v.clone() if isinstance(v, torch.Tensor) else v for k, v in image_state.items()}
+            state = self.processor.set_image(pil_image)
 
-            # Text prompt: description is already short (~10 words, old style)
+            # Text prompt: visual description
             state = self.processor.set_text_prompt(item.description, state)
 
-            # Bbox geometric prompts
-            for box in box_prompts:
-                state = self.processor.add_geometric_prompt(box, 1, state)
-
-            # VLM-provided foreground point prompts (placed directly on food)
-            # SAM3 may expect [x, y] or [x, y, 0, 0] — try both formats
-            for point in point_prompts:
-                try:
-                    state = self.processor.add_geometric_prompt(point, 1, state)
-                except Exception:
-                    try:
-                        state = self.processor.add_geometric_prompt(point + [0, 0], 1, state)
-                    except Exception as e:
-                        logger.debug(f"Point prompt failed: {e}")
-                        break
+            # Bbox geometric prompt (normalized center-x, center-y, width, height)
+            # NOTE: add_geometric_prompt expects [cx, cy, w, h] in normalized coords — verify on GPU server
+            x1, y1, x2, y2 = item.bbox
+            cx = (x1 + x2) / 2 / img_w
+            cy = (y1 + y2) / 2 / img_h
+            w = (x2 - x1) / img_w
+            h = (y2 - y1) / img_h
+            state = self.processor.add_geometric_prompt([cx, cy, w, h], 1, state)
 
             if "masks" in state and state["masks"] is not None:
                 masks = state["masks"]
@@ -214,6 +145,7 @@ class FoodSegmenter:
                 scores = state.get("scores", torch.zeros(masks.shape[0]))
 
                 if masks.shape[0] > 0:
+                    # Take best mask for this item
                     best_idx = scores.argmax().item()
                     mask = masks[best_idx].squeeze().cpu().numpy()
                     box = boxes[best_idx].cpu().numpy()
@@ -223,17 +155,13 @@ class FoodSegmenter:
                         bgr_image, mask, box, padding=self.config.crop_padding
                     )
 
-                    logger.info(
-                        f"Segmented '{item.description[:40]}' "
-                        f"({len(point_prompts)} points) at thresh {thresh}, score={score:.3f}"
-                    )
+                    logger.info(f"Segmented '{item.description[:40]}...' at threshold {thresh}, score={score:.3f}")
                     return SegmentedItem(
                         description=item.description,
                         mask=mask,
                         bbox=box,
                         crop=crop,
                         score=score,
-                        label=item.label,
                     )
 
             logger.info(f"No masks for '{item.description[:40]}...' at threshold {thresh}")

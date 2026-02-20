@@ -8,21 +8,13 @@ from typing import List
 
 @dataclass
 class VLMConfig:
-    model_name: str = "Qwen/Qwen3-VL-8B-Instruct"
-    gpu_memory_utilization: float = 0.85
+    model_name: str = "Qwen/Qwen2.5-VL-3B-Instruct"
+    gpu_memory_utilization: float = 0.4
     max_model_len: int = 4096
-    enforce_eager: bool = False
-    enable_prefix_caching: bool = True
+    enforce_eager: bool = True
     allowed_local_media_path: str = "/root"
-    temperature: float = 0.3
-    max_tokens: int = 768
-    top_p: float = 0.8
-    top_k: int = 20
-    system_prompt: str = (
-        "You are a food visual analyzer. You describe exactly what you see "
-        "in images — colors, textures, shapes, positions. You never guess "
-        "food names. You output only valid JSON."
-    )
+    temperature: float = 0.1
+    max_tokens: int = 512
     describe_template: str = (
         "Examine this cafeteria plate carefully. There are usually 2-4 separate food "
         "portions served together (e.g. a protein, a carb like rice, and a side).\n"
@@ -31,7 +23,6 @@ class VLMConfig:
         "1. Describe its VISUAL APPEARANCE: color, texture, shape, surface pattern, "
         "approximate size relative to the plate\n"
         "2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n"
-        "3. Place 2-3 points [x, y] directly ON the food surface, spread across the portion\n"
         "\n"
         "RULES:\n"
         "- Describe what you SEE, not what you think it is called\n"
@@ -42,18 +33,14 @@ class VLMConfig:
         "- A mixed dish (stew, salad with mixed ingredients) = ONE item\n"
         "- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n"
         "- Each description must be UNIQUE — differentiate items by their specific visual traits\n"
-        "- Bounding boxes should be GENEROUS — cover the entire food portion with extra margin. "
-        "It is much better to have a box that is too big than too small. "
-        "Include a ~20% margin around the food on all sides.\n"
+        "- Bounding boxes should tightly fit each item, not the whole plate\n"
         "\n"
         'Return strictly as JSON:\n'
         '{"items": [\n'
         '  {"description": "yellowish rice grains with small orange carrot pieces, '
-        'mound covering left half of plate", "bbox": [x1, y1, x2, y2], '
-        '"points": [[px1, py1], [px2, py2]]},\n'
+        'mound covering left half of plate", "bbox": [x1, y1, x2, y2]},\n'
         '  {"description": "dark brown glazed meat pieces with irregular chunky shape, '
-        'right side of plate", "bbox": [x1, y1, x2, y2], '
-        '"points": [[px1, py1], [px2, py2]]},\n'
+        'right side of plate", "bbox": [x1, y1, x2, y2]},\n'
         '  ...\n'
         ']}\n'
         "Return ONLY the JSON."
@@ -65,14 +52,10 @@ class SAMConfig:
     model_path: str = "facebook/sam3"
     confidence_threshold: float = 0.1
     fallback_thresholds: List[float] = field(default_factory=lambda: [0.05, 0.02, 0.01])
-    crop_padding: int = 10
+    crop_padding: int = 5
     bpe_search_paths: List[str] = field(default_factory=lambda: [
         "/root/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz",
     ])
-    bbox_expand: float = 0.25          # expand VLM bbox by this fraction before SAM (0.25 = 25% each side)
-    multi_box_prompt: bool = False    # set True to send 2x2 sub-box grid + full bbox (5 total)
-    multi_box_grid: int = 2           # NxN sub-box grid (2 = 4 sub-boxes + 1 full = 5 prompts)
-    use_vlm_points: bool = True       # use VLM-provided foreground points (from Stage 1)
 
 
 @dataclass

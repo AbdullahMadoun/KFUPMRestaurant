@@ -1,10 +1,10 @@
-"""Stage 1: VLM Visual Description — Qwen3-VL generates visual descriptions + bounding boxes."""
+"""Stage 1: VLM Visual Description — Qwen2.5-VL generates visual descriptions + bounding boxes."""
 
 import json
 import logging
 import os
 import re
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from vllm import LLM, SamplingParams
 
@@ -15,7 +15,7 @@ logger = logging.getLogger("pipeline")
 
 
 class VisualDescriber:
-    """Uses Qwen3-VL via vLLM to describe food items with visual patterns and bounding boxes.
+    """Uses Qwen2.5-VL via vLLM to describe food items with visual patterns and bounding boxes.
 
     Single VLM call per image: returns both visual descriptions and bboxes together.
     Visual descriptions (colors, textures, shapes) are better SAM3 prompts than food names.
@@ -30,14 +30,11 @@ class VisualDescriber:
                 gpu_memory_utilization=config.gpu_memory_utilization,
                 max_model_len=config.max_model_len,
                 enforce_eager=config.enforce_eager,
-                enable_prefix_caching=config.enable_prefix_caching,
                 allowed_local_media_path=config.allowed_local_media_path,
             )
             self.sampling_params = SamplingParams(
                 temperature=config.temperature,
                 max_tokens=config.max_tokens,
-                top_p=config.top_p,
-                top_k=config.top_k,
             )
         except Exception as e:
             logger.error(f"Error initializing vLLM: {e}")
@@ -45,25 +42,18 @@ class VisualDescriber:
 
     def _build_messages(self, image_path: str) -> List[dict]:
         """Build chat messages for a single image."""
-        messages = []
-        if self.config.system_prompt:
-            messages.append({"role": "system", "content": self.config.system_prompt})
-        messages.append({
-            "role": "user",
-            "content": [
-                {"type": "image_url", "image_url": {"url": f"file://{image_path}"}},
-                {"type": "text", "text": self.config.describe_template},
-            ],
-        })
-        return messages
+        return [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image_url", "image_url": {"url": f"file://{image_path}"}},
+                    {"type": "text", "text": self.config.describe_template},
+                ],
+            }
+        ]
 
     def describe(self, image_path: str) -> List[VisualItem]:
-        """Generate visual descriptions + bounding boxes for all food items in the image.
-
-        Returns:
-            List of VisualItem, each with a visual description and bbox in pixel coordinates.
-            On parse failure for an individual item, that item is skipped (not the whole image).
-        """
+        """Generate visual descriptions + bounding boxes for all food items in the image."""
         if not os.path.exists(image_path):
             logger.warning(f"Image not found: {image_path}")
             return []
@@ -84,12 +74,6 @@ class VisualDescriber:
 
         vLLM processes all conversations concurrently with continuous batching,
         keeping the GPU saturated instead of idling between serial calls.
-
-        Args:
-            image_paths: List of absolute image paths.
-
-        Returns:
-            Dict mapping image_path → List[VisualItem]. Failed images get empty lists.
         """
         valid_paths = [p for p in image_paths if os.path.exists(p)]
         if not valid_paths:
@@ -117,11 +101,7 @@ class VisualDescriber:
         return results
 
     def _parse_response(self, text: str) -> List[VisualItem]:
-        """Parse VLM JSON response into VisualItem list.
-
-        Handles both raw JSON and markdown ```json``` wrapping.
-        Skips individual items that fail to parse rather than failing the whole response.
-        """
+        """Parse VLM JSON response into VisualItem list."""
         # Strip markdown code fence if present
         match = re.search(r"```(?:json)?\s*(.*?)\s*```", text, re.DOTALL)
         json_text = match.group(1).strip() if match else text
@@ -141,9 +121,7 @@ class VisualDescriber:
         for i, item in enumerate(items_data):
             try:
                 description = item.get("description", "")
-                label = item.get("label", "")
                 bbox = item.get("bbox", [])
-                raw_points = item.get("points", [])
 
                 if not description:
                     logger.warning(f"Item {i}: missing description, skipping")
@@ -154,17 +132,7 @@ class VisualDescriber:
                     continue
 
                 bbox = [float(x) for x in bbox]
-
-                # Parse points: list of [x, y] pixel coordinates
-                points = []
-                if isinstance(raw_points, list):
-                    for pt in raw_points:
-                        if isinstance(pt, list) and len(pt) == 2:
-                            points.append([float(pt[0]), float(pt[1])])
-
-                results.append(VisualItem(
-                    description=description, bbox=bbox, points=points, label=label,
-                ))
+                results.append(VisualItem(description=description, bbox=bbox))
             except (ValueError, TypeError) as e:
                 logger.warning(f"Item {i}: parse error ({e}), skipping")
                 continue
