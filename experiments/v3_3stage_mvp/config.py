@@ -8,12 +8,12 @@ from typing import List
 
 @dataclass
 class VLMConfig:
-    model_name: str = "Qwen/Qwen2.5-VL-3B-Instruct"
-    gpu_memory_utilization: float = 0.4
+    model_name: str = "Qwen/Qwen2.5-VL-7B-Instruct"
+    gpu_memory_utilization: float = 0.85
     max_model_len: int = 4096
     enforce_eager: bool = True
     allowed_local_media_path: str = "/root"
-    temperature: float = 0.1
+    temperature: float = 0.2
     max_tokens: int = 512
     describe_template: str = (
         "Examine this cafeteria plate carefully. There are usually 2-4 separate food "
@@ -32,8 +32,10 @@ class VLMConfig:
         "items with TWO separate bounding boxes\n"
         "- A mixed dish (stew, salad with mixed ingredients) = ONE item\n"
         "- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n"
-        "- Each description must be UNIQUE — differentiate items by their specific visual traits\n"
-        "- Bounding boxes should tightly fit each item, not the whole plate\n"
+        "- Each description must be UNIQUE and specific to THIS image — describe the actual "
+        "colors, textures, and shapes you see, not generic food descriptions\n"
+        "- Bounding boxes must fully cover the entire food portion with some margin — "
+        "it is better to have a slightly oversized box than to cut off any part of the food\n"
         "\n"
         'Return strictly as JSON:\n'
         '{"items": [\n'
