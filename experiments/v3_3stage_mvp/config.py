@@ -42,7 +42,9 @@ class VLMConfig:
         "- A mixed dish (stew, salad with mixed ingredients) = ONE item\n"
         "- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n"
         "- Each description must be UNIQUE — differentiate items by their specific visual traits\n"
-        "- Bounding boxes should tightly fit each item, not the whole plate\n"
+        "- Bounding boxes should be GENEROUS — cover the entire food portion with extra margin. "
+        "It is much better to have a box that is too big than too small. "
+        "Include a ~20% margin around the food on all sides.\n"
         "\n"
         'Return strictly as JSON:\n'
         '{"items": [\n'
