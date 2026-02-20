@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_62_frame_frame_051403_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy frosting with yellow leaf-shaped decoration in the center, surrounded by small pink and red sprinkles, covering the entire plate",
+      "bbox": [
+        118,
+        115,
+        802,
+        802
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9936
+    }
+  ],
+  "stage1_time": 0.81,
+  "stage2_time": 0.22,
+  "match_results": null
+}

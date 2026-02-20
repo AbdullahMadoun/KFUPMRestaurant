@@ -6,45 +6,45 @@
   "items": [
     {
       "index": 0,
-      "description": "green broccoli florets, fresh and crisp",
+      "description": "green broccoli florets, mound covering right half of plate",
       "bbox": [
-        491,
-        288,
-        1169,
-        1061
+        487,
+        286,
+        1170,
+        1059
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9775
+      "sam_score": 0.9867
     },
     {
       "index": 1,
-      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
       "bbox": [
-        192,
+        193,
         68,
-        893,
-        530
+        1024,
+        532
       ],
       "crop": "crops/item_001.jpg",
       "mask": "masks/item_001_mask.png",
-      "sam_score": 0.9652
+      "sam_score": 0.9854
     },
     {
       "index": 2,
-      "description": "white rice with yellow specks, fluffy and slightly sticky",
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
       "bbox": [
-        156,
-        308,
-        696,
-        1107
+        116,
+        309,
+        703,
+        1108
       ],
       "crop": "crops/item_002.jpg",
       "mask": "masks/item_002_mask.png",
-      "sam_score": 0.9581
+      "sam_score": 0.955
     }
   ],
-  "stage1_time": 1.89,
-  "stage2_time": 0.69,
+  "stage1_time": 1.77,
+  "stage2_time": 0.68,
   "match_results": null
 }

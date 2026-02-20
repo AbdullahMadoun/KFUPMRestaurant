@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_235_frame_frame_067781_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of cake with white cream filling, green layer on top, garnished with a blackberry, strawberry, and blueberry",
+      "bbox": [
+        129,
+        139,
+        677,
+        708
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9934
+    }
+  ],
+  "stage1_time": 0.8,
+  "stage2_time": 0.21,
+  "match_results": null
+}

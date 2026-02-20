@@ -17,7 +17,7 @@
     "allowed_local_media_path": "/workspace/KFUPMRestaurant",
     "temperature": 0.1,
     "max_tokens": 512,
-    "describe_template": "Look at this plate of food. For each distinct food portion visible:\n\n1. Describe its VISUAL APPEARANCE only: color, texture, shape, surface pattern\n2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n\nRULES:\n- Describe what you SEE, not what you think it is called\n- A mixed dish (salad, stew) = ONE item \u2014 do NOT split ingredients\n- Side-by-side items on same plate = SEPARATE items\n- Ignore plates, bowls, cutlery, wrapping, background\n\nReturn strictly as JSON:\n{\"items\": [\n  {\"description\": \"golden brown crispy surface with ridged texture, roughly oval shaped\", \"bbox\": [x1, y1, x2, y2]},\n  ...\n]}\nReturn ONLY the JSON."
+    "describe_template": "Examine this cafeteria plate carefully. There are usually 2-4 separate food portions served together (e.g. a protein, a carb like rice, and a side).\n\nFor EACH distinct food portion you can see:\n1. Describe its VISUAL APPEARANCE: color, texture, shape, surface pattern, approximate size relative to the plate\n2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n\nRULES:\n- Describe what you SEE, not what you think it is called\n- Look carefully for items partially hidden under or next to other items\n- A portion of rice next to a portion of meat = TWO separate items, even if touching\n- If the same type of item appears in two different places, treat them as TWO separate items with TWO separate bounding boxes\n- A mixed dish (stew, salad with mixed ingredients) = ONE item\n- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n- Each description must be UNIQUE \u2014 differentiate items by their specific visual traits\n- Bounding boxes should tightly fit each item, not the whole plate\n\nReturn strictly as JSON:\n{\"items\": [\n  {\"description\": \"yellowish rice grains with small orange carrot pieces, mound covering left half of plate\", \"bbox\": [x1, y1, x2, y2]},\n  {\"description\": \"dark brown glazed meat pieces with irregular chunky shape, right side of plate\", \"bbox\": [x1, y1, x2, y2]},\n  ...\n]}\nReturn ONLY the JSON."
   },
   "sam": {
     "model_path": "facebook/sam3",
@@ -38,7 +38,9 @@
     "index_path": "menu.index",
     "metadata_path": "menu_meta.json",
     "top_k": 3,
-    "similarity_threshold": 0.5
+    "similarity_threshold": 0.5,
+    "text_weight": 0.3,
+    "use_text_matching": true
   },
   "nms": {
     "max_objects": 8,

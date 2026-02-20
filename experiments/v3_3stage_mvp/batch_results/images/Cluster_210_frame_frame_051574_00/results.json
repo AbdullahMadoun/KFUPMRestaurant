@@ -6,32 +6,32 @@
   "items": [
     {
       "index": 0,
-      "description": "slice of lemon with a bright yellow color, slightly curved, flat surface",
+      "description": "slice of lemon with a yellow peel and white pith, placed on the left side of the plate",
       "bbox": [
-        137,
+        135,
         325,
-        312,
+        313,
         628
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9855
+      "sam_score": 0.9782
     },
     {
       "index": 1,
-      "description": "green leafy vegetables with some red and white specks, finely chopped, irregularly shaped",
+      "description": "green leafy vegetables with small red and white pieces, covering the bottom half of the plate",
       "bbox": [
-        152,
-        94,
-        757,
-        783
+        133,
+        174,
+        780,
+        780
       ],
       "crop": "crops/item_001.jpg",
       "mask": "masks/item_001_mask.png",
-      "sam_score": 0.9637
+      "sam_score": 0.9592
     }
   ],
-  "stage1_time": 1.22,
-  "stage2_time": 0.42,
+  "stage1_time": 2.21,
+  "stage2_time": 0.85,
   "match_results": null
 }

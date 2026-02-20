@@ -6,32 +6,32 @@
   "items": [
     {
       "index": 0,
-      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
       "bbox": [
-        108,
-        323,
-        691,
-        1096
+        110,
+        322,
+        849,
+        1095
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9824
+      "sam_score": 0.9835
     },
     {
       "index": 1,
-      "description": "yellowish rice with green and orange specks, fluffy texture, mound shape",
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
       "bbox": [
-        195,
-        4,
-        1095,
-        798
+        198,
+        5,
+        1100,
+        797
       ],
       "crop": "crops/item_001.jpg",
       "mask": "masks/item_001_mask.png",
-      "sam_score": 0.972
+      "sam_score": 0.9763
     }
   ],
-  "stage1_time": 1.23,
+  "stage1_time": 1.26,
   "stage2_time": 0.44,
   "match_results": null
 }

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_197_frame_frame_027428_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy substance with yellowish streaks forming a sunflower-like pattern, covering the center of the plate",
+      "bbox": [
+        113,
+        110,
+        792,
+        792
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9928
+    },
+    {
+      "index": 1,
+      "description": "green leafy garnish in the center of the sunflower pattern, adding contrast to the creamy substance",
+      "bbox": [
+        333,
+        368,
+        595,
+        583
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9678
+    }
+  ],
+  "stage1_time": 1.31,
+  "stage2_time": 0.43,
+  "match_results": null
+}

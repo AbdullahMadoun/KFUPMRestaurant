@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_225_frame_frame_052425_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy pasta with chunks of chicken, irregular shape, size approximately 2/3 of the plate",
+      "bbox": [
+        69,
+        2,
+        842,
+        761
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9922
+    },
+    {
+      "index": 1,
+      "description": "yellow lemon slice, size approximately 1/4 of the plate",
+      "bbox": [
+        147,
+        556,
+        425,
+        729
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9808
+    }
+  ],
+  "stage1_time": 1.18,
+  "stage2_time": 0.42,
+  "match_results": null
+}

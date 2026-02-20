@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_56_frame_frame_119278_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "lemon wedges, one on the left side of the plate, another on the bottom left corner",
+      "bbox": [
+        73,
+        503,
+        380,
+        1038
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9859
+    },
+    {
+      "index": 1,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        230,
+        550,
+        802,
+        1009
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9824
+    },
+    {
+      "index": 2,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        163,
+        145,
+        1122,
+        944
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9798
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.66,
+  "match_results": null
+}

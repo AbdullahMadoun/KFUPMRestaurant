@@ -2,23 +2,36 @@
   "image_id": "Cluster_109_frame_frame_077547_00",
   "original": "original.jpg",
   "visualization": "visualization.jpg",
-  "num_items": 1,
+  "num_items": 2,
   "items": [
     {
       "index": 0,
-      "description": "white creamy texture with a few small, round, beige-colored objects on top, drizzled with a yellow liquid",
+      "description": "white creamy substance with yellow drizzle, covering most of the plate",
       "bbox": [
-        64,
+        63,
         118,
         793,
         816
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9919
+      "sam_score": 0.9915
+    },
+    {
+      "index": 1,
+      "description": "small beige chickpeas, scattered on top of the creamy substance",
+      "bbox": [
+        323,
+        361,
+        463,
+        552
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9327
     }
   ],
-  "stage1_time": 0.77,
-  "stage2_time": 0.21,
+  "stage1_time": 1.13,
+  "stage2_time": 0.43,
   "match_results": null
 }

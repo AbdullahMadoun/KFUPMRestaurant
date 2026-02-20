@@ -6,32 +6,32 @@
   "items": [
     {
       "index": 0,
-      "description": "yellowish rice with small pieces of vegetables mixed in",
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
       "bbox": [
-        231,
-        511,
-        1366,
-        1424
+        349,
+        517,
+        1365,
+        1423
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9723
+      "sam_score": 0.9796
     },
     {
       "index": 1,
-      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
       "bbox": [
-        123,
-        117,
-        1362,
-        768
+        125,
+        119,
+        1363,
+        872
       ],
       "crop": "crops/item_001.jpg",
       "mask": "masks/item_001_mask.png",
-      "sam_score": 0.961
+      "sam_score": 0.9554
     }
   ],
-  "stage1_time": 1.38,
+  "stage1_time": 1.46,
   "stage2_time": 0.47,
   "match_results": null
 }

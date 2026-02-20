@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_58_frame_frame_075177_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "cheese-topped bread or pastry, partially covered by the meat and vegetables",
+      "bbox": [
+        313,
+        292,
+        1056,
+        986
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9846
+    },
+    {
+      "index": 1,
+      "description": "green beans with onions, mixed with a sauce, covering the bottom half of the plate",
+      "bbox": [
+        148,
+        570,
+        917,
+        1319
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9828
+    },
+    {
+      "index": 2,
+      "description": "lemon wedges on the right side of the plate",
+      "bbox": [
+        1010,
+        880,
+        1177,
+        1109
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.934
+    }
+  ],
+  "stage1_time": 3.33,
+  "stage2_time": 1.38,
+  "match_results": null
+}
