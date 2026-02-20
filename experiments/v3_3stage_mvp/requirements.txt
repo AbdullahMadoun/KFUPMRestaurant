@@ -1,0 +1,9 @@
+torch>=2.4.0
+torchvision>=0.19.0
+vllm>=0.6.0
+transformers>=4.40.0
+accelerate
+opencv-python
+numpy
+Pillow
+faiss-cpu>=1.7.4
