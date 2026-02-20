@@ -24,32 +24,37 @@ class VLMConfig:
         "food names. You output only valid JSON."
     )
     describe_template: str = (
-        "Look at this cafeteria plate and identify every distinct food portion.\n"
+        "Examine this cafeteria plate carefully. There are usually 2-4 separate food "
+        "portions served together (e.g. a protein, a carb like rice, and a side).\n"
         "\n"
-        "For EACH portion provide:\n"
-        "- description: short visual description (~10 words) — colors, texture, shape\n"
-        "- bbox: tight bounding box [x1, y1, x2, y2] in pixel coordinates\n"
-        "- points: 2-3 pixel coordinates [x, y] placed directly ON the food surface. "
-        "Pick points that are clearly on the food, spread across the region.\n"
+        "For EACH distinct food portion you can see:\n"
+        "1. Describe its VISUAL APPEARANCE: color, texture, shape, surface pattern, "
+        "approximate size relative to the plate\n"
+        "2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n"
+        "3. Place 2-3 points [x, y] directly ON the food surface, spread across the portion\n"
         "\n"
-        "GROUPING RULES:\n"
-        "- Scattered pieces of the SAME food = ONE item, ONE bbox around ALL pieces\n"
-        "- A mixed dish (salad, stew, stir-fry) = ONE item\n"
-        "- Visually DIFFERENT foods that touch = SEPARATE items\n"
-        "- Same food in clearly separated areas = SEPARATE items\n"
+        "RULES:\n"
+        "- Describe what you SEE, not what you think it is called\n"
+        "- Look carefully for items partially hidden under or next to other items\n"
+        "- A portion of rice next to a portion of meat = TWO separate items, even if touching\n"
+        "- If the same type of item appears in two different places, treat them as TWO separate "
+        "items with TWO separate bounding boxes\n"
+        "- A mixed dish (stew, salad with mixed ingredients) = ONE item\n"
+        "- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n"
+        "- Each description must be UNIQUE — differentiate items by their specific visual traits\n"
+        "- Bounding boxes should tightly fit each item, not the whole plate\n"
         "\n"
-        "Count what you actually see. Do NOT default to any number.\n"
-        "\n"
-        "Return strictly as JSON:\n"
+        'Return strictly as JSON:\n'
         '{"items": [\n'
-        '  {"description": "<colors> <texture> <shape>", '
-        '"bbox": [x1, y1, x2, y2], '
+        '  {"description": "yellowish rice grains with small orange carrot pieces, '
+        'mound covering left half of plate", "bbox": [x1, y1, x2, y2], '
         '"points": [[px1, py1], [px2, py2]]},\n'
-        "  ...\n"
-        "]}\n"
-        "\n"
-        "Replace <placeholders> with actual observations. "
-        "All coordinates are pixel values. Return ONLY the JSON."
+        '  {"description": "dark brown glazed meat pieces with irregular chunky shape, '
+        'right side of plate", "bbox": [x1, y1, x2, y2], '
+        '"points": [[px1, py1], [px2, py2]]},\n'
+        '  ...\n'
+        ']}\n'
+        "Return ONLY the JSON."
     )
 
 
