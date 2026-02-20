@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_189_frame_frame_103603_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        164,
+        285,
+        912,
+        1315
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9864
+    },
+    {
+      "index": 1,
+      "description": "yellowish rice with small pieces of vegetables mixed in",
+      "bbox": [
+        136,
+        97,
+        1390,
+        1056
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9842
+    }
+  ],
+  "stage1_time": 1.37,
+  "stage2_time": 0.47,
+  "match_results": null
+}

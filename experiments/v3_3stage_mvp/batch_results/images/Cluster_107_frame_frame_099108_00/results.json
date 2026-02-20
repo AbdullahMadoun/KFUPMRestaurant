@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_107_frame_frame_099108_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellow rectangular piece with a smooth surface, roughly rectangular shape",
+      "bbox": [
+        495,
+        354,
+        693,
+        726
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9718
+    },
+    {
+      "index": 1,
+      "description": "green leafy vegetables with small white specks, finely chopped, irregularly shaped",
+      "bbox": [
+        12,
+        42,
+        1036,
+        952
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9549
+    }
+  ],
+  "stage1_time": 1.17,
+  "stage2_time": 0.45,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_85_frame_frame_104404_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        279,
+        442,
+        967,
+        1058
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9918
+    },
+    {
+      "index": 1,
+      "description": "silver spoon with ridged texture, oval shape",
+      "bbox": [
+        166,
+        43,
+        979,
+        523
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9496
+    }
+  ],
+  "stage1_time": 2.03,
+  "stage2_time": 0.45,
+  "match_results": null
+}

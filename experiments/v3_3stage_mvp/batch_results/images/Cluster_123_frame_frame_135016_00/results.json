@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_123_frame_frame_135016_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brownish chunks with a slightly glossy surface, irregularly shaped",
+      "bbox": [
+        618,
+        287,
+        1146,
+        980
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9858
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        68,
+        104,
+        721,
+        1001
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9752
+    }
+  ],
+  "stage1_time": 1.24,
+  "stage2_time": 0.44,
+  "match_results": null
+}

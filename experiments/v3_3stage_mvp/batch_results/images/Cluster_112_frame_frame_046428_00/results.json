@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_112_frame_frame_046428_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden yellow smooth surface with slight speckles, roughly circular shape",
+      "bbox": [
+        39,
+        48,
+        499,
+        500
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9901
+    }
+  ],
+  "stage1_time": 0.62,
+  "stage2_time": 0.2,
+  "match_results": null
+}

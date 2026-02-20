@@ -6,32 +6,32 @@
   "items": [
     {
       "index": 0,
-      "description": "yellowish rice with small red and orange pieces, fluffy texture, slightly clumped",
+      "description": "yellowish rice with small red and orange pieces, fluffy texture",
       "bbox": [
-        165,
+        166,
         239,
         836,
         1097
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9854
+      "sam_score": 0.9868
     },
     {
       "index": 1,
       "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
       "bbox": [
-        568,
-        157,
-        1246,
-        1036
+        216,
+        158,
+        1245,
+        1098
       ],
       "crop": "crops/item_001.jpg",
       "mask": "masks/item_001_mask.png",
-      "sam_score": 0.9753
+      "sam_score": 0.9862
     }
   ],
-  "stage1_time": 10.22,
-  "stage2_time": 1.18,
+  "stage1_time": 1.36,
+  "stage2_time": 0.46,
   "match_results": null
 }

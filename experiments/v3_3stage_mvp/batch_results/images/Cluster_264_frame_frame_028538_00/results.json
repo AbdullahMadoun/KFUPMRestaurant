@@ -1,0 +1,89 @@
+{
+  "image_id": "Cluster_264_frame_frame_028538_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 6,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of tomato, bright red with a slightly glossy surface",
+      "bbox": [
+        568,
+        292,
+        816,
+        560
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    },
+    {
+      "index": 1,
+      "description": "slice of red onion, translucent with a slightly glossy surface",
+      "bbox": [
+        120,
+        117,
+        342,
+        337
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9811
+    },
+    {
+      "index": 2,
+      "description": "red and yellow bell pepper slices, glossy surface, irregular shape",
+      "bbox": [
+        244,
+        307,
+        565,
+        656
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9779
+    },
+    {
+      "index": 3,
+      "description": "slice of carrot, orange with a slightly glossy surface",
+      "bbox": [
+        329,
+        156,
+        601,
+        317
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9769
+    },
+    {
+      "index": 4,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        8,
+        315,
+        333,
+        613
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9757
+    },
+    {
+      "index": 5,
+      "description": "slice of yellow bell pepper, glossy surface, irregular shape",
+      "bbox": [
+        244,
+        306,
+        566,
+        657
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9577
+    }
+  ],
+  "stage1_time": 4.14,
+  "stage2_time": 1.89,
+  "match_results": null
+}

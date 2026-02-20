@@ -1,0 +1,115 @@
+{
+  "image_id": "Cluster_265_frame_frame_001517_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 8,
+  "items": [
+    {
+      "index": 0,
+      "description": "orange textured surface, irregularly shaped",
+      "bbox": [
+        68,
+        288,
+        263,
+        459
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9864
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        146,
+        58,
+        547,
+        213
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9854
+    },
+    {
+      "index": 2,
+      "description": "light brown textured surface, irregularly shaped",
+      "bbox": [
+        260,
+        297,
+        647,
+        474
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9847
+    },
+    {
+      "index": 3,
+      "description": "green textured surface, irregularly shaped",
+      "bbox": [
+        615,
+        137,
+        775,
+        388
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9828
+    },
+    {
+      "index": 4,
+      "description": "yellow textured surface, irregularly shaped",
+      "bbox": [
+        195,
+        572,
+        481,
+        765
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9826
+    },
+    {
+      "index": 5,
+      "description": "dark brown textured surface, irregularly shaped",
+      "bbox": [
+        167,
+        449,
+        618,
+        613
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9805
+    },
+    {
+      "index": 6,
+      "description": "green textured surface, irregularly shaped",
+      "bbox": [
+        320,
+        262,
+        490,
+        354
+      ],
+      "crop": "crops/item_006.jpg",
+      "mask": "masks/item_006_mask.png",
+      "sam_score": 0.978
+    },
+    {
+      "index": 7,
+      "description": "white textured surface, irregularly shaped",
+      "bbox": [
+        454,
+        108,
+        622,
+        305
+      ],
+      "crop": "crops/item_007.jpg",
+      "mask": "masks/item_007_mask.png",
+      "sam_score": 0.9571
+    }
+  ],
+  "stage1_time": 3.46,
+  "stage2_time": 1.7,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_171_frame_frame_021395_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of lemon with white rind and yellow flesh",
+      "bbox": [
+        866,
+        810,
+        1051,
+        1068
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.981
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        135,
+        121,
+        1194,
+        1012
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9805
+    }
+  ],
+  "stage1_time": 1.32,
+  "stage2_time": 0.46,
+  "match_results": null
+}

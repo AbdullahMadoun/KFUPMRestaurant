@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_95_frame_frame_133932_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "light yellow pasta with ridged texture, slightly curled and intertwined",
+      "bbox": [
+        319,
+        45,
+        1048,
+        798
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9925
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        267,
+        561,
+        664,
+        1048
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.99
+    }
+  ],
+  "stage1_time": 1.24,
+  "stage2_time": 0.44,
+  "match_results": null
+}

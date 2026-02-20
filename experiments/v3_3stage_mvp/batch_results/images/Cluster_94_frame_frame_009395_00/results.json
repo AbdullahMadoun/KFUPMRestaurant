@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_94_frame_frame_009395_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        137,
+        119,
+        1268,
+        1284
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9446
+    }
+  ],
+  "stage1_time": 0.96,
+  "stage2_time": 0.24,
+  "match_results": null
+}

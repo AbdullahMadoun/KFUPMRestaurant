@@ -1,95 +1,1043 @@
-[18:43:58] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:43:58] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:43:58] INFO Sampled 2 images (seed=42)
-[18:43:58] INFO Loading models...
-[18:44:02] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:44:58] INFO   Loading Stage 2: SAM3...
-[18:46:21] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:46:21] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:46:21] INFO Sampled 2 images (seed=42)
-[18:46:21] INFO Loading models...
-[18:46:23] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:46:37] INFO   Loading Stage 2: SAM3...
-[18:47:49] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:47:49] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:47:49] INFO Sampled 2 images (seed=42)
-[18:47:49] INFO Loading models...
-[18:47:51] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:48:07] INFO   Loading Stage 2: SAM3...
-[18:49:05] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:49:05] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:49:05] INFO Sampled 2 images (seed=42)
-[18:49:05] INFO Loading models...
-[18:49:07] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:49:42] INFO   Loading Stage 2: SAM3...
-[18:52:04] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:52:04] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:52:04] INFO Sampled 2 images (seed=42)
-[18:52:04] INFO Loading models...
-[18:52:06] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:52:21] INFO   Loading Stage 2: SAM3...
-[18:52:21] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
-[18:55:59] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:55:59] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:55:59] INFO Sampled 2 images (seed=42)
-[18:55:59] INFO Loading models...
-[18:56:01] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:56:17] INFO   Loading Stage 2: SAM3...
-[18:56:17] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
-[18:58:20] INFO Batch run starting — n=2, seed=42, output=batch_results
-[18:58:20] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[18:58:20] INFO Sampled 2 images (seed=42)
-[18:58:20] INFO Loading models...
-[18:58:22] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[18:58:38] INFO   Loading Stage 2: SAM3...
-[18:58:38] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
-[18:58:59] INFO All models loaded.
-[18:58:59] INFO 
-[1/2] Processing: Cluster_134_frame_frame_034248_00  (done=0, ETA=estimating...)
-[18:59:02] ERROR Error during VLM generation: The file path /workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_134_frame_frame_034248_00.jpg must be a subpath of `--allowed-local-media-path /root`.
-[18:59:02] INFO   Stage 1 (2.8s): 0 items described
-[18:59:02] WARNING   Stage 1 returned no items, skipping Cluster_134_frame_frame_034248_00
-[18:59:02] INFO 
-[2/2] Processing: Cluster_53_frame_frame_059972_00  (done=1, ETA=2s)
-[18:59:02] ERROR Error during VLM generation: The file path /workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_53_frame_frame_059972_00.jpg must be a subpath of `--allowed-local-media-path /root`.
-[18:59:02] INFO   Stage 1 (0.0s): 0 items described
-[18:59:02] WARNING   Stage 1 returned no items, skipping Cluster_53_frame_frame_059972_00
-[18:59:02] INFO 
-Batch complete in 3s
-[18:59:02] INFO   Success: 0, Failed: 2, Skipped: 0
-[18:59:02] INFO   Output: batch_results
-[18:59:02] INFO   index.json: 2 entries
-[19:00:07] INFO Batch run starting — n=2, seed=42, output=batch_results
-[19:00:07] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
-[19:00:07] INFO Sampled 2 images (seed=42)
-[19:00:07] INFO Loading models...
-[19:00:09] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
-[19:00:24] INFO   Loading Stage 2: SAM3...
-[19:00:24] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
-[19:00:33] INFO All models loaded.
-[19:00:33] INFO 
-[1/2] Processing: Cluster_134_frame_frame_034248_00  (done=0, ETA=estimating...)
-[19:00:43] INFO Parsed 2 visual items from VLM response
-[19:00:43] INFO   Stage 1 (10.2s): 2 items described
-[19:00:44] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.975
-[19:00:44] INFO Segmented 'yellowish rice with small red and orange...' at threshold 0.1, score=0.985
-[19:00:44] INFO Segmented 2 items from 2 visual descriptions
-[19:00:44] INFO   Stage 2 (1.2s): 2 items segmented
-[19:00:44] INFO   After NMS: 2 items
-[19:00:44] INFO Saved visualization to batch_results/images/Cluster_134_frame_frame_034248_00/visualization.jpg
-[19:00:44] INFO 
-[2/2] Processing: Cluster_53_frame_frame_059972_00  (done=1, ETA=11s)
-[19:00:46] INFO Parsed 3 visual items from VLM response
-[19:00:46] INFO   Stage 1 (1.7s): 3 items described
-[19:00:46] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.983
-[19:00:46] INFO Segmented 'dark brownish surface with irregular tex...' at threshold 0.1, score=0.984
-[19:00:46] INFO Segmented 'white surface with fine texture, roughly...' at threshold 0.1, score=0.967
-[19:00:46] INFO Segmented 3 items from 3 visual descriptions
-[19:00:46] INFO   Stage 2 (0.7s): 3 items segmented
-[19:00:46] INFO   After NMS: 3 items
-[19:00:46] INFO Saved visualization to batch_results/images/Cluster_53_frame_frame_059972_00/visualization.jpg
-[19:00:46] INFO 
-Batch complete in 14s
-[19:00:46] INFO   Success: 2, Failed: 0, Skipped: 0
-[19:00:46] INFO   Output: batch_results
-[19:00:46] INFO   index.json: 2 entries
+[19:11:19] INFO Batch run starting — n=100, seed=42, output=batch_results
+[19:11:19] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[19:11:19] INFO Sampled 100 images (seed=42)
+[19:11:19] INFO Loading models...
+[19:11:21] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[19:11:55] INFO   Loading Stage 2: SAM3...
+[19:11:55] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[19:12:02] INFO All models loaded.
+[19:12:02] INFO 
+[1/100] Processing: Cluster_101_frame_frame_027162_00  (done=0, ETA=estimating...)
+[19:12:11] INFO Parsed 2 visual items from VLM response
+[19:12:11] INFO   Stage 1 (9.2s): 2 items described
+[19:12:12] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:12:12] INFO Segmented 'thin, yellowish slices with a slightly t...' at threshold 0.1, score=0.982
+[19:12:12] INFO Segmented 2 items from 2 visual descriptions
+[19:12:12] INFO   Stage 2 (0.6s): 2 items segmented
+[19:12:12] INFO   After NMS: 2 items
+[19:12:12] INFO Saved visualization to batch_results/images/Cluster_101_frame_frame_027162_00/visualization.jpg
+[19:12:12] INFO 
+[2/100] Processing: Cluster_107_frame_frame_099108_00  (done=1, ETA=16m 14s)
+[19:12:13] INFO Parsed 2 visual items from VLM response
+[19:12:13] INFO   Stage 1 (1.2s): 2 items described
+[19:12:13] INFO Segmented 'green leafy vegetables with small white ...' at threshold 0.1, score=0.955
+[19:12:14] INFO Segmented 'yellow rectangular piece with a smooth s...' at threshold 0.1, score=0.972
+[19:12:14] INFO Segmented 2 items from 2 visual descriptions
+[19:12:14] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:14] INFO   After NMS: 2 items
+[19:12:14] INFO Saved visualization to batch_results/images/Cluster_107_frame_frame_099108_00/visualization.jpg
+[19:12:14] INFO 
+[3/100] Processing: Cluster_108_frame_frame_001968_00  (done=2, ETA=9m 22s)
+[19:12:15] INFO Parsed 2 visual items from VLM response
+[19:12:15] INFO   Stage 1 (1.2s): 2 items described
+[19:12:15] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.982
+[19:12:15] INFO Segmented 'yellowish rice with a fluffy texture, mo...' at threshold 0.1, score=0.987
+[19:12:15] INFO Segmented 2 items from 2 visual descriptions
+[19:12:15] INFO   Stage 2 (0.4s): 2 items segmented
+[19:12:15] INFO   After NMS: 2 items
+[19:12:15] INFO Saved visualization to batch_results/images/Cluster_108_frame_frame_001968_00/visualization.jpg
+[19:12:15] INFO 
+[4/100] Processing: Cluster_109_frame_frame_077547_00  (done=3, ETA=7m 5s)
+[19:12:16] INFO Parsed 1 visual items from VLM response
+[19:12:16] INFO   Stage 1 (0.8s): 1 items described
+[19:12:16] INFO Segmented 'white creamy texture with a few small, r...' at threshold 0.1, score=0.992
+[19:12:16] INFO Segmented 1 items from 1 visual descriptions
+[19:12:16] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:16] INFO   After NMS: 1 items
+[19:12:16] INFO Saved visualization to batch_results/images/Cluster_109_frame_frame_077547_00/visualization.jpg
+[19:12:16] INFO 
+[5/100] Processing: Cluster_109_frame_frame_079896_00  (done=4, ETA=5m 39s)
+[19:12:17] INFO Parsed 1 visual items from VLM response
+[19:12:17] INFO   Stage 1 (0.7s): 1 items described
+[19:12:17] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.979
+[19:12:17] INFO Segmented 1 items from 1 visual descriptions
+[19:12:17] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:17] INFO   After NMS: 1 items
+[19:12:17] INFO Saved visualization to batch_results/images/Cluster_109_frame_frame_079896_00/visualization.jpg
+[19:12:17] INFO 
+[6/100] Processing: Cluster_112_frame_frame_046428_00  (done=5, ETA=4m 46s)
+[19:12:18] INFO Parsed 1 visual items from VLM response
+[19:12:18] INFO   Stage 1 (0.6s): 1 items described
+[19:12:18] INFO Segmented 'golden yellow smooth surface with slight...' at threshold 0.1, score=0.990
+[19:12:18] INFO Segmented 1 items from 1 visual descriptions
+[19:12:18] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:18] INFO   After NMS: 1 items
+[19:12:18] INFO Saved visualization to batch_results/images/Cluster_112_frame_frame_046428_00/visualization.jpg
+[19:12:18] INFO 
+[7/100] Processing: Cluster_113_frame_frame_111281_00  (done=6, ETA=4m 8s)
+[19:12:19] INFO Parsed 2 visual items from VLM response
+[19:12:19] INFO   Stage 1 (1.2s): 2 items described
+[19:12:20] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.982
+[19:12:20] INFO Segmented 'yellowish rice with green and orange spe...' at threshold 0.1, score=0.972
+[19:12:20] INFO Segmented 2 items from 2 visual descriptions
+[19:12:20] INFO   Stage 2 (0.4s): 2 items segmented
+[19:12:20] INFO   After NMS: 2 items
+[19:12:20] INFO Saved visualization to batch_results/images/Cluster_113_frame_frame_111281_00/visualization.jpg
+[19:12:20] INFO 
+[8/100] Processing: Cluster_120_frame_frame_129935_00  (done=7, ETA=3m 53s)
+[19:12:21] INFO Parsed 1 visual items from VLM response
+[19:12:21] INFO   Stage 1 (0.7s): 1 items described
+[19:12:21] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.985
+[19:12:21] INFO Segmented 1 items from 1 visual descriptions
+[19:12:21] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:21] INFO   After NMS: 1 items
+[19:12:21] INFO Saved visualization to batch_results/images/Cluster_120_frame_frame_129935_00/visualization.jpg
+[19:12:21] INFO 
+[9/100] Processing: Cluster_121_frame_frame_020775_00  (done=8, ETA=3m 33s)
+[19:12:22] INFO Parsed 1 visual items from VLM response
+[19:12:22] INFO   Stage 1 (0.8s): 1 items described
+[19:12:22] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.991
+[19:12:22] INFO Segmented 1 items from 1 visual descriptions
+[19:12:22] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:22] INFO   After NMS: 1 items
+[19:12:22] INFO Saved visualization to batch_results/images/Cluster_121_frame_frame_020775_00/visualization.jpg
+[19:12:22] INFO 
+[10/100] Processing: Cluster_123_frame_frame_135016_00  (done=9, ETA=3m 18s)
+[19:12:23] INFO Parsed 2 visual items from VLM response
+[19:12:23] INFO   Stage 1 (1.2s): 2 items described
+[19:12:23] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.975
+[19:12:24] INFO Segmented 'dark brownish chunks with a slightly glo...' at threshold 0.1, score=0.986
+[19:12:24] INFO Segmented 2 items from 2 visual descriptions
+[19:12:24] INFO   Stage 2 (0.4s): 2 items segmented
+[19:12:24] INFO   After NMS: 2 items
+[19:12:24] INFO Saved visualization to batch_results/images/Cluster_123_frame_frame_135016_00/visualization.jpg
+[19:12:24] INFO 
+[11/100] Processing: Cluster_124_frame_frame_043675_00  (done=10, ETA=3m 12s)
+[19:12:24] INFO Parsed 1 visual items from VLM response
+[19:12:24] INFO   Stage 1 (0.7s): 1 items described
+[19:12:24] INFO Segmented 'white creamy texture with green and yell...' at threshold 0.1, score=0.989
+[19:12:24] INFO Segmented 1 items from 1 visual descriptions
+[19:12:24] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:24] INFO   After NMS: 1 items
+[19:12:24] INFO Saved visualization to batch_results/images/Cluster_124_frame_frame_043675_00/visualization.jpg
+[19:12:24] INFO 
+[12/100] Processing: Cluster_126_frame_frame_133027_00  (done=11, ETA=2m 59s)
+[19:12:25] INFO Parsed 1 visual items from VLM response
+[19:12:25] INFO   Stage 1 (0.6s): 1 items described
+[19:12:25] INFO Segmented 'golden yellow smooth surface with small ...' at threshold 0.1, score=0.977
+[19:12:25] INFO Segmented 1 items from 1 visual descriptions
+[19:12:25] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:25] INFO   After NMS: 1 items
+[19:12:25] INFO Saved visualization to batch_results/images/Cluster_126_frame_frame_133027_00/visualization.jpg
+[19:12:25] INFO 
+[13/100] Processing: Cluster_128_frame_frame_038581_00  (done=12, ETA=2m 48s)
+[19:12:26] INFO Parsed 1 visual items from VLM response
+[19:12:26] INFO   Stage 1 (0.6s): 1 items described
+[19:12:26] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.979
+[19:12:26] INFO Segmented 1 items from 1 visual descriptions
+[19:12:26] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:26] INFO   After NMS: 1 items
+[19:12:26] INFO Saved visualization to batch_results/images/Cluster_128_frame_frame_038581_00/visualization.jpg
+[19:12:26] INFO 
+[14/100] Processing: Cluster_128_frame_frame_038599_00  (done=13, ETA=2m 39s)
+[19:12:27] INFO Parsed 1 visual items from VLM response
+[19:12:27] INFO   Stage 1 (0.6s): 1 items described
+[19:12:27] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.966
+[19:12:27] INFO Segmented 1 items from 1 visual descriptions
+[19:12:27] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:27] INFO   After NMS: 1 items
+[19:12:27] INFO Saved visualization to batch_results/images/Cluster_128_frame_frame_038599_00/visualization.jpg
+[19:12:27] INFO 
+[15/100] Processing: Cluster_12_frame_frame_026926_00  (done=14, ETA=2m 31s)
+[19:12:28] INFO Parsed 2 visual items from VLM response
+[19:12:28] INFO   Stage 1 (1.3s): 2 items described
+[19:12:28] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.977
+[19:12:29] INFO Segmented 'dark brownish chunks with a slightly glo...' at threshold 0.1, score=0.969
+[19:12:29] INFO Segmented 2 items from 2 visual descriptions
+[19:12:29] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:29] INFO   After NMS: 2 items
+[19:12:29] INFO Saved visualization to batch_results/images/Cluster_12_frame_frame_026926_00/visualization.jpg
+[19:12:29] INFO 
+[16/100] Processing: Cluster_130_frame_frame_089967_00  (done=15, ETA=2m 29s)
+[19:12:34] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [46, 688, 224, 860]
+    },
+    {
+      "description": "golden br
+[19:12:34] INFO   Stage 1 (5.2s): 0 items described
+[19:12:34] WARNING   Stage 1 returned no items, skipping Cluster_130_frame_frame_089967_00
+[19:12:34] INFO 
+[17/100] Processing: Cluster_130_frame_frame_103663_00  (done=16, ETA=2m 46s)
+[19:12:35] INFO Parsed 2 visual items from VLM response
+[19:12:35] INFO   Stage 1 (1.4s): 2 items described
+[19:12:36] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:12:36] INFO Segmented 'dark brownish chunks with a slightly glo...' at threshold 0.1, score=0.979
+[19:12:36] INFO Segmented 2 items from 2 visual descriptions
+[19:12:36] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:36] INFO   After NMS: 2 items
+[19:12:36] INFO Saved visualization to batch_results/images/Cluster_130_frame_frame_103663_00/visualization.jpg
+[19:12:36] INFO 
+[18/100] Processing: Cluster_134_frame_frame_034248_00  (done=17, ETA=2m 43s)
+[19:12:37] INFO Parsed 2 visual items from VLM response
+[19:12:37] INFO   Stage 1 (1.4s): 2 items described
+[19:12:37] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:12:38] INFO Segmented 'yellowish rice with small red and orange...' at threshold 0.1, score=0.987
+[19:12:38] INFO Segmented 2 items from 2 visual descriptions
+[19:12:38] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:38] INFO   After NMS: 2 items
+[19:12:38] INFO Saved visualization to batch_results/images/Cluster_134_frame_frame_034248_00/visualization.jpg
+[19:12:38] INFO 
+[19/100] Processing: Cluster_138_frame_frame_047584_00  (done=18, ETA=2m 41s)
+[19:12:38] INFO Parsed 1 visual items from VLM response
+[19:12:38] INFO   Stage 1 (0.7s): 1 items described
+[19:12:39] INFO Segmented 'white creamy texture with green flecks, ...' at threshold 0.1, score=0.979
+[19:12:39] INFO Segmented 1 items from 1 visual descriptions
+[19:12:39] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:39] INFO   After NMS: 1 items
+[19:12:39] INFO Saved visualization to batch_results/images/Cluster_138_frame_frame_047584_00/visualization.jpg
+[19:12:39] INFO 
+[20/100] Processing: Cluster_142_frame_frame_122427_00  (done=19, ETA=2m 34s)
+[19:12:40] INFO Parsed 2 visual items from VLM response
+[19:12:40] INFO   Stage 1 (1.1s): 2 items described
+[19:12:40] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:12:40] INFO Segmented 'orange slices with a slightly glossy sur...' at threshold 0.1, score=0.990
+[19:12:40] INFO Segmented 2 items from 2 visual descriptions
+[19:12:40] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:40] INFO   After NMS: 2 items
+[19:12:40] INFO Saved visualization to batch_results/images/Cluster_142_frame_frame_122427_00/visualization.jpg
+[19:12:40] INFO 
+[21/100] Processing: Cluster_148_frame_frame_054885_00  (done=20, ETA=2m 31s)
+[19:12:41] INFO Parsed 2 visual items from VLM response
+[19:12:41] INFO   Stage 1 (1.3s): 2 items described
+[19:12:42] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.964
+[19:12:42] INFO Segmented 'yellowish rice with a slightly uneven te...' at threshold 0.1, score=0.988
+[19:12:42] INFO Segmented 2 items from 2 visual descriptions
+[19:12:42] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:42] INFO   After NMS: 2 items
+[19:12:42] INFO Saved visualization to batch_results/images/Cluster_148_frame_frame_054885_00/visualization.jpg
+[19:12:42] INFO 
+[22/100] Processing: Cluster_149_frame_frame_013352_00  (done=21, ETA=2m 29s)
+[19:12:43] INFO Parsed 2 visual items from VLM response
+[19:12:43] INFO   Stage 1 (1.4s): 2 items described
+[19:12:44] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.981
+[19:12:44] INFO Segmented 'white rice with yellow and orange specks...' at threshold 0.1, score=0.983
+[19:12:44] INFO Segmented 2 items from 2 visual descriptions
+[19:12:44] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:44] INFO   After NMS: 2 items
+[19:12:44] INFO Saved visualization to batch_results/images/Cluster_149_frame_frame_013352_00/visualization.jpg
+[19:12:44] INFO 
+[23/100] Processing: Cluster_14_frame_frame_014137_00  (done=22, ETA=2m 27s)
+[19:12:49] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "dark brown rectangular piece with a glossy surface, adorned with golden and red toppings",
+      "bbox": [276, 106, 662, 720]
+    },
+    {
+      "des
+[19:12:49] INFO   Stage 1 (5.1s): 0 items described
+[19:12:49] WARNING   Stage 1 returned no items, skipping Cluster_14_frame_frame_014137_00
+[19:12:49] INFO 
+[24/100] Processing: Cluster_14_frame_frame_014148_00  (done=23, ETA=2m 35s)
+[19:12:51] INFO Parsed 3 visual items from VLM response
+[19:12:51] INFO   Stage 1 (1.7s): 3 items described
+[19:12:51] INFO Segmented 'dark brown rectangular piece with a glos...' at threshold 0.1, score=0.964
+[19:12:51] INFO Segmented 'red spherical object with a smooth surfa...' at threshold 0.1, score=0.973
+[19:12:51] INFO Segmented 'red spherical object with a smooth surfa...' at threshold 0.1, score=0.973
+[19:12:51] INFO Segmented 3 items from 3 visual descriptions
+[19:12:51] INFO   Stage 2 (0.6s): 3 items segmented
+[19:12:51] INFO   After NMS: 2 items
+[19:12:51] INFO Saved visualization to batch_results/images/Cluster_14_frame_frame_014148_00/visualization.jpg
+[19:12:51] INFO 
+[25/100] Processing: Cluster_152_frame_frame_080749_00  (done=24, ETA=2m 34s)
+[19:12:53] INFO Parsed 2 visual items from VLM response
+[19:12:53] INFO   Stage 1 (1.4s): 2 items described
+[19:12:53] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:12:53] INFO Segmented 'white rice with yellow and red specks, f...' at threshold 0.1, score=0.977
+[19:12:53] INFO Segmented 2 items from 2 visual descriptions
+[19:12:53] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:53] INFO   After NMS: 2 items
+[19:12:53] INFO Saved visualization to batch_results/images/Cluster_152_frame_frame_080749_00/visualization.jpg
+[19:12:53] INFO 
+[26/100] Processing: Cluster_159_frame_frame_016867_00  (done=25, ETA=2m 32s)
+[19:12:54] INFO Parsed 1 visual items from VLM response
+[19:12:54] INFO   Stage 1 (0.7s): 1 items described
+[19:12:54] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.988
+[19:12:54] INFO Segmented 1 items from 1 visual descriptions
+[19:12:54] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:54] INFO   After NMS: 1 items
+[19:12:54] INFO Saved visualization to batch_results/images/Cluster_159_frame_frame_016867_00/visualization.jpg
+[19:12:54] INFO 
+[27/100] Processing: Cluster_160_frame_frame_106768_00  (done=26, ETA=2m 27s)
+[19:12:55] INFO Parsed 2 visual items from VLM response
+[19:12:55] INFO   Stage 1 (1.4s): 2 items described
+[19:12:56] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.970
+[19:12:56] INFO Segmented 'white rice with yellowish tint, fluffy a...' at threshold 0.1, score=0.986
+[19:12:56] INFO Segmented 2 items from 2 visual descriptions
+[19:12:56] INFO   Stage 2 (0.5s): 2 items segmented
+[19:12:56] INFO   After NMS: 2 items
+[19:12:56] INFO Saved visualization to batch_results/images/Cluster_160_frame_frame_106768_00/visualization.jpg
+[19:12:56] INFO 
+[28/100] Processing: Cluster_164_frame_frame_110361_00  (done=27, ETA=2m 25s)
+[19:12:57] INFO Parsed 1 visual items from VLM response
+[19:12:57] INFO   Stage 1 (0.7s): 1 items described
+[19:12:57] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.984
+[19:12:57] INFO Segmented 1 items from 1 visual descriptions
+[19:12:57] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:57] INFO   After NMS: 1 items
+[19:12:57] INFO Saved visualization to batch_results/images/Cluster_164_frame_frame_110361_00/visualization.jpg
+[19:12:57] INFO 
+[29/100] Processing: Cluster_166_frame_frame_074915_00  (done=28, ETA=2m 20s)
+[19:12:58] INFO Parsed 1 visual items from VLM response
+[19:12:58] INFO   Stage 1 (0.7s): 1 items described
+[19:12:58] INFO Segmented 'white creamy texture with small yellow f...' at threshold 0.1, score=0.994
+[19:12:58] INFO Segmented 1 items from 1 visual descriptions
+[19:12:58] INFO   Stage 2 (0.2s): 1 items segmented
+[19:12:58] INFO   After NMS: 1 items
+[19:12:58] INFO Saved visualization to batch_results/images/Cluster_166_frame_frame_074915_00/visualization.jpg
+[19:12:58] INFO 
+[30/100] Processing: Cluster_167_frame_frame_004955_00  (done=29, ETA=2m 16s)
+[19:12:59] INFO Parsed 3 visual items from VLM response
+[19:12:59] INFO   Stage 1 (1.7s): 3 items described
+[19:13:00] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:13:00] INFO Segmented 'white rice with yellow and green specks,...' at threshold 0.1, score=0.961
+[19:13:00] INFO Segmented 'slice of lemon, bright yellow color, thi...' at threshold 0.1, score=0.983
+[19:13:00] INFO Segmented 3 items from 3 visual descriptions
+[19:13:00] INFO   Stage 2 (0.7s): 3 items segmented
+[19:13:00] INFO   After NMS: 3 items
+[19:13:00] INFO Saved visualization to batch_results/images/Cluster_167_frame_frame_004955_00/visualization.jpg
+[19:13:00] INFO 
+[31/100] Processing: Cluster_168_frame_frame_047988_00  (done=30, ETA=2m 15s)
+[19:13:01] INFO Parsed 2 visual items from VLM response
+[19:13:01] INFO   Stage 1 (1.2s): 2 items described
+[19:13:02] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.979
+[19:13:02] INFO Segmented 'green, slightly rough texture, leafy flo...' at threshold 0.1, score=0.985
+[19:13:02] INFO Segmented 2 items from 2 visual descriptions
+[19:13:02] INFO   Stage 2 (0.4s): 2 items segmented
+[19:13:02] INFO   After NMS: 2 items
+[19:13:02] INFO Saved visualization to batch_results/images/Cluster_168_frame_frame_047988_00/visualization.jpg
+[19:13:02] INFO 
+[32/100] Processing: Cluster_169_frame_frame_042617_00  (done=31, ETA=2m 12s)
+[19:13:03] INFO Parsed 2 visual items from VLM response
+[19:13:03] INFO   Stage 1 (1.2s): 2 items described
+[19:13:03] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:13:04] INFO Segmented 'white fluffy texture, round shape...' at threshold 0.1, score=0.975
+[19:13:04] INFO Segmented 2 items from 2 visual descriptions
+[19:13:04] INFO   Stage 2 (0.4s): 2 items segmented
+[19:13:04] INFO   After NMS: 2 items
+[19:13:04] INFO Saved visualization to batch_results/images/Cluster_169_frame_frame_042617_00/visualization.jpg
+[19:13:04] INFO 
+[33/100] Processing: Cluster_16_frame_frame_040866_00  (done=32, ETA=2m 10s)
+[19:13:07] INFO Parsed 8 visual items from VLM response
+[19:13:07] INFO   Stage 1 (3.5s): 8 items described
+[19:13:07] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.969
+[19:13:08] INFO Segmented 'white, soft texture, irregularly shaped...' at threshold 0.1, score=0.980
+[19:13:08] INFO Segmented 'white, soft texture, irregularly shaped...' at threshold 0.1, score=0.968
+[19:13:08] INFO Segmented 'white, soft texture, irregularly shaped...' at threshold 0.1, score=0.989
+[19:13:08] INFO Segmented 'orange, soft texture, irregularly shaped...' at threshold 0.1, score=0.972
+[19:13:08] INFO Segmented 'yellow, juicy texture, round shape...' at threshold 0.1, score=0.985
+[19:13:09] INFO Segmented 'yellow, juicy texture, round shape...' at threshold 0.1, score=0.984
+[19:13:09] INFO Segmented 'yellow, juicy texture, round shape...' at threshold 0.1, score=0.987
+[19:13:09] INFO Segmented 8 items from 8 visual descriptions
+[19:13:09] INFO   Stage 2 (1.7s): 8 items segmented
+[19:13:09] INFO   After NMS: 8 items
+[19:13:09] INFO Saved visualization to batch_results/images/Cluster_16_frame_frame_040866_00/visualization.jpg
+[19:13:09] INFO 
+[34/100] Processing: Cluster_171_frame_frame_021395_00  (done=33, ETA=2m 15s)
+[19:13:10] INFO Parsed 2 visual items from VLM response
+[19:13:10] INFO   Stage 1 (1.3s): 2 items described
+[19:13:10] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.980
+[19:13:11] INFO Segmented 'slice of lemon with white rind and yello...' at threshold 0.1, score=0.981
+[19:13:11] INFO Segmented 2 items from 2 visual descriptions
+[19:13:11] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:11] INFO   After NMS: 2 items
+[19:13:11] INFO Saved visualization to batch_results/images/Cluster_171_frame_frame_021395_00/visualization.jpg
+[19:13:11] INFO 
+[35/100] Processing: Cluster_175_frame_frame_135677_00  (done=34, ETA=2m 12s)
+[19:13:11] INFO Parsed 1 visual items from VLM response
+[19:13:11] INFO   Stage 1 (0.7s): 1 items described
+[19:13:12] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.987
+[19:13:12] INFO Segmented 1 items from 1 visual descriptions
+[19:13:12] INFO   Stage 2 (0.2s): 1 items segmented
+[19:13:12] INFO   After NMS: 1 items
+[19:13:12] INFO Saved visualization to batch_results/images/Cluster_175_frame_frame_135677_00/visualization.jpg
+[19:13:12] INFO 
+[36/100] Processing: Cluster_181_frame_frame_059805_00  (done=35, ETA=2m 8s)
+[19:13:13] INFO Parsed 2 visual items from VLM response
+[19:13:13] INFO   Stage 1 (1.4s): 2 items described
+[19:13:13] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.977
+[19:13:13] INFO Segmented 'yellowish rice with a slightly uneven te...' at threshold 0.1, score=0.980
+[19:13:13] INFO Segmented 2 items from 2 visual descriptions
+[19:13:13] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:13] INFO   After NMS: 2 items
+[19:13:13] INFO Saved visualization to batch_results/images/Cluster_181_frame_frame_059805_00/visualization.jpg
+[19:13:13] INFO 
+[37/100] Processing: Cluster_182_frame_frame_066882_00  (done=36, ETA=2m 6s)
+[19:13:15] INFO Parsed 2 visual items from VLM response
+[19:13:15] INFO   Stage 1 (1.2s): 2 items described
+[19:13:15] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.991
+[19:13:15] INFO Segmented 'three lemon wedges, bright yellow color,...' at threshold 0.1, score=0.982
+[19:13:15] INFO Segmented 2 items from 2 visual descriptions
+[19:13:15] INFO   Stage 2 (0.4s): 2 items segmented
+[19:13:15] INFO   After NMS: 2 items
+[19:13:15] INFO Saved visualization to batch_results/images/Cluster_182_frame_frame_066882_00/visualization.jpg
+[19:13:15] INFO 
+[38/100] Processing: Cluster_183_frame_frame_001572_00  (done=37, ETA=2m 4s)
+[19:13:16] INFO Parsed 1 visual items from VLM response
+[19:13:16] INFO   Stage 1 (0.8s): 1 items described
+[19:13:16] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.976
+[19:13:16] INFO Segmented 1 items from 1 visual descriptions
+[19:13:16] INFO   Stage 2 (0.2s): 1 items segmented
+[19:13:16] INFO   After NMS: 1 items
+[19:13:16] INFO Saved visualization to batch_results/images/Cluster_183_frame_frame_001572_00/visualization.jpg
+[19:13:16] INFO 
+[39/100] Processing: Cluster_184_frame_frame_059890_00  (done=38, ETA=2m 0s)
+[19:13:21] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [154, 730, 499, 923]
+    },
+    {
+      "description": "golden b
+[19:13:21] INFO   Stage 1 (5.2s): 0 items described
+[19:13:21] WARNING   Stage 1 returned no items, skipping Cluster_184_frame_frame_059890_00
+[19:13:21] INFO 
+[40/100] Processing: Cluster_185_frame_frame_091629_00  (done=39, ETA=2m 3s)
+[19:13:27] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [64, 302, 1243, 1282]
+    },
+    {
+      "description": "light y
+[19:13:27] INFO   Stage 1 (5.3s): 0 items described
+[19:13:27] WARNING   Stage 1 returned no items, skipping Cluster_185_frame_frame_091629_00
+[19:13:27] INFO 
+[41/100] Processing: Cluster_189_frame_frame_103603_00  (done=40, ETA=2m 6s)
+[19:13:28] INFO Parsed 2 visual items from VLM response
+[19:13:28] INFO   Stage 1 (1.4s): 2 items described
+[19:13:28] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:13:29] INFO Segmented 'yellowish rice with small pieces of vege...' at threshold 0.1, score=0.984
+[19:13:29] INFO Segmented 2 items from 2 visual descriptions
+[19:13:29] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:29] INFO   After NMS: 2 items
+[19:13:29] INFO Saved visualization to batch_results/images/Cluster_189_frame_frame_103603_00/visualization.jpg
+[19:13:29] INFO 
+[42/100] Processing: Cluster_190_frame_frame_042914_00  (done=41, ETA=2m 4s)
+[19:13:30] INFO Parsed 2 visual items from VLM response
+[19:13:30] INFO   Stage 1 (1.3s): 2 items described
+[19:13:30] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.959
+[19:13:30] INFO Segmented 'white fluffy rice with yellow specks, ev...' at threshold 0.1, score=0.985
+[19:13:30] INFO Segmented 2 items from 2 visual descriptions
+[19:13:30] INFO   Stage 2 (0.4s): 2 items segmented
+[19:13:30] INFO   After NMS: 2 items
+[19:13:30] INFO Saved visualization to batch_results/images/Cluster_190_frame_frame_042914_00/visualization.jpg
+[19:13:30] INFO 
+[43/100] Processing: Cluster_202_frame_frame_073921_00  (done=42, ETA=2m 1s)
+[19:13:32] INFO Parsed 2 visual items from VLM response
+[19:13:32] INFO   Stage 1 (1.3s): 2 items described
+[19:13:32] INFO Segmented 'white rice with yellow and green specks,...' at threshold 0.1, score=0.985
+[19:13:32] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:13:32] INFO Segmented 2 items from 2 visual descriptions
+[19:13:32] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:32] INFO   After NMS: 2 items
+[19:13:32] INFO Saved visualization to batch_results/images/Cluster_202_frame_frame_073921_00/visualization.jpg
+[19:13:32] INFO 
+[44/100] Processing: Cluster_204_frame_frame_022353_00  (done=43, ETA=1m 59s)
+[19:13:33] INFO Parsed 2 visual items from VLM response
+[19:13:33] INFO   Stage 1 (1.4s): 2 items described
+[19:13:34] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.983
+[19:13:34] INFO Segmented 'yellowish rice with a mix of vegetables,...' at threshold 0.1, score=0.986
+[19:13:34] INFO Segmented 2 items from 2 visual descriptions
+[19:13:34] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:34] INFO   After NMS: 2 items
+[19:13:34] INFO Saved visualization to batch_results/images/Cluster_204_frame_frame_022353_00/visualization.jpg
+[19:13:34] INFO 
+[45/100] Processing: Cluster_205_frame_frame_013701_00  (done=44, ETA=1m 56s)
+[19:13:35] INFO Parsed 2 visual items from VLM response
+[19:13:35] INFO   Stage 1 (1.3s): 2 items described
+[19:13:36] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.974
+[19:13:36] INFO Segmented 'golden yellow rice with a slightly gloss...' at threshold 0.1, score=0.952
+[19:13:36] INFO Segmented 2 items from 2 visual descriptions
+[19:13:36] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:36] INFO   After NMS: 2 items
+[19:13:36] INFO Saved visualization to batch_results/images/Cluster_205_frame_frame_013701_00/visualization.jpg
+[19:13:36] INFO 
+[46/100] Processing: Cluster_209_frame_frame_037229_00  (done=45, ETA=1m 54s)
+[19:13:37] INFO Parsed 2 visual items from VLM response
+[19:13:37] INFO   Stage 1 (1.4s): 2 items described
+[19:13:37] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.979
+[19:13:38] INFO Segmented 'yellowish rice with a central yellowish ...' at threshold 0.1, score=0.967
+[19:13:38] INFO Segmented 2 items from 2 visual descriptions
+[19:13:38] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:38] INFO   After NMS: 2 items
+[19:13:38] INFO Saved visualization to batch_results/images/Cluster_209_frame_frame_037229_00/visualization.jpg
+[19:13:38] INFO 
+[47/100] Processing: Cluster_20_frame_frame_095350_00  (done=46, ETA=1m 52s)
+[19:13:43] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [212, 526, 421, 820]
+    },
+    {
+      "description": "golden b
+[19:13:43] INFO   Stage 1 (5.1s): 0 items described
+[19:13:43] WARNING   Stage 1 returned no items, skipping Cluster_20_frame_frame_095350_00
+[19:13:43] INFO 
+[48/100] Processing: Cluster_210_frame_frame_051574_00  (done=47, ETA=1m 53s)
+[19:13:44] INFO Parsed 2 visual items from VLM response
+[19:13:44] INFO   Stage 1 (1.2s): 2 items described
+[19:13:44] INFO Segmented 'green leafy vegetables with some red and...' at threshold 0.1, score=0.964
+[19:13:44] INFO Segmented 'slice of lemon with a bright yellow colo...' at threshold 0.1, score=0.985
+[19:13:44] INFO Segmented 2 items from 2 visual descriptions
+[19:13:44] INFO   Stage 2 (0.4s): 2 items segmented
+[19:13:44] INFO   After NMS: 2 items
+[19:13:44] INFO Saved visualization to batch_results/images/Cluster_210_frame_frame_051574_00/visualization.jpg
+[19:13:44] INFO 
+[49/100] Processing: Cluster_211_frame_frame_092125_00  (done=48, ETA=1m 50s)
+[19:13:45] INFO Parsed 1 visual items from VLM response
+[19:13:45] INFO   Stage 1 (0.7s): 1 items described
+[19:13:45] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:13:45] INFO Segmented 1 items from 1 visual descriptions
+[19:13:45] INFO   Stage 2 (0.2s): 1 items segmented
+[19:13:45] INFO   After NMS: 1 items
+[19:13:45] INFO Saved visualization to batch_results/images/Cluster_211_frame_frame_092125_00/visualization.jpg
+[19:13:45] INFO 
+[50/100] Processing: Cluster_213_frame_frame_002656_00  (done=49, ETA=1m 47s)
+[19:13:47] INFO Parsed 2 visual items from VLM response
+[19:13:47] INFO   Stage 1 (1.3s): 2 items described
+[19:13:47] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.954
+[19:13:47] INFO Segmented 'white fluffy texture, evenly spread...' at threshold 0.1, score=0.989
+[19:13:47] INFO Segmented 2 items from 2 visual descriptions
+[19:13:47] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:47] INFO   After NMS: 2 items
+[19:13:47] INFO Saved visualization to batch_results/images/Cluster_213_frame_frame_002656_00/visualization.jpg
+[19:13:47] INFO 
+[51/100] Processing: Cluster_216_frame_frame_023372_00  (done=50, ETA=1m 44s)
+[19:13:48] INFO Parsed 2 visual items from VLM response
+[19:13:48] INFO   Stage 1 (1.3s): 2 items described
+[19:13:49] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.947
+[19:13:49] INFO Segmented 'shredded yellow rice with bits of meat a...' at threshold 0.1, score=0.984
+[19:13:49] INFO Segmented 2 items from 2 visual descriptions
+[19:13:49] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:49] INFO   After NMS: 2 items
+[19:13:49] INFO Saved visualization to batch_results/images/Cluster_216_frame_frame_023372_00/visualization.jpg
+[19:13:49] INFO 
+[52/100] Processing: Cluster_216_frame_frame_023377_00  (done=51, ETA=1m 42s)
+[19:13:50] INFO Parsed 2 visual items from VLM response
+[19:13:50] INFO   Stage 1 (1.3s): 2 items described
+[19:13:50] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.961
+[19:13:51] INFO Segmented 'yellowish rice with a mix of vegetables ...' at threshold 0.1, score=0.973
+[19:13:51] INFO Segmented 2 items from 2 visual descriptions
+[19:13:51] INFO   Stage 2 (0.5s): 2 items segmented
+[19:13:51] INFO   After NMS: 2 items
+[19:13:51] INFO Saved visualization to batch_results/images/Cluster_216_frame_frame_023377_00/visualization.jpg
+[19:13:51] INFO 
+[53/100] Processing: Cluster_216_frame_frame_023378_00  (done=52, ETA=1m 40s)
+[19:13:56] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [607, 852, 1022, 1338]
+    },
+    {
+      "description": "crispy
+[19:13:56] INFO   Stage 1 (5.3s): 0 items described
+[19:13:56] WARNING   Stage 1 returned no items, skipping Cluster_216_frame_frame_023378_00
+[19:13:56] INFO 
+[54/100] Processing: Cluster_229_frame_frame_036555_00  (done=53, ETA=1m 40s)
+[19:13:58] INFO Parsed 3 visual items from VLM response
+[19:13:58] INFO   Stage 1 (1.7s): 3 items described
+[19:13:58] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.982
+[19:13:58] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.971
+[19:13:58] INFO Segmented 'white fluffy rice with slightly uneven s...' at threshold 0.1, score=0.987
+[19:13:58] INFO Segmented 3 items from 3 visual descriptions
+[19:13:58] INFO   Stage 2 (0.8s): 3 items segmented
+[19:13:58] INFO   After NMS: 3 items
+[19:13:59] INFO Saved visualization to batch_results/images/Cluster_229_frame_frame_036555_00/visualization.jpg
+[19:13:59] INFO 
+[55/100] Processing: Cluster_22_frame_frame_011106_00  (done=54, ETA=1m 39s)
+[19:14:00] INFO Parsed 3 visual items from VLM response
+[19:14:00] INFO   Stage 1 (1.8s): 3 items described
+[19:14:01] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.948
+[19:14:01] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.961
+[19:14:01] INFO Segmented 'white rice with yellow and green garnish...' at threshold 0.1, score=0.986
+[19:14:01] INFO Segmented 3 items from 3 visual descriptions
+[19:14:01] INFO   Stage 2 (0.7s): 3 items segmented
+[19:14:01] INFO   After NMS: 3 items
+[19:14:01] INFO Saved visualization to batch_results/images/Cluster_22_frame_frame_011106_00/visualization.jpg
+[19:14:01] INFO 
+[56/100] Processing: Cluster_238_frame_frame_042102_00  (done=55, ETA=1m 37s)
+[19:14:03] INFO Parsed 3 visual items from VLM response
+[19:14:03] INFO   Stage 1 (1.9s): 3 items described
+[19:14:03] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.965
+[19:14:03] INFO Segmented 'white rice with yellow specks, fluffy an...' at threshold 0.1, score=0.958
+[19:14:04] INFO Segmented 'green broccoli florets, fresh and crisp...' at threshold 0.1, score=0.978
+[19:14:04] INFO Segmented 3 items from 3 visual descriptions
+[19:14:04] INFO   Stage 2 (0.7s): 3 items segmented
+[19:14:04] INFO   After NMS: 3 items
+[19:14:04] INFO Saved visualization to batch_results/images/Cluster_238_frame_frame_042102_00/visualization.jpg
+[19:14:04] INFO 
+[57/100] Processing: Cluster_239_frame_frame_059064_00  (done=56, ETA=1m 35s)
+[19:14:05] INFO Parsed 1 visual items from VLM response
+[19:14:05] INFO   Stage 1 (0.9s): 1 items described
+[19:14:05] INFO Segmented 'pasta with a creamy sauce, mixed with sm...' at threshold 0.1, score=0.993
+[19:14:05] INFO Segmented 1 items from 1 visual descriptions
+[19:14:05] INFO   Stage 2 (0.2s): 1 items segmented
+[19:14:05] INFO   After NMS: 1 items
+[19:14:05] INFO Saved visualization to batch_results/images/Cluster_239_frame_frame_059064_00/visualization.jpg
+[19:14:05] INFO 
+[58/100] Processing: Cluster_240_frame_frame_122621_00  (done=57, ETA=1m 32s)
+[19:14:05] INFO Parsed 1 visual items from VLM response
+[19:14:05] INFO   Stage 1 (0.7s): 1 items described
+[19:14:06] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:14:06] INFO Segmented 1 items from 1 visual descriptions
+[19:14:06] INFO   Stage 2 (0.2s): 1 items segmented
+[19:14:06] INFO   After NMS: 1 items
+[19:14:06] INFO Saved visualization to batch_results/images/Cluster_240_frame_frame_122621_00/visualization.jpg
+[19:14:06] INFO 
+[59/100] Processing: Cluster_241_frame_frame_040826_00  (done=58, ETA=1m 29s)
+[19:14:07] INFO Parsed 3 visual items from VLM response
+[19:14:07] INFO   Stage 1 (1.7s): 3 items described
+[19:14:08] INFO Segmented 'thinly sliced orange carrot strips, brig...' at threshold 0.1, score=0.978
+[19:14:08] INFO Segmented 'green leafy vegetable, light green color...' at threshold 0.1, score=0.981
+[19:14:08] INFO Segmented 'slice of lemon, bright yellow color, smo...' at threshold 0.1, score=0.982
+[19:14:08] INFO Segmented 3 items from 3 visual descriptions
+[19:14:08] INFO   Stage 2 (0.6s): 3 items segmented
+[19:14:08] INFO   After NMS: 3 items
+[19:14:08] INFO Saved visualization to batch_results/images/Cluster_241_frame_frame_040826_00/visualization.jpg
+[19:14:08] INFO 
+[60/100] Processing: Cluster_255_frame_frame_058505_00  (done=59, ETA=1m 27s)
+[19:14:09] INFO Parsed 2 visual items from VLM response
+[19:14:09] INFO   Stage 1 (1.3s): 2 items described
+[19:14:10] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:14:10] INFO Segmented 'white fluffy texture, evenly spread acro...' at threshold 0.1, score=0.965
+[19:14:10] INFO Segmented 2 items from 2 visual descriptions
+[19:14:10] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:10] INFO   After NMS: 2 items
+[19:14:10] INFO Saved visualization to batch_results/images/Cluster_255_frame_frame_058505_00/visualization.jpg
+[19:14:10] INFO 
+[61/100] Processing: Cluster_264_frame_frame_028538_00  (done=60, ETA=1m 25s)
+[19:14:14] INFO Parsed 9 visual items from VLM response
+[19:14:14] INFO   Stage 1 (4.1s): 9 items described
+[19:14:14] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.976
+[19:14:14] INFO Segmented 'red and yellow bell pepper slices, gloss...' at threshold 0.1, score=0.978
+[19:14:15] INFO Segmented 'slice of red onion, translucent with a s...' at threshold 0.1, score=0.981
+[19:14:15] INFO Segmented 'slice of tomato, bright red with a sligh...' at threshold 0.1, score=0.988
+[19:14:15] INFO Segmented 'slice of carrot, orange with a slightly ...' at threshold 0.1, score=0.977
+[19:14:15] INFO Segmented 'slice of yellow bell pepper, glossy surf...' at threshold 0.1, score=0.958
+[19:14:15] INFO Segmented 'slice of red onion, translucent with a s...' at threshold 0.1, score=0.981
+[19:14:16] INFO Segmented 'slice of tomato, bright red with a sligh...' at threshold 0.1, score=0.988
+[19:14:16] INFO Segmented 'slice of carrot, orange with a slightly ...' at threshold 0.1, score=0.977
+[19:14:16] INFO Segmented 9 items from 9 visual descriptions
+[19:14:16] INFO   Stage 2 (1.9s): 9 items segmented
+[19:14:16] INFO   After NMS: 6 items
+[19:14:16] INFO Saved visualization to batch_results/images/Cluster_264_frame_frame_028538_00/visualization.jpg
+[19:14:16] INFO 
+[62/100] Processing: Cluster_265_frame_frame_001517_00  (done=61, ETA=1m 25s)
+[19:14:19] INFO Parsed 8 visual items from VLM response
+[19:14:19] INFO   Stage 1 (3.5s): 8 items described
+[19:14:20] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.985
+[19:14:20] INFO Segmented 'dark brown textured surface, irregularly...' at threshold 0.1, score=0.980
+[19:14:20] INFO Segmented 'light brown textured surface, irregularl...' at threshold 0.1, score=0.985
+[19:14:20] INFO Segmented 'orange textured surface, irregularly sha...' at threshold 0.1, score=0.986
+[19:14:20] INFO Segmented 'green textured surface, irregularly shap...' at threshold 0.1, score=0.978
+[19:14:21] INFO Segmented 'white textured surface, irregularly shap...' at threshold 0.1, score=0.957
+[19:14:21] INFO Segmented 'yellow textured surface, irregularly sha...' at threshold 0.1, score=0.983
+[19:14:21] INFO Segmented 'green textured surface, irregularly shap...' at threshold 0.1, score=0.983
+[19:14:21] INFO Segmented 8 items from 8 visual descriptions
+[19:14:21] INFO   Stage 2 (1.7s): 8 items segmented
+[19:14:21] INFO   After NMS: 8 items
+[19:14:21] INFO Saved visualization to batch_results/images/Cluster_265_frame_frame_001517_00/visualization.jpg
+[19:14:21] INFO 
+[63/100] Processing: Cluster_268_frame_frame_009788_00  (done=62, ETA=1m 25s)
+[19:14:22] INFO Parsed 2 visual items from VLM response
+[19:14:22] INFO   Stage 1 (1.3s): 2 items described
+[19:14:23] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.975
+[19:14:23] INFO Segmented 'white fluffy texture, evenly spread...' at threshold 0.1, score=0.976
+[19:14:23] INFO Segmented 2 items from 2 visual descriptions
+[19:14:23] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:23] INFO   After NMS: 2 items
+[19:14:23] INFO Saved visualization to batch_results/images/Cluster_268_frame_frame_009788_00/visualization.jpg
+[19:14:23] INFO 
+[64/100] Processing: Cluster_26_frame_frame_067886_00  (done=63, ETA=1m 22s)
+[19:14:28] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [122, 512, 372, 751]
+    },
+    {
+      "description": "green le
+[19:14:28] INFO   Stage 1 (5.0s): 0 items described
+[19:14:28] WARNING   Stage 1 returned no items, skipping Cluster_26_frame_frame_067886_00
+[19:14:28] INFO 
+[65/100] Processing: Cluster_29_frame_frame_022336_00  (done=64, ETA=1m 21s)
+[19:14:30] INFO Parsed 3 visual items from VLM response
+[19:14:30] INFO   Stage 1 (1.8s): 3 items described
+[19:14:30] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.990
+[19:14:30] INFO Segmented 'yellowish rice with small green lentils,...' at threshold 0.1, score=0.987
+[19:14:30] INFO Segmented 'yellowish rice with small green lentils,...' at threshold 0.1, score=0.970
+[19:14:30] INFO Segmented 3 items from 3 visual descriptions
+[19:14:30] INFO   Stage 2 (0.8s): 3 items segmented
+[19:14:30] INFO   After NMS: 3 items
+[19:14:31] INFO Saved visualization to batch_results/images/Cluster_29_frame_frame_022336_00/visualization.jpg
+[19:14:31] INFO 
+[66/100] Processing: Cluster_34_frame_frame_080459_00  (done=65, ETA=1m 19s)
+[19:14:36] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [194, 537, 874, 1244]
+    },
+    {
+      "description": "greenis
+[19:14:36] INFO   Stage 1 (5.3s): 0 items described
+[19:14:36] WARNING   Stage 1 returned no items, skipping Cluster_34_frame_frame_080459_00
+[19:14:36] INFO 
+[67/100] Processing: Cluster_38_frame_frame_064872_00  (done=66, ETA=1m 19s)
+[19:14:37] INFO Parsed 1 visual items from VLM response
+[19:14:37] INFO   Stage 1 (0.9s): 1 items described
+[19:14:37] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.966
+[19:14:37] INFO Segmented 1 items from 1 visual descriptions
+[19:14:37] INFO   Stage 2 (0.2s): 1 items segmented
+[19:14:37] INFO   After NMS: 1 items
+[19:14:37] INFO Saved visualization to batch_results/images/Cluster_38_frame_frame_064872_00/visualization.jpg
+[19:14:37] INFO 
+[68/100] Processing: Cluster_38_frame_frame_081031_00  (done=67, ETA=1m 16s)
+[19:14:38] INFO Parsed 1 visual items from VLM response
+[19:14:38] INFO   Stage 1 (0.9s): 1 items described
+[19:14:38] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.965
+[19:14:38] INFO Segmented 1 items from 1 visual descriptions
+[19:14:38] INFO   Stage 2 (0.2s): 1 items segmented
+[19:14:38] INFO   After NMS: 1 items
+[19:14:38] INFO Saved visualization to batch_results/images/Cluster_38_frame_frame_081031_00/visualization.jpg
+[19:14:38] INFO 
+[69/100] Processing: Cluster_41_frame_frame_118837_00  (done=68, ETA=1m 13s)
+[19:14:40] INFO Parsed 4 visual items from VLM response
+[19:14:40] INFO   Stage 1 (2.1s): 4 items described
+[19:14:40] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.971
+[19:14:41] INFO Segmented 'dark brown crispy surface with ridged te...' at threshold 0.1, score=0.983
+[19:14:41] INFO Segmented 'dark brown crispy surface with ridged te...' at threshold 0.1, score=0.982
+[19:14:41] INFO Segmented 'yellow and white rice with a slightly gl...' at threshold 0.1, score=0.977
+[19:14:41] INFO Segmented 4 items from 4 visual descriptions
+[19:14:41] INFO   Stage 2 (0.9s): 4 items segmented
+[19:14:41] INFO   After NMS: 4 items
+[19:14:41] INFO Saved visualization to batch_results/images/Cluster_41_frame_frame_118837_00/visualization.jpg
+[19:14:41] INFO 
+[70/100] Processing: Cluster_42_frame_frame_067733_00  (done=69, ETA=1m 11s)
+[19:14:42] INFO Parsed 2 visual items from VLM response
+[19:14:42] INFO   Stage 1 (1.3s): 2 items described
+[19:14:43] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.975
+[19:14:43] INFO Segmented 'white rice with small pieces of orange a...' at threshold 0.1, score=0.964
+[19:14:43] INFO Segmented 2 items from 2 visual descriptions
+[19:14:43] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:43] INFO   After NMS: 2 items
+[19:14:43] INFO Saved visualization to batch_results/images/Cluster_42_frame_frame_067733_00/visualization.jpg
+[19:14:43] INFO 
+[71/100] Processing: Cluster_43_frame_frame_080325_00  (done=70, ETA=1m 8s)
+[19:14:44] INFO Parsed 2 visual items from VLM response
+[19:14:44] INFO   Stage 1 (1.3s): 2 items described
+[19:14:45] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:14:45] INFO Segmented 'white rice with yellow and red specks, f...' at threshold 0.1, score=0.964
+[19:14:45] INFO Segmented 2 items from 2 visual descriptions
+[19:14:45] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:45] INFO   After NMS: 2 items
+[19:14:45] INFO Saved visualization to batch_results/images/Cluster_43_frame_frame_080325_00/visualization.jpg
+[19:14:45] INFO 
+[72/100] Processing: Cluster_47_frame_frame_071736_00  (done=71, ETA=1m 6s)
+[19:14:46] INFO Parsed 2 visual items from VLM response
+[19:14:46] INFO   Stage 1 (1.3s): 2 items described
+[19:14:46] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.930
+[19:14:47] INFO Segmented 'silver shiny surface with smooth texture...' at threshold 0.1, score=0.953
+[19:14:47] INFO Segmented 2 items from 2 visual descriptions
+[19:14:47] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:47] INFO   After NMS: 2 items
+[19:14:47] INFO Saved visualization to batch_results/images/Cluster_47_frame_frame_071736_00/visualization.jpg
+[19:14:47] INFO 
+[73/100] Processing: Cluster_4_frame_frame_104754_00  (done=72, ETA=1m 3s)
+[19:14:47] INFO Parsed 1 visual items from VLM response
+[19:14:47] INFO   Stage 1 (0.7s): 1 items described
+[19:14:47] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.969
+[19:14:47] INFO Segmented 1 items from 1 visual descriptions
+[19:14:47] INFO   Stage 2 (0.2s): 1 items segmented
+[19:14:47] INFO   After NMS: 1 items
+[19:14:48] INFO Saved visualization to batch_results/images/Cluster_4_frame_frame_104754_00/visualization.jpg
+[19:14:48] INFO 
+[74/100] Processing: Cluster_51_frame_frame_011000_00  (done=73, ETA=1m 1s)
+[19:14:49] INFO Parsed 2 visual items from VLM response
+[19:14:49] INFO   Stage 1 (1.3s): 2 items described
+[19:14:49] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.981
+[19:14:49] INFO Segmented 'white rice with yellow and orange specks...' at threshold 0.1, score=0.985
+[19:14:49] INFO Segmented 2 items from 2 visual descriptions
+[19:14:49] INFO   Stage 2 (0.4s): 2 items segmented
+[19:14:49] INFO   After NMS: 2 items
+[19:14:49] INFO Saved visualization to batch_results/images/Cluster_51_frame_frame_011000_00/visualization.jpg
+[19:14:49] INFO 
+[75/100] Processing: Cluster_53_frame_frame_059972_00  (done=74, ETA=58s)
+[19:14:51] INFO Parsed 3 visual items from VLM response
+[19:14:51] INFO   Stage 1 (1.7s): 3 items described
+[19:14:51] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.983
+[19:14:51] INFO Segmented 'dark brown surface with irregular textur...' at threshold 0.1, score=0.983
+[19:14:52] INFO Segmented 'yellowish surface with fine texture, rou...' at threshold 0.1, score=0.974
+[19:14:52] INFO Segmented 3 items from 3 visual descriptions
+[19:14:52] INFO   Stage 2 (0.7s): 3 items segmented
+[19:14:52] INFO   After NMS: 3 items
+[19:14:52] INFO Saved visualization to batch_results/images/Cluster_53_frame_frame_059972_00/visualization.jpg
+[19:14:52] INFO 
+[76/100] Processing: Cluster_53_frame_frame_100701_00  (done=75, ETA=56s)
+[19:14:53] INFO Parsed 2 visual items from VLM response
+[19:14:53] INFO   Stage 1 (1.4s): 2 items described
+[19:14:53] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.961
+[19:14:54] INFO Segmented 'yellowish rice with small pieces of vege...' at threshold 0.1, score=0.972
+[19:14:54] INFO Segmented 2 items from 2 visual descriptions
+[19:14:54] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:54] INFO   After NMS: 2 items
+[19:14:54] INFO Saved visualization to batch_results/images/Cluster_53_frame_frame_100701_00/visualization.jpg
+[19:14:54] INFO 
+[77/100] Processing: Cluster_56_frame_frame_097352_00  (done=76, ETA=54s)
+[19:14:55] INFO Parsed 2 visual items from VLM response
+[19:14:55] INFO   Stage 1 (1.3s): 2 items described
+[19:14:55] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:14:55] INFO Segmented 'yellowish rice with a slightly glossy su...' at threshold 0.1, score=0.977
+[19:14:55] INFO Segmented 2 items from 2 visual descriptions
+[19:14:55] INFO   Stage 2 (0.5s): 2 items segmented
+[19:14:55] INFO   After NMS: 2 items
+[19:14:55] INFO Saved visualization to batch_results/images/Cluster_56_frame_frame_097352_00/visualization.jpg
+[19:14:55] INFO 
+[78/100] Processing: Cluster_56_frame_frame_123773_00  (done=77, ETA=51s)
+[19:14:57] INFO Parsed 2 visual items from VLM response
+[19:14:57] INFO   Stage 1 (1.2s): 2 items described
+[19:14:57] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.989
+[19:14:57] INFO Segmented 'yellowish rice with a slightly uneven su...' at threshold 0.1, score=0.981
+[19:14:57] INFO Segmented 2 items from 2 visual descriptions
+[19:14:57] INFO   Stage 2 (0.4s): 2 items segmented
+[19:14:57] INFO   After NMS: 2 items
+[19:14:57] INFO Saved visualization to batch_results/images/Cluster_56_frame_frame_123773_00/visualization.jpg
+[19:14:57] INFO 
+[79/100] Processing: Cluster_5_frame_frame_071300_00  (done=78, ETA=49s)
+[19:14:59] INFO Parsed 3 visual items from VLM response
+[19:14:59] INFO   Stage 1 (1.8s): 3 items described
+[19:14:59] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.991
+[19:14:59] INFO Segmented 'yellowish rice with a slightly granular ...' at threshold 0.1, score=0.983
+[19:15:00] INFO Segmented 'slice of lemon with a bright yellow colo...' at threshold 0.1, score=0.983
+[19:15:00] INFO Segmented 3 items from 3 visual descriptions
+[19:15:00] INFO   Stage 2 (0.7s): 3 items segmented
+[19:15:00] INFO   After NMS: 3 items
+[19:15:00] INFO Saved visualization to batch_results/images/Cluster_5_frame_frame_071300_00/visualization.jpg
+[19:15:00] INFO 
+[80/100] Processing: Cluster_62_frame_frame_060505_00  (done=79, ETA=47s)
+[19:15:00] INFO Parsed 1 visual items from VLM response
+[19:15:00] INFO   Stage 1 (0.8s): 1 items described
+[19:15:01] INFO Segmented 'white creamy texture with a yellow drizz...' at threshold 0.1, score=0.990
+[19:15:01] INFO Segmented 1 items from 1 visual descriptions
+[19:15:01] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:01] INFO   After NMS: 1 items
+[19:15:01] INFO Saved visualization to batch_results/images/Cluster_62_frame_frame_060505_00/visualization.jpg
+[19:15:01] INFO 
+[81/100] Processing: Cluster_65_frame_frame_049648_00  (done=80, ETA=44s)
+[19:15:02] INFO Parsed 2 visual items from VLM response
+[19:15:02] INFO   Stage 1 (1.2s): 2 items described
+[19:15:02] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.993
+[19:15:02] INFO Segmented 'slice of lemon with bright yellow color ...' at threshold 0.1, score=0.983
+[19:15:02] INFO Segmented 2 items from 2 visual descriptions
+[19:15:02] INFO   Stage 2 (0.4s): 2 items segmented
+[19:15:02] INFO   After NMS: 2 items
+[19:15:02] INFO Saved visualization to batch_results/images/Cluster_65_frame_frame_049648_00/visualization.jpg
+[19:15:02] INFO 
+[82/100] Processing: Cluster_67_frame_frame_002799_00  (done=81, ETA=42s)
+[19:15:04] INFO Parsed 2 visual items from VLM response
+[19:15:04] INFO   Stage 1 (1.3s): 2 items described
+[19:15:04] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.990
+[19:15:04] INFO Segmented 'yellowish rice with a slightly glossy su...' at threshold 0.1, score=0.987
+[19:15:04] INFO Segmented 2 items from 2 visual descriptions
+[19:15:04] INFO   Stage 2 (0.4s): 2 items segmented
+[19:15:04] INFO   After NMS: 2 items
+[19:15:04] INFO Saved visualization to batch_results/images/Cluster_67_frame_frame_002799_00/visualization.jpg
+[19:15:04] INFO 
+[83/100] Processing: Cluster_71_frame_frame_066097_00  (done=82, ETA=39s)
+[19:15:05] INFO Parsed 1 visual items from VLM response
+[19:15:05] INFO   Stage 1 (0.7s): 1 items described
+[19:15:05] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:15:05] INFO Segmented 1 items from 1 visual descriptions
+[19:15:05] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:05] INFO   After NMS: 1 items
+[19:15:05] INFO Saved visualization to batch_results/images/Cluster_71_frame_frame_066097_00/visualization.jpg
+[19:15:05] INFO 
+[84/100] Processing: Cluster_72_frame_frame_121784_00  (done=83, ETA=37s)
+[19:15:06] INFO Parsed 2 visual items from VLM response
+[19:15:06] INFO   Stage 1 (1.2s): 2 items described
+[19:15:06] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.972
+[19:15:07] INFO Segmented 'yellowish rice with a slightly rough tex...' at threshold 0.1, score=0.980
+[19:15:07] INFO Segmented 2 items from 2 visual descriptions
+[19:15:07] INFO   Stage 2 (0.5s): 2 items segmented
+[19:15:07] INFO   After NMS: 2 items
+[19:15:07] INFO Saved visualization to batch_results/images/Cluster_72_frame_frame_121784_00/visualization.jpg
+[19:15:07] INFO 
+[85/100] Processing: Cluster_73_frame_frame_063230_00  (done=84, ETA=35s)
+[19:15:12] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [314, 648, 558, 900]
+    },
+    {
+      "description": "golden b
+[19:15:12] INFO   Stage 1 (5.1s): 0 items described
+[19:15:12] WARNING   Stage 1 returned no items, skipping Cluster_73_frame_frame_063230_00
+[19:15:12] INFO 
+[86/100] Processing: Cluster_76_frame_frame_022615_00  (done=85, ETA=33s)
+[19:15:12] INFO Parsed 1 visual items from VLM response
+[19:15:12] INFO   Stage 1 (0.6s): 1 items described
+[19:15:13] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.970
+[19:15:13] INFO Segmented 1 items from 1 visual descriptions
+[19:15:13] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:13] INFO   After NMS: 1 items
+[19:15:13] INFO Saved visualization to batch_results/images/Cluster_76_frame_frame_022615_00/visualization.jpg
+[19:15:13] INFO 
+[87/100] Processing: Cluster_77_frame_frame_078205_00  (done=86, ETA=30s)
+[19:15:13] INFO Parsed 1 visual items from VLM response
+[19:15:13] INFO   Stage 1 (0.8s): 1 items described
+[19:15:14] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.990
+[19:15:14] INFO Segmented 1 items from 1 visual descriptions
+[19:15:14] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:14] INFO   After NMS: 1 items
+[19:15:14] INFO Saved visualization to batch_results/images/Cluster_77_frame_frame_078205_00/visualization.jpg
+[19:15:14] INFO 
+[88/100] Processing: Cluster_81_frame_frame_002844_00  (done=87, ETA=28s)
+[19:15:14] INFO Parsed 1 visual items from VLM response
+[19:15:14] INFO   Stage 1 (0.8s): 1 items described
+[19:15:15] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:15:15] INFO Segmented 1 items from 1 visual descriptions
+[19:15:15] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:15] INFO   After NMS: 1 items
+[19:15:15] INFO Saved visualization to batch_results/images/Cluster_81_frame_frame_002844_00/visualization.jpg
+[19:15:15] INFO 
+[89/100] Processing: Cluster_83_frame_frame_074170_00  (done=88, ETA=26s)
+[19:15:20] WARNING Failed to parse VLM JSON response: ```json
+{
+  "items": [
+    {
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [280, 102, 455, 294]
+    },
+    {
+      "description": "dark bro
+[19:15:20] INFO   Stage 1 (5.3s): 0 items described
+[19:15:20] WARNING   Stage 1 returned no items, skipping Cluster_83_frame_frame_074170_00
+[19:15:20] INFO 
+[90/100] Processing: Cluster_85_frame_frame_104397_00  (done=89, ETA=24s)
+[19:15:21] INFO Parsed 1 visual items from VLM response
+[19:15:21] INFO   Stage 1 (1.2s): 1 items described
+[19:15:21] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:15:21] INFO Segmented 1 items from 1 visual descriptions
+[19:15:21] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:21] INFO   After NMS: 1 items
+[19:15:21] INFO Saved visualization to batch_results/images/Cluster_85_frame_frame_104397_00/visualization.jpg
+[19:15:21] INFO 
+[91/100] Processing: Cluster_85_frame_frame_104404_00  (done=90, ETA=22s)
+[19:15:23] INFO Parsed 2 visual items from VLM response
+[19:15:23] INFO   Stage 1 (2.0s): 2 items described
+[19:15:24] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:15:24] INFO Segmented 'silver spoon with ridged texture, oval s...' at threshold 0.1, score=0.950
+[19:15:24] INFO Segmented 2 items from 2 visual descriptions
+[19:15:24] INFO   Stage 2 (0.4s): 2 items segmented
+[19:15:24] INFO   After NMS: 2 items
+[19:15:24] INFO Saved visualization to batch_results/images/Cluster_85_frame_frame_104404_00/visualization.jpg
+[19:15:24] INFO 
+[92/100] Processing: Cluster_86_frame_frame_060036_00  (done=91, ETA=19s)
+[19:15:25] INFO Parsed 2 visual items from VLM response
+[19:15:25] INFO   Stage 1 (1.5s): 2 items described
+[19:15:26] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:15:26] INFO Segmented 'white fluffy rice with a slightly uneven...' at threshold 0.1, score=0.951
+[19:15:26] INFO Segmented 2 items from 2 visual descriptions
+[19:15:26] INFO   Stage 2 (0.5s): 2 items segmented
+[19:15:26] INFO   After NMS: 2 items
+[19:15:26] INFO Saved visualization to batch_results/images/Cluster_86_frame_frame_060036_00/visualization.jpg
+[19:15:26] INFO 
+[93/100] Processing: Cluster_88_frame_frame_056935_00  (done=92, ETA=17s)
+[19:15:26] INFO Parsed 1 visual items from VLM response
+[19:15:26] INFO   Stage 1 (0.6s): 1 items described
+[19:15:27] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.978
+[19:15:27] INFO Segmented 1 items from 1 visual descriptions
+[19:15:27] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:27] INFO   After NMS: 1 items
+[19:15:27] INFO Saved visualization to batch_results/images/Cluster_88_frame_frame_056935_00/visualization.jpg
+[19:15:27] INFO 
+[94/100] Processing: Cluster_8_frame_frame_075607_00  (done=93, ETA=15s)
+[19:15:29] INFO Parsed 3 visual items from VLM response
+[19:15:29] INFO   Stage 1 (1.9s): 3 items described
+[19:15:29] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.983
+[19:15:29] INFO Segmented 'yellowish rice with a slight sheen, fluf...' at threshold 0.1, score=0.978
+[19:15:29] INFO Segmented 'greenish-yellow vegetables with a glossy...' at threshold 0.1, score=0.972
+[19:15:29] INFO Segmented 3 items from 3 visual descriptions
+[19:15:29] INFO   Stage 2 (0.7s): 3 items segmented
+[19:15:29] INFO   After NMS: 3 items
+[19:15:29] INFO Saved visualization to batch_results/images/Cluster_8_frame_frame_075607_00/visualization.jpg
+[19:15:29] INFO 
+[95/100] Processing: Cluster_91_frame_frame_063288_00  (done=94, ETA=13s)
+[19:15:30] INFO Parsed 2 visual items from VLM response
+[19:15:30] INFO   Stage 1 (1.2s): 2 items described
+[19:15:31] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.985
+[19:15:31] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.991
+[19:15:31] INFO Segmented 2 items from 2 visual descriptions
+[19:15:31] INFO   Stage 2 (0.4s): 2 items segmented
+[19:15:31] INFO   After NMS: 2 items
+[19:15:31] INFO Saved visualization to batch_results/images/Cluster_91_frame_frame_063288_00/visualization.jpg
+[19:15:31] INFO 
+[96/100] Processing: Cluster_94_frame_frame_009395_00  (done=95, ETA=10s)
+[19:15:32] INFO Parsed 1 visual items from VLM response
+[19:15:32] INFO   Stage 1 (1.0s): 1 items described
+[19:15:32] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.945
+[19:15:32] INFO Segmented 1 items from 1 visual descriptions
+[19:15:32] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:32] INFO   After NMS: 1 items
+[19:15:32] INFO Saved visualization to batch_results/images/Cluster_94_frame_frame_009395_00/visualization.jpg
+[19:15:32] INFO 
+[97/100] Processing: Cluster_95_frame_frame_133932_00  (done=96, ETA=8s)
+[19:15:33] INFO Parsed 2 visual items from VLM response
+[19:15:33] INFO   Stage 1 (1.2s): 2 items described
+[19:15:34] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.990
+[19:15:34] INFO Segmented 'light yellow pasta with ridged texture, ...' at threshold 0.1, score=0.993
+[19:15:34] INFO Segmented 2 items from 2 visual descriptions
+[19:15:34] INFO   Stage 2 (0.4s): 2 items segmented
+[19:15:34] INFO   After NMS: 2 items
+[19:15:34] INFO Saved visualization to batch_results/images/Cluster_95_frame_frame_133932_00/visualization.jpg
+[19:15:34] INFO 
+[98/100] Processing: Cluster_96_frame_frame_059135_00  (done=97, ETA=6s)
+[19:15:35] INFO Parsed 1 visual items from VLM response
+[19:15:35] INFO   Stage 1 (0.7s): 1 items described
+[19:15:35] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.992
+[19:15:35] INFO Segmented 1 items from 1 visual descriptions
+[19:15:35] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:35] INFO   After NMS: 1 items
+[19:15:35] INFO Saved visualization to batch_results/images/Cluster_96_frame_frame_059135_00/visualization.jpg
+[19:15:35] INFO 
+[99/100] Processing: Cluster_97_frame_frame_126945_00  (done=98, ETA=4s)
+[19:15:36] INFO Parsed 1 visual items from VLM response
+[19:15:36] INFO   Stage 1 (0.8s): 1 items described
+[19:15:36] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.986
+[19:15:36] INFO Segmented 1 items from 1 visual descriptions
+[19:15:36] INFO   Stage 2 (0.2s): 1 items segmented
+[19:15:36] INFO   After NMS: 1 items
+[19:15:36] INFO Saved visualization to batch_results/images/Cluster_97_frame_frame_126945_00/visualization.jpg
+[19:15:36] INFO 
+[100/100] Processing: Cluster_99_frame_frame_040069_00  (done=99, ETA=2s)
+[19:15:37] INFO Parsed 2 visual items from VLM response
+[19:15:37] INFO   Stage 1 (1.4s): 2 items described
+[19:15:37] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.984
+[19:15:38] INFO Segmented 'yellowish rice with a slightly glossy su...' at threshold 0.1, score=0.992
+[19:15:38] INFO Segmented 2 items from 2 visual descriptions
+[19:15:38] INFO   Stage 2 (0.5s): 2 items segmented
+[19:15:38] INFO   After NMS: 2 items
+[19:15:38] INFO Saved visualization to batch_results/images/Cluster_99_frame_frame_040069_00/visualization.jpg
+[19:15:38] INFO 
+Batch complete in 215s
+[19:15:38] INFO   Success: 90, Failed: 10, Skipped: 0
+[19:15:38] INFO   Output: batch_results
+[19:15:38] INFO   index.json: 100 entries

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_160_frame_frame_106768_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice with yellowish tint, fluffy and slightly sticky",
+      "bbox": [
+        224,
+        7,
+        1393,
+        925
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9862
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        600,
+        175,
+        1464,
+        1058
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9701
+    }
+  ],
+  "stage1_time": 1.38,
+  "stage2_time": 0.47,
+  "match_results": null
+}

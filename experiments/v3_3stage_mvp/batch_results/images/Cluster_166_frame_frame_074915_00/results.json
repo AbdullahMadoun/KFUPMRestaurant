@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_166_frame_frame_074915_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy texture with small yellow flecks, smooth surface, roughly oval shaped",
+      "bbox": [
+        56,
+        156,
+        897,
+        843
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.994
+    }
+  ],
+  "stage1_time": 0.72,
+  "stage2_time": 0.22,
+  "match_results": null
+}

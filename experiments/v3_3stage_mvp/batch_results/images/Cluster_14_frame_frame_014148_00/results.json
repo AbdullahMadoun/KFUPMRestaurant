@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_14_frame_frame_014148_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "red spherical object with a smooth surface, placed on top of the dark brown piece",
+      "bbox": [
+        399,
+        309,
+        541,
+        448
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9733
+    },
+    {
+      "index": 1,
+      "description": "dark brown rectangular piece with a glossy surface, sprinkled with yellow and white specks",
+      "bbox": [
+        285,
+        159,
+        650,
+        713
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9635
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.63,
+  "match_results": null
+}

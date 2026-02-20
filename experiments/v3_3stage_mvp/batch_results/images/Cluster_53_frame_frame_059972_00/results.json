@@ -6,45 +6,45 @@
   "items": [
     {
       "index": 0,
-      "description": "dark brownish surface with irregular texture, roughly oval shaped",
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
       "bbox": [
-        461,
-        192,
-        1065,
-        1001
+        265,
+        736,
+        685,
+        1101
       ],
       "crop": "crops/item_000.jpg",
       "mask": "masks/item_000_mask.png",
-      "sam_score": 0.9837
-    },
-    {
-      "index": 1,
-      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
-      "bbox": [
-        264,
-        736,
-        685,
-        1100
-      ],
-      "crop": "crops/item_001.jpg",
-      "mask": "masks/item_001_mask.png",
       "sam_score": 0.9833
     },
     {
-      "index": 2,
-      "description": "white surface with fine texture, roughly rectangular",
+      "index": 1,
+      "description": "dark brown surface with irregular texture, roughly oval shaped",
       "bbox": [
-        219,
+        461,
+        194,
+        1066,
+        999
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9829
+    },
+    {
+      "index": 2,
+      "description": "yellowish surface with fine texture, roughly rectangular",
+      "bbox": [
+        225,
         90,
-        1172,
-        890
+        1151,
+        865
       ],
       "crop": "crops/item_002.jpg",
       "mask": "masks/item_002_mask.png",
-      "sam_score": 0.9674
+      "sam_score": 0.974
     }
   ],
-  "stage1_time": 1.68,
-  "stage2_time": 0.67,
+  "stage1_time": 1.71,
+  "stage2_time": 0.68,
   "match_results": null
 }

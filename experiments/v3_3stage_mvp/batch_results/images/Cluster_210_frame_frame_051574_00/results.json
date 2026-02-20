@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_210_frame_frame_051574_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of lemon with a bright yellow color, slightly curved, flat surface",
+      "bbox": [
+        137,
+        325,
+        312,
+        628
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9855
+    },
+    {
+      "index": 1,
+      "description": "green leafy vegetables with some red and white specks, finely chopped, irregularly shaped",
+      "bbox": [
+        152,
+        94,
+        757,
+        783
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9637
+    }
+  ],
+  "stage1_time": 1.22,
+  "stage2_time": 0.42,
+  "match_results": null
+}

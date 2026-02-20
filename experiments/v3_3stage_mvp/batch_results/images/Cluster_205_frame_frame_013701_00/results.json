@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_205_frame_frame_013701_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        606,
+        290,
+        1116,
+        1192
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9741
+    },
+    {
+      "index": 1,
+      "description": "golden yellow rice with a slightly glossy surface, long and thin grains",
+      "bbox": [
+        2,
+        156,
+        779,
+        1159
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9518
+    }
+  ],
+  "stage1_time": 1.3,
+  "stage2_time": 0.46,
+  "match_results": null
+}

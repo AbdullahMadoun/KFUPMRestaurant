@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_142_frame_frame_122427_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "orange slices with a slightly glossy surface, cut into triangular pieces",
+      "bbox": [
+        414,
+        5,
+        887,
+        720
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9897
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        27,
+        64,
+        636,
+        632
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9888
+    }
+  ],
+  "stage1_time": 1.09,
+  "stage2_time": 0.46,
+  "match_results": null
+}

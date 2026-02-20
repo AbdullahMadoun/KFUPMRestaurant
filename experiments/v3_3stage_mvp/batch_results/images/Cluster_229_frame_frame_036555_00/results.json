@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_229_frame_frame_036555_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "white fluffy rice with slightly uneven surface",
+      "bbox": [
+        91,
+        74,
+        1102,
+        1155
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9871
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        21,
+        528,
+        593,
+        1047
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9824
+    },
+    {
+      "index": 2,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        447,
+        438,
+        929,
+        1045
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9708
+    }
+  ],
+  "stage1_time": 1.68,
+  "stage2_time": 0.78,
+  "match_results": null
+}

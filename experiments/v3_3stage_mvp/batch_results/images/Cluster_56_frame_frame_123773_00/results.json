@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_56_frame_frame_123773_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        330,
+        506,
+        881,
+        978
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9894
+    },
+    {
+      "index": 1,
+      "description": "yellowish rice with a slightly uneven surface, fluffy texture",
+      "bbox": [
+        93,
+        31,
+        955,
+        889
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9813
+    }
+  ],
+  "stage1_time": 1.18,
+  "stage2_time": 0.44,
+  "match_results": null
+}
