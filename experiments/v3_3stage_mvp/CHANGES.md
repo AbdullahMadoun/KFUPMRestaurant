@@ -122,13 +122,56 @@ multi_box_grid: int = 2         # NxN grid (2 → 4 sub-boxes + 1 full = 5)
 
 ---
 
+## 7. Performance: Batch VLM Inference (`run_batch.py`, `stage1_vlm.py`)
+
+**Before:** Serial — one `llm.chat()` call per image, GPU idles between calls.
+VLM was 74% of total time (1.51s/image mean).
+
+**After:** Batch — all images sent to vLLM in one `llm.chat()` call (or chunks
+of `--vlm_batch_size`). vLLM processes them with continuous batching, keeping
+the GPU 100% saturated.
+
+```
+Before: img1→VLM→SAM → img2→VLM→SAM → ...     (GPU idles between VLM calls)
+After:  [img1,img2,...,imgN]→VLM batch → SAM1→SAM2→...  (GPU saturated)
+```
+
+### New `describe_batch()` method in `stage1_vlm.py`
+- Builds messages for all images, sends them in one `llm.chat()` call
+- Returns `Dict[path, List[VisualItem]]`
+- Single-image `describe()` still works for interactive use
+
+### Restructured `run_batch.py`
+- Phase 1: Batch VLM inference (all images, chunked by `--vlm_batch_size`)
+- Phase 2: Serial SAM + NMS + Match per image (uses pre-computed VLM results)
+- New `--vlm_batch_size` flag (default 32)
+
+Expected speedup: **3-5x on VLM stage** (the 74% bottleneck).
+
+---
+
+## 8. Performance: vLLM Engine Optimizations (`config.py`, `stage1_vlm.py`)
+
+| Parameter | Before | After | Effect |
+|---|---|---|---|
+| `enforce_eager` | True | **False** | Enables CUDA graph capture (~20-30% faster decode) |
+| `max_model_len` | 4096 | **2048** | Halves KV cache memory → room for larger batches |
+| `enable_prefix_caching` | N/A | **True** | Caches shared prompt prefix KV states across images |
+
+**Prefix caching:** Our system prompt + describe_template are identical for every
+image (~300 tokens). With prefix caching, vLLM computes these KV states once and
+reuses them for all subsequent images, saving ~15-20% compute per image.
+
+---
+
 ## Files Changed
 
 | File | What |
 |---|---|
-| `config.py` | Model name, GPU mem, prompt, sampling params, SAM thresholds, multi-box config |
-| `stage1_vlm.py` | System prompt in messages, `top_p`/`top_k` in SamplingParams |
+| `config.py` | Model name, GPU mem, prompt, sampling params, SAM thresholds, multi-box config, prefix caching |
+| `stage1_vlm.py` | System prompt, `top_p`/`top_k`, `describe_batch()`, prefix caching |
 | `stage2_sam.py` | Multi-box prompting via `_build_box_prompts()`, module docstring |
+| `run_batch.py` | Batch VLM inference, `--vlm_batch_size` flag, restructured processing loop |
 
 ## How to Revert Multi-Box Prompting
 

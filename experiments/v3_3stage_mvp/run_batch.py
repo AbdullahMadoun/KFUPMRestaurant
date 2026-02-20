@@ -110,12 +110,15 @@ def make_synthetic_matches(segmented_items):
 def process_single_image(
     image_path: Path,
     image_dir: Path,
-    describer,
+    visual_items,
+    stage1_time: float,
     segmenter,
     matcher,
     config: PipelineConfig,
 ):
-    """Process one image through Stage 1+2 (optionally +3), save all outputs.
+    """Process one image through Stage 2 (optionally +3), save all outputs.
+
+    Stage 1 (VLM) results are passed in pre-computed from batch inference.
 
     Returns a dict with status info for index.json, or None on failure.
     """
@@ -131,14 +134,9 @@ def process_single_image(
         try:
             original_link.symlink_to(image_path.resolve())
         except OSError:
-            # Fallback: copy if symlinks not supported
             import shutil
             shutil.copy2(str(image_path), str(original_link))
 
-    # Stage 1: VLM Describe
-    t1_start = time.time()
-    visual_items = describer.describe(str(image_path))
-    stage1_time = time.time() - t1_start
     logger.info(f"  Stage 1 ({stage1_time:.1f}s): {len(visual_items)} items described")
 
     if not visual_items:
@@ -265,6 +263,8 @@ def main():
     parser.add_argument("--config", default=None, help="JSON config override file")
     parser.add_argument("--device", default="cuda", help="Device (default: cuda)")
     parser.add_argument("--resume", action="store_true", help="Skip already-processed images")
+    parser.add_argument("--vlm_batch_size", type=int, default=32,
+                        help="Number of images per VLM batch (default: 32)")
     args = parser.parse_args()
 
     config = build_config(args)
@@ -305,7 +305,7 @@ def main():
     from stage1_vlm import VisualDescriber
     from stage2_sam import FoodSegmenter
 
-    logger.info("  Loading Stage 1: VLM (Qwen2.5-VL)...")
+    logger.info("  Loading Stage 1: VLM...")
     describer = VisualDescriber(config.vlm)
 
     logger.info("  Loading Stage 2: SAM3...")
@@ -321,19 +321,19 @@ def main():
 
     logger.info("All models loaded.")
 
-    # Process images
+    # Process images — batch VLM first, then SAM per image
     index_entries = []
     stats = {"success": 0, "failed": 0, "skipped": 0}
     batch_start = time.time()
 
+    # Separate resumed vs to-process
+    to_process = []  # (index, image_path, image_dir)
     for i, image_path in enumerate(sampled):
         image_id = image_id_from_path(image_path)
         image_dir = images_dir / image_id
 
-        # Resume check
         if args.resume and (image_dir / "results.json").exists():
             logger.info(f"[{i+1}/{len(sampled)}] SKIP (already done): {image_id}")
-            # Load existing results for index
             try:
                 existing = json.loads((image_dir / "results.json").read_text())
                 index_entries.append({
@@ -348,18 +348,49 @@ def main():
             continue
 
         image_dir.mkdir(parents=True, exist_ok=True)
+        to_process.append((i, image_path, image_dir))
+
+    # --- Stage 1: Batch VLM inference (all images at once) ---
+    vlm_batch_size = args.vlm_batch_size
+    all_vlm_results = {}  # image_path_str → (List[VisualItem], stage1_time)
+
+    if to_process:
+        total_batches = (len(to_process) + vlm_batch_size - 1) // vlm_batch_size
+        logger.info(f"\nStage 1: Batch VLM inference — {len(to_process)} images in {total_batches} batch(es) of {vlm_batch_size}")
+
+        for batch_idx in range(0, len(to_process), vlm_batch_size):
+            batch = to_process[batch_idx : batch_idx + vlm_batch_size]
+            batch_paths = [str(p) for _, p, _ in batch]
+            batch_num = batch_idx // vlm_batch_size + 1
+
+            logger.info(f"  VLM batch {batch_num}/{total_batches} ({len(batch)} images)...")
+            t1_start = time.time()
+            batch_results = describer.describe_batch(batch_paths)
+            batch_time = time.time() - t1_start
+            per_image = batch_time / len(batch)
+            logger.info(f"  VLM batch {batch_num} done in {batch_time:.1f}s ({per_image:.2f}s/image)")
+
+            for path_str in batch_paths:
+                all_vlm_results[path_str] = (batch_results.get(path_str, []), per_image)
+
+    # --- Stage 2+: SAM + NMS + Match per image ---
+    for j, (i, image_path, image_dir) in enumerate(to_process):
+        image_id = image_id_from_path(image_path)
         elapsed = time.time() - batch_start
         done = stats["success"] + stats["failed"]
-        eta = format_eta(elapsed, done, len(sampled) - stats["skipped"])
+        total_to_do = len(to_process)
+        eta = format_eta(elapsed, done, total_to_do)
 
         logger.info(
-            f"\n[{i+1}/{len(sampled)}] Processing: {image_id}  "
+            f"\n[{j+1}/{total_to_do}] Stage 2: {image_id}  "
             f"(done={done}, ETA={eta})"
         )
 
         try:
+            visual_items, stage1_time = all_vlm_results.get(str(image_path), ([], 0))
             entry = process_single_image(
-                image_path, image_dir, describer, segmenter, matcher, config
+                image_path, image_dir, visual_items, stage1_time,
+                segmenter, matcher, config
             )
             if entry:
                 index_entries.append(entry)

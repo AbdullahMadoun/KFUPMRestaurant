@@ -10,8 +10,9 @@ from typing import List
 class VLMConfig:
     model_name: str = "Qwen/Qwen3-VL-8B-Instruct"
     gpu_memory_utilization: float = 0.6
-    max_model_len: int = 4096
-    enforce_eager: bool = True
+    max_model_len: int = 2048
+    enforce_eager: bool = False
+    enable_prefix_caching: bool = True
     allowed_local_media_path: str = "/root"
     temperature: float = 0.3
     max_tokens: int = 768
