@@ -67,6 +67,7 @@ class SAMConfig:
     bpe_search_paths: List[str] = field(default_factory=lambda: [
         "/root/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz",
     ])
+    bbox_expand: float = 0.25          # expand VLM bbox by this fraction before SAM (0.25 = 25% each side)
     multi_box_prompt: bool = False    # set True to send 2x2 sub-box grid + full bbox (5 total)
     multi_box_grid: int = 2           # NxN sub-box grid (2 = 4 sub-boxes + 1 full = 5 prompts)
     use_vlm_points: bool = True       # use VLM-provided foreground points (from Stage 1)

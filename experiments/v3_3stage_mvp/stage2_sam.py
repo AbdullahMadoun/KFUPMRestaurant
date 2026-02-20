@@ -124,13 +124,24 @@ class FoodSegmenter:
         logger.info(f"Segmented {len(all_segmented)} items from {len(items)} visual descriptions")
         return all_segmented
 
+    def _expand_bbox(self, bbox, img_w: int, img_h: int) -> List[float]:
+        """Expand VLM bbox by config fraction. SAM works better with generous bboxes."""
+        e = self.config.bbox_expand
+        x1, y1, x2, y2 = bbox
+        bw, bh = x2 - x1, y2 - y1
+        x1 = max(0, x1 - bw * e)
+        y1 = max(0, y1 - bh * e)
+        x2 = min(img_w, x2 + bw * e)
+        y2 = min(img_h, y2 + bh * e)
+        return [x1, y1, x2, y2]
+
     def _build_box_prompts(self, bbox, img_w: int, img_h: int) -> List[List[float]]:
         """Build list of [cx, cy, w, h] normalized box prompts for a single item.
 
         When multi_box_prompt is enabled, returns the full bbox plus an NxN grid
         of sub-boxes within it. Otherwise returns just the full bbox.
         """
-        x1, y1, x2, y2 = bbox
+        x1, y1, x2, y2 = self._expand_bbox(bbox, img_w, img_h)
         cx = (x1 + x2) / 2 / img_w
         cy = (y1 + y2) / 2 / img_h
         w = (x2 - x1) / img_w
