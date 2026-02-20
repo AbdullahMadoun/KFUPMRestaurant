@@ -374,6 +374,8 @@ def main():
                 all_vlm_results[path_str] = (batch_results.get(path_str, []), per_image)
 
     # --- Stage 2+: SAM + NMS + Match per image ---
+    per_image_times = []  # list of dicts for timing log
+
     for j, (i, image_path, image_dir) in enumerate(to_process):
         image_id = image_id_from_path(image_path)
         elapsed = time.time() - batch_start
@@ -382,19 +384,30 @@ def main():
         eta = format_eta(elapsed, done, total_to_do)
 
         logger.info(
-            f"\n[{j+1}/{total_to_do}] Stage 2: {image_id}  "
+            f"\n[{j+1}/{total_to_do}] {image_id}  "
             f"(done={done}, ETA={eta})"
         )
 
+        img_start = time.time()
         try:
             visual_items, stage1_time = all_vlm_results.get(str(image_path), ([], 0))
             entry = process_single_image(
                 image_path, image_dir, visual_items, stage1_time,
                 segmenter, matcher, config
             )
+            img_total = time.time() - img_start
             if entry:
                 index_entries.append(entry)
                 stats["success"] += 1
+                per_image_times.append({
+                    "id": image_id, "s1": round(stage1_time, 2),
+                    "s2": round(img_total, 2), "total": round(stage1_time + img_total, 2),
+                    "items": entry["num_items"],
+                })
+                logger.info(
+                    f"  Done: S1={stage1_time:.2f}s + S2={img_total:.2f}s = "
+                    f"{stage1_time + img_total:.2f}s total, {entry['num_items']} items"
+                )
             else:
                 index_entries.append({
                     "id": image_id,
@@ -403,8 +416,10 @@ def main():
                     "status": "failed",
                 })
                 stats["failed"] += 1
+                logger.info(f"  Failed after {img_total:.2f}s")
         except Exception as e:
-            logger.error(f"  FAILED: {e}\n{traceback.format_exc()}")
+            img_total = time.time() - img_start
+            logger.error(f"  FAILED ({img_total:.2f}s): {e}\n{traceback.format_exc()}")
             index_entries.append({
                 "id": image_id,
                 "path": f"images/{image_id}",
@@ -423,6 +438,22 @@ def main():
     }
     (output_dir / "index.json").write_text(json.dumps(index_data, indent=2))
 
+    # Compute timing stats
+    if per_image_times:
+        s1_times = [t["s1"] for t in per_image_times]
+        s2_times = [t["s2"] for t in per_image_times]
+        totals = [t["total"] for t in per_image_times]
+        timing_stats = {
+            "stage1_vlm": {"mean": round(sum(s1_times)/len(s1_times), 2),
+                           "min": min(s1_times), "max": max(s1_times), "total": round(sum(s1_times), 1)},
+            "stage2_sam": {"mean": round(sum(s2_times)/len(s2_times), 2),
+                           "min": min(s2_times), "max": max(s2_times), "total": round(sum(s2_times), 1)},
+            "per_image":  {"mean": round(sum(totals)/len(totals), 2),
+                           "min": min(totals), "max": max(totals)},
+        }
+    else:
+        timing_stats = {}
+
     # Write batch_summary.json
     summary = {
         "total_images": len(sampled),
@@ -431,6 +462,8 @@ def main():
         "skipped": stats["skipped"],
         "total_time_seconds": round(total_time, 1),
         "avg_time_per_image": round(total_time / max(stats["success"], 1), 1),
+        "timing": timing_stats,
+        "per_image_log": per_image_times,
         "seed": args.seed,
         "stage3_enabled": matcher is not None,
         "source_dir": str(source_dir),
@@ -438,10 +471,15 @@ def main():
     }
     (output_dir / "batch_summary.json").write_text(json.dumps(summary, indent=2))
 
+    # Print timing summary
     logger.info(f"\nBatch complete in {total_time:.0f}s")
     logger.info(f"  Success: {stats['success']}, Failed: {stats['failed']}, Skipped: {stats['skipped']}")
+    if timing_stats:
+        logger.info(f"  Timing per image: mean={timing_stats['per_image']['mean']}s, "
+                     f"min={timing_stats['per_image']['min']}s, max={timing_stats['per_image']['max']}s")
+        logger.info(f"  Stage 1 (VLM):    mean={timing_stats['stage1_vlm']['mean']}s, total={timing_stats['stage1_vlm']['total']}s")
+        logger.info(f"  Stage 2 (SAM):    mean={timing_stats['stage2_sam']['mean']}s, total={timing_stats['stage2_sam']['total']}s")
     logger.info(f"  Output: {output_dir}")
-    logger.info(f"  index.json: {len(index_entries)} entries")
 
 
 if __name__ == "__main__":
