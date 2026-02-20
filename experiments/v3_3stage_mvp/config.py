@@ -26,43 +26,37 @@ class VLMConfig:
     describe_template: str = (
         "Look at this cafeteria plate and identify every distinct food portion.\n"
         "\n"
-        "For EACH portion, describe ONLY what your eyes see:\n"
-        "- Main color(s) and any color variations\n"
-        "- Surface texture (glossy, matte, grainy, smooth, rough, flaky)\n"
-        "- Shape and form (mound, flat spread, scattered pieces, slices, chunks, strips)\n"
-        "- Position on plate (left, right, center, top, bottom)\n"
-        "- Relative size (fraction of plate area)\n"
+        "For EACH portion provide:\n"
+        "- description: short visual description (~10 words) — colors, texture, shape\n"
+        "- bbox: tight bounding box [x1, y1, x2, y2] in pixel coordinates\n"
+        "- points: 2-3 pixel coordinates [x, y] placed directly ON the food surface. "
+        "Pick points that are clearly on the food, spread across the region.\n"
         "\n"
         "GROUPING RULES:\n"
-        "- Multiple scattered pieces of the SAME food = ONE item with ONE bbox around all of them\n"
-        "  (e.g. several small chunks spread across a region = single item, single bbox)\n"
-        "- A mixed dish (salad, stew, stir-fry with mixed ingredients) = ONE item\n"
-        "- Visually DIFFERENT foods that touch or overlap = SEPARATE items\n"
-        "- Same food in clearly separated areas with a visible gap = SEPARATE items\n"
-        "- Small garnishes (lemon slice, herbs) = separate item only if clearly visible\n"
+        "- Scattered pieces of the SAME food = ONE item, ONE bbox around ALL pieces\n"
+        "- A mixed dish (salad, stew, stir-fry) = ONE item\n"
+        "- Visually DIFFERENT foods that touch = SEPARATE items\n"
+        "- Same food in clearly separated areas = SEPARATE items\n"
         "\n"
-        "Count carefully. Cafeteria plates typically have 1-5 portions but "
-        "do NOT default to any specific number. Count what you actually see.\n"
+        "Count what you actually see. Do NOT default to any number.\n"
         "\n"
         "Return strictly as JSON:\n"
         '{"items": [\n'
-        '  {"description": "<main_colors> <surface_texture> <shape_and_form>, '
-        '<position_on_plate>", "bbox": [x1, y1, x2, y2]},\n'
+        '  {"description": "<colors> <texture> <shape>", '
+        '"bbox": [x1, y1, x2, y2], '
+        '"points": [[px1, py1], [px2, py2]]},\n'
         "  ...\n"
         "]}\n"
         "\n"
-        "The description template above shows the FORMAT — you MUST replace every "
-        "<placeholder> with actual visual details from THIS specific image. "
-        "Never output angle brackets or placeholder text.\n"
-        "Bounding boxes are pixel coordinates [x1, y1, x2, y2] tightly fitting each item.\n"
-        "Return ONLY the JSON, no other text."
+        "Replace <placeholders> with actual observations. "
+        "All coordinates are pixel values. Return ONLY the JSON."
     )
 
 
 @dataclass
 class SAMConfig:
     model_path: str = "facebook/sam3"
-    confidence_threshold: float = 0.15
+    confidence_threshold: float = 0.1
     fallback_thresholds: List[float] = field(default_factory=lambda: [0.05, 0.02, 0.01])
     crop_padding: int = 10
     bpe_search_paths: List[str] = field(default_factory=lambda: [
@@ -70,6 +64,7 @@ class SAMConfig:
     ])
     multi_box_prompt: bool = False    # set True to send 2x2 sub-box grid + full bbox (5 total)
     multi_box_grid: int = 2           # NxN sub-box grid (2 = 4 sub-boxes + 1 full = 5 prompts)
+    use_vlm_points: bool = True       # use VLM-provided foreground points (from Stage 1)
 
 
 @dataclass

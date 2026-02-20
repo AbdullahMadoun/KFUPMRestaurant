@@ -10,8 +10,10 @@ import torch
 @dataclass
 class VisualItem:
     """Stage 1 output: what the VLM sees."""
-    description: str        # "golden brown crispy surface with ridged texture"
+    description: str        # "yellowish rice grains with orange flecks, mound shape"
     bbox: List[float]       # [x1, y1, x2, y2] pixel coords
+    points: List[List[float]] = field(default_factory=list)  # [[x,y], ...] on food surface
+    label: str = ""         # optional short label (backward compat)
 
 
 @dataclass
@@ -31,6 +33,7 @@ class SegmentedItem:
     bbox: np.ndarray        # (4,) xyxy
     crop: np.ndarray        # (crop_H, crop_W, 3) BGR masked crop
     score: float            # SAM3 confidence
+    label: str = ""         # optional short label from VLM
 
 
 @dataclass
@@ -51,6 +54,8 @@ class MatchResult:
     price: float                        # 15.0
     confidence: float                   # cosine similarity (0-1)
     top_k: List[Tuple[str, float]]      # [("Chicken", 0.92), ("Meat", 0.71), ...]
+    image_score: float = 0.0            # raw image similarity
+    text_score: float = 0.0             # raw text similarity
 
 
 @dataclass

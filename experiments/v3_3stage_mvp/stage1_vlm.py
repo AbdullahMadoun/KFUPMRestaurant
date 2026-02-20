@@ -141,7 +141,9 @@ class VisualDescriber:
         for i, item in enumerate(items_data):
             try:
                 description = item.get("description", "")
+                label = item.get("label", "")
                 bbox = item.get("bbox", [])
+                raw_points = item.get("points", [])
 
                 if not description:
                     logger.warning(f"Item {i}: missing description, skipping")
@@ -152,7 +154,17 @@ class VisualDescriber:
                     continue
 
                 bbox = [float(x) for x in bbox]
-                results.append(VisualItem(description=description, bbox=bbox))
+
+                # Parse points: list of [x, y] pixel coordinates
+                points = []
+                if isinstance(raw_points, list):
+                    for pt in raw_points:
+                        if isinstance(pt, list) and len(pt) == 2:
+                            points.append([float(pt[0]), float(pt[1])])
+
+                results.append(VisualItem(
+                    description=description, bbox=bbox, points=points, label=label,
+                ))
             except (ValueError, TypeError) as e:
                 logger.warning(f"Item {i}: parse error ({e}), skipping")
                 continue

@@ -1,8 +1,9 @@
-"""Stage 2: SAM3 Segment + Crop — text + bbox prompts → masks → masked crops.
+"""Stage 2: SAM3 Segment + Crop — text + bbox + point prompts → masks → masked crops.
 
-Supports multi-box prompting: instead of a single bbox, sends an NxN grid of
-sub-boxes plus the full bbox to give SAM stronger spatial guidance. Controlled
-by SAMConfig.multi_box_prompt (default True) and SAMConfig.multi_box_grid.
+Prompting strategy:
+  - Text: short visual description from VLM (~10 words, SAM CLIP-friendly)
+  - Box:  tight bbox from VLM (single or multi-box grid)
+  - Points: 2-3 foreground points placed by VLM directly on food surface
 """
 
 import logging
@@ -155,14 +156,21 @@ class FoodSegmenter:
 
         return boxes
 
+    def _normalize_vlm_points(self, points: List[List[float]], img_w: int, img_h: int) -> List[List[float]]:
+        """Convert VLM pixel-coordinate points to normalized [x, y] for SAM3."""
+        if not self.config.use_vlm_points or not points:
+            return []
+        return [[px / img_w, py / img_h] for px, py in points]
+
     def _segment_item(
         self, pil_image: Image.Image, bgr_image: np.ndarray,
         item: VisualItem, img_w: int, img_h: int,
         thresholds: List[float], image_state: dict,
     ) -> SegmentedItem:
-        """Segment a single item with text + bbox prompting and dynamic thresholding."""
+        """Segment a single item with text + bbox + VLM point prompting."""
 
         box_prompts = self._build_box_prompts(item.bbox, img_w, img_h)
+        point_prompts = self._normalize_vlm_points(item.points, img_w, img_h)
 
         for thresh in thresholds:
             self.processor.confidence_threshold = thresh
@@ -170,12 +178,24 @@ class FoodSegmenter:
             # Deep-copy cached image state (prompts mutate the dict)
             state = {k: v.clone() if isinstance(v, torch.Tensor) else v for k, v in image_state.items()}
 
-            # Text prompt: visual description
+            # Text prompt: description is already short (~10 words, old style)
             state = self.processor.set_text_prompt(item.description, state)
 
-            # Bbox geometric prompts (accumulated — full box + sub-box grid)
+            # Bbox geometric prompts
             for box in box_prompts:
                 state = self.processor.add_geometric_prompt(box, 1, state)
+
+            # VLM-provided foreground point prompts (placed directly on food)
+            # SAM3 may expect [x, y] or [x, y, 0, 0] — try both formats
+            for point in point_prompts:
+                try:
+                    state = self.processor.add_geometric_prompt(point, 1, state)
+                except Exception:
+                    try:
+                        state = self.processor.add_geometric_prompt(point + [0, 0], 1, state)
+                    except Exception as e:
+                        logger.debug(f"Point prompt failed: {e}")
+                        break
 
             if "masks" in state and state["masks"] is not None:
                 masks = state["masks"]
@@ -183,7 +203,6 @@ class FoodSegmenter:
                 scores = state.get("scores", torch.zeros(masks.shape[0]))
 
                 if masks.shape[0] > 0:
-                    # Take best mask for this item
                     best_idx = scores.argmax().item()
                     mask = masks[best_idx].squeeze().cpu().numpy()
                     box = boxes[best_idx].cpu().numpy()
@@ -193,13 +212,17 @@ class FoodSegmenter:
                         bgr_image, mask, box, padding=self.config.crop_padding
                     )
 
-                    logger.info(f"Segmented '{item.description[:40]}...' at threshold {thresh}, score={score:.3f}")
+                    logger.info(
+                        f"Segmented '{item.description[:40]}' "
+                        f"({len(point_prompts)} points) at thresh {thresh}, score={score:.3f}"
+                    )
                     return SegmentedItem(
                         description=item.description,
                         mask=mask,
                         bbox=box,
                         crop=crop,
                         score=score,
+                        label=item.label,
                     )
 
             logger.info(f"No masks for '{item.description[:40]}...' at threshold {thresh}")
