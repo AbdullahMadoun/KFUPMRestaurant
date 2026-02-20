@@ -1,0 +1,65 @@
+{
+  "device": "cuda",
+  "output_dir": "batch_results",
+  "sam3_repo_path": "sam3",
+  "image_extensions": [
+    "*.jpg",
+    "*.jpeg",
+    "*.png",
+    "*.bmp",
+    "*.webp"
+  ],
+  "vlm": {
+    "model_name": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "gpu_memory_utilization": 0.4,
+    "max_model_len": 4096,
+    "enforce_eager": true,
+    "allowed_local_media_path": "/workspace/KFUPMRestaurant",
+    "temperature": 0.1,
+    "max_tokens": 512,
+    "describe_template": "Look at this plate of food. For each distinct food portion visible:\n\n1. Describe its VISUAL APPEARANCE only: color, texture, shape, surface pattern\n2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n\nRULES:\n- Describe what you SEE, not what you think it is called\n- A mixed dish (salad, stew) = ONE item \u2014 do NOT split ingredients\n- Side-by-side items on same plate = SEPARATE items\n- Ignore plates, bowls, cutlery, wrapping, background\n\nReturn strictly as JSON:\n{\"items\": [\n  {\"description\": \"golden brown crispy surface with ridged texture, roughly oval shaped\", \"bbox\": [x1, y1, x2, y2]},\n  ...\n]}\nReturn ONLY the JSON."
+  },
+  "sam": {
+    "model_path": "facebook/sam3",
+    "confidence_threshold": 0.1,
+    "fallback_thresholds": [
+      0.05,
+      0.02,
+      0.01
+    ],
+    "crop_padding": 5,
+    "bpe_search_paths": [
+      "/root/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz"
+    ]
+  },
+  "match": {
+    "embedding_model": "google/siglip2-base-patch16-224",
+    "embedding_dim": 768,
+    "index_path": "menu.index",
+    "metadata_path": "menu_meta.json",
+    "top_k": 3,
+    "similarity_threshold": 0.5
+  },
+  "nms": {
+    "max_objects": 8,
+    "iou_threshold": 0.7
+  },
+  "viz": {
+    "draw_boxes": true,
+    "alpha": 0.7,
+    "thickness": 3,
+    "font_scale": 0.9,
+    "font_thickness": 2,
+    "show_match_label": true,
+    "show_price": true,
+    "show_confidence": true,
+    "color_low": [
+      0,
+      50
+    ],
+    "color_high": [
+      180,
+      255
+    ]
+  }
+}

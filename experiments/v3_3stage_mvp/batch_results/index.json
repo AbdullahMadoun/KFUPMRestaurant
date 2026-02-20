@@ -1,0 +1,18 @@
+{
+  "total_images": 2,
+  "seed": 42,
+  "images": [
+    {
+      "id": "Cluster_134_frame_frame_034248_00",
+      "path": "images/Cluster_134_frame_frame_034248_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_53_frame_frame_059972_00",
+      "path": "images/Cluster_53_frame_frame_059972_00",
+      "num_items": 3,
+      "status": "success"
+    }
+  ]
+}

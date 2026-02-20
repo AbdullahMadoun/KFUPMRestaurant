@@ -1,0 +1,95 @@
+[18:43:58] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:43:58] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:43:58] INFO Sampled 2 images (seed=42)
+[18:43:58] INFO Loading models...
+[18:44:02] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:44:58] INFO   Loading Stage 2: SAM3...
+[18:46:21] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:46:21] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:46:21] INFO Sampled 2 images (seed=42)
+[18:46:21] INFO Loading models...
+[18:46:23] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:46:37] INFO   Loading Stage 2: SAM3...
+[18:47:49] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:47:49] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:47:49] INFO Sampled 2 images (seed=42)
+[18:47:49] INFO Loading models...
+[18:47:51] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:48:07] INFO   Loading Stage 2: SAM3...
+[18:49:05] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:49:05] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:49:05] INFO Sampled 2 images (seed=42)
+[18:49:05] INFO Loading models...
+[18:49:07] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:49:42] INFO   Loading Stage 2: SAM3...
+[18:52:04] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:52:04] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:52:04] INFO Sampled 2 images (seed=42)
+[18:52:04] INFO Loading models...
+[18:52:06] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:52:21] INFO   Loading Stage 2: SAM3...
+[18:52:21] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[18:55:59] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:55:59] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:55:59] INFO Sampled 2 images (seed=42)
+[18:55:59] INFO Loading models...
+[18:56:01] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:56:17] INFO   Loading Stage 2: SAM3...
+[18:56:17] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[18:58:20] INFO Batch run starting — n=2, seed=42, output=batch_results
+[18:58:20] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[18:58:20] INFO Sampled 2 images (seed=42)
+[18:58:20] INFO Loading models...
+[18:58:22] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[18:58:38] INFO   Loading Stage 2: SAM3...
+[18:58:38] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[18:58:59] INFO All models loaded.
+[18:58:59] INFO 
+[1/2] Processing: Cluster_134_frame_frame_034248_00  (done=0, ETA=estimating...)
+[18:59:02] ERROR Error during VLM generation: The file path /workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_134_frame_frame_034248_00.jpg must be a subpath of `--allowed-local-media-path /root`.
+[18:59:02] INFO   Stage 1 (2.8s): 0 items described
+[18:59:02] WARNING   Stage 1 returned no items, skipping Cluster_134_frame_frame_034248_00
+[18:59:02] INFO 
+[2/2] Processing: Cluster_53_frame_frame_059972_00  (done=1, ETA=2s)
+[18:59:02] ERROR Error during VLM generation: The file path /workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_53_frame_frame_059972_00.jpg must be a subpath of `--allowed-local-media-path /root`.
+[18:59:02] INFO   Stage 1 (0.0s): 0 items described
+[18:59:02] WARNING   Stage 1 returned no items, skipping Cluster_53_frame_frame_059972_00
+[18:59:02] INFO 
+Batch complete in 3s
+[18:59:02] INFO   Success: 0, Failed: 2, Skipped: 0
+[18:59:02] INFO   Output: batch_results
+[18:59:02] INFO   index.json: 2 entries
+[19:00:07] INFO Batch run starting — n=2, seed=42, output=batch_results
+[19:00:07] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[19:00:07] INFO Sampled 2 images (seed=42)
+[19:00:07] INFO Loading models...
+[19:00:09] INFO   Loading Stage 1: VLM (Qwen2.5-VL)...
+[19:00:24] INFO   Loading Stage 2: SAM3...
+[19:00:24] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[19:00:33] INFO All models loaded.
+[19:00:33] INFO 
+[1/2] Processing: Cluster_134_frame_frame_034248_00  (done=0, ETA=estimating...)
+[19:00:43] INFO Parsed 2 visual items from VLM response
+[19:00:43] INFO   Stage 1 (10.2s): 2 items described
+[19:00:44] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.975
+[19:00:44] INFO Segmented 'yellowish rice with small red and orange...' at threshold 0.1, score=0.985
+[19:00:44] INFO Segmented 2 items from 2 visual descriptions
+[19:00:44] INFO   Stage 2 (1.2s): 2 items segmented
+[19:00:44] INFO   After NMS: 2 items
+[19:00:44] INFO Saved visualization to batch_results/images/Cluster_134_frame_frame_034248_00/visualization.jpg
+[19:00:44] INFO 
+[2/2] Processing: Cluster_53_frame_frame_059972_00  (done=1, ETA=11s)
+[19:00:46] INFO Parsed 3 visual items from VLM response
+[19:00:46] INFO   Stage 1 (1.7s): 3 items described
+[19:00:46] INFO Segmented 'golden brown crispy surface with ridged ...' at threshold 0.1, score=0.983
+[19:00:46] INFO Segmented 'dark brownish surface with irregular tex...' at threshold 0.1, score=0.984
+[19:00:46] INFO Segmented 'white surface with fine texture, roughly...' at threshold 0.1, score=0.967
+[19:00:46] INFO Segmented 3 items from 3 visual descriptions
+[19:00:46] INFO   Stage 2 (0.7s): 3 items segmented
+[19:00:46] INFO   After NMS: 3 items
+[19:00:46] INFO Saved visualization to batch_results/images/Cluster_53_frame_frame_059972_00/visualization.jpg
+[19:00:46] INFO 
+Batch complete in 14s
+[19:00:46] INFO   Success: 2, Failed: 0, Skipped: 0
+[19:00:46] INFO   Output: batch_results
+[19:00:46] INFO   index.json: 2 entries

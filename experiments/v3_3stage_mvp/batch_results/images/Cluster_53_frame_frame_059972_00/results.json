@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_53_frame_frame_059972_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brownish surface with irregular texture, roughly oval shaped",
+      "bbox": [
+        461,
+        192,
+        1065,
+        1001
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9837
+    },
+    {
+      "index": 1,
+      "description": "golden brown crispy surface with ridged texture, roughly oval shaped",
+      "bbox": [
+        264,
+        736,
+        685,
+        1100
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9833
+    },
+    {
+      "index": 2,
+      "description": "white surface with fine texture, roughly rectangular",
+      "bbox": [
+        219,
+        90,
+        1172,
+        890
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9674
+    }
+  ],
+  "stage1_time": 1.68,
+  "stage2_time": 0.67,
+  "match_results": null
+}
