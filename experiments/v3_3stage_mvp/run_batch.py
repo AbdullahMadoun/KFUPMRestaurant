@@ -300,26 +300,9 @@ def main():
     # Save frozen config
     config.to_json(str(output_dir / "config.json"))
 
-    # Load models
-    logger.info("Loading models...")
+    # Import model classes (loaded sequentially to fit on single GPU)
     from stage1_vlm import VisualDescriber
     from stage2_sam import FoodSegmenter
-
-    logger.info("  Loading Stage 1: VLM...")
-    describer = VisualDescriber(config.vlm)
-
-    logger.info("  Loading Stage 2: SAM3...")
-    segmenter = FoodSegmenter(config.sam, config.device)
-
-    matcher = None
-    if args.index and args.meta:
-        from stage3_match import MenuMatcher
-        logger.info("  Loading Stage 3: MenuMatcher (SigLIP 2 + FAISS)...")
-        config.match.index_path = args.index
-        config.match.metadata_path = args.meta
-        matcher = MenuMatcher(config.match, config.device)
-
-    logger.info("All models loaded.")
 
     # Process images — batch VLM first, then SAM per image
     index_entries = []
@@ -351,6 +334,10 @@ def main():
         to_process.append((i, image_path, image_dir))
 
     # --- Stage 1: Batch VLM inference (all images at once) ---
+    # Load VLM (gets full GPU)
+    logger.info("Loading Stage 1: VLM...")
+    describer = VisualDescriber(config.vlm)
+
     vlm_batch_size = args.vlm_batch_size
     all_vlm_results = {}  # image_path_str → (List[VisualItem], stage1_time)
 
@@ -373,7 +360,26 @@ def main():
             for path_str in batch_paths:
                 all_vlm_results[path_str] = (batch_results.get(path_str, []), per_image)
 
+    # Unload VLM to free GPU for SAM
+    logger.info("Unloading VLM to free GPU memory...")
+    del describer
+    import torch
+    torch.cuda.empty_cache()
+    import gc
+    gc.collect()
+
     # --- Stage 2+: SAM + NMS + Match per image ---
+    # Load SAM (gets full GPU now)
+    logger.info("Loading Stage 2: SAM3...")
+    segmenter = FoodSegmenter(config.sam, config.device)
+
+    matcher = None
+    if args.index and args.meta:
+        from stage3_match import MenuMatcher
+        logger.info("Loading Stage 3: MenuMatcher (SigLIP 2 + FAISS)...")
+        config.match.index_path = args.index
+        config.match.metadata_path = args.meta
+        matcher = MenuMatcher(config.match, config.device)
     per_image_times = []  # list of dicts for timing log
 
     for j, (i, image_path, image_dir) in enumerate(to_process):

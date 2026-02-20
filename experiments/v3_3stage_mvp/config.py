@@ -9,7 +9,7 @@ from typing import List
 @dataclass
 class VLMConfig:
     model_name: str = "Qwen/Qwen3-VL-8B-Instruct"
-    gpu_memory_utilization: float = 0.6
+    gpu_memory_utilization: float = 0.85
     max_model_len: int = 2048
     enforce_eager: bool = False
     enable_prefix_caching: bool = True
