@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_184_frame_frame_059890_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "Yellow rice with visible grains, some pieces mixed with small red and brown bits, forming a mound on the left side of the plate",
+      "bbox": [
+        48,
+        82,
+        602,
+        840
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9533
+    },
+    {
+      "index": 1,
+      "description": "Dark brown, shredded meat with visible bones and some red tomato pieces, piled in the center and right side of the plate",
+      "bbox": [
+        341,
+        109,
+        910,
+        877
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.912
+    }
+  ],
+  "stage1_time": 2.23,
+  "stage2_time": 0.52,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_142_frame_frame_122427_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "Yellowish, textured, flaky food with red and white specks, shaped as a mound, positioned on the left side of the plate",
+      "bbox": [
+        37,
+        65,
+        685,
+        720
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.977
+    },
+    {
+      "index": 1,
+      "description": "Bright orange, chopped vegetable pieces, shaped as chunks, positioned on the right side of the plate",
+      "bbox": [
+        666,
+        560,
+        874,
+        708
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.768
+    }
+  ],
+  "stage1_time": 2.23,
+  "stage2_time": 0.45,
+  "match_results": null
+}

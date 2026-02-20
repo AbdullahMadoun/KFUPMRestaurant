@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_175_frame_frame_135677_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden-brown and dark-brown roasted meat with glossy surface, irregularly shaped chunk, centered on the plate",
+      "bbox": [
+        254,
+        161,
+        824,
+        640
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9317
+    }
+  ],
+  "stage1_time": 2.23,
+  "stage2_time": 0.29,
+  "match_results": null
+}
