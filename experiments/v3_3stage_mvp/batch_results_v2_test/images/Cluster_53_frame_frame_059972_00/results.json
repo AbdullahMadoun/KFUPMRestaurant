@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_53_frame_frame_059972_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "A single, small, orange-red vegetable slice, lying flat near the bottom center of the plate.",
+      "bbox": [
+        715,
+        1023,
+        871,
+        1182
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9149
+    },
+    {
+      "index": 1,
+      "description": "Yellow and white rice with visible grains, forming a mound, positioned in the center and extending to the top and right of the plate.",
+      "bbox": [
+        193,
+        86,
+        906,
+        833
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.8975
+    },
+    {
+      "index": 2,
+      "description": "Dark brown, textured meat with visible bone fragments and some red vegetable pieces, forming a pile in the center and extending to the bottom left.",
+      "bbox": [
+        462,
+        191,
+        1045,
+        737
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.8547
+    }
+  ],
+  "stage1_time": 2.3,
+  "stage2_time": 1.39,
+  "match_results": null
+}
