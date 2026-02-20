@@ -1,0 +1,127 @@
+[23:10:03] INFO Batch run starting — n=10, seed=42, output=batch_results_v3_test
+[23:10:03] ERROR Source directory not found: /root/Sampled_Images_All
+[23:10:37] INFO Batch run starting — n=10, seed=42, output=batch_results_v3_test
+[23:10:37] ERROR Source directory not found: /workspace/Sampled_Images_All
+[23:11:17] INFO Batch run starting — n=10, seed=42, output=batch_results_v3_test
+[23:11:17] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[23:11:17] INFO Sampled 10 images (seed=42)
+[23:11:25] INFO Loading Stage 1: VLM...
+[23:12:17] INFO 
+Stage 1: Batch VLM inference — 10 images in 1 batch(es) of 32
+[23:12:17] INFO   VLM batch 1/1 (10 images)...
+[23:12:39] INFO Parsed 1 visual items from VLM response
+[23:12:39] INFO Parsed 2 visual items from VLM response
+[23:12:39] INFO Parsed 2 visual items from VLM response
+[23:12:39] INFO Parsed 2 visual items from VLM response
+[23:12:39] INFO Parsed 2 visual items from VLM response
+[23:12:39] INFO Parsed 1 visual items from VLM response
+[23:12:39] INFO Parsed 1 visual items from VLM response
+[23:12:39] INFO Parsed 2 visual items from VLM response
+[23:12:39] INFO Parsed 1 visual items from VLM response
+[23:12:39] INFO Parsed 1 visual items from VLM response
+[23:12:39] INFO   VLM batch 1 done in 21.7s (2.17s/image)
+[23:12:39] INFO Unloading VLM to free GPU memory...
+[23:12:40] INFO Loading Stage 2: SAM3...
+[23:12:40] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[23:12:59] INFO 
+[1/10] Cluster_107_frame_frame_099108_00  (done=0, ETA=estimating...)
+[23:12:59] INFO   Stage 1 (2.2s): 1 items described
+[23:12:59] INFO Segmented 'green leafy salad with red pieces and ye' (3 points) at thresh 0.1, score=0.928
+[23:12:59] INFO Segmented 1 items from 1 visual descriptions
+[23:12:59] INFO   Stage 2 (0.8s): 1 items segmented
+[23:12:59] INFO   After NMS: 1 items
+[23:12:59] INFO Saved visualization to batch_results_v3_test/images/Cluster_107_frame_frame_099108_00/visualization.jpg
+[23:12:59] INFO   Done: S1=2.17s + S2=0.88s = 3.06s total, 1 items
+[23:12:59] INFO 
+[2/10] Cluster_130_frame_frame_103663_00  (done=1, ETA=14m 8s)
+[23:12:59] INFO   Stage 1 (2.2s): 2 items described
+[23:13:00] INFO Segmented 'yellow rice with white grains and orange' (3 points) at thresh 0.1, score=0.722
+[23:13:00] INFO Segmented 'brown meat chunks with vegetables in sau' (3 points) at thresh 0.1, score=0.894
+[23:13:00] INFO Segmented 2 items from 2 visual descriptions
+[23:13:00] INFO   Stage 2 (0.9s): 2 items segmented
+[23:13:00] INFO   After NMS: 2 items
+[23:13:00] INFO Saved visualization to batch_results_v3_test/images/Cluster_130_frame_frame_103663_00/visualization.jpg
+[23:13:00] INFO   Done: S1=2.17s + S2=1.02s = 3.19s total, 2 items
+[23:13:00] INFO 
+[3/10] Cluster_134_frame_frame_034248_00  (done=2, ETA=6m 21s)
+[23:13:00] INFO   Stage 1 (2.2s): 2 items described
+[23:13:01] INFO Segmented 'yellow rice with red peppers and chicken' (3 points) at thresh 0.1, score=0.854
+[23:13:01] INFO Segmented 'golden-brown chicken pieces with red pep' (3 points) at thresh 0.1, score=0.812
+[23:13:01] INFO Segmented 2 items from 2 visual descriptions
+[23:13:01] INFO   Stage 2 (0.9s): 2 items segmented
+[23:13:01] INFO   After NMS: 2 items
+[23:13:01] INFO Saved visualization to batch_results_v3_test/images/Cluster_134_frame_frame_034248_00/visualization.jpg
+[23:13:01] INFO   Done: S1=2.17s + S2=0.99s = 3.16s total, 2 items
+[23:13:01] INFO 
+[4/10] Cluster_142_frame_frame_122427_00  (done=3, ETA=3m 44s)
+[23:13:01] INFO   Stage 1 (2.2s): 2 items described
+[23:13:02] INFO Segmented 'yellow textured food with red pieces' (3 points) at thresh 0.1, score=0.952
+[23:13:02] INFO Segmented 'orange chopped carrot pieces' (3 points) at thresh 0.1, score=0.570
+[23:13:02] INFO Segmented 2 items from 2 visual descriptions
+[23:13:02] INFO   Stage 2 (0.8s): 2 items segmented
+[23:13:02] INFO   After NMS: 2 items
+[23:13:02] INFO Saved visualization to batch_results_v3_test/images/Cluster_142_frame_frame_122427_00/visualization.jpg
+[23:13:02] INFO   Done: S1=2.17s + S2=0.84s = 3.01s total, 2 items
+[23:13:02] INFO 
+[5/10] Cluster_169_frame_frame_042617_00  (done=4, ETA=2m 25s)
+[23:13:02] INFO   Stage 1 (2.2s): 2 items described
+[23:13:03] INFO Segmented 'white fluffy rice grains piled in mound' (3 points) at thresh 0.1, score=0.747
+[23:13:03] INFO Segmented 'brown meat chunks with red sauce' (3 points) at thresh 0.1, score=0.927
+[23:13:03] INFO Segmented 2 items from 2 visual descriptions
+[23:13:03] INFO   Stage 2 (0.9s): 2 items segmented
+[23:13:03] INFO   After NMS: 2 items
+[23:13:03] INFO Saved visualization to batch_results_v3_test/images/Cluster_169_frame_frame_042617_00/visualization.jpg
+[23:13:03] INFO   Done: S1=2.17s + S2=0.94s = 3.11s total, 2 items
+[23:13:03] INFO 
+[6/10] Cluster_175_frame_frame_135677_00  (done=5, ETA=1m 38s)
+[23:13:03] INFO   Stage 1 (2.2s): 1 items described
+[23:13:04] INFO Segmented 'Crispy browned meat with golden edges an' (3 points) at thresh 0.1, score=0.950
+[23:13:04] INFO Segmented 1 items from 1 visual descriptions
+[23:13:04] INFO   Stage 2 (0.5s): 1 items segmented
+[23:13:04] INFO   After NMS: 1 items
+[23:13:04] INFO Saved visualization to batch_results_v3_test/images/Cluster_175_frame_frame_135677_00/visualization.jpg
+[23:13:04] INFO   Done: S1=2.17s + S2=0.48s = 2.66s total, 1 items
+[23:13:04] INFO 
+[7/10] Cluster_184_frame_frame_059890_00  (done=6, ETA=1m 5s)
+[23:13:04] INFO   Stage 1 (2.2s): 1 items described
+[23:13:04] INFO Segmented 'yellow rice with mixed vegetables and me' (3 points) at thresh 0.1, score=0.923
+[23:13:04] INFO Segmented 1 items from 1 visual descriptions
+[23:13:04] INFO   Stage 2 (0.5s): 1 items segmented
+[23:13:04] INFO   After NMS: 1 items
+[23:13:04] INFO Saved visualization to batch_results_v3_test/images/Cluster_184_frame_frame_059890_00/visualization.jpg
+[23:13:04] INFO   Done: S1=2.17s + S2=0.56s = 2.73s total, 1 items
+[23:13:04] INFO 
+[8/10] Cluster_53_frame_frame_059972_00  (done=7, ETA=42s)
+[23:13:04] INFO   Stage 1 (2.2s): 2 items described
+[23:13:05] INFO Segmented 'brown meat with bones and sauce on rice' (3 points) at thresh 0.1, score=0.915
+[23:13:05] INFO Segmented 'yellow and white rice with scattered veg' (3 points) at thresh 0.1, score=0.916
+[23:13:05] INFO Segmented 2 items from 2 visual descriptions
+[23:13:05] INFO   Stage 2 (0.9s): 2 items segmented
+[23:13:05] INFO   After NMS: 2 items
+[23:13:05] INFO Saved visualization to batch_results_v3_test/images/Cluster_53_frame_frame_059972_00/visualization.jpg
+[23:13:05] INFO   Done: S1=2.17s + S2=0.96s = 3.13s total, 2 items
+[23:13:05] INFO 
+[9/10] Cluster_83_frame_frame_074170_00  (done=8, ETA=25s)
+[23:13:05] INFO   Stage 1 (2.2s): 1 items described
+[23:13:06] INFO Segmented 'Red sauce with noodles and meat chunks' (3 points) at thresh 0.1, score=0.981
+[23:13:06] INFO Segmented 1 items from 1 visual descriptions
+[23:13:06] INFO   Stage 2 (0.5s): 1 items segmented
+[23:13:06] INFO   After NMS: 1 items
+[23:13:06] INFO Saved visualization to batch_results_v3_test/images/Cluster_83_frame_frame_074170_00/visualization.jpg
+[23:13:06] INFO   Done: S1=2.17s + S2=0.51s = 2.68s total, 1 items
+[23:13:06] INFO 
+[10/10] Cluster_85_frame_frame_104404_00  (done=9, ETA=11s)
+[23:13:06] INFO   Stage 1 (2.2s): 1 items described
+[23:13:06] INFO Segmented 'Crispy roasted chicken with charred skin' (3 points) at thresh 0.1, score=0.850
+[23:13:06] INFO Segmented 1 items from 1 visual descriptions
+[23:13:06] INFO   Stage 2 (0.5s): 1 items segmented
+[23:13:06] INFO   After NMS: 1 items
+[23:13:06] INFO Saved visualization to batch_results_v3_test/images/Cluster_85_frame_frame_104404_00/visualization.jpg
+[23:13:06] INFO   Done: S1=2.17s + S2=0.53s = 2.71s total, 1 items
+[23:13:06] INFO 
+Batch complete in 101s
+[23:13:06] INFO   Success: 10, Failed: 0, Skipped: 0
+[23:13:06] INFO   Timing per image: mean=2.94s, min=2.66s, max=3.19s
+[23:13:06] INFO   Stage 1 (VLM):    mean=2.17s, total=21.7s
+[23:13:06] INFO   Stage 2 (SAM):    mean=0.77s, total=7.7s
+[23:13:06] INFO   Output: batch_results_v3_test

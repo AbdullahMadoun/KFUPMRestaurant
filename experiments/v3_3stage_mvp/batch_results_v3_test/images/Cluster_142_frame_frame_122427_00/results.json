@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_142_frame_frame_122427_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellow textured food with red pieces",
+      "bbox": [
+        36,
+        64,
+        695,
+        718
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9523
+    },
+    {
+      "index": 1,
+      "description": "orange chopped carrot pieces",
+      "bbox": [
+        629,
+        104,
+        770,
+        737
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.5701
+    }
+  ],
+  "stage1_time": 2.17,
+  "stage2_time": 0.81,
+  "match_results": null
+}

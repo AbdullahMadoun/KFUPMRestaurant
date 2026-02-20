@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_107_frame_frame_099108_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "green leafy salad with red pieces and yellow lemon wedge",
+      "bbox": [
+        146,
+        83,
+        969,
+        881
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9278
+    }
+  ],
+  "stage1_time": 2.17,
+  "stage2_time": 0.85,
+  "match_results": null
+}

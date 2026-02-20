@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_175_frame_frame_135677_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "Crispy browned meat with golden edges and white interior",
+      "bbox": [
+        254,
+        159,
+        806,
+        607
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9496
+    }
+  ],
+  "stage1_time": 2.17,
+  "stage2_time": 0.46,
+  "match_results": null
+}
