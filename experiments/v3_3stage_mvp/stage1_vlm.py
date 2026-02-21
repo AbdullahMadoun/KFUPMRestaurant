@@ -40,6 +40,8 @@ class VisualDescriber:
             )
             if config.quantization:
                 llm_kwargs["quantization"] = config.quantization
+                if config.quantization == "awq":
+                    llm_kwargs["dtype"] = "half"
             self.llm = LLM(**llm_kwargs)
 
             sampling_kwargs = dict(
