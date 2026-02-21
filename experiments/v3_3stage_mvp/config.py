@@ -12,40 +12,46 @@ class VLMConfig:
     gpu_memory_utilization: float = 0.85
     max_model_len: int = 4096
     enforce_eager: bool = True
+    quantization: str = None  # None, "fp8", "awq" — passed to vLLM LLM()
+    force_json: bool = True   # use vLLM guided decoding to force valid JSON output
     allowed_local_media_path: str = "/root"
     temperature: float = 0.2
     max_tokens: int = 512
     describe_template: str = (
-        "Examine this cafeteria plate carefully. There are usually 2-4 separate food "
-        "portions served together (e.g. a protein, a carb like rice, and a side).\n"
+        "You are analyzing a cafeteria tray. Find EVERY food and beverage item — "
+        "do not miss anything. Scan the full image carefully: main dishes, sides, "
+        "bread, dips, drinks, juice boxes, yogurt cups, fruit, desserts.\n"
         "\n"
-        "For EACH distinct food portion you can see:\n"
-        "1. Describe its VISUAL APPEARANCE: color, texture, shape, surface pattern, "
-        "approximate size relative to the plate\n"
-        "2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n"
+        "For each item return:\n"
+        '- "name": short common name (e.g. "kabsa rice", "grilled chicken", "hummus")\n'
+        '- "description": visual texture ONLY — color, surface pattern, shape. '
+        "Do not mention plates, positions, or containers.\n"
+        '- "bbox": [x1, y1, x2, y2] absolute pixel coordinates. '
+        "Box must fully cover the food with a small margin.\n"
         "\n"
-        "RULES:\n"
-        "- Describe what you SEE, not what you think it is called\n"
-        "- Look carefully for items partially hidden under or next to other items\n"
-        "- A portion of rice next to a portion of meat = TWO separate items, even if touching\n"
-        "- If the same type of item appears in two different places, treat them as TWO separate "
-        "items with TWO separate bounding boxes\n"
-        "- A mixed dish (stew, salad with mixed ingredients) = ONE item\n"
-        "- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n"
-        "- Each description must be UNIQUE and specific to THIS image — describe the actual "
-        "colors, textures, and shapes you see, not generic food descriptions\n"
-        "- Bounding boxes must fully cover the entire food portion with some margin — "
-        "it is better to have a slightly oversized box than to cut off any part of the food\n"
+        "Splitting rules:\n"
+        "- Different foods = separate items (rice next to meat = 2 items)\n"
+        "- Same food in two places = list twice with separate bboxes\n"
+        "- A topping is part of its base dish, NOT a separate item "
+        "(oil on hummus = one item, spices on rice = one item, "
+        "sauce on meat = one item, sesame on bread = one item)\n"
+        "- A mixed dish (stew, salad with mixed ingredients) = one item\n"
         "\n"
-        'Return strictly as JSON:\n'
         '{"items": [\n'
-        '  {"description": "yellowish rice grains with small orange carrot pieces, '
-        'mound covering left half of plate", "bbox": [x1, y1, x2, y2]},\n'
-        '  {"description": "dark brown glazed meat pieces with irregular chunky shape, '
-        'right side of plate", "bbox": [x1, y1, x2, y2]},\n'
-        '  ...\n'
-        ']}\n'
-        "Return ONLY the JSON."
+        '  {"name": "kabsa rice", '
+        '"description": "golden-yellow rice grains with orange carrot slivers", '
+        '"bbox": [120, 80, 450, 350]},\n'
+        '  {"name": "grilled chicken", '
+        '"description": "charred brown chicken leg with crispy skin", '
+        '"bbox": [460, 90, 700, 340]},\n'
+        '  {"name": "hummus", '
+        '"description": "smooth beige paste with olive oil drizzle on top", '
+        '"bbox": [50, 400, 200, 520]},\n'
+        '  {"name": "juice box", '
+        '"description": "small rectangular cardboard box with colorful label", '
+        '"bbox": [710, 30, 790, 180]}\n'
+        "]}"
+    )
     )
 
 

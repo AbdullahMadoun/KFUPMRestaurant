@@ -7,6 +7,7 @@ import re
 from typing import Dict, List
 
 from vllm import LLM, SamplingParams
+from vllm.sampling_params import GuidedDecodingParams
 
 from config import VLMConfig
 from ptypes import VisualItem
@@ -24,7 +25,7 @@ class VisualDescriber:
     def __init__(self, config: VLMConfig):
         self.config = config
         try:
-            self.llm = LLM(
+            llm_kwargs = dict(
                 model=config.model_name,
                 limit_mm_per_prompt={"image": 1},
                 gpu_memory_utilization=config.gpu_memory_utilization,
@@ -32,10 +33,17 @@ class VisualDescriber:
                 enforce_eager=config.enforce_eager,
                 allowed_local_media_path=config.allowed_local_media_path,
             )
-            self.sampling_params = SamplingParams(
+            if config.quantization:
+                llm_kwargs["quantization"] = config.quantization
+            self.llm = LLM(**llm_kwargs)
+
+            sampling_kwargs = dict(
                 temperature=config.temperature,
                 max_tokens=config.max_tokens,
             )
+            if config.force_json:
+                sampling_kwargs["guided_decoding"] = GuidedDecodingParams(json_object=True)
+            self.sampling_params = SamplingParams(**sampling_kwargs)
         except Exception as e:
             logger.error(f"Error initializing vLLM: {e}")
             raise
@@ -122,6 +130,7 @@ class VisualDescriber:
             try:
                 description = item.get("description", "")
                 bbox = item.get("bbox", [])
+                name = item.get("name", "")
 
                 if not description:
                     logger.warning(f"Item {i}: missing description, skipping")
@@ -132,7 +141,7 @@ class VisualDescriber:
                     continue
 
                 bbox = [float(x) for x in bbox]
-                results.append(VisualItem(description=description, bbox=bbox))
+                results.append(VisualItem(description=description, bbox=bbox, name=name))
             except (ValueError, TypeError) as e:
                 logger.warning(f"Item {i}: parse error ({e}), skipping")
                 continue

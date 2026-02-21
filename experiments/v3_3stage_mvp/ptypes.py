@@ -12,6 +12,7 @@ class VisualItem:
     """Stage 1 output: what the VLM sees."""
     description: str        # "golden brown crispy surface with ridged texture"
     bbox: List[float]       # [x1, y1, x2, y2] pixel coords
+    name: str = ""          # short food name, e.g. "kabsa rice"
 
 
 @dataclass
@@ -31,6 +32,7 @@ class SegmentedItem:
     bbox: np.ndarray        # (4,) xyxy
     crop: np.ndarray        # (crop_H, crop_W, 3) BGR masked crop
     score: float            # SAM3 confidence
+    name: str = ""          # short food name from VLM
 
 
 @dataclass

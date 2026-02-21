@@ -169,6 +169,7 @@ def process_single_image(
 
         item_entry = {
             "index": idx,
+            "name": seg.name,
             "description": seg.description,
             "bbox": [int(x) for x in seg.bbox],
             "crop": f"crops/{crop_filename}",

@@ -162,6 +162,7 @@ class FoodSegmenter:
                         bbox=box,
                         crop=crop,
                         score=score,
+                        name=item.name,
                     )
 
             logger.info(f"No masks for '{item.description[:40]}...' at threshold {thresh}")

@@ -1,0 +1,6 @@
+export HF_TOKEN="hf_..."
+export GIT_SSH_KEY="$(cat ~/.ssh/id_ed25519)"
+export SOURCE_DIR="/root/KFUPMRestaurant/data/Sampled_Images_All"
+export N_IMAGES=500
+export VLM_BATCH_SIZE=8
+export USE_AWQ=0
