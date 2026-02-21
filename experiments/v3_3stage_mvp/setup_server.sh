@@ -138,7 +138,7 @@ fi
 
 if [ "${USE_AWQ}" -eq 1 ]; then
     MODEL_NAME="Qwen/Qwen2.5-VL-72B-Instruct-AWQ"
-    QUANTIZATION="awq"
+    QUANTIZATION="awq_marlin"
     echo "  AWQ mode: downloading ${MODEL_NAME} (~38GB)..."
 else
     MODEL_NAME="Qwen/Qwen2.5-VL-72B-Instruct"
