@@ -165,8 +165,8 @@ cat > "${CONFIG_FILE}" << 'INNER_EOF'
   "sam3_repo_path": "SAM3_DIR_PLACEHOLDER",
   "vlm": {
     "model_name": "MODEL_NAME_PLACEHOLDER",
-    "gpu_memory_utilization": 0.85,
-    "max_model_len": 4096,
+    "gpu_memory_utilization": 0.92,
+    "max_model_len": 2048,
     "enforce_eager": true,
     "quantization": "QUANTIZATION_PLACEHOLDER",
     "force_json": true,
