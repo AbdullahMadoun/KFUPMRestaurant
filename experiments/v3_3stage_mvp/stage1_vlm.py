@@ -7,7 +7,12 @@ import re
 from typing import Dict, List
 
 from vllm import LLM, SamplingParams
-from vllm.sampling_params import GuidedDecodingParams
+try:
+    from vllm.sampling_params import StructuredOutputsParams
+    _JSON_PARAM = {"structured_outputs": StructuredOutputsParams(json_object=True)}
+except ImportError:
+    from vllm.sampling_params import GuidedDecodingParams
+    _JSON_PARAM = {"guided_decoding": GuidedDecodingParams(json_object=True)}
 
 from config import VLMConfig
 from ptypes import VisualItem
@@ -42,7 +47,7 @@ class VisualDescriber:
                 max_tokens=config.max_tokens,
             )
             if config.force_json:
-                sampling_kwargs["guided_decoding"] = GuidedDecodingParams(json_object=True)
+                sampling_kwargs.update(_JSON_PARAM)
             self.sampling_params = SamplingParams(**sampling_kwargs)
         except Exception as e:
             logger.error(f"Error initializing vLLM: {e}")
