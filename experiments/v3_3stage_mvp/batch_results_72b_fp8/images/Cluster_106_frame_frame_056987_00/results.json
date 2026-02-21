@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_106_frame_frame_056987_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "dark brown, charred chicken pieces with a rough, textured surface",
+      "bbox": [
+        422,
+        318,
+        1085,
+        926
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9797
+    },
+    {
+      "index": 1,
+      "name": "vegetable stew",
+      "description": "chunks of red tomatoes, green bell peppers, and yellow onions with a glossy surface",
+      "bbox": [
+        586,
+        214,
+        1259,
+        1131
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9764
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        103,
+        78,
+        916,
+        1093
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9696
+    }
+  ],
+  "stage1_time": 2.41,
+  "stage2_time": 0.65,
+  "match_results": null
+}

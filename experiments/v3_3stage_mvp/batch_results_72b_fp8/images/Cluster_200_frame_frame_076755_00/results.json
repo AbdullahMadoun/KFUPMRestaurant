@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_200_frame_frame_076755_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "meat stew",
+      "description": "brown meat chunks with caramelized onions and tomato pieces",
+      "bbox": [
+        497,
+        180,
+        1182,
+        684
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9876
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        44,
+        306,
+        1204,
+        1272
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9773
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.46,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_166_frame_frame_074915_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "mashed potatoes",
+      "description": "creamy white with yellow oil drizzle and slightly rough texture",
+      "bbox": [
+        55,
+        156,
+        898,
+        843
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9913
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.16,
+  "match_results": null
+}

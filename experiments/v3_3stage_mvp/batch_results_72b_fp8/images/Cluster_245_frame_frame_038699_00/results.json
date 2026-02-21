@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_245_frame_frame_038699_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "basmati rice",
+      "description": "long, slender, translucent grains with a slight sheen",
+      "bbox": [
+        3,
+        1,
+        569,
+        569
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9906
+    }
+  ],
+  "stage1_time": 0.98,
+  "stage2_time": 0.15,
+  "match_results": null
+}

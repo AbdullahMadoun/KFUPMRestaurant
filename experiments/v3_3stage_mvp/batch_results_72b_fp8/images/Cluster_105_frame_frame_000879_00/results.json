@@ -1,0 +1,81 @@
+{
+  "image_id": "Cluster_105_frame_frame_000879_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with a textured rind and visible pulp",
+      "bbox": [
+        472,
+        907,
+        911,
+        1124
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9795
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with a textured rind and visible pulp",
+      "bbox": [
+        889,
+        288,
+        1100,
+        450
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9766
+    },
+    {
+      "index": 2,
+      "name": "onion rings",
+      "description": "translucent golden onion slices with a glossy surface",
+      "bbox": [
+        869,
+        450,
+        1102,
+        669
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9732
+    },
+    {
+      "index": 3,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with specks of orange and green",
+      "bbox": [
+        84,
+        104,
+        918,
+        1024
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9683
+    },
+    {
+      "index": 4,
+      "name": "kebabs",
+      "description": "brown cylindrical meat pieces with a slightly charred surface",
+      "bbox": [
+        713,
+        378,
+        1181,
+        946
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9482
+    }
+  ],
+  "stage1_time": 2.41,
+  "stage2_time": 1.03,
+  "match_results": null
+}

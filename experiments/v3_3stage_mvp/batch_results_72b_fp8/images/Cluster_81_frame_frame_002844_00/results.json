@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_81_frame_frame_002844_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "dark brown charred surface with crispy skin and some white areas",
+      "bbox": [
+        2,
+        324,
+        670,
+        1115
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9887
+    }
+  ],
+  "stage1_time": 2.36,
+  "stage2_time": 0.21,
+  "match_results": null
+}

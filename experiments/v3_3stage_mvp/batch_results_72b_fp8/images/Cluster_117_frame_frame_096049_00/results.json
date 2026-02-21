@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_117_frame_frame_096049_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice grains with yellowish tints and some green specks",
+      "bbox": [
+        229,
+        4,
+        1085,
+        842
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9873
+    },
+    {
+      "index": 1,
+      "name": "spiced chicken stir-fry",
+      "description": "chunks of golden-brown chicken with a slightly crispy surface, mixed with red and green bell pepper pieces and onions",
+      "bbox": [
+        209,
+        538,
+        1085,
+        1243
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9841
+    }
+  ],
+  "stage1_time": 1.92,
+  "stage2_time": 0.33,
+  "match_results": null
+}

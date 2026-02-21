@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_245_frame_frame_095574_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        2,
+        1,
+        431,
+        431
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9885
+    }
+  ],
+  "stage1_time": 0.98,
+  "stage2_time": 0.13,
+  "match_results": null
+}

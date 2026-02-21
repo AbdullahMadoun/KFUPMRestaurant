@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_134_frame_frame_124788_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly glossy surface and scattered red and yellow pieces",
+      "bbox": [
+        165,
+        14,
+        1022,
+        680
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9856
+    },
+    {
+      "index": 1,
+      "name": "omelette",
+      "description": "yellow, slightly folded egg with a smooth surface and some green specks",
+      "bbox": [
+        228,
+        467,
+        908,
+        916
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9766
+    }
+  ],
+  "stage1_time": 2.05,
+  "stage2_time": 0.35,
+  "match_results": null
+}

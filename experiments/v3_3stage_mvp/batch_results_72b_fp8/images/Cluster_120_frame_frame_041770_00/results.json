@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_120_frame_frame_041770_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "long, slender white grains with a matte surface",
+      "bbox": [
+        149,
+        41,
+        992,
+        821
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.977
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.19,
+  "match_results": null
+}

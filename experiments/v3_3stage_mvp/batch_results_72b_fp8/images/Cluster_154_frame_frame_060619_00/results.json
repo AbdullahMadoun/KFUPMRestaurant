@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_154_frame_frame_060619_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "orange-brown broth with chunks of yellow cauliflower, orange carrot, and green leafy vegetables",
+      "bbox": [
+        2,
+        2,
+        609,
+        609
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9882
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.15,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_199_frame_frame_067854_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "dark brown sauce with chunks of orange carrots and green broccoli florets",
+      "bbox": [
+        39,
+        49,
+        652,
+        564
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.14,
+  "match_results": null
+}

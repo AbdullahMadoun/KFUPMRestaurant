@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_100_frame_frame_099605_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers, green peas, and red chili peppers",
+      "bbox": [
+        6,
+        149,
+        1392,
+        1424
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9914
+    },
+    {
+      "index": 1,
+      "name": "lamb meat",
+      "description": "brown pieces of cooked lamb with visible bones and a slightly charred surface",
+      "bbox": [
+        839,
+        153,
+        1338,
+        1045
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9596
+    }
+  ],
+  "stage1_time": 2.98,
+  "stage2_time": 0.45,
+  "match_results": null
+}

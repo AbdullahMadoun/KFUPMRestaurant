@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_96_frame_frame_020892_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed stew",
+      "description": "brownish chunks with orange and yellow pieces, uneven surface",
+      "bbox": [
+        194,
+        85,
+        929,
+        854
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.992
+    }
+  ],
+  "stage1_time": 2.31,
+  "stage2_time": 0.17,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_268_frame_frame_091296_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "beef stew",
+      "description": "chunks of browned beef in a rich, dark sauce with visible onions and spices",
+      "bbox": [
+        340,
+        197,
+        1267,
+        952
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9844
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a smooth texture",
+      "bbox": [
+        23,
+        273,
+        1215,
+        1459
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9763
+    }
+  ],
+  "stage1_time": 2.46,
+  "stage2_time": 0.52,
+  "match_results": null
+}

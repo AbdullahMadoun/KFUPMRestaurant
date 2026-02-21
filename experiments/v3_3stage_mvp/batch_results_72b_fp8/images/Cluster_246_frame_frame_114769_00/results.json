@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_246_frame_frame_114769_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks and green peas, mixed with orange slivers",
+      "bbox": [
+        254,
+        14,
+        1197,
+        857
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9808
+    },
+    {
+      "index": 1,
+      "name": "tomato slices",
+      "description": "bright red, glossy, circular slices with a smooth surface",
+      "bbox": [
+        553,
+        176,
+        921,
+        539
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9744
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "golden-brown, crispy, elongated pieces with a textured surface",
+      "bbox": [
+        200,
+        415,
+        745,
+        1009
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9722
+    }
+  ],
+  "stage1_time": 2.46,
+  "stage2_time": 0.57,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_136_frame_frame_030595_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky mixture of green and red vegetables in a brown sauce",
+      "bbox": [
+        171,
+        534,
+        1219,
+        1226
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    },
+    {
+      "index": 1,
+      "name": "yellow rice",
+      "description": "fluffy yellow rice grains",
+      "bbox": [
+        701,
+        113,
+        1336,
+        817
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9517
+    },
+    {
+      "index": 2,
+      "name": "white rice",
+      "description": "fluffy white rice grains",
+      "bbox": [
+        160,
+        102,
+        744,
+        654
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.948
+    }
+  ],
+  "stage1_time": 1.87,
+  "stage2_time": 0.7,
+  "match_results": null
+}

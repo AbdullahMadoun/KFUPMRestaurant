@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_2_frame_frame_108853_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "chicken curry",
+      "description": "chunks of chicken in a reddish-brown sauce with visible spices and green beans",
+      "bbox": [
+        226,
+        260,
+        1286,
+        1083
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9924
+    },
+    {
+      "index": 1,
+      "name": "basmati rice",
+      "description": "white, long-grain rice with a fluffy texture",
+      "bbox": [
+        236,
+        9,
+        1335,
+        1259
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9821
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.38,
+  "match_results": null
+}

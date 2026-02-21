@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_238_frame_frame_067315_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "beef stew",
+      "description": "brown chunks of beef with a glossy sauce and bits of red tomato",
+      "bbox": [
+        45,
+        107,
+        1017,
+        684
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9895
+    },
+    {
+      "index": 1,
+      "name": "steamed cauliflower",
+      "description": "pale yellow florets with a matte surface",
+      "bbox": [
+        860,
+        566,
+        1177,
+        862
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9764
+    },
+    {
+      "index": 2,
+      "name": "white rice",
+      "description": "fluffy white grains with a matte surface",
+      "bbox": [
+        93,
+        641,
+        1031,
+        1122
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9638
+    },
+    {
+      "index": 3,
+      "name": "steamed broccoli",
+      "description": "bright green florets with a slightly shiny surface",
+      "bbox": [
+        592,
+        331,
+        1057,
+        907
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9308
+    }
+  ],
+  "stage1_time": 2.29,
+  "stage2_time": 0.83,
+  "match_results": null
+}

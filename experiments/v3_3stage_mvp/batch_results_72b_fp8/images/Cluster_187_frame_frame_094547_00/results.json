@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_187_frame_frame_094547_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "eggplant stew",
+      "description": "glossy brown sauce with chunks of eggplant and onions, sprinkled with sesame seeds",
+      "bbox": [
+        0,
+        41,
+        546,
+        690
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.992
+    }
+  ],
+  "stage1_time": 1.7,
+  "stage2_time": 0.15,
+  "match_results": null
+}

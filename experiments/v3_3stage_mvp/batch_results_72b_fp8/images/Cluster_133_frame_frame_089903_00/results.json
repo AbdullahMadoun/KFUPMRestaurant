@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_133_frame_frame_089903_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced meat and vegetable stew",
+      "description": "chunks of browned meat with a thick, reddish-brown sauce containing green and yellow vegetables and sesame seeds",
+      "bbox": [
+        2,
+        50,
+        1101,
+        911
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9841
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice grains with a slight yellow tint",
+      "bbox": [
+        203,
+        495,
+        1312,
+        1423
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9742
+    }
+  ],
+  "stage1_time": 2.05,
+  "stage2_time": 0.41,
+  "match_results": null
+}

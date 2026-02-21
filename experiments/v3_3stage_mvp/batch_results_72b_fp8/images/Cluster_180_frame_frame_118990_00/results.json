@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_180_frame_frame_118990_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable salad",
+      "description": "mixed green leaves with yellow and red chunks, glossy surface",
+      "bbox": [
+        119,
+        147,
+        709,
+        662
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9811
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.17,
+  "match_results": null
+}

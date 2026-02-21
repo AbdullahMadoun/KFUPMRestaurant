@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_83_frame_frame_063669_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "spaghetti",
+      "description": "light yellow, thin, long strands with a slightly glossy surface",
+      "bbox": [
+        193,
+        139,
+        1307,
+        1179
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.991
+    },
+    {
+      "index": 1,
+      "name": "fried chicken",
+      "description": "golden-brown, crispy pieces with a rough, textured surface",
+      "bbox": [
+        630,
+        113,
+        1216,
+        834
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.98
+    },
+    {
+      "index": 2,
+      "name": "green pepper",
+      "description": "bright green, smooth, and slightly glossy pieces",
+      "bbox": [
+        839,
+        334,
+        996,
+        487
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9314
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.65,
+  "match_results": null
+}

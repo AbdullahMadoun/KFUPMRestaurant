@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_191_frame_frame_058221_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried fish",
+      "description": "golden-brown fish fillets with a crispy, textured surface",
+      "bbox": [
+        72,
+        250,
+        1002,
+        1230
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9858
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a smooth texture",
+      "bbox": [
+        80,
+        25,
+        1206,
+        842
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.982
+    }
+  ],
+  "stage1_time": 1.6,
+  "stage2_time": 0.36,
+  "match_results": null
+}

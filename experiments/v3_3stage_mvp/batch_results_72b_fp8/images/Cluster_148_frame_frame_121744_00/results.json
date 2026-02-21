@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_148_frame_frame_121744_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried chicken",
+      "description": "golden-brown crispy chicken pieces with a textured surface",
+      "bbox": [
+        257,
+        483,
+        916,
+        1065
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9769
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with specks of orange and brown",
+      "bbox": [
+        59,
+        4,
+        991,
+        760
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9765
+    }
+  ],
+  "stage1_time": 1.67,
+  "stage2_time": 0.38,
+  "match_results": null
+}

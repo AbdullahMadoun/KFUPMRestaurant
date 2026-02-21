@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_230_frame_frame_004251_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced chicken",
+      "description": "golden-brown pieces of chicken with a glossy, slightly charred surface and red pepper pieces",
+      "bbox": [
+        142,
+        3,
+        950,
+        517
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9797
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with specks of orange and red",
+      "bbox": [
+        56,
+        369,
+        994,
+        1134
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9671
+    }
+  ],
+  "stage1_time": 2.08,
+  "stage2_time": 0.37,
+  "match_results": null
+}

@@ -1,0 +1,81 @@
+{
+  "image_id": "Cluster_158_frame_frame_107838_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "name": "lasagna",
+      "description": "golden-brown melted cheese with a slightly crispy surface",
+      "bbox": [
+        62,
+        694,
+        819,
+        1416
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with a textured surface",
+      "bbox": [
+        470,
+        4,
+        828,
+        364
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9833
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "charred brown chicken pieces with a reddish sauce and green peas",
+      "bbox": [
+        623,
+        487,
+        1443,
+        1208
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.979
+    },
+    {
+      "index": 3,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        239,
+        9,
+        1422,
+        784
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9628
+    },
+    {
+      "index": 4,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with a textured surface",
+      "bbox": [
+        956,
+        29,
+        1177,
+        186
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9485
+    }
+  ],
+  "stage1_time": 2.15,
+  "stage2_time": 1.0,
+  "match_results": null
+}

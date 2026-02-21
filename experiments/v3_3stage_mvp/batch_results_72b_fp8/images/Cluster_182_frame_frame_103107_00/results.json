@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_182_frame_frame_103107_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky mixture of orange carrots, green peas, and brown meat pieces with a glossy surface",
+      "bbox": [
+        123,
+        51,
+        925,
+        932
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9904
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.17,
+  "match_results": null
+}

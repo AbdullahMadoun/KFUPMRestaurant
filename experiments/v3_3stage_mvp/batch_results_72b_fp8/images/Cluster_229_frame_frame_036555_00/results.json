@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_229_frame_frame_036555_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "long, white, fluffy rice grains",
+      "bbox": [
+        101,
+        74,
+        1101,
+        911
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.976
+    },
+    {
+      "index": 1,
+      "name": "roasted chicken",
+      "description": "golden-brown, crispy skin with visible seasoning and some charred spots",
+      "bbox": [
+        16,
+        433,
+        1047,
+        1093
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9699
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.42,
+  "match_results": null
+}

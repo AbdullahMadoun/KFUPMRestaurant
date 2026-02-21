@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_259_frame_frame_088154_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "omelette",
+      "description": "yellow, fluffy, and slightly browned with visible bits of vegetables",
+      "bbox": [
+        81,
+        239,
+        785,
+        906
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9779
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        270,
+        570,
+        993,
+        1070
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9769
+    },
+    {
+      "index": 2,
+      "name": "green bean curry",
+      "description": "green beans in a brownish sauce with visible spices and bits of vegetables",
+      "bbox": [
+        492,
+        276,
+        992,
+        707
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9674
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.52,
+  "match_results": null
+}

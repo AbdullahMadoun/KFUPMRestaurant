@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_112_frame_frame_046428_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "soup",
+      "description": "smooth, bright yellow liquid with a few small specks",
+      "bbox": [
+        39,
+        50,
+        499,
+        499
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9893
+    }
+  ],
+  "stage1_time": 3.66,
+  "stage2_time": 0.14,
+  "match_results": null
+}

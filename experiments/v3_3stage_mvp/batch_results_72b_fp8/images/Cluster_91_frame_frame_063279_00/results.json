@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_91_frame_frame_063279_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried chicken",
+      "description": "golden-brown pieces with a crispy, textured surface",
+      "bbox": [
+        315,
+        117,
+        876,
+        860
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9745
+    },
+    {
+      "index": 1,
+      "name": "french fries",
+      "description": "golden-yellow elongated strips with a slightly crispy surface",
+      "bbox": [
+        38,
+        161,
+        823,
+        717
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9668
+    }
+  ],
+  "stage1_time": 1.94,
+  "stage2_time": 0.33,
+  "match_results": null
+}

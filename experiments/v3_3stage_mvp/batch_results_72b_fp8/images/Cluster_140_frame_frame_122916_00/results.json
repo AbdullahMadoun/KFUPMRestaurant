@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_140_frame_frame_122916_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        167,
+        186,
+        1097,
+        910
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9852
+    },
+    {
+      "index": 1,
+      "name": "meat with sauce",
+      "description": "brown pieces with a glossy red sauce and visible spices",
+      "bbox": [
+        432,
+        71,
+        885,
+        532
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9785
+    },
+    {
+      "index": 2,
+      "name": "green beans with sauce",
+      "description": "green beans in a brownish sauce with visible spices and bits of vegetables",
+      "bbox": [
+        281,
+        573,
+        1109,
+        1196
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9732
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.53,
+  "match_results": null
+}

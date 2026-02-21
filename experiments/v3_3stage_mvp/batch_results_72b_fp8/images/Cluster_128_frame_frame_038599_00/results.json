@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_128_frame_frame_038599_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "full cream yogurt",
+      "description": "smooth white surface with a glossy sheen",
+      "bbox": [
+        1,
+        2,
+        508,
+        505
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9672
+    }
+  ],
+  "stage1_time": 2.21,
+  "stage2_time": 0.14,
+  "match_results": null
+}

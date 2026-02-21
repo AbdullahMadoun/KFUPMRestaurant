@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_236_frame_frame_012968_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "macaroni and cheese",
+      "description": "pale yellow, elbow-shaped pasta with a creamy texture",
+      "bbox": [
+        494,
+        172,
+        1384,
+        988
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9893
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "dark brown, charred surface with some white, flaky areas",
+      "bbox": [
+        150,
+        271,
+        608,
+        873
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9832
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "golden-yellow, long-grain rice with a slightly glossy surface",
+      "bbox": [
+        130,
+        636,
+        1096,
+        1302
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9732
+    }
+  ],
+  "stage1_time": 2.29,
+  "stage2_time": 0.64,
+  "match_results": null
+}

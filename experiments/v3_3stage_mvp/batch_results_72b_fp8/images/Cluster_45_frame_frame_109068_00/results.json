@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_45_frame_frame_109068_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky orange and yellow pieces with visible carrot and potato textures",
+      "bbox": [
+        191,
+        92,
+        988,
+        855
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9897
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.17,
+  "match_results": null
+}

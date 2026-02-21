@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_242_frame_frame_020909_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "cheesecake slice",
+      "description": "white creamy surface with a blueberry and red drizzled topping, layered with a red base",
+      "bbox": [
+        145,
+        190,
+        774,
+        549
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9895
+    }
+  ],
+  "stage1_time": 1.35,
+  "stage2_time": 0.16,
+  "match_results": null
+}

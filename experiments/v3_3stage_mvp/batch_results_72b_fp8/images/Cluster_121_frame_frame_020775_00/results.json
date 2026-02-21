@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_121_frame_frame_020775_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains mixed with small brown lentils and topped with a red-orange sauce containing shredded carrots and other vegetables",
+      "bbox": [
+        56,
+        7,
+        1314,
+        1065
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9921
+    }
+  ],
+  "stage1_time": 1.5,
+  "stage2_time": 0.19,
+  "match_results": null
+}

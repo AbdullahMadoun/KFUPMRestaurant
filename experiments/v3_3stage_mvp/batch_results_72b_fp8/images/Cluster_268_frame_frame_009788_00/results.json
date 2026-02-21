@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_268_frame_frame_009788_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "braised beef",
+      "description": "dark brown chunks with a glossy, saucy surface",
+      "bbox": [
+        653,
+        187,
+        1357,
+        1114
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        154,
+        182,
+        971,
+        1348
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9819
+    }
+  ],
+  "stage1_time": 2.46,
+  "stage2_time": 0.51,
+  "match_results": null
+}

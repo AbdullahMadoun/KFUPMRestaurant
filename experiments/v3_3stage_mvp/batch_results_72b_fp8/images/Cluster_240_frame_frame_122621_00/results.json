@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_240_frame_frame_122621_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "penne pasta",
+      "description": "yellow penne pasta coated in a red-orange sauce with visible seasoning specks",
+      "bbox": [
+        45,
+        28,
+        741,
+        721
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9865
+    }
+  ],
+  "stage1_time": 1.35,
+  "stage2_time": 0.15,
+  "match_results": null
+}

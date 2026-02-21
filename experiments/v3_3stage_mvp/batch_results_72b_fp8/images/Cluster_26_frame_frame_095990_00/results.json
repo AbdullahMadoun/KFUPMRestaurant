@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_26_frame_frame_095990_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed salad",
+      "description": "colorful mix of green lettuce, purple cabbage, yellow corn, red bell peppers, and a lemon wedge",
+      "bbox": [
+        156,
+        32,
+        906,
+        774
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9871
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.16,
+  "match_results": null
+}

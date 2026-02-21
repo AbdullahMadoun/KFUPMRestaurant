@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_115_frame_frame_027306_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fish stick",
+      "description": "golden-brown, breaded, and fried fish stick with visible herbs and spices",
+      "bbox": [
+        251,
+        845,
+        817,
+        1140
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9879
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        191,
+        137,
+        1351,
+        1204
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9862
+    }
+  ],
+  "stage1_time": 1.92,
+  "stage2_time": 0.46,
+  "match_results": null
+}

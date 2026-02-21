@@ -1,0 +1,123 @@
+{
+  "image_id": "Cluster_113_frame_frame_117614_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 8,
+  "items": [
+    {
+      "index": 0,
+      "name": "tomato pieces",
+      "description": "bright red, juicy, and glossy pieces with a smooth surface",
+      "bbox": [
+        555,
+        682,
+        811,
+        893
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9782
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "brown, crispy, and golden-brown pieces with a textured surface",
+      "bbox": [
+        250,
+        412,
+        548,
+        863
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9776
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with specks of yellow and green herbs",
+      "bbox": [
+        65,
+        282,
+        1127,
+        1143
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9768
+    },
+    {
+      "index": 3,
+      "name": "tomato pieces",
+      "description": "bright red, juicy, and glossy pieces with a smooth surface",
+      "bbox": [
+        483,
+        470,
+        663,
+        703
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9756
+    },
+    {
+      "index": 4,
+      "name": "tomato pieces",
+      "description": "bright red, juicy, and glossy pieces with a smooth surface",
+      "bbox": [
+        764,
+        451,
+        1041,
+        706
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9632
+    },
+    {
+      "index": 5,
+      "name": "tomato pieces",
+      "description": "bright red, juicy, and glossy pieces with a smooth surface",
+      "bbox": [
+        805,
+        953,
+        981,
+        1108
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9624
+    },
+    {
+      "index": 6,
+      "name": "tomato pieces",
+      "description": "bright red, juicy, and glossy pieces with a smooth surface",
+      "bbox": [
+        821,
+        780,
+        1004,
+        984
+      ],
+      "crop": "crops/item_006.jpg",
+      "mask": "masks/item_006_mask.png",
+      "sam_score": 0.9529
+    },
+    {
+      "index": 7,
+      "name": "tomato pieces",
+      "description": "bright red, juicy, and glossy pieces with a smooth surface",
+      "bbox": [
+        640,
+        884,
+        794,
+        1046
+      ],
+      "crop": "crops/item_007.jpg",
+      "mask": "masks/item_007_mask.png",
+      "sam_score": 0.9441
+    }
+  ],
+  "stage1_time": 3.66,
+  "stage2_time": 2.22,
+  "match_results": null
+}

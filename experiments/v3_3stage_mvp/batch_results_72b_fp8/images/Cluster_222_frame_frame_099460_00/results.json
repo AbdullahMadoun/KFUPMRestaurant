@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_222_frame_frame_099460_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "fish curry",
+      "description": "golden-yellow fish pieces with shredded vegetables and a glossy sauce",
+      "bbox": [
+        137,
+        112,
+        1172,
+        871
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9885
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "thin, translucent yellow slices with visible white pith and seeds",
+      "bbox": [
+        445,
+        229,
+        831,
+        753
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9831
+    },
+    {
+      "index": 2,
+      "name": "white rice",
+      "description": "fluffy white rice grains",
+      "bbox": [
+        54,
+        574,
+        1233,
+        1453
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9691
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.7,
+  "match_results": null
+}

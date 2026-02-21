@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_70_frame_frame_128207_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white grains with a light sheen",
+      "bbox": [
+        109,
+        13,
+        1041,
+        941
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9906
+    },
+    {
+      "index": 1,
+      "name": "fried chicken",
+      "description": "golden-brown crispy skin with visible seasoning",
+      "bbox": [
+        178,
+        503,
+        635,
+        907
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.985
+    },
+    {
+      "index": 2,
+      "name": "fried chicken",
+      "description": "golden-brown crispy skin with visible seasoning",
+      "bbox": [
+        486,
+        241,
+        892,
+        635
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.985
+    }
+  ],
+  "stage1_time": 2.42,
+  "stage2_time": 0.49,
+  "match_results": null
+}

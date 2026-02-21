@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_58_frame_frame_075177_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "lemon wedges",
+      "description": "yellow lemon slices with a textured rind",
+      "bbox": [
+        1142,
+        338,
+        1415,
+        583
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9832
+    },
+    {
+      "index": 1,
+      "name": "cheesy casserole",
+      "description": "golden-brown melted cheese with a slightly crispy surface, square-shaped",
+      "bbox": [
+        316,
+        292,
+        1079,
+        986
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9828
+    },
+    {
+      "index": 2,
+      "name": "lemon wedges",
+      "description": "yellow lemon slices with a textured rind",
+      "bbox": [
+        923,
+        878,
+        1176,
+        1110
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9758
+    },
+    {
+      "index": 3,
+      "name": "vegetable stew",
+      "description": "mixed vegetables in a reddish-brown sauce, including green beans, potatoes, and red bell peppers",
+      "bbox": [
+        148,
+        558,
+        923,
+        1318
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.975
+    }
+  ],
+  "stage1_time": 2.12,
+  "stage2_time": 0.91,
+  "match_results": null
+}

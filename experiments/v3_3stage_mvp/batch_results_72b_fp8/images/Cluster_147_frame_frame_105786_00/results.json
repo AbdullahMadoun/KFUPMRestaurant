@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_147_frame_frame_105786_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "oatmeal",
+      "description": "creamy beige porridge with visible oat grains and a smooth surface",
+      "bbox": [
+        77,
+        4,
+        961,
+        933
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9948
+    }
+  ],
+  "stage1_time": 1.67,
+  "stage2_time": 0.15,
+  "match_results": null
+}

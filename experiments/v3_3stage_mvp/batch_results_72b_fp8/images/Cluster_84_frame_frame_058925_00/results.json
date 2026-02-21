@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_84_frame_frame_058925_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta salad",
+      "description": "white pasta with creamy texture, mixed with orange carrot slices, green zucchini, and white cauliflower florets",
+      "bbox": [
+        212,
+        113,
+        1195,
+        824
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9889
+    },
+    {
+      "index": 1,
+      "name": "braised meat",
+      "description": "dark brown meat with visible bone marrow, accompanied by yellow and red bell pepper pieces",
+      "bbox": [
+        237,
+        472,
+        1066,
+        1222
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9732
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.39,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_201_frame_frame_070903_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "white and yellow rice grains with orange carrot slivers and green specks",
+      "bbox": [
+        117,
+        7,
+        1112,
+        1083
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9898
+    },
+    {
+      "index": 1,
+      "name": "vegetable curry",
+      "description": "chunks of vegetables in a reddish-brown sauce",
+      "bbox": [
+        318,
+        323,
+        903,
+        885
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9631
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "golden-brown pieces with crispy edges",
+      "bbox": [
+        688,
+        415,
+        1223,
+        1137
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9618
+    }
+  ],
+  "stage1_time": 2.07,
+  "stage2_time": 0.6,
+  "match_results": null
+}

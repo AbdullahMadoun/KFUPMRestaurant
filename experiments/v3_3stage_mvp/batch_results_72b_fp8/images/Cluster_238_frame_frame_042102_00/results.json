@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_238_frame_frame_042102_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "curried chicken",
+      "description": "golden-brown chicken pieces with a glossy, reddish-brown sauce and visible spices",
+      "bbox": [
+        193,
+        68,
+        1022,
+        532
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9886
+    },
+    {
+      "index": 1,
+      "name": "steamed broccoli",
+      "description": "bright green broccoli florets with a fresh, slightly rough texture",
+      "bbox": [
+        490,
+        287,
+        1168,
+        1061
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9813
+    },
+    {
+      "index": 2,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a light, airy texture",
+      "bbox": [
+        78,
+        284,
+        697,
+        1107
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9792
+    }
+  ],
+  "stage1_time": 2.29,
+  "stage2_time": 0.56,
+  "match_results": null
+}

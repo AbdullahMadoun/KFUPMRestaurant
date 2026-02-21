@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_177_frame_frame_072394_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "curried chicken",
+      "description": "chunks of yellowish-brown chicken with visible spices and green peppers",
+      "bbox": [
+        59,
+        243,
+        743,
+        1231
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9838
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with visible white pith",
+      "bbox": [
+        773,
+        138,
+        1069,
+        329
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.983
+    },
+    {
+      "index": 2,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with visible white pith",
+      "bbox": [
+        1032,
+        194,
+        1264,
+        603
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9675
+    },
+    {
+      "index": 3,
+      "name": "spiced rice",
+      "description": "fluffy white rice with yellow specks and red slivers",
+      "bbox": [
+        311,
+        31,
+        1222,
+        1153
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9595
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.86,
+  "match_results": null
+}

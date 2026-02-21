@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_25_frame_frame_135503_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky orange-brown sauce with green and yellow vegetable pieces",
+      "bbox": [
+        56,
+        48,
+        499,
+        480
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    }
+  ],
+  "stage1_time": 1.81,
+  "stage2_time": 0.14,
+  "match_results": null
+}

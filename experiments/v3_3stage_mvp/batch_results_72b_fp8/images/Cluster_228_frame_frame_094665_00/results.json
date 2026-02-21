@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_228_frame_frame_094665_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "shredded cheese",
+      "description": "fine, pale yellow shreds with a fluffy texture",
+      "bbox": [
+        41,
+        51,
+        1231,
+        1290
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9867
+    },
+    {
+      "index": 1,
+      "name": "grilled salmon",
+      "description": "golden-brown fish fillet with grill marks",
+      "bbox": [
+        601,
+        231,
+        1197,
+        1126
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9766
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.44,
+  "match_results": null
+}

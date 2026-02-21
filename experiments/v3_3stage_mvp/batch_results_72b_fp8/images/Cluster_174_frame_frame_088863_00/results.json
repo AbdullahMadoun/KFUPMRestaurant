@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_174_frame_frame_088863_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a light, fluffy texture",
+      "bbox": [
+        485,
+        66,
+        1454,
+        917
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9902
+    },
+    {
+      "index": 1,
+      "name": "fried fish",
+      "description": "brown, crispy fish with a flaky texture and visible bones",
+      "bbox": [
+        367,
+        682,
+        1208,
+        1254
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9798
+    },
+    {
+      "index": 2,
+      "name": "fried fish",
+      "description": "brown, crispy fish with a flaky texture and visible bones",
+      "bbox": [
+        126,
+        619,
+        546,
+        1208
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9798
+    }
+  ],
+  "stage1_time": 2.26,
+  "stage2_time": 0.63,
+  "match_results": null
+}

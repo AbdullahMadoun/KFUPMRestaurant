@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_253_frame_frame_136429_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "risotto",
+      "description": "creamy yellow rice grains with a glossy surface and small bits of ingredients mixed in",
+      "bbox": [
+        18,
+        11,
+        849,
+        805
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9934
+    }
+  ],
+  "stage1_time": 1.59,
+  "stage2_time": 0.16,
+  "match_results": null
+}

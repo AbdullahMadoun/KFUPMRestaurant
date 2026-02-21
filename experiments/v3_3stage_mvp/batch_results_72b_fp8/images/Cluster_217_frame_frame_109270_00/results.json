@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_217_frame_frame_109270_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed greens salad",
+      "description": "green leafy vegetables with red and yellow bits, possibly tomatoes and peppers",
+      "bbox": [
+        0,
+        4,
+        898,
+        969
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9918
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow citrus slice with white pith and green veins",
+      "bbox": [
+        -1,
+        4,
+        440,
+        365
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9891
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.34,
+  "match_results": null
+}

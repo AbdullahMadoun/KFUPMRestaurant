@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_173_frame_frame_135734_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced shrimp",
+      "description": "orange shrimp with a glossy, seasoned surface and visible tails",
+      "bbox": [
+        107,
+        299,
+        829,
+        950
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9903
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy yellow rice grains with specks of darker seasoning",
+      "bbox": [
+        147,
+        156,
+        1022,
+        939
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9816
+    }
+  ],
+  "stage1_time": 2.26,
+  "stage2_time": 0.34,
+  "match_results": null
+}

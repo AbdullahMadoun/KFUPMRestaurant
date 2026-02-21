@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_178_frame_frame_134355_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky orange and green pieces with a glossy sauce",
+      "bbox": [
+        432,
+        590,
+        1008,
+        1066
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9889
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a light sheen",
+      "bbox": [
+        262,
+        32,
+        1005,
+        698
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9875
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.35,
+  "match_results": null
+}

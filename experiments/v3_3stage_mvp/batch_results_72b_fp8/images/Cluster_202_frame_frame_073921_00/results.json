@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_202_frame_frame_073921_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with specks of yellow and orange, mixed with small pieces of vegetables",
+      "bbox": [
+        217,
+        -1,
+        1208,
+        617
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9858
+    },
+    {
+      "index": 1,
+      "name": "vegetable curry",
+      "description": "chunks of yellow vegetables, red tomatoes, and green peppers in a sauce",
+      "bbox": [
+        246,
+        502,
+        1015,
+        1020
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9852
+    }
+  ],
+  "stage1_time": 2.07,
+  "stage2_time": 0.38,
+  "match_results": null
+}

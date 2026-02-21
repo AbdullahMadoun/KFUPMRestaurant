@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_117_frame_frame_093669_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed vegetables and chicken",
+      "description": "chunks of chicken and vegetables with a glossy, slightly browned surface",
+      "bbox": [
+        4,
+        401,
+        1251,
+        1205
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9897
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly glossy surface",
+      "bbox": [
+        256,
+        7,
+        1166,
+        667
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9751
+    }
+  ],
+  "stage1_time": 1.92,
+  "stage2_time": 0.44,
+  "match_results": null
+}

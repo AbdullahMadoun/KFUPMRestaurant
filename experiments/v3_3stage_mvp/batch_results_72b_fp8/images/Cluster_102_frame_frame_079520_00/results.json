@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_102_frame_frame_079520_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with specks of brown and red",
+      "bbox": [
+        221,
+        150,
+        1288,
+        1109
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9746
+    }
+  ],
+  "stage1_time": 2.98,
+  "stage2_time": 0.22,
+  "match_results": null
+}

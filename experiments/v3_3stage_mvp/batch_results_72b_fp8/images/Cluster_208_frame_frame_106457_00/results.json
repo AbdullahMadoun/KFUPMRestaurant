@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_208_frame_frame_106457_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pumpkin puree",
+      "description": "smooth orange paste with a glossy surface",
+      "bbox": [
+        141,
+        145,
+        900,
+        885
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9903
+    }
+  ],
+  "stage1_time": 1.32,
+  "stage2_time": 0.17,
+  "match_results": null
+}

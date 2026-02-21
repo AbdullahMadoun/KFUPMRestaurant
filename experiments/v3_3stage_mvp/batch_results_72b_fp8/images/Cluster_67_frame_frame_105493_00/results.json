@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_67_frame_frame_105493_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted chicken",
+      "description": "golden-brown skin with a crispy texture, visible bone and joint",
+      "bbox": [
+        662,
+        298,
+        1488,
+        1124
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9897
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "long, slender white grains with a fluffy texture",
+      "bbox": [
+        246,
+        112,
+        1394,
+        1426
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9777
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.4,
+  "match_results": null
+}

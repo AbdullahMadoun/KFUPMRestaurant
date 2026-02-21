@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_75_frame_frame_017197_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "spicy chicken curry",
+      "description": "chunks of orange-brown chicken in a glossy, saucy texture with visible spices and bits of red chili",
+      "bbox": [
+        146,
+        386,
+        881,
+        1015
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9869
+    },
+    {
+      "index": 1,
+      "name": "steamed cauliflower",
+      "description": "white, textured florets with a slightly rough surface",
+      "bbox": [
+        630,
+        234,
+        1185,
+        799
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9831
+    },
+    {
+      "index": 2,
+      "name": "steamed carrot",
+      "description": "orange, smooth slices with a soft, matte texture",
+      "bbox": [
+        513,
+        217,
+        962,
+        559
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9829
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.68,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_247_frame_frame_022987_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers and bits of meat",
+      "bbox": [
+        11,
+        194,
+        1152,
+        1286
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9774
+    },
+    {
+      "index": 1,
+      "name": "grilled meat",
+      "description": "brown, charred pieces of meat with a glossy surface",
+      "bbox": [
+        384,
+        34,
+        1222,
+        872
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9594
+    }
+  ],
+  "stage1_time": 2.46,
+  "stage2_time": 0.42,
+  "match_results": null
+}

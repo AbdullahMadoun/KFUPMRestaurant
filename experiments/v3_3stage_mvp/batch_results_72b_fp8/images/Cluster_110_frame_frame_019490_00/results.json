@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_110_frame_frame_019490_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with specks of dark brown and light brown, mixed with small pieces of vegetables",
+      "bbox": [
+        214,
+        55,
+        1195,
+        1126
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9901
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "golden-brown chicken pieces with a slightly crispy texture",
+      "bbox": [
+        497,
+        344,
+        1191,
+        1119
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9846
+    },
+    {
+      "index": 2,
+      "name": "vegetable mix",
+      "description": "chopped red and green vegetables with a glossy surface",
+      "bbox": [
+        344,
+        530,
+        1053,
+        923
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9672
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.66,
+  "match_results": null
+}

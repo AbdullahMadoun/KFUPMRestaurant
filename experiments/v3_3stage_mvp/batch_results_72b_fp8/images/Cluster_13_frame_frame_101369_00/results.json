@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_13_frame_frame_101369_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "chicken stew",
+      "description": "golden-brown chicken with a rich, red sauce, green olives, and yellow peppers",
+      "bbox": [
+        96,
+        142,
+        1053,
+        975
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9945
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.19,
+  "match_results": null
+}

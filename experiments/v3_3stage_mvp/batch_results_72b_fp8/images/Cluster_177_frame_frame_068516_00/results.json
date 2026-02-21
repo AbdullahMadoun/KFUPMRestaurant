@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_177_frame_frame_068516_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks and a yellow square topping",
+      "bbox": [
+        312,
+        4,
+        1300,
+        918
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9876
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "golden-brown pieces with a slightly crispy texture",
+      "bbox": [
+        259,
+        577,
+        1021,
+        1163
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9851
+    },
+    {
+      "index": 2,
+      "name": "lemon slice",
+      "description": "yellow wedge with a textured rind and visible pulp",
+      "bbox": [
+        885,
+        969,
+        1151,
+        1164
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9813
+    },
+    {
+      "index": 3,
+      "name": "lemonade",
+      "description": "green can with white interior visible",
+      "bbox": [
+        292,
+        1251,
+        653,
+        1487
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9751
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.92,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_201_frame_frame_048088_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "pilaf rice",
+      "description": "fluffy white rice grains with specks of yellow and green",
+      "bbox": [
+        7,
+        174,
+        1057,
+        1109
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9855
+    },
+    {
+      "index": 1,
+      "name": "vegetables",
+      "description": "pieces of red and green bell peppers, along with other vegetables, mixed into the curry",
+      "bbox": [
+        86,
+        172,
+        602,
+        1093
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9688
+    },
+    {
+      "index": 2,
+      "name": "chicken curry",
+      "description": "chunks of golden-brown chicken in a rich, reddish-brown sauce with visible spices and vegetables",
+      "bbox": [
+        89,
+        217,
+        754,
+        890
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9423
+    }
+  ],
+  "stage1_time": 2.07,
+  "stage2_time": 0.55,
+  "match_results": null
+}

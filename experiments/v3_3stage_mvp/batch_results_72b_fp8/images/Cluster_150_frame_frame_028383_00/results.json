@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_150_frame_frame_028383_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a crispy, flaky texture and visible grill marks",
+      "bbox": [
+        376,
+        357,
+        1114,
+        787
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9898
+    },
+    {
+      "index": 1,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a crispy, flaky texture and visible grill marks",
+      "bbox": [
+        296,
+        822,
+        938,
+        1166
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9884
+    },
+    {
+      "index": 2,
+      "name": "lemon wedges",
+      "description": "bright yellow lemon wedges with a smooth, shiny surface",
+      "bbox": [
+        969,
+        622,
+        1258,
+        1070
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9842
+    },
+    {
+      "index": 3,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a mix of white and yellow hues, slightly clumped together",
+      "bbox": [
+        235,
+        153,
+        1068,
+        994
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9731
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.84,
+  "match_results": null
+}

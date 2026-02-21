@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_157_frame_frame_045780_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "hummus",
+      "description": "smooth beige paste with green specks and olive oil drizzle on top",
+      "bbox": [
+        74,
+        150,
+        677,
+        719
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9915
+    }
+  ],
+  "stage1_time": 2.15,
+  "stage2_time": 0.15,
+  "match_results": null
+}

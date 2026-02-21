@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_168_frame_frame_068718_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "broccoli",
+      "description": "green, tree-like florets with a white stem",
+      "bbox": [
+        518,
+        209,
+        1222,
+        1351
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9786
+    },
+    {
+      "index": 1,
+      "name": "fried chicken",
+      "description": "golden-brown, crispy, irregularly shaped pieces",
+      "bbox": [
+        200,
+        342,
+        1093,
+        1259
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9661
+    }
+  ],
+  "stage1_time": 2.51,
+  "stage2_time": 0.48,
+  "match_results": null
+}

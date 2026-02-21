@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_223_frame_frame_011370_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "cheesy casserole",
+      "description": "golden-brown melted cheese with visible chunks of meat and vegetables",
+      "bbox": [
+        95,
+        61,
+        727,
+        778
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9922
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow slices with visible white pith and juice segments",
+      "bbox": [
+        24,
+        139,
+        299,
+        427
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 2,
+      "name": "lemon slices",
+      "description": "yellow slices with visible white pith and juice segments",
+      "bbox": [
+        167,
+        3,
+        489,
+        148
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9768
+    }
+  ],
+  "stage1_time": 1.89,
+  "stage2_time": 0.48,
+  "match_results": null
+}

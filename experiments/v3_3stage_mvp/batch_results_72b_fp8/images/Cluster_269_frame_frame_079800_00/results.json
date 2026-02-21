@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_269_frame_frame_079800_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced chicken",
+      "description": "chunks of yellow chicken with a red sauce coating",
+      "bbox": [
+        507,
+        901,
+        1074,
+        1202
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9833
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with specks of green herbs",
+      "bbox": [
+        4,
+        309,
+        482,
+        1103
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9832
+    },
+    {
+      "index": 2,
+      "name": "herb salad",
+      "description": "green leafy herbs with a slice of yellow lemon on top",
+      "bbox": [
+        467,
+        57,
+        1184,
+        746
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9774
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.6,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_143_frame_frame_078833_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "a mix of green, yellow, and red pieces with a glossy sauce",
+      "bbox": [
+        271,
+        275,
+        1283,
+        845
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9874
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        192,
+        80,
+        1293,
+        1361
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9823
+    },
+    {
+      "index": 2,
+      "name": "meatballs",
+      "description": "brown, textured, and irregularly shaped pieces",
+      "bbox": [
+        391,
+        682,
+        906,
+        1318
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9647
+    }
+  ],
+  "stage1_time": 1.98,
+  "stage2_time": 0.61,
+  "match_results": null
+}

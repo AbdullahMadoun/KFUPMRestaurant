@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_5_frame_frame_026847_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "jollof rice",
+      "description": "golden-brown rice grains with specks of red pepper and a glossy sheen",
+      "bbox": [
+        232,
+        263,
+        1069,
+        1024
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.989
+    },
+    {
+      "index": 1,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a flaky texture and charred spots",
+      "bbox": [
+        89,
+        650,
+        764,
+        1184
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9879
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.38,
+  "match_results": null
+}

@@ -1,0 +1,81 @@
+{
+  "image_id": "Cluster_181_frame_frame_132084_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced chicken",
+      "description": "brown chicken pieces with a glossy, spiced surface",
+      "bbox": [
+        235,
+        260,
+        491,
+        505
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9842
+    },
+    {
+      "index": 1,
+      "name": "spiced chicken",
+      "description": "brown chicken pieces with a glossy, spiced surface",
+      "bbox": [
+        579,
+        264,
+        991,
+        708
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9828
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        127,
+        57,
+        994,
+        888
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9812
+    },
+    {
+      "index": 3,
+      "name": "spiced chicken",
+      "description": "brown chicken pieces with a glossy, spiced surface",
+      "bbox": [
+        457,
+        4,
+        659,
+        242
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9779
+    },
+    {
+      "index": 4,
+      "name": "red pepper",
+      "description": "red pepper pieces with a smooth, shiny surface",
+      "bbox": [
+        646,
+        672,
+        844,
+        909
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9692
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.84,
+  "match_results": null
+}

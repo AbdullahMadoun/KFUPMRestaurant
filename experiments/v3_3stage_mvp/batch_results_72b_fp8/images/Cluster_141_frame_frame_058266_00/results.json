@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_141_frame_frame_058266_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetables",
+      "description": "sliced carrots, red bell peppers, and yellow bell peppers with a glossy surface",
+      "bbox": [
+        266,
+        220,
+        1233,
+        1173
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9827
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        110,
+        208,
+        812,
+        1211
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9796
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "brown, crispy, and slightly charred chicken pieces",
+      "bbox": [
+        623,
+        535,
+        1197,
+        1139
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9414
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.63,
+  "match_results": null
+}

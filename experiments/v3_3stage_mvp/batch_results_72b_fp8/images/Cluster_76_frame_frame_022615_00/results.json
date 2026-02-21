@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_76_frame_frame_022615_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "spicy soup",
+      "description": "orange-red broth with visible bubbles and small green specks",
+      "bbox": [
+        50,
+        46,
+        589,
+        574
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9884
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.14,
+  "match_results": null
+}

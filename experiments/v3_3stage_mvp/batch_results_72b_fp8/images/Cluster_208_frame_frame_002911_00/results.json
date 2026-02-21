@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_208_frame_frame_002911_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "coleslaw",
+      "description": "shredded light yellow cabbage with red specks",
+      "bbox": [
+        115,
+        60,
+        769,
+        750
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9898
+    }
+  ],
+  "stage1_time": 1.32,
+  "stage2_time": 0.15,
+  "match_results": null
+}

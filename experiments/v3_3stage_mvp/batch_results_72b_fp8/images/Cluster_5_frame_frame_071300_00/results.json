@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_5_frame_frame_071300_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish fillet with a slightly charred surface and visible grill marks",
+      "bbox": [
+        110,
+        618,
+        929,
+        1128
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9892
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow lemon slice with a white pith and a slightly glossy surface",
+      "bbox": [
+        1087,
+        582,
+        1393,
+        787
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9823
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly glossy surface and some small orange specks",
+      "bbox": [
+        205,
+        34,
+        1313,
+        1197
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9736
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.58,
+  "match_results": null
+}

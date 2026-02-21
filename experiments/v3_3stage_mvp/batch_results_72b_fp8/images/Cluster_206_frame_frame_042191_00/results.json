@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_206_frame_frame_042191_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted chicken",
+      "description": "golden-brown chicken with crispy skin and a glossy surface",
+      "bbox": [
+        592,
+        309,
+        1039,
+        845
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9902
+    },
+    {
+      "index": 1,
+      "name": "basmati rice",
+      "description": "fluffy white rice grains with specks of yellow and red",
+      "bbox": [
+        4,
+        3,
+        873,
+        1056
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9782
+    }
+  ],
+  "stage1_time": 2.27,
+  "stage2_time": 0.34,
+  "match_results": null
+}

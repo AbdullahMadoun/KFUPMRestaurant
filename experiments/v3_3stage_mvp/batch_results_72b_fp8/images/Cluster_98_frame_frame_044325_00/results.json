@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_98_frame_frame_044325_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "lentil curry",
+      "description": "orange-brown, chunky texture with visible lentils and spices",
+      "bbox": [
+        428,
+        127,
+        1096,
+        879
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9912
+    },
+    {
+      "index": 1,
+      "name": "broccoli",
+      "description": "bright green florets with a slightly rough texture",
+      "bbox": [
+        140,
+        232,
+        713,
+        981
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9864
+    },
+    {
+      "index": 2,
+      "name": "dip",
+      "description": "yellow liquid with a smooth texture",
+      "bbox": [
+        22,
+        797,
+        155,
+        1049
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9428
+    }
+  ],
+  "stage1_time": 1.96,
+  "stage2_time": 0.61,
+  "match_results": null
+}

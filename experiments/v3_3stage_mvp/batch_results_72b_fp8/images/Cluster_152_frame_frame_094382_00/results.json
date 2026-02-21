@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_152_frame_frame_094382_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "curry",
+      "description": "thick, orange-brown sauce with visible chunks of vegetables and spices",
+      "bbox": [
+        729,
+        236,
+        1445,
+        1146
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9895
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "long, slender white grains with a fluffy texture",
+      "bbox": [
+        62,
+        8,
+        1067,
+        1099
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9808
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.44,
+  "match_results": null
+}

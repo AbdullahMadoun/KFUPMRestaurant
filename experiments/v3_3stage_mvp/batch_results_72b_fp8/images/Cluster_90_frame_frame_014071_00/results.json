@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_90_frame_frame_014071_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "stir-fried vegetables and chicken",
+      "description": "golden-brown chicken pieces with vibrant orange carrot slices and green bell pepper pieces, all coated in a glossy sauce",
+      "bbox": [
+        233,
+        200,
+        1200,
+        848
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9918
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        215,
+        572,
+        1259,
+        1265
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9794
+    }
+  ],
+  "stage1_time": 1.94,
+  "stage2_time": 0.46,
+  "match_results": null
+}

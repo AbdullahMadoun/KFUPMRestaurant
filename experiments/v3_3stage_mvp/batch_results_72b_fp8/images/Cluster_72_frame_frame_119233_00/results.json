@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_72_frame_frame_119233_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted red peppers",
+      "description": "dark red, wrinkled, and slightly charred pieces",
+      "bbox": [
+        334,
+        315,
+        988,
+        714
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9847
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with specks of yellow and brown, mixed with small bits of vegetables and spices",
+      "bbox": [
+        116,
+        6,
+        1006,
+        1037
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9823
+    },
+    {
+      "index": 2,
+      "name": "crispy fried bread",
+      "description": "golden-brown, irregularly shaped pieces with a crispy texture",
+      "bbox": [
+        124,
+        471,
+        962,
+        1033
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.982
+    }
+  ],
+  "stage1_time": 1.94,
+  "stage2_time": 0.5,
+  "match_results": null
+}

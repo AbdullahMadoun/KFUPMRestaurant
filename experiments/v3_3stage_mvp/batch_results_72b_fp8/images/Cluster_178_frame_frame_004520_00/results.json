@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_178_frame_frame_004520_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "curried potatoes",
+      "description": "chunks of yellow potatoes in a reddish-orange sauce",
+      "bbox": [
+        391,
+        52,
+        890,
+        535
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9897
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a few green specks",
+      "bbox": [
+        62,
+        376,
+        1050,
+        1232
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9785
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.41,
+  "match_results": null
+}

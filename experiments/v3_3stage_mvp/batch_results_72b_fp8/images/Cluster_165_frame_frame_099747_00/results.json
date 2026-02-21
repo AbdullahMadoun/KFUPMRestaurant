@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_165_frame_frame_099747_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "beef stew",
+      "description": "brown chunks of beef with orange carrot pieces and green peas",
+      "bbox": [
+        617,
+        107,
+        1336,
+        1413
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9864
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "long, slender white grains with a fluffy texture",
+      "bbox": [
+        5,
+        95,
+        870,
+        1305
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9833
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.43,
+  "match_results": null
+}
