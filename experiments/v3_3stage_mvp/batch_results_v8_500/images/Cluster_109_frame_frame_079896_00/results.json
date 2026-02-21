@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_109_frame_frame_079896_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy substance with green streaks, circular shape, covering most of the plate",
+      "bbox": [
+        96,
+        126,
+        756,
+        778
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.985
+    },
+    {
+      "index": 1,
+      "description": "small round beige objects with a glossy surface, arranged in a cluster, located in the center",
+      "bbox": [
+        303,
+        242,
+        480,
+        492
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.958
+    }
+  ],
+  "stage1_time": 0.76,
+  "stage2_time": 0.56,
+  "match_results": null
+}

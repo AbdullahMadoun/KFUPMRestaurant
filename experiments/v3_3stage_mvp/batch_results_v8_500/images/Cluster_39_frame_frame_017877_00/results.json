@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_39_frame_frame_017877_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "light brown and yellowish pieces with visible bone, top right of plate",
+      "bbox": [
+        241,
+        142,
+        736,
+        401
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9879
+    },
+    {
+      "index": 1,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        438,
+        399,
+        843,
+        794
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9842
+    },
+    {
+      "index": 2,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        131,
+        340,
+        481,
+        742
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9836
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 0.86,
+  "match_results": null
+}

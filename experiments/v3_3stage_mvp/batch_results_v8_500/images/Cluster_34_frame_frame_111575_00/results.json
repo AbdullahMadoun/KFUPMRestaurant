@@ -1,0 +1,89 @@
+{
+  "image_id": "Cluster_34_frame_frame_111575_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 6,
+  "items": [
+    {
+      "index": 0,
+      "description": "reddish-brown mixed dish with visible vegetables, top right corner",
+      "bbox": [
+        381,
+        96,
+        1061,
+        499
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9863
+    },
+    {
+      "index": 1,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        99,
+        177,
+        590,
+        962
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9804
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        410,
+        415,
+        918,
+        1136
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9719
+    },
+    {
+      "index": 3,
+      "description": "green leafy vegetable slices, top right corner",
+      "bbox": [
+        959,
+        463,
+        1271,
+        641
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9679
+    },
+    {
+      "index": 4,
+      "description": "white cauliflower florets, bottom right corner",
+      "bbox": [
+        884,
+        561,
+        1234,
+        828
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9525
+    },
+    {
+      "index": 5,
+      "description": "sliced lemon wedges with bright yellow color, bottom right corner",
+      "bbox": [
+        731,
+        847,
+        1235,
+        1219
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.7315
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 1.85,
+  "match_results": null
+}

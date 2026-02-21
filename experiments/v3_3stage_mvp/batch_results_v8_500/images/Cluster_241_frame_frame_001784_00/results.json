@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_241_frame_frame_001784_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of lemon with visible pith and seeds, placed on top of the salad",
+      "bbox": [
+        255,
+        71,
+        536,
+        300
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9839
+    },
+    {
+      "index": 1,
+      "description": "shredded orange carrot strips with green leafy vegetables, covering most of the plate",
+      "bbox": [
+        37,
+        15,
+        873,
+        870
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9682
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.55,
+  "match_results": null
+}

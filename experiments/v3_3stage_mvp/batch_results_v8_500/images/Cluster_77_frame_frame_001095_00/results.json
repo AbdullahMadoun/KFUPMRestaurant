@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_77_frame_frame_001095_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish penne pasta with orange sauce, covering most of the plate",
+      "bbox": [
+        67,
+        139,
+        983,
+        885
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.993
+    },
+    {
+      "index": 1,
+      "description": "silver spoon partially visible under the pasta, bottom right corner",
+      "bbox": [
+        472,
+        817,
+        881,
+        959
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.8949
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.62,
+  "match_results": null
+}

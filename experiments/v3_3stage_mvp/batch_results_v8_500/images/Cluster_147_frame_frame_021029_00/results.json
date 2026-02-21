@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_147_frame_frame_021029_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy rice with small chunks of chicken, covering most of the plate",
+      "bbox": [
+        157,
+        63,
+        1021,
+        922
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9925
+    },
+    {
+      "index": 1,
+      "description": "light pink chicken pieces with visible skin, scattered throughout the rice",
+      "bbox": [
+        157,
+        244,
+        360,
+        798
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9659
+    }
+  ],
+  "stage1_time": 0.61,
+  "stage2_time": 0.62,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_229_frame_frame_036555_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains with a slight yellow tint, forming a mound covering the left half of the plate",
+      "bbox": [
+        104,
+        74,
+        1104,
+        1155
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9896
+    },
+    {
+      "index": 1,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, occupying the right side of the plate",
+      "bbox": [
+        14,
+        437,
+        1057,
+        1100
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9698
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.61,
+  "match_results": null
+}

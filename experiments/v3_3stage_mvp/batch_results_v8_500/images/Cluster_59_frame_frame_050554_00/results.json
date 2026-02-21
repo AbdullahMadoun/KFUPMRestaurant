@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_59_frame_frame_050554_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "plastic wrap covering the entire plate, with some reflections and light distortions",
+      "bbox": [
+        7,
+        2,
+        728,
+        726
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "description": "sliced hard-boiled eggs with yellow yolk and white protein, placed on top of the leafy vegetables",
+      "bbox": [
+        252,
+        231,
+        563,
+        590
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9643
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.8,
+  "match_results": null
+}

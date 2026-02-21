@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_136_frame_frame_030595_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "chopped vegetables including green bell peppers, red bell peppers, and onions, mixed with a brown sauce, covering the center of the plate",
+      "bbox": [
+        171,
+        537,
+        1217,
+        1226
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9828
+    },
+    {
+      "index": 1,
+      "description": "white rice grains with a fluffy texture, covering the left side of the plate",
+      "bbox": [
+        161,
+        100,
+        869,
+        904
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9792
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        424,
+        532,
+        1041,
+        1224
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9716
+    },
+    {
+      "index": 3,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        689,
+        110,
+        1289,
+        886
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9561
+    }
+  ],
+  "stage1_time": 0.49,
+  "stage2_time": 1.23,
+  "match_results": null
+}

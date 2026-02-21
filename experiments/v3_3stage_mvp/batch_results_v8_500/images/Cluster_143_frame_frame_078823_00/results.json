@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_143_frame_frame_078823_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains with small orange carrot pieces, forming a mound covering the left half of the plate",
+      "bbox": [
+        223,
+        169,
+        1301,
+        1189
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9836
+    },
+    {
+      "index": 1,
+      "description": "mixed vegetables with green and yellow hues, placed on top of the rice and meat, forming a colorful layer",
+      "bbox": [
+        279,
+        220,
+        1293,
+        836
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9686
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, located on the right side of the plate",
+      "bbox": [
+        396,
+        624,
+        916,
+        1264
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.959
+    }
+  ],
+  "stage1_time": 0.49,
+  "stage2_time": 1.04,
+  "match_results": null
+}

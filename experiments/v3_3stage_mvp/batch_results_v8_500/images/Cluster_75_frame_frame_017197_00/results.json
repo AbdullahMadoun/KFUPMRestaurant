@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_75_frame_frame_017197_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "white cauliflower florets with a slightly rough texture, occupying the right side of the plate",
+      "bbox": [
+        631,
+        238,
+        1187,
+        800
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9786
+    },
+    {
+      "index": 1,
+      "description": "chicken pieces with a golden-brown, crispy texture, occupying the left side of the plate",
+      "bbox": [
+        145,
+        385,
+        855,
+        1014
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9716
+    },
+    {
+      "index": 2,
+      "description": "orange carrot pieces with a smooth, slightly glossy surface, located near the top center of the plate",
+      "bbox": [
+        515,
+        216,
+        954,
+        550
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9446
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.94,
+  "match_results": null
+}

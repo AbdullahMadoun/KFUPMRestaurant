@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_1_frame_frame_002961_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy substance with small yellow flecks, covering most of the plate",
+      "bbox": [
+        75,
+        62,
+        970,
+        917
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9944
+    },
+    {
+      "index": 1,
+      "description": "black bowl with a textured surface, containing the creamy substance",
+      "bbox": [
+        6,
+        4,
+        998,
+        998
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9922
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 0.76,
+  "match_results": null
+}

@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_101_frame_frame_032220_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden-brown roasted chicken pieces with crispy skin, right side of plate",
+      "bbox": [
+        253,
+        95,
+        754,
+        725
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9891
+    },
+    {
+      "index": 1,
+      "description": "lemon slices with bright yellow color and segmented texture, bottom right of plate",
+      "bbox": [
+        650,
+        537,
+        895,
+        843
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9802
+    },
+    {
+      "index": 2,
+      "description": "lemon slices with bright yellow color and segmented texture, bottom left of plate",
+      "bbox": [
+        167,
+        524,
+        383,
+        811
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9713
+    },
+    {
+      "index": 3,
+      "description": "lemon slices with bright yellow color and segmented texture, bottom center of plate",
+      "bbox": [
+        481,
+        718,
+        795,
+        890
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9583
+    }
+  ],
+  "stage1_time": 0.76,
+  "stage2_time": 1.16,
+  "match_results": null
+}

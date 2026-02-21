@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_135_frame_frame_024133_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, left side of plate",
+      "bbox": [
+        295,
+        354,
+        920,
+        964
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9793
+    },
+    {
+      "index": 1,
+      "description": "bright yellow corn kernels with smooth surface, right side of plate",
+      "bbox": [
+        581,
+        231,
+        1298,
+        1008
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9709
+    }
+  ],
+  "stage1_time": 0.49,
+  "stage2_time": 0.62,
+  "match_results": null
+}

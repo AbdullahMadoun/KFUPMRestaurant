@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_242_frame_frame_020909_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "black plate with a circular pattern and golden text on the left side, occupying the entire image",
+      "bbox": [
+        5,
+        4,
+        841,
+        841
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9928
+    },
+    {
+      "index": 1,
+      "description": "slice of cake with white cream, red fruit topping, and a blueberry on top, occupying the center of the plate",
+      "bbox": [
+        145,
+        190,
+        775,
+        549
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9903
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.54,
+  "match_results": null
+}

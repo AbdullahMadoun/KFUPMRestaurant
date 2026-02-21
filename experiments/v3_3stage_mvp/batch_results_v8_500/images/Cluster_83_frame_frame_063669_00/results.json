@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_83_frame_frame_063669_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "light yellowish noodles with a slightly glossy texture, occupying the left side of the plate",
+      "bbox": [
+        193,
+        133,
+        1306,
+        1179
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9876
+    },
+    {
+      "index": 1,
+      "description": "chunks of meat with a yellowish-orange coating, irregularly shaped, on the right side of the plate",
+      "bbox": [
+        626,
+        112,
+        1219,
+        844
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9772
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.62,
+  "match_results": null
+}

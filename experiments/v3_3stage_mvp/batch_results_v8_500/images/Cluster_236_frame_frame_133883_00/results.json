@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_236_frame_frame_133883_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        161,
+        162,
+        804,
+        679
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9842
+    },
+    {
+      "index": 1,
+      "description": "pasta with creamy white sauce, irregular chunks, right side of plate",
+      "bbox": [
+        249,
+        236,
+        1092,
+        1132
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9808
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.6,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_67_frame_frame_105493_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains with a fluffy texture, covering left half of plate",
+      "bbox": [
+        246,
+        202,
+        1397,
+        1429
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9847
+    },
+    {
+      "index": 1,
+      "description": "golden-brown roasted chicken pieces with crispy skin, right side of plate",
+      "bbox": [
+        663,
+        299,
+        1487,
+        1044
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9616
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.63,
+  "match_results": null
+}

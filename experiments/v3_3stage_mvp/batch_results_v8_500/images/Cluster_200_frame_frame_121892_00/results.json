@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_200_frame_frame_121892_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        245,
+        155,
+        836,
+        564
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9868
+    },
+    {
+      "index": 1,
+      "description": "white rice grains with smooth texture, covering bottom half of plate",
+      "bbox": [
+        225,
+        370,
+        1001,
+        1095
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9731
+    },
+    {
+      "index": 2,
+      "description": "small brown sauce pool with glossy texture, between meat and rice",
+      "bbox": [
+        639,
+        283,
+        806,
+        411
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9444
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 1.36,
+  "match_results": null
+}

@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_3_frame_frame_012259_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden-brown fried chicken pieces with crispy texture, irregular shape, right side of plate",
+      "bbox": [
+        366,
+        466,
+        1011,
+        1011
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9861
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 0.68,
+  "match_results": null
+}

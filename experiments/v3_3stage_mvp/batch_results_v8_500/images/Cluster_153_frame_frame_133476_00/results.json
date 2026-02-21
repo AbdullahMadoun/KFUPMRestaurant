@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_153_frame_frame_133476_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish cake slice with smooth surface, topped with white cream and a sliced strawberry, occupying the center of the plate",
+      "bbox": [
+        207,
+        103,
+        581,
+        459
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9893
+    }
+  ],
+  "stage1_time": 0.61,
+  "stage2_time": 0.3,
+  "match_results": null
+}

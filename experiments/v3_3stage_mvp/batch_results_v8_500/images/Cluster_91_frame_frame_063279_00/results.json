@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_91_frame_frame_063279_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden-brown fried chicken pieces with crispy coating, uneven shapes, covering the right side of the plate",
+      "bbox": [
+        294,
+        117,
+        880,
+        862
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9847
+    },
+    {
+      "index": 1,
+      "description": "light yellow french fries with golden tips, irregular shapes, covering the left side of the plate",
+      "bbox": [
+        62,
+        169,
+        826,
+        709
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9588
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.58,
+  "match_results": null
+}

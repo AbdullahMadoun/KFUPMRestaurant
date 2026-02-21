@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_109_frame_frame_077547_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy substance with olive oil drizzle and pink seasoning, covering most of the plate",
+      "bbox": [
+        65,
+        118,
+        793,
+        816
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9932
+    },
+    {
+      "index": 1,
+      "description": "small beige chickpeas with olive oil drizzle, located in the center of the creamy substance",
+      "bbox": [
+        294,
+        358,
+        467,
+        527
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9328
+    }
+  ],
+  "stage1_time": 0.76,
+  "stage2_time": 0.56,
+  "match_results": null
+}

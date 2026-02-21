@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_27_frame_frame_057300_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains, fluffy and spread out, covering left half of plate",
+      "bbox": [
+        132,
+        149,
+        1076,
+        1138
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9853
+    },
+    {
+      "index": 1,
+      "description": "golden-brown fried fish pieces with crispy texture, irregular shapes, right side of plate",
+      "bbox": [
+        462,
+        515,
+        1134,
+        1139
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9201
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 0.62,
+  "match_results": null
+}

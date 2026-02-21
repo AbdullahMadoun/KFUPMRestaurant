@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_4_frame_frame_104754_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "green okra pieces in a reddish-brown sauce, covering the entire plate",
+      "bbox": [
+        78,
+        64,
+        715,
+        662
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9896
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 0.27,
+  "match_results": null
+}

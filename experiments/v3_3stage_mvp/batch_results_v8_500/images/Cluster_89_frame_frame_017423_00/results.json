@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_89_frame_frame_017423_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "transparent plastic wrap covering plate, slightly wrinkled texture, covering entire plate",
+      "bbox": [
+        3,
+        1,
+        555,
+        555
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9923
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.52,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_1_frame_frame_002353_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white shredded food with a slightly crumbly texture, covering most of the plate",
+      "bbox": [
+        113,
+        20,
+        938,
+        927
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9944
+    },
+    {
+      "index": 1,
+      "description": "dark gray plate with a subtle pattern, holding the shredded food",
+      "bbox": [
+        4,
+        2,
+        986,
+        984
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9921
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 0.78,
+  "match_results": null
+}

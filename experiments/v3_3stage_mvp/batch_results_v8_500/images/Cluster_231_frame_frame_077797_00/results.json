@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_231_frame_frame_077797_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        92,
+        57,
+        998,
+        967
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9894
+    },
+    {
+      "index": 1,
+      "description": "yellow lemon wedge with bright color and smooth texture, right side of plate",
+      "bbox": [
+        857,
+        487,
+        1131,
+        659
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9778
+    },
+    {
+      "index": 2,
+      "description": "orange carrot slices with smooth texture, placed on top of mashed potatoes",
+      "bbox": [
+        449,
+        410,
+        831,
+        1042
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9581
+    },
+    {
+      "index": 3,
+      "description": "white mashed potatoes with small chunks of cauliflower, occupying bottom right of plate",
+      "bbox": [
+        567,
+        364,
+        912,
+        948
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9078
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 1.17,
+  "match_results": null
+}

@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_20_frame_frame_095361_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "thin lemon slices with bright yellow color, bottom left of plate",
+      "bbox": [
+        3,
+        422,
+        465,
+        810
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9829
+    },
+    {
+      "index": 1,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        325,
+        138,
+        850,
+        838
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9807
+    },
+    {
+      "index": 2,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        3,
+        48,
+        575,
+        808
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9757
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 0.96,
+  "match_results": null
+}

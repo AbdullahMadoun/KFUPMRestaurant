@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_120_frame_frame_129935_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains with small grains of rice, mound covering most of plate",
+      "bbox": [
+        81,
+        38,
+        950,
+        951
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9906
+    },
+    {
+      "index": 1,
+      "description": "black plate with text 'KFUPM FOOD SERVICES' on bottom",
+      "bbox": [
+        0,
+        7,
+        1093,
+        1158
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.985
+    }
+  ],
+  "stage1_time": 0.76,
+  "stage2_time": 0.57,
+  "match_results": null
+}

@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_261_frame_frame_058465_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown glazed meat pieces with irregular chunky shapes, occupying the right side of the plate",
+      "bbox": [
+        352,
+        120,
+        767,
+        504
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9872
+    },
+    {
+      "index": 1,
+      "description": "slices of red tomato with a glossy surface, located in the center-left of the plate",
+      "bbox": [
+        113,
+        488,
+        317,
+        747
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.983
+    },
+    {
+      "index": 2,
+      "description": "slices of yellow bell pepper with a glossy surface, located in the center-right of the plate",
+      "bbox": [
+        469,
+        339,
+        627,
+        643
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9794
+    },
+    {
+      "index": 3,
+      "description": "chunks of light yellowish rice with small orange carrot pieces, covering the left half of the plate",
+      "bbox": [
+        108,
+        265,
+        528,
+        745
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9687
+    }
+  ],
+  "stage1_time": 0.65,
+  "stage2_time": 1.1,
+  "match_results": null
+}

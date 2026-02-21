@@ -1,0 +1,76 @@
+{
+  "image_id": "Cluster_82_frame_frame_027779_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        291,
+        192,
+        1321,
+        1078
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9774
+    },
+    {
+      "index": 1,
+      "description": "chopped red bell peppers with vibrant red color, mixed with meat",
+      "bbox": [
+        494,
+        501,
+        704,
+        680
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9556
+    },
+    {
+      "index": 2,
+      "description": "chopped yellow bell peppers with vibrant yellow color, mixed with meat",
+      "bbox": [
+        331,
+        618,
+        707,
+        967
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9533
+    },
+    {
+      "index": 3,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        174,
+        627,
+        1039,
+        1191
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9517
+    },
+    {
+      "index": 4,
+      "description": "chopped onions with translucent white and purple layers, scattered around meat",
+      "bbox": [
+        763,
+        684,
+        1220,
+        987
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9338
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 1.57,
+  "match_results": null
+}

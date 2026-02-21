@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_26_frame_frame_095990_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellow lemon wedge, located on the right side of the plate",
+      "bbox": [
+        648,
+        156,
+        909,
+        504
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9859
+    },
+    {
+      "index": 1,
+      "description": "green leafy salad with mixed vegetables, including purple cabbage, red bell peppers, and possibly some purple flowers, occupying the center and left side of the plate",
+      "bbox": [
+        155,
+        7,
+        889,
+        773
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9747
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 0.58,
+  "match_results": null
+}

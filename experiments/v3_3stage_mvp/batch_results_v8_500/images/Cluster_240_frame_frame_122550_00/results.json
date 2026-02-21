@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_240_frame_frame_122550_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish penne pasta with a glossy orange sauce, occupying most of the plate",
+      "bbox": [
+        48,
+        62,
+        770,
+        710
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9929
+    },
+    {
+      "index": 1,
+      "description": "black bowl containing the pasta, with visible text on the rim",
+      "bbox": [
+        4,
+        3,
+        780,
+        779
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9918
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.54,
+  "match_results": null
+}

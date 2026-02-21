@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_77_frame_frame_078205_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "pasta shells with creamy white cheese and brown ground meat, occupying most of the plate",
+      "bbox": [
+        111,
+        91,
+        1000,
+        1092
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9927
+    },
+    {
+      "index": 1,
+      "description": "black plate with text partially visible, edges of plate visible",
+      "bbox": [
+        6,
+        9,
+        1130,
+        1130
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9921
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.61,
+  "match_results": null
+}

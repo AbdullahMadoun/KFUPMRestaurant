@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_76_frame_frame_022615_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "orange-red liquid with small bubbles and foam, covering the entire plate",
+      "bbox": [
+        3,
+        1,
+        637,
+        641
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9708
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.27,
+  "match_results": null
+}
