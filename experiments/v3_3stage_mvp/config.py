@@ -52,7 +52,6 @@ class VLMConfig:
         '"bbox": [710, 30, 790, 180]}\n'
         "]}"
     )
-    )
 
 
 @dataclass
