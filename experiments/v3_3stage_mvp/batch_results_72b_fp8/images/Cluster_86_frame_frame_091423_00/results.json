@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_86_frame_frame_091423_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced chicken",
+      "description": "chunks of golden-brown chicken with a glossy, spiced coating",
+      "bbox": [
+        515,
+        490,
+        1495,
+        1215
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9904
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        196,
+        92,
+        1403,
+        1163
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9887
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.42,
+  "match_results": null
+}

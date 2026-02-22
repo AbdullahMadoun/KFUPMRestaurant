@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_153_frame_frame_099503_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "strawberry cheesecake",
+      "description": "white creamy texture with red speckles and a slice of red strawberry on top",
+      "bbox": [
+        207,
+        253,
+        728,
+        749
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9885
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.16,
+  "match_results": null
+}

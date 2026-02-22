@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_16_frame_frame_016025_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "steamed cauliflower",
+      "description": "pale yellow florets with a soft, slightly porous texture",
+      "bbox": [
+        36,
+        1,
+        560,
+        486
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    },
+    {
+      "index": 1,
+      "name": "carrot slices",
+      "description": "orange, smooth, and slightly curved slices",
+      "bbox": [
+        154,
+        383,
+        401,
+        512
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9803
+    },
+    {
+      "index": 2,
+      "name": "soy sauce",
+      "description": "dark brown liquid with a glossy surface",
+      "bbox": [
+        83,
+        444,
+        475,
+        593
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9071
+    }
+  ],
+  "stage1_time": 2.13,
+  "stage2_time": 0.42,
+  "match_results": null
+}

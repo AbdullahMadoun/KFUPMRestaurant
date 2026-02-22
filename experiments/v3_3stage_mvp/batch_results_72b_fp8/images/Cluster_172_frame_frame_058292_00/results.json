@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_172_frame_frame_058292_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        133,
+        51,
+        1135,
+        1096
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9815
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "brown, crispy, and seasoned chicken pieces with a slightly charred surface",
+      "bbox": [
+        370,
+        639,
+        1155,
+        1116
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9752
+    },
+    {
+      "index": 2,
+      "name": "sliced lemon",
+      "description": "yellow, thin lemon slices with a textured surface",
+      "bbox": [
+        778,
+        778,
+        1220,
+        1266
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9731
+    },
+    {
+      "index": 3,
+      "name": "sliced tomatoes",
+      "description": "bright red, juicy tomato slices with a smooth surface",
+      "bbox": [
+        404,
+        217,
+        1221,
+        806
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.961
+    }
+  ],
+  "stage1_time": 2.13,
+  "stage2_time": 0.79,
+  "match_results": null
+}

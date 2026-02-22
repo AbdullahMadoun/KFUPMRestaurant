@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_7_frame_frame_103836_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "salad",
+      "description": "mixed green leaves with yellow and white cubes, red and purple slivers, and a yellow dressing",
+      "bbox": [
+        54,
+        75,
+        924,
+        902
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9899
+    }
+  ],
+  "stage1_time": 1.68,
+  "stage2_time": 0.16,
+  "match_results": null
+}

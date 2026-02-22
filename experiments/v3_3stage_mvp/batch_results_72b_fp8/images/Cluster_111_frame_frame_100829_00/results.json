@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_111_frame_frame_100829_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with a hint of yellow, speckled with small dark grains",
+      "bbox": [
+        86,
+        8,
+        1254,
+        952
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9799
+    },
+    {
+      "index": 1,
+      "name": "chicken stew",
+      "description": "chunks of orange-brown chicken in a rich, glossy sauce, garnished with sliced green olives and capers",
+      "bbox": [
+        243,
+        453,
+        1076,
+        1256
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9718
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.41,
+  "match_results": null
+}

@@ -1,0 +1,123 @@
+{
+  "image_id": "Cluster_113_frame_frame_002732_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 8,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks and bits of vegetables",
+      "bbox": [
+        83,
+        64,
+        1102,
+        1150
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9845
+    },
+    {
+      "index": 1,
+      "name": "pepperoni",
+      "description": "red, slightly wrinkled slices with a glossy surface",
+      "bbox": [
+        149,
+        343,
+        716,
+        1079
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9827
+    },
+    {
+      "index": 2,
+      "name": "onion slices",
+      "description": "translucent, slightly browned slices",
+      "bbox": [
+        490,
+        148,
+        611,
+        295
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9633
+    },
+    {
+      "index": 3,
+      "name": "grilled meat",
+      "description": "brown pieces of meat with a slightly charred surface",
+      "bbox": [
+        455,
+        76,
+        1058,
+        670
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9627
+    },
+    {
+      "index": 4,
+      "name": "onion slices",
+      "description": "translucent, slightly browned slices",
+      "bbox": [
+        939,
+        193,
+        1120,
+        383
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9423
+    },
+    {
+      "index": 5,
+      "name": "tomato slices",
+      "description": "bright red, smooth, and slightly glossy slices",
+      "bbox": [
+        1030,
+        394,
+        1185,
+        634
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9273
+    },
+    {
+      "index": 6,
+      "name": "tomato slices",
+      "description": "bright red, smooth, and slightly glossy slices",
+      "bbox": [
+        458,
+        541,
+        743,
+        759
+      ],
+      "crop": "crops/item_006.jpg",
+      "mask": "masks/item_006_mask.png",
+      "sam_score": 0.9205
+    },
+    {
+      "index": 7,
+      "name": "green pepper",
+      "description": "green, smooth, and glossy slices",
+      "bbox": [
+        712,
+        754,
+        974,
+        1072
+      ],
+      "crop": "crops/item_007.jpg",
+      "mask": "masks/item_007_mask.png",
+      "sam_score": 0.4689
+    }
+  ],
+  "stage1_time": 2.84,
+  "stage2_time": 1.49,
+  "match_results": null
+}

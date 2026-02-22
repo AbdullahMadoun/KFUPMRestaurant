@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_9_frame_frame_046758_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced meat stew",
+      "description": "brown chunks of meat with orange carrot slivers and a rough, seasoned texture",
+      "bbox": [
+        57,
+        86,
+        689,
+        780
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9926
+    }
+  ],
+  "stage1_time": 1.97,
+  "stage2_time": 0.15,
+  "match_results": null
+}

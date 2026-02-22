@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_125_frame_frame_073796_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pumpkin mash",
+      "description": "orange-yellow mashed texture with visible chunks and specks",
+      "bbox": [
+        119,
+        88,
+        820,
+        818
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.991
+    }
+  ],
+  "stage1_time": 1.42,
+  "stage2_time": 0.16,
+  "match_results": null
+}

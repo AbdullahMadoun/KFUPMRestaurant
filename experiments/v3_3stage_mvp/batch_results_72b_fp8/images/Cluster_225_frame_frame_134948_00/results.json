@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_225_frame_frame_134948_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "penne pasta with cream sauce",
+      "description": "yellow penne pasta coated in a creamy white sauce with visible chunks of chicken and green herbs",
+      "bbox": [
+        52,
+        51,
+        843,
+        782
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9941
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.16,
+  "match_results": null
+}

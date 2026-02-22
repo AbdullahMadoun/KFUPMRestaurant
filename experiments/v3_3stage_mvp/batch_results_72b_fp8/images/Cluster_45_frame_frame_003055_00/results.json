@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_45_frame_frame_003055_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "stewed chicken",
+      "description": "chunks of light brown chicken with a glossy sauce, mixed with red bell peppers and green herbs",
+      "bbox": [
+        48,
+        84,
+        801,
+        671
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9924
+    }
+  ],
+  "stage1_time": 1.9,
+  "stage2_time": 0.15,
+  "match_results": null
+}

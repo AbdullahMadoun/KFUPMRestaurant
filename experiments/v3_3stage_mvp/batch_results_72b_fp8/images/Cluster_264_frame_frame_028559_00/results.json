@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_264_frame_frame_028559_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted tomatoes",
+      "description": "bright red, slightly wrinkled and charred surface, irregular shape",
+      "bbox": [
+        569,
+        291,
+        815,
+        559
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 1,
+      "name": "vegetable omelette",
+      "description": "yellowish mixture with bits of red, green, and white, slightly crumbly texture",
+      "bbox": [
+        11,
+        20,
+        693,
+        660
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9824
+    },
+    {
+      "index": 2,
+      "name": "roasted onions",
+      "description": "translucent, slightly browned, irregular shape",
+      "bbox": [
+        122,
+        117,
+        344,
+        338
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9801
+    },
+    {
+      "index": 3,
+      "name": "roasted bell peppers",
+      "description": "yellow and red, slightly wrinkled and charred surface, irregular shape",
+      "bbox": [
+        110,
+        382,
+        541,
+        659
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9601
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.59,
+  "match_results": null
+}

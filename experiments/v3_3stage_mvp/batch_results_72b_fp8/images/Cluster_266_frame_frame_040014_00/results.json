@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_266_frame_frame_040014_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "charred brown chicken piece with crispy skin and some white interior flesh visible",
+      "bbox": [
+        385,
+        749,
+        941,
+        1316
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9872
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with white pith and visible juice vesicles",
+      "bbox": [
+        917,
+        663,
+        1372,
+        1051
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9824
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with some orange and brown specks, slightly clumped",
+      "bbox": [
+        137,
+        9,
+        1177,
+        1141
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9603
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.52,
+  "match_results": null
+}

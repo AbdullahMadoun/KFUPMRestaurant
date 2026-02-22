@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_179_frame_frame_028425_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable curry",
+      "description": "chunky orange and green vegetables in a thick, glossy red sauce",
+      "bbox": [
+        48,
+        60,
+        576,
+        572
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9892
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.14,
+  "match_results": null
+}

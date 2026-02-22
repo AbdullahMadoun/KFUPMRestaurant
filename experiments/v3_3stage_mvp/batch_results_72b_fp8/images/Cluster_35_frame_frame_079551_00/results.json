@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_35_frame_frame_079551_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled meat",
+      "description": "dark brown, charred, cylindrical pieces",
+      "bbox": [
+        450,
+        1130,
+        890,
+        1342
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.98
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks and orange carrot slices",
+      "bbox": [
+        257,
+        318,
+        1488,
+        1261
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9721
+    },
+    {
+      "index": 2,
+      "name": "grilled meat",
+      "description": "dark brown, charred, cylindrical pieces",
+      "bbox": [
+        753,
+        329,
+        1262,
+        785
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9508
+    }
+  ],
+  "stage1_time": 2.55,
+  "stage2_time": 0.55,
+  "match_results": null
+}

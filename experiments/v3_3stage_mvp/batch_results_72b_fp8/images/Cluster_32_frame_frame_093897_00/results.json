@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_32_frame_frame_093897_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a crispy, slightly charred surface and visible grill marks",
+      "bbox": [
+        105,
+        510,
+        992,
+        1034
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9911
+    },
+    {
+      "index": 1,
+      "name": "spiced rice",
+      "description": "fluffy white rice with yellow specks and a light, airy texture",
+      "bbox": [
+        208,
+        72,
+        1386,
+        1168
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9819
+    }
+  ],
+  "stage1_time": 2.55,
+  "stage2_time": 0.41,
+  "match_results": null
+}

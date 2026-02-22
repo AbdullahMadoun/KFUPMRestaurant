@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_40_frame_frame_038856_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "chocolate cake",
+      "description": "dark brown rectangular slice with a slightly rough surface",
+      "bbox": [
+        205,
+        199,
+        821,
+        481
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9853
+    },
+    {
+      "index": 1,
+      "name": "red currants",
+      "description": "small, shiny, red berries in a cluster",
+      "bbox": [
+        244,
+        205,
+        594,
+        373
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9834
+    },
+    {
+      "index": 2,
+      "name": "raspberry",
+      "description": "single, shiny, red berry with a textured surface",
+      "bbox": [
+        635,
+        219,
+        758,
+        336
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9753
+    }
+  ],
+  "stage1_time": 1.65,
+  "stage2_time": 0.45,
+  "match_results": null
+}

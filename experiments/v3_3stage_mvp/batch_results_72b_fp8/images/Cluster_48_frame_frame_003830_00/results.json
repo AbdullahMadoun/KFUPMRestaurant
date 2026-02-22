@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_48_frame_frame_003830_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly glossy surface",
+      "bbox": [
+        144,
+        405,
+        1061,
+        1235
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9876
+    },
+    {
+      "index": 1,
+      "name": "spiced chicken",
+      "description": "chunks of chicken in a rich, dark brown sauce with visible spices and onions",
+      "bbox": [
+        318,
+        86,
+        1039,
+        668
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9851
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.34,
+  "match_results": null
+}

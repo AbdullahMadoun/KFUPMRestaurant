@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_220_frame_frame_079942_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "baked pasta",
+      "description": "golden-brown melted cheese with a slightly crispy surface, mixed with penne pasta and a red sauce",
+      "bbox": [
+        5,
+        32,
+        1019,
+        898
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9945
+    }
+  ],
+  "stage1_time": 1.48,
+  "stage2_time": 0.17,
+  "match_results": null
+}

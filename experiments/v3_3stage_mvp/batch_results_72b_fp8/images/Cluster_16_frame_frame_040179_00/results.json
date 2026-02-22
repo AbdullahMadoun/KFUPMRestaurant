@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_16_frame_frame_040179_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "carrots",
+      "description": "orange, smooth slices with a slightly curved shape",
+      "bbox": [
+        37,
+        257,
+        665,
+        559
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9871
+    },
+    {
+      "index": 1,
+      "name": "cauliflower",
+      "description": "white, textured florets with a rough surface",
+      "bbox": [
+        4,
+        16,
+        785,
+        871
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9748
+    }
+  ],
+  "stage1_time": 2.13,
+  "stage2_time": 0.31,
+  "match_results": null
+}

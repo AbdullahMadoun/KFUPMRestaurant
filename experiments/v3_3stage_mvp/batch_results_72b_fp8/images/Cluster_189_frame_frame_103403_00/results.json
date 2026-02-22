@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_189_frame_frame_103403_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried chicken",
+      "description": "golden-brown crispy skin with a textured surface",
+      "bbox": [
+        52,
+        285,
+        635,
+        890
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9892
+    },
+    {
+      "index": 1,
+      "name": "fried chicken",
+      "description": "golden-brown crispy skin with a textured surface",
+      "bbox": [
+        350,
+        835,
+        1023,
+        1227
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9889
+    },
+    {
+      "index": 2,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with a textured rind and visible pulp",
+      "bbox": [
+        13,
+        707,
+        358,
+        1244
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9816
+    },
+    {
+      "index": 3,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers and green capers",
+      "bbox": [
+        390,
+        58,
+        1352,
+        1023
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9762
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.83,
+  "match_results": null
+}

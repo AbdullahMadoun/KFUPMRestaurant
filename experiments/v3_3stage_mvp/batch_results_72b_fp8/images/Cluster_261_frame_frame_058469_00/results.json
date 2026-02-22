@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_261_frame_frame_058469_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "stuffed peppers",
+      "description": "golden-brown stuffed peppers with charred spots, topped with colorful bell peppers and onions",
+      "bbox": [
+        106,
+        116,
+        764,
+        779
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9918
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.15,
+  "match_results": null
+}

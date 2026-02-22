@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_235_frame_frame_063824_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "cheesecake slice",
+      "description": "white creamy surface with a greenish base, topped with a sliced strawberry, blackberry, and blueberry",
+      "bbox": [
+        88,
+        196,
+        712,
+        536
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9886
+    }
+  ],
+  "stage1_time": 1.85,
+  "stage2_time": 0.16,
+  "match_results": null
+}

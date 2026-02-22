@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_200_frame_frame_119104_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted tomato",
+      "description": "bright red, wrinkled, and glossy piece",
+      "bbox": [
+        617,
+        385,
+        789,
+        645
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9794
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a light sheen",
+      "bbox": [
+        165,
+        113,
+        1090,
+        973
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9773
+    },
+    {
+      "index": 2,
+      "name": "roasted vegetable",
+      "description": "golden-brown, glossy, and slightly wrinkled piece",
+      "bbox": [
+        249,
+        787,
+        409,
+        969
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9737
+    },
+    {
+      "index": 3,
+      "name": "grilled meat",
+      "description": "dark brown, charred, and textured pieces",
+      "bbox": [
+        678,
+        140,
+        1073,
+        564
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9731
+    }
+  ],
+  "stage1_time": 1.94,
+  "stage2_time": 0.66,
+  "match_results": null
+}

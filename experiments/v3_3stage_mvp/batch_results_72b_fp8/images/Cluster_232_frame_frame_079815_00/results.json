@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_232_frame_frame_079815_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish fillet with a crispy, slightly charred surface",
+      "bbox": [
+        -1,
+        333,
+        628,
+        866
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9913
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with specks of red and orange",
+      "bbox": [
+        -1,
+        186,
+        1133,
+        1181
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.987
+    },
+    {
+      "index": 2,
+      "name": "water bottle",
+      "description": "transparent plastic bottle with a blue cap",
+      "bbox": [
+        310,
+        1280,
+        878,
+        1429
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9801
+    },
+    {
+      "index": 3,
+      "name": "red pepper",
+      "description": "shiny red pepper with a smooth, glossy surface",
+      "bbox": [
+        518,
+        576,
+        729,
+        1036
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9665
+    }
+  ],
+  "stage1_time": 2.07,
+  "stage2_time": 0.71,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_144_frame_frame_117615_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "split pea soup",
+      "description": "smooth yellowish-green liquid with small green specks",
+      "bbox": [
+        29,
+        40,
+        488,
+        491
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9796
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.13,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_78_frame_frame_017893_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "penne pasta",
+      "description": "yellow penne pasta with a reddish-orange sauce, small chunks of meat, and green bell peppers",
+      "bbox": [
+        15,
+        15,
+        825,
+        839
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.989
+    }
+  ],
+  "stage1_time": 1.68,
+  "stage2_time": 0.15,
+  "match_results": null
+}

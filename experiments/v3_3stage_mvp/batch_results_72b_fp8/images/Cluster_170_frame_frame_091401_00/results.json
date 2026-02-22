@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_170_frame_frame_091401_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        172,
+        5,
+        1154,
+        888
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9815
+    },
+    {
+      "index": 1,
+      "name": "lemon wedge",
+      "description": "yellow lemon with a textured rind and segmented interior",
+      "bbox": [
+        112,
+        553,
+        478,
+        961
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9793
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "brown, charred chicken with a crispy skin texture",
+      "bbox": [
+        288,
+        821,
+        937,
+        1307
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9786
+    },
+    {
+      "index": 3,
+      "name": "chicken stew",
+      "description": "brown sauce with chunks of chicken and green peppers",
+      "bbox": [
+        893,
+        300,
+        1482,
+        1165
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9771
+    }
+  ],
+  "stage1_time": 2.13,
+  "stage2_time": 0.91,
+  "match_results": null
+}

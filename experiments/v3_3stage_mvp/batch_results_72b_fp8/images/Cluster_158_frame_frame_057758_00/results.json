@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_158_frame_frame_057758_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        4,
+        196,
+        961,
+        1196
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9874
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow lemon slices with a glossy surface",
+      "bbox": [
+        55,
+        781,
+        508,
+        1199
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9861
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "charred brown chicken pieces with crispy skin",
+      "bbox": [
+        485,
+        168,
+        1255,
+        838
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9804
+    },
+    {
+      "index": 3,
+      "name": "tomato slices",
+      "description": "red tomato slices with a glossy surface",
+      "bbox": [
+        471,
+        163,
+        966,
+        587
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9736
+    }
+  ],
+  "stage1_time": 2.13,
+  "stage2_time": 0.75,
+  "match_results": null
+}

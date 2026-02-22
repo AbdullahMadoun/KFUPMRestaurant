@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_109_frame_frame_077555_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "hummus",
+      "description": "smooth white paste with olive oil drizzle and chickpeas on top",
+      "bbox": [
+        72,
+        119,
+        802,
+        818
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9926
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.16,
+  "match_results": null
+}

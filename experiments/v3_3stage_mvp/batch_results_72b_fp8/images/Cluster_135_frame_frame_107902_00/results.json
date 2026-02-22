@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_135_frame_frame_107902_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a smooth texture",
+      "bbox": [
+        11,
+        29,
+        1320,
+        1065
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.969
+    },
+    {
+      "index": 1,
+      "name": "corn kernels",
+      "description": "bright yellow corn kernels with a glossy surface",
+      "bbox": [
+        279,
+        158,
+        1274,
+        1339
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9665
+    }
+  ],
+  "stage1_time": 1.98,
+  "stage2_time": 0.42,
+  "match_results": null
+}

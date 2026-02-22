@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_220_frame_frame_105434_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta bake",
+      "description": "golden-brown melted cheese with penne pasta underneath, slightly browned on top",
+      "bbox": [
+        595,
+        71,
+        1442,
+        1208
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9888
+    },
+    {
+      "index": 1,
+      "name": "shredded meat",
+      "description": "dark brown shredded meat with bits of orange carrot and green vegetable mixed in",
+      "bbox": [
+        40,
+        158,
+        734,
+        1133
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.981
+    }
+  ],
+  "stage1_time": 1.48,
+  "stage2_time": 0.43,
+  "match_results": null
+}

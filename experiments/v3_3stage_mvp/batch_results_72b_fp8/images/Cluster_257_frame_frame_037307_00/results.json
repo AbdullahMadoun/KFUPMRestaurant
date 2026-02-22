@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_257_frame_frame_037307_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "meatballs with vegetables",
+      "description": "brown textured meatballs with chunks of red and yellow bell peppers",
+      "bbox": [
+        307,
+        596,
+        1183,
+        1202
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9919
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a light sheen",
+      "bbox": [
+        151,
+        13,
+        1220,
+        837
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9881
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.39,
+  "match_results": null
+}

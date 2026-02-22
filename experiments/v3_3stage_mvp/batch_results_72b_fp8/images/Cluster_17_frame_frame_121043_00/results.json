@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_17_frame_frame_121043_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta salad",
+      "description": "white and yellow pasta with green herbs and red specks",
+      "bbox": [
+        173,
+        54,
+        743,
+        656
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9753
+    }
+  ],
+  "stage1_time": 1.6,
+  "stage2_time": 0.16,
+  "match_results": null
+}

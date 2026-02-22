@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_171_frame_frame_021384_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains mixed with brown bits and slivers of orange carrot",
+      "bbox": [
+        145,
+        123,
+        1192,
+        1012
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9839
+    },
+    {
+      "index": 1,
+      "name": "lemon wedge",
+      "description": "yellow lemon slice with visible white pith and juice vesicles",
+      "bbox": [
+        865,
+        807,
+        1051,
+        1066
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9783
+    }
+  ],
+  "stage1_time": 2.13,
+  "stage2_time": 0.43,
+  "match_results": null
+}

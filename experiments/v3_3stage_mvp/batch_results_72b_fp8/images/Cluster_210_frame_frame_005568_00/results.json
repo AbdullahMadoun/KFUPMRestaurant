@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_210_frame_frame_005568_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "lemon slice",
+      "description": "yellow crescent shape with textured rind",
+      "bbox": [
+        54,
+        213,
+        178,
+        385
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9783
+    },
+    {
+      "index": 1,
+      "name": "herb salad",
+      "description": "green herbs with red specks, mixed texture",
+      "bbox": [
+        44,
+        74,
+        438,
+        460
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9598
+    }
+  ],
+  "stage1_time": 1.53,
+  "stage2_time": 0.27,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_179_frame_frame_135578_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky orange broth with green and orange vegetable pieces",
+      "bbox": [
+        55,
+        19,
+        532,
+        484
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9887
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.13,
+  "match_results": null
+}

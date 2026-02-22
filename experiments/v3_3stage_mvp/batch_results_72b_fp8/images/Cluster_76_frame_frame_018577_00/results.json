@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_76_frame_frame_018577_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "soup",
+      "description": "brownish-yellow liquid with visible strands and small particles",
+      "bbox": [
+        57,
+        90,
+        555,
+        545
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9738
+    }
+  ],
+  "stage1_time": 1.45,
+  "stage2_time": 0.14,
+  "match_results": null
+}

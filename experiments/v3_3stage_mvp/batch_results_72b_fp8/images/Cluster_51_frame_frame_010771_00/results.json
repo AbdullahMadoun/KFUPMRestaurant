@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_51_frame_frame_010771_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "basmati rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        163,
+        215,
+        1341,
+        1027
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9871
+    },
+    {
+      "index": 1,
+      "name": "spiced meat stew",
+      "description": "brown chunks of meat with visible spices and orange carrot pieces",
+      "bbox": [
+        241,
+        727,
+        1315,
+        1444
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9832
+    }
+  ],
+  "stage1_time": 2.49,
+  "stage2_time": 0.36,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_48_frame_frame_069751_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "scrambled eggs",
+      "description": "yellow, fluffy scrambled eggs with bits of red and green vegetables",
+      "bbox": [
+        159,
+        536,
+        1042,
+        1190
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9905
+    },
+    {
+      "index": 1,
+      "name": "fried rice",
+      "description": "golden-brown rice grains with specks of green and red vegetables",
+      "bbox": [
+        175,
+        95,
+        1161,
+        760
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9735
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.33,
+  "match_results": null
+}

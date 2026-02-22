@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_57_frame_frame_021363_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "oatmeal with chicken",
+      "description": "creamy beige oatmeal with visible oats and chunks of light pink chicken",
+      "bbox": [
+        53,
+        84,
+        1029,
+        1000
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9937
+    }
+  ],
+  "stage1_time": 2.49,
+  "stage2_time": 0.15,
+  "match_results": null
+}

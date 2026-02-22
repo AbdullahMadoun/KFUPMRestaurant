@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_235_frame_frame_133445_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "cheesecake slice",
+      "description": "smooth white cream with a light yellow crust, topped with a blackberry, a blueberry, and pine nuts",
+      "bbox": [
+        59,
+        121,
+        546,
+        515
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.992
+    }
+  ],
+  "stage1_time": 1.85,
+  "stage2_time": 0.14,
+  "match_results": null
+}

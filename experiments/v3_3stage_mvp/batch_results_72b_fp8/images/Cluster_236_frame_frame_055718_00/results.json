@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_236_frame_frame_055718_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta salad",
+      "description": "creamy white pasta with green and red vegetable pieces, slightly glossy texture",
+      "bbox": [
+        533,
+        166,
+        1163,
+        1068
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9872
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly glossy texture",
+      "bbox": [
+        71,
+        295,
+        684,
+        1152
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9721
+    }
+  ],
+  "stage1_time": 1.85,
+  "stage2_time": 0.38,
+  "match_results": null
+}

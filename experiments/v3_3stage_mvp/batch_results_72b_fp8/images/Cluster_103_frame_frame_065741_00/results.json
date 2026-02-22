@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_103_frame_frame_065741_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "dal tadka",
+      "description": "orange-yellow lentils with visible spices and oil, slightly clumped texture",
+      "bbox": [
+        74,
+        22,
+        894,
+        847
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9885
+    },
+    {
+      "index": 1,
+      "name": "curd",
+      "description": "smooth, pale yellow liquid with a creamy texture",
+      "bbox": [
+        3,
+        364,
+        244,
+        838
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.98
+    }
+  ],
+  "stage1_time": 3.41,
+  "stage2_time": 0.32,
+  "match_results": null
+}

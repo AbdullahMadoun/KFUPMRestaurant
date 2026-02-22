@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_211_frame_frame_092155_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "spicy chicken wings",
+      "description": "golden-brown wings with a glossy, slightly charred surface and visible spices",
+      "bbox": [
+        146,
+        76,
+        917,
+        881
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9938
+    }
+  ],
+  "stage1_time": 1.53,
+  "stage2_time": 0.16,
+  "match_results": null
+}

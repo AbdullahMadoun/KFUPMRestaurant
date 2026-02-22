@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_195_frame_frame_023759_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "lentil curry",
+      "description": "golden-orange lentils with a slightly chunky texture, mixed with small bits of vegetables and herbs",
+      "bbox": [
+        126,
+        73,
+        909,
+        874
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9947
+    }
+  ],
+  "stage1_time": 1.59,
+  "stage2_time": 0.15,
+  "match_results": null
+}

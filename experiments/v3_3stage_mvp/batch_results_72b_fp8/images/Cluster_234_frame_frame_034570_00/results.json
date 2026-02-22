@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_234_frame_frame_034570_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted chicken",
+      "description": "golden-brown, crispy skin with visible charred spots and a slightly uneven surface",
+      "bbox": [
+        238,
+        64,
+        775,
+        850
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.988
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow, semi-circular slice with visible white pith and a textured surface",
+      "bbox": [
+        104,
+        309,
+        351,
+        583
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9842
+    }
+  ],
+  "stage1_time": 2.07,
+  "stage2_time": 0.31,
+  "match_results": null
+}

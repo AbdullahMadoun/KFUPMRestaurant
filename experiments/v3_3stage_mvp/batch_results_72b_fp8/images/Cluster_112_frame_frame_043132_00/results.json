@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_112_frame_frame_043132_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "corn soup",
+      "description": "smooth, creamy yellow liquid with small specks",
+      "bbox": [
+        44,
+        41,
+        491,
+        448
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9861
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.15,
+  "match_results": null
+}

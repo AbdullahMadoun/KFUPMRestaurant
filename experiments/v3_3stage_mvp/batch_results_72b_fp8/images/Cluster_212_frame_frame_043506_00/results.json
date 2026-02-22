@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_212_frame_frame_043506_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "baked sweet potato",
+      "description": "golden-orange flesh with a slightly rough, uneven surface and a dark outer skin",
+      "bbox": [
+        466,
+        175,
+        872,
+        746
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "name": "baked sweet potato",
+      "description": "golden-orange flesh with a slightly rough, uneven surface and a dark outer skin",
+      "bbox": [
+        79,
+        263,
+        531,
+        787
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.99
+    }
+  ],
+  "stage1_time": 1.53,
+  "stage2_time": 0.31,
+  "match_results": null
+}

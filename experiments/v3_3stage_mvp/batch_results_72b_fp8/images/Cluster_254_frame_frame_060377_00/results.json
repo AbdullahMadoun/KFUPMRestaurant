@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_254_frame_frame_060377_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy yellow rice grains with a slight sheen",
+      "bbox": [
+        119,
+        48,
+        854,
+        923
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9886
+    },
+    {
+      "index": 1,
+      "name": "spiced meat stew",
+      "description": "chunks of browned meat with red and orange vegetable pieces, some with a glossy sauce",
+      "bbox": [
+        378,
+        290,
+        1162,
+        1179
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9885
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.35,
+  "match_results": null
+}

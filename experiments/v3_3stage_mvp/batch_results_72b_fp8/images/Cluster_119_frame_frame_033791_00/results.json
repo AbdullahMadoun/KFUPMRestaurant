@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_119_frame_frame_033791_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced chicken",
+      "description": "golden-brown seasoned chicken pieces with visible spices and a slightly crispy texture",
+      "bbox": [
+        202,
+        132,
+        840,
+        895
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9872
+    }
+  ],
+  "stage1_time": 2.84,
+  "stage2_time": 0.17,
+  "match_results": null
+}

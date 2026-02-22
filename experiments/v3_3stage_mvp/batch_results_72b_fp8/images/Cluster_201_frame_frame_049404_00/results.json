@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_201_frame_frame_049404_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "sweet and sour chicken",
+      "description": "golden-brown battered chicken pieces with glossy orange sauce, red and green bell pepper pieces",
+      "bbox": [
+        2,
+        266,
+        854,
+        900
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "white and yellow rice grains with specks of yellow and orange",
+      "bbox": [
+        125,
+        0,
+        1066,
+        678
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9793
+    }
+  ],
+  "stage1_time": 1.94,
+  "stage2_time": 0.28,
+  "match_results": null
+}

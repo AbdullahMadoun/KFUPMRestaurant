@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_252_frame_frame_021419_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried chicken",
+      "description": "golden-brown crispy skin with visible seasoning and slight browning",
+      "bbox": [
+        75,
+        162,
+        849,
+        740
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9902
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.15,
+  "match_results": null
+}

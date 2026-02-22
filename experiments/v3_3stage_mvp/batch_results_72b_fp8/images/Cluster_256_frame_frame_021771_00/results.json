@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_256_frame_frame_021771_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "braised meat",
+      "description": "dark brown, tender meat pieces with visible bone marrow and soft texture",
+      "bbox": [
+        708,
+        203,
+        1405,
+        1086
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9815
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white and golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        63,
+        14,
+        1031,
+        1150
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9794
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.37,
+  "match_results": null
+}

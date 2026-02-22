@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_49_frame_frame_095243_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "braised pork",
+      "description": "golden-brown meat with a glossy, caramelized surface and soft, tender texture",
+      "bbox": [
+        304,
+        82,
+        891,
+        632
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "name": "vegetable stew",
+      "description": "chunky green and yellow vegetables in a rich, brown sauce with visible seeds",
+      "bbox": [
+        92,
+        202,
+        927,
+        911
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9807
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.31,
+  "match_results": null
+}

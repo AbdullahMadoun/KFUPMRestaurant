@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_35_frame_frame_076622_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled meatballs",
+      "description": "brown, textured meatballs with visible spices and herbs",
+      "bbox": [
+        528,
+        222,
+        1239,
+        1004
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9905
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks and orange carrot slivers",
+      "bbox": [
+        243,
+        80,
+        1257,
+        1017
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.981
+    },
+    {
+      "index": 2,
+      "name": "lemon wedges",
+      "description": "yellow lemon slices with a textured, juicy surface",
+      "bbox": [
+        342,
+        770,
+        683,
+        1156
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.969
+    },
+    {
+      "index": 3,
+      "name": "vegetables",
+      "description": "sliced orange carrots and yellow bell peppers with a glossy surface",
+      "bbox": [
+        644,
+        428,
+        1044,
+        714
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9451
+    }
+  ],
+  "stage1_time": 2.55,
+  "stage2_time": 0.78,
+  "match_results": null
+}

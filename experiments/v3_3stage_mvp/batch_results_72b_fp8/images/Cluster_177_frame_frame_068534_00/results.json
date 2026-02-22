@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_177_frame_frame_068534_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced chicken",
+      "description": "chunks of yellowish chicken with a textured surface, coated in a spiced sauce",
+      "bbox": [
+        100,
+        554,
+        860,
+        1138
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9888
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with specks of yellow and orange, mixed with small bits of vegetables",
+      "bbox": [
+        154,
+        3,
+        1138,
+        896
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9886
+    },
+    {
+      "index": 2,
+      "name": "lemon wedge",
+      "description": "a slice of lemon with a bright yellow rind and a juicy, segmented interior",
+      "bbox": [
+        725,
+        944,
+        988,
+        1142
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.984
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.59,
+  "match_results": null
+}
