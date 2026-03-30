@@ -1,0 +1,9 @@
+# Run Summary
+
+- status: completed
+- run_name: trial-20260321-full40-crossent1
+- finished_utc: 2026-03-21T19:43:10.087068+00:00
+- elapsed_sec: 1849.652
+
+## Best Metrics
+- joint/combined: 1.352102 at epoch 1, step 12

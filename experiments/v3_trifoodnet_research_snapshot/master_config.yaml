@@ -1,0 +1,301 @@
+# =============================================================
+#  TriFoodNet — MASTER CONFIG  (edit this file to change anything)
+#  All training scripts read from here first.
+#  Sections are clearly labeled — change only what you need.
+# =============================================================
+
+# ─────────────────────────────────────────
+#  SECTION 0 — ACTIVE RUN TAG
+#  Used to name checkpoints / wandb runs.
+#  Bump this every time you start a new experiment.
+# ─────────────────────────────────────────
+run:
+  name: "trial-20260321-cleandata1"
+  notes: "Best retained snapshot run packaged for resume/evaluation"
+  tags: ["joint", "snapshot", "best_run"]
+
+
+# ─────────────────────────────────────────
+#  SECTION 1 — PATHS
+#  Change these to point to your data.
+# ─────────────────────────────────────────
+paths:
+  images:           "data/kfupm/images"
+  annotations:      "data/kfupm/annotations.json"
+  splits:           "data/kfupm/splits.json"
+  reference_library: "data/reference_library"  # folder: class_name/img1.jpg ...
+  price_table:      "data/prices.json"
+  checkpoints:      "checkpoints"
+  outputs:          "outputs"
+  logs:             "logs"
+
+
+# ─────────────────────────────────────────
+#  SECTION 2 — DATASET
+# ─────────────────────────────────────────
+data:
+  image_size:   640        # longest-edge resize
+  num_classes:  29         # derived from the current exported classes.json
+  num_workers:  8
+  pin_memory:   true
+  integration:
+    batch_root:    "/root/dataset"
+    export_root:   ""
+    repo_root:     "."     # used to resolve pointer images into Sampled_Images_All/
+    train_ratio:   0.80
+    dev_ratio:     0.10
+    val_ratio:     0.10    # legacy alias for older scripts
+    test_ratio:    0.10
+    split_seed:    420
+    snapshot_export: false
+    snapshot_dir:  "snapshots/dataset"
+    stage1_prompt: "Locate and identify every food item on this plate. For each item, provide a JSON object with a 'box' key containing the [x1, y1, x2, y2] pixel coordinates. Return ONLY a valid JSON list of these objects."
+
+
+# ─────────────────────────────────────────
+#  SECTION 3 — HARDWARE / PRECISION
+# ─────────────────────────────────────────
+hardware:
+  device:                  "auto"
+  fp16:                    true    # AMP mixed precision
+  bf16:                    true    # prefer bf16 on 5090 / A100 / H100
+  compile:                 true    # torch.compile — faster but needs PyTorch 2.x
+  gradient_checkpointing:  true    # saves ~40 % VRAM at minor speed cost
+  load_in_4bit:            false   # 4-bit is optional; leave off when full fine-tuning is needed
+
+
+# ─────────────────────────────────────────
+#  SECTION 4 — LOGGING
+# ─────────────────────────────────────────
+logging:
+  wandb:              true
+  wandb_project:      "trifoodnet"
+  jsonl:              true
+  log_system_metrics: true
+  log_gpu_metrics:    true
+  log_every_n_steps:  10
+  save_every_n_epochs: 1
+  keep_last_n_ckpts:  3
+  visualizations:
+    every_n_epochs: 3
+    max_images: 0
+  profiler:
+    enabled: false
+    wait_steps:   1
+    warmup_steps: 1
+    active_steps: 3
+    repeat:       1
+
+
+# ─────────────────────────────────────────
+#  SECTION 5 — STAGE 1  (Qwen2.5-VL-3B)
+#  Change lora.r / learning_rate most often.
+# ─────────────────────────────────────────
+stage1:
+  model_name: "Qwen/Qwen2.5-VL-3B-Instruct"
+  max_new_tokens: 512
+  temperature:    0.0          # 0 = greedy decoding
+
+  lora:
+    enabled:        true
+    r:              16           # ← QUICK TUNE: try 8, 16, 32
+    alpha:          32           # usually 2× r
+    dropout:        0.05
+    use_rslora:     true
+    target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+  training:
+    epochs:             60
+    batch_size:         1          # per GPU
+    grad_accum_steps:   4            # effective batch size 4
+    learning_rate:      2.0e-5
+    weight_decay:     1.0e-4
+    warmup_ratio:     0.10
+    lr_scheduler:     "cosine"   # "cosine" | "linear" | "constant"
+    max_grad_norm:    1.0
+
+  loss:
+    lambda_giou: 2.0
+    lambda_ce:   0.5
+
+  eval:
+    iou_threshold: 0.5           # Recall@IoU metric threshold
+    interval:      1             # eval every N epochs
+
+
+# ─────────────────────────────────────────
+#  SECTION 6 — STAGE 2  (SAM2 / SAM3)
+#  Only the mask decoder is trained.
+# ─────────────────────────────────────────
+stage2:
+  model_name: "facebook/sam3"
+  freeze:
+    image_encoder:  true         # recommended on the reviewed dataset size
+    prompt_encoder: true
+    mask_decoder:   false
+
+  training:
+    epochs:           10
+    batch_size:       8
+    grad_accum_steps: 4
+    learning_rate:    5.0e-5
+    weight_decay:     1.0e-4
+    warmup_ratio:     0.05
+    lr_scheduler:     "cosine"
+    max_grad_norm:    1.0
+
+  loss:
+    bce_weight:  0.5
+    dice_weight: 2.0
+
+  nms:
+    iou_threshold:   0.0         # 0 disables post-SAM mask NMS for prompt-conditioned finetuning/inference
+    score_threshold: 0.0         # keep prompt masks even when SAM confidence is poorly calibrated
+
+  eval:
+    interval: 1
+
+
+# ─────────────────────────────────────────
+#  SECTION 7 — STAGE 3  (ICL Transformer)
+#  The cross-attention few-shot classifier.
+# ─────────────────────────────────────────
+stage3:
+  clip_model: "pictsure/pictsure-vit"
+  embed_dim:  512
+  train_embedding: true
+  lora:
+    enabled:        true
+    r:              16
+    alpha:          32
+    dropout:        0.05
+    target_modules: ["linear1", "linear2", "out_proj"]
+
+  transformer:
+    num_layers:      4           # ← QUICK TUNE: 2 (fast) / 4 (default) / 6 (heavy)
+    num_heads:       8
+    ff_dim:          1024
+    dropout:         0.1
+
+  episode:
+    n_way:             5
+    k_shot:            5
+    query_per_class:   1
+    episodes_per_epoch: 1000
+
+  training:
+    epochs:            30
+    episodes_per_step: 8
+    learning_rate:     1.0e-4
+    weight_decay:      1.0e-4
+    warmup_ratio:      0.05
+    lr_scheduler:      "cosine"
+    max_grad_norm:     1.0
+    label_smoothing:   0.0
+
+  loss:
+    name: "cross_entropy"
+    logit_adjust_tau: 0.5
+
+  reference_library:
+    min_images_per_class: 1
+    max_images_per_class: 5
+
+  eval:
+    n_way:   5
+    k_shot:  5
+    episodes: 600
+    zero_shot_held_out: 5        # classes withheld entirely from training
+    zero_shot_refs: [1, 3, 5]   # how many references to test at inference
+    interval: 1
+
+
+# ─────────────────────────────────────────
+#  SECTION 8 — JOINT TRAINING
+#  Runs after independent per-stage training.
+# ─────────────────────────────────────────
+joint:
+  training:
+    epochs:           40
+    batch_size:       1
+    grad_accum_steps: 8
+    max_batches_per_epoch: 0    # 0 = full pass, >0 = mini-epochs for faster dev checks
+    learning_rate:    5.0e-6
+    weight_decay:     1.0e-4
+    warmup_ratio:     0.05
+    lr_scheduler:     "cosine"
+    max_grad_norm:    0.3
+    early_stopping:
+      enabled:       false
+      monitor:       "dev/loss_total"
+      mode:          "min"
+      patience:      8
+      min_delta:     1.0e-4
+      min_epochs:    28
+
+  loss_weights:
+    lambda1: 1.0
+    lambda2: 0.5
+    lambda3: 1.5
+
+  curriculum:
+    gt_boxes_epochs: 40           # legacy fallback when scheduled teacher forcing is disabled
+    teacher_forcing:
+      enabled:          true
+      sustain_epochs:   40        # constant teacher forcing across the full retrain
+      transition_epochs: 0
+      start_prob:       1.0
+      end_prob:         1.0
+
+  eval:
+    interval: 1
+
+
+# ─────────────────────────────────────────
+#  SECTION 9 — PICTSURE BASELINE
+#  Used for Table 2 comparison.
+# ─────────────────────────────────────────
+pictsure:
+  clip_model:  "openai/clip-vit-large-patch14"
+  batch_size:  64
+  use_hnsw:    true              # faster ANN search; needs hnswlib
+  hnsw_ef:     200
+  hnsw_M:      32
+  temperature: 0.07              # softmax temperature for confidence
+  top_k:       5
+  index_path:  "data/pictsure_index"
+
+
+# ─────────────────────────────────────────
+#  SECTION 10 — OFFICIAL PICTSURE
+#  Public Hugging Face checkpoints via the upstream PictSure library.
+# ─────────────────────────────────────────
+official_pictsure:
+  enabled:            true
+  model_id:           "pictsure/pictsure-vit"   # or pictsure/pictsure-resnet
+  device:             "auto"
+  use_torch_compile:  false
+  compile_mode:       "default"
+  use_autocast:       true
+  autocast_dtype:     "float16"
+  hf_token_env:       "HF_TOKEN"
+
+
+# ─────────────────────────────────────────
+#  SECTION 11 — INFERENCE
+# ─────────────────────────────────────────
+inference:
+  nms_iou_threshold:  0.5
+  score_threshold:    0.5
+  top_k_classes:      1
+  target_latency_ms:  2000       # production constraint
+  device:             "cuda"
+
+
+# ─────────────────────────────────────────
+#  SECTION 12 — BENCHMARKING
+# ─────────────────────────────────────────
+benchmark:
+  warmup_steps:  5
+  measure_steps: 20
+  trace_dir:     "outputs/profiler"

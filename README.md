@@ -98,6 +98,60 @@ We meticulously refined the pipeline through these major phases. Click to expand
 
 ---
 
+## 🧪 Research Track V3: TriFoodNet Multi-Stage Snapshot
+
+This repository now also includes a separate research-facing track under
+`experiments/v3_trifoodnet_research_snapshot/`. Unlike the public V2 inference
+showcase, this track preserves the actual training-oriented code, retained run
+history, validation notes, and faculty-review documentation for the later
+three-stage pipeline:
+
+- Stage 1: Qwen2.5-VL grounding
+- Stage 2: SAM-based segmentation
+- Stage 3: masked-item classification with a PictSure-style model
+
+<p align="center">
+  <img src="assets/v3/diagrams/trifoodnet_inference_pipeline.png" width="34%" alt="TriFoodNet inference pipeline" />
+  <img src="assets/v3/diagrams/trifoodnet_multitask_loss.png" width="60%" alt="TriFoodNet multitask loss" />
+</p>
+
+### Latest Retained Training Snapshot
+
+| Item | Value |
+| :--- | :--- |
+| Strongest retained run | `trial-20260321-cleandata1` |
+| Best retained checkpoint | `epoch_038` by `joint/combined = 1.9375961198969618` |
+| Final retained epoch | `epoch_040` |
+| Final dev Stage 1 recall@0.5 | `0.8636363636363636` |
+| Final dev Stage 2 mIoU | `0.5733921838932934` |
+| Final dev Stage 3 accuracy | `0.5` |
+| Runs compared in retained report | `15` |
+
+### Batch8 Input Package
+
+The V3 MVP used the `batch_results_v8_500` package from the `v3_3stage_mvp`
+workspace. That package contains:
+
+- `500` total images
+- `467` successful processed cases
+- raw image cases with `original.jpg`, `visualization.jpg`, item crops, and masks
+
+Representative public samples are included under:
+
+- `assets/v3/batch8_samples/`
+
+### Review-Oriented Entry Points
+
+- **Faculty-facing overview:** [V3 snapshot README](./experiments/v3_trifoodnet_research_snapshot/README.md)
+- **Supervisor review path:** [Faculty review guide](./experiments/v3_trifoodnet_research_snapshot/docs/FACULTY_REVIEW_GUIDE.md)
+- **Batch8 source note:** [Batch8 dataset note](./experiments/v3_trifoodnet_research_snapshot/BATCH8_DATASET_NOTE.md)
+- **Cross-run comparison:** [All-trials report](./experiments/v3_trifoodnet_research_snapshot/outputs/all_trials_report_20260321/index.md)
+- **Best-run summary:** [Results summary](./experiments/v3_trifoodnet_research_snapshot/outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md)
+
+👉 **[Explore V3 Research Snapshot](./experiments/v3_trifoodnet_research_snapshot/)**
+
+---
+
 ## 🥗 Experiment V1: FoodSAM + PictSure (Legacy)
 
 Our first successful iteration utilized a hybrid approach combining semantic experts with a few-shot learner. While effective, it required high-quality reference "context" images to function.

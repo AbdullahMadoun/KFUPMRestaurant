@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="460" viewBox="0 0 980 460">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="86" y="24" font-size="20" font-family="Arial, sans-serif" fill="#111827">Peak GPU Memory</text>
+<text x="86" y="442" font-size="12" font-family="Arial, sans-serif" fill="#4b5563">step / epoch</text>
+<text x="18" y="52" font-size="12" font-family="Arial, sans-serif" fill="#4b5563" transform="rotate(-90 18 52)">gpu/mem_peak_allocated_gb</text>
+<line x1="86" y1="396.00" x2="956" y2="396.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="400.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">7.7482</text>
+<line x1="86" y1="307.00" x2="956" y2="307.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="311.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">12.6811</text>
+<line x1="86" y1="218.00" x2="956" y2="218.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="222.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">17.6140</text>
+<line x1="86" y1="129.00" x2="956" y2="129.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="133.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">22.5469</text>
+<line x1="86" y1="40.00" x2="956" y2="40.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="44.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">27.4798</text>
+<line x1="86.00" y1="40" x2="86.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="86.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">-0.750000</text>
+<line x1="260.00" y1="40" x2="260.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="260.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">6.9500</text>
+<line x1="434.00" y1="40" x2="434.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="434.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">14.6500</text>
+<line x1="608.00" y1="40" x2="608.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="608.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">22.3500</text>
+<line x1="782.00" y1="40" x2="782.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="782.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">30.0500</text>
+<line x1="956.00" y1="40" x2="956.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="956.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">37.7500</text>
+<rect x="86" y="40" width="870" height="356" fill="none" stroke="#d1d5db" stroke-width="1"/>
+<polyline points="125.55,371.45 148.14,371.45 170.74,371.45 193.34,371.45 215.94,371.45 125.55,223.00 148.14,158.95 170.74,112.20 193.34,111.97 215.94,111.97 238.53,111.97 261.13,111.97 283.73,111.97 306.32,111.97 328.92,111.97 328.92,111.97 351.52,111.97 374.12,74.38 374.12,74.38 374.12,74.38 374.12,74.38 374.12,74.38 396.71,74.38 419.31,64.55 441.91,64.55 464.51,64.55 487.10,64.55 509.70,64.55 532.30,64.55 554.90,64.55 554.90,64.55 577.49,64.55 600.09,64.55 622.69,64.55 645.29,64.55 645.29,64.55 645.29,64.55 645.29,64.55 645.29,64.55 667.88,64.55 690.48,64.55 713.08,64.55 735.68,64.55 758.27,64.55 780.87,64.55 780.87,64.55 803.47,64.55 826.06,64.55 848.66,64.55 871.26,64.55 893.86,64.55 916.45,64.55 916.45,64.55 916.45,64.55 916.45,64.55 916.45,64.55 916.45,64.55" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="916.45" cy="64.55" r="3.5" fill="#2563eb"/>
+<line x1="776" y1="26" x2="794" y2="26" stroke="#2563eb" stroke-width="3"/>
+<text x="800" y="30" font-size="11" font-family="Arial, sans-serif" fill="#374151">trial-20260321-stability5</text>
+</svg>

@@ -1,0 +1,8 @@
+{
+  "joint/combined": {
+    "name": "joint/combined",
+    "value": 0.7727272727272727,
+    "step": 12,
+    "epoch": 1
+  }
+}

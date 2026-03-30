@@ -1,0 +1,20 @@
+{
+  "image_rows": 117,
+  "stage3_rows": 204,
+  "resolved_ok": 117,
+  "resolved_fail_count": 0,
+  "resolved_fail_samples": [],
+  "source_counts": {
+    "pointer_resolved": 117
+  },
+  "size_mismatch_count": 0,
+  "identical_to_visualization_count": 0,
+  "crop_ok": 204,
+  "mask_ok": 204,
+  "blank_masks": 0,
+  "asset_fail_samples": [],
+  "verdict": {
+    "full_image_training_safe": true,
+    "stage3_item_training_safe": true
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "run_name": "trial-20260321-stability3",
+  "class_mapping": {
+    "num_stage3_classes": 21,
+    "indexed_class_slots": 30,
+    "max_class_id": 29
+  },
+  "split_contract": {
+    "train_stage3_labels": 18,
+    "dev_stage3_labels": 17,
+    "test_stage3_labels": 13,
+    "supported_classes": [
+      "Aseeda_brown",
+      "Aseeda_white",
+      "Chicken_kebab",
+      "Fasoolia",
+      "Koshari",
+      "Meat_kebab",
+      "Muttabal",
+      "cake",
+      "chicken",
+      "fish",
+      "hummus",
+      "lemon",
+      "meat",
+      "okra",
+      "pasta",
+      "rice",
+      "soup",
+      "vegetables_steamed"
+    ],
+    "removed_classes": [
+      "Bashamil",
+      "salad",
+      "tabboulah"
+    ]
+  },
+  "episode_contract": {
+    "queries_checked": 164,
+    "invalid_query_labels": 0,
+    "support_sizes": [
+      25
+    ]
+  },
+  "annotation_contract": {
+    "train": {
+      "images": 93,
+      "items": 164,
+      "avg_items_per_image": 1.7634408602150538,
+      "max_items_per_image": 5,
+      "images_with_multiple_items": 55,
+      "items_with_masks": 164,
+      "blank_masked_crops": 0,
+      "item_histogram": {
+        "1": 38,
+        "2": 43,
+        "3+": 12
+      }
+    },
+    "dev": {
+      "images": 12,
+      "items": 22,
+      "avg_items_per_image": 1.8333333333333333,
+      "max_items_per_image": 4,
+      "images_with_multiple_items": 6,
+      "items_with_masks": 22,
+      "blank_masked_crops": 0,
+      "item_histogram": {
+        "1": 6,
+        "2": 3,
+        "3+": 3
+      }
+    },
+    "test": {
+      "images": 11,
+      "items": 15,
+      "avg_items_per_image": 1.3636363636363635,
+      "max_items_per_image": 2,
+      "images_with_multiple_items": 4,
+      "items_with_masks": 15,
+      "blank_masked_crops": 0,
+      "item_histogram": {
+        "1": 7,
+        "2": 4,
+        "3+": 0
+      }
+    }
+  },
+  "stage3_support_capacity": {
+    "train_class_item_counts": {
+      "soup": 3,
+      "chicken": 39,
+      "lemon": 7,
+      "rice": 45,
+      "Aseeda_brown": 4,
+      "okra": 7,
+      "hummus": 2,
+      "Chicken_kebab": 3,
+      "meat": 18,
+      "Koshari": 1,
+      "Muttabal": 1,
+      "Meat_kebab": 2,
+      "Aseeda_white": 3,
+      "cake": 4,
+      "vegetables_steamed": 8,
+      "Fasoolia": 1,
+      "fish": 5,
+      "pasta": 11
+    },
+    "dev_class_item_counts": {
+      "Fasoolia": 1,
+      "Muttabal": 1,
+      "hummus": 1,
+      "soup": 1,
+      "Aseeda_white": 1,
+      "rice": 4,
+      "fish": 1,
+      "cake": 1,
+      "chicken": 1,
+      "lemon": 3,
+      "okra": 1,
+      "Koshari": 1,
+      "Chicken_kebab": 1,
+      "pasta": 1,
+      "Meat_kebab": 1,
+      "Aseeda_brown": 1,
+      "vegetables_steamed": 1
+    },
+    "test_class_item_counts": {
+      "rice": 3,
+      "Chicken_kebab": 1,
+      "Meat_kebab": 1,
+      "Aseeda_brown": 1,
+      "meat": 1,
+      "Fasoolia": 1,
+      "soup": 1,
+      "cake": 1,
+      "Muttabal": 1,
+      "Aseeda_white": 1,
+      "fish": 1,
+      "hummus": 1,
+      "Koshari": 1
+    },
+    "classes_missing_from_dev": [
+      "meat"
+    ],
+    "classes_missing_from_test": [
+      "chicken",
+      "lemon",
+      "okra",
+      "pasta",
+      "vegetables_steamed"
+    ],
+    "classes_with_train_support_below_k_shot": {
+      "Aseeda_brown": 4,
+      "Aseeda_white": 3,
+      "Chicken_kebab": 3,
+      "Fasoolia": 1,
+      "Koshari": 1,
+      "Meat_kebab": 2,
+      "Muttabal": 1,
+      "cake": 4,
+      "hummus": 2,
+      "soup": 3
+    },
+    "one_item_per_split_classes": [
+      "Fasoolia",
+      "Koshari",
+      "Muttabal"
+    ]
+  },
+  "stage3_crop_contract": {
+    "rows_checked": 201,
+    "rows_with_mask_path": 201,
+    "avg_crop_width": 730.1641791044776,
+    "avg_crop_height": 693.1890547263681
+  },
+  "runtime": {
+    "checked_images": 5,
+    "total_masks_present": 4,
+    "stage1_recall@0.5": 0.8,
+    "stage1_precision@0.5": 1.0,
+    "stage2_mIoU": 0.0,
+    "stage3_acc": 0.2,
+    "stage3_matched_acc": 0.25,
+    "samples": [
+      {
+        "image_id": "Cluster_122_frame_frame_038314_00",
+        "pred_items": 1,
+        "gt_items": 1,
+        "matched_items": 1,
+        "pred_masks_present": 1,
+        "pred_labels": [
+          "soup"
+        ],
+        "gt_labels": [
+          "Fasoolia"
+        ]
+      },
+      {
+        "image_id": "Cluster_124_frame_frame_043685_00",
+        "pred_items": 0,
+        "gt_items": 1,
+        "matched_items": 0,
+        "pred_masks_present": 0,
+        "pred_labels": [],
+        "gt_labels": [
+          "Muttabal"
+        ]
+      },
+      {
+        "image_id": "Cluster_124_frame_frame_098567_00",
+        "pred_items": 1,
+        "gt_items": 1,
+        "matched_items": 1,
+        "pred_masks_present": 1,
+        "pred_labels": [
+          "rice"
+        ],
+        "gt_labels": [
+          "hummus"
+        ]
+      },
+      {
+        "image_id": "Cluster_126_frame_frame_038785_00",
+        "pred_items": 1,
+        "gt_items": 1,
+        "matched_items": 1,
+        "pred_masks_present": 1,
+        "pred_labels": [
+          "soup"
+        ],
+        "gt_labels": [
+          "soup"
+        ]
+      },
+      {
+        "image_id": "Cluster_147_frame_frame_105786_00",
+        "pred_items": 1,
+        "gt_items": 1,
+        "matched_items": 1,
+        "pred_masks_present": 1,
+        "pred_labels": [
+          "soup"
+        ],
+        "gt_labels": [
+          "Aseeda_white"
+        ]
+      }
+    ]
+  },
+  "teacher_forced_stage2": {
+    "checked_images": 5,
+    "aligned_item_mean_iou": 0.0,
+    "pred_masks_per_gt_mask": 1.0,
+    "samples": [
+      {
+        "image_id": "Cluster_122_frame_frame_038314_00",
+        "gt_items": 1,
+        "pred_items": 200,
+        "aligned_mean_iou": 0.0
+      },
+      {
+        "image_id": "Cluster_124_frame_frame_043685_00",
+        "gt_items": 1,
+        "pred_items": 200,
+        "aligned_mean_iou": 0.0
+      },
+      {
+        "image_id": "Cluster_124_frame_frame_098567_00",
+        "gt_items": 1,
+        "pred_items": 200,
+        "aligned_mean_iou": 0.0
+      },
+      {
+        "image_id": "Cluster_126_frame_frame_038785_00",
+        "gt_items": 1,
+        "pred_items": 200,
+        "aligned_mean_iou": 0.0
+      },
+      {
+        "image_id": "Cluster_147_frame_frame_105786_00",
+        "gt_items": 1,
+        "pred_items": 200,
+        "aligned_mean_iou": 0.0
+      }
+    ]
+  },
+  "teacher_forced_stage3": {
+    "checked_images": 5,
+    "checked_items": 5,
+    "top1_acc": 0.2,
+    "samples": [
+      {
+        "image_id": "Cluster_122_frame_frame_038314_00",
+        "items": [
+          {
+            "gt_label": "Fasoolia",
+            "pred_label": "okra",
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "image_id": "Cluster_124_frame_frame_043685_00",
+        "items": [
+          {
+            "gt_label": "Muttabal",
+            "pred_label": "Aseeda_white",
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "image_id": "Cluster_124_frame_frame_098567_00",
+        "items": [
+          {
+            "gt_label": "hummus",
+            "pred_label": "Chicken_kebab",
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "image_id": "Cluster_126_frame_frame_038785_00",
+        "items": [
+          {
+            "gt_label": "soup",
+            "pred_label": "hummus",
+            "correct": 0
+          }
+        ]
+      },
+      {
+        "image_id": "Cluster_147_frame_frame_105786_00",
+        "items": [
+          {
+            "gt_label": "Aseeda_white",
+            "pred_label": "Aseeda_white",
+            "correct": 1
+          }
+        ]
+      }
+    ]
+  }
+}

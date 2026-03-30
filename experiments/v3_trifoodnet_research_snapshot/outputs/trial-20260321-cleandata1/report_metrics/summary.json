@@ -1,0 +1,70 @@
+{
+  "title": "TriFoodNet Clean-Data Run Report",
+  "generated_utc": "2026-03-21T23:02:42.529180+00:00",
+  "baseline_run": "trial-20260321-cleandata1",
+  "runs": [
+    {
+      "name": "trial-20260321-cleandata1",
+      "root_dir": "/root/rest_model/logs/trial-20260321-cleandata1/joint",
+      "status": "completed",
+      "device": "cuda",
+      "notes": "40-epoch retrain after raw-image recovery and corrupted sample removal"
+    }
+  ],
+  "comparison_rows": [
+    {
+      "run": "trial-20260321-cleandata1",
+      "status": "completed",
+      "best_joint_combined": 1.9375961198969618,
+      "best_dev_stage1_recall@0.5": 0.8636363636363636,
+      "best_dev_stage2_mIoU": 0.5883120770816657,
+      "best_dev_stage3_acc": 0.5,
+      "min_dev_loss_total": 3.1939461330572763
+    }
+  ],
+  "efficiency_rows": [
+    {
+      "run": "trial-20260321-cleandata1",
+      "device": "cuda",
+      "avg_train_samples_per_sec": 7.179686684914476,
+      "max_gpu_mem_peak_allocated_gb": 26.135,
+      "stage3_loss": "cross_entropy",
+      "joint_lr": 5e-06,
+      "effective_batch": 8
+    }
+  ],
+  "delta_rows": [
+    {
+      "run": "trial-20260321-cleandata1",
+      "delta_best_joint_combined": 0.0,
+      "delta_best_dev_stage1_recall@0.5": 0.0,
+      "delta_best_dev_stage2_mIoU": 0.0,
+      "delta_best_dev_stage3_acc": 0.0
+    }
+  ],
+  "plots": {
+    "train_step_loss_total": "plots/train_step_loss_total.svg",
+    "train_step_loss_stage1": "plots/train_step_loss_stage1.svg",
+    "train_step_loss_stage2": "plots/train_step_loss_stage2.svg",
+    "train_step_loss_stage3": "plots/train_step_loss_stage3.svg",
+    "train_step_stage3_acc": "plots/train_step_stage3_acc.svg",
+    "train_eval_loss_total": "plots/train_eval_loss_total.svg",
+    "train_stage1_recall_at_0_5": "plots/train_stage1_recall_at_0_5.svg",
+    "train_stage2_miou": "plots/train_stage2_miou.svg",
+    "train_stage3_acc": "plots/train_stage3_acc.svg",
+    "train_stage3_matched_acc": "plots/train_stage3_matched_acc.svg",
+    "train_stage3_episode_acc": "plots/train_stage3_episode_acc.svg",
+    "dev_loss_total": "plots/dev_loss_total.svg",
+    "dev_stage1_recall_at_0_5": "plots/dev_stage1_recall_at_0_5.svg",
+    "dev_stage2_miou": "plots/dev_stage2_miou.svg",
+    "dev_stage3_acc": "plots/dev_stage3_acc.svg",
+    "dev_stage3_matched_acc": "plots/dev_stage3_matched_acc.svg",
+    "dev_stage3_episode_acc": "plots/dev_stage3_episode_acc.svg",
+    "dev_latency_total_ms": "plots/dev_latency_total_ms.svg",
+    "train_step_lr": "plots/train_step_lr.svg",
+    "train_step_samples_per_sec": "plots/train_step_samples_per_sec.svg",
+    "gpu_mem_peak_allocated_gb": "plots/gpu_mem_peak_allocated_gb.svg",
+    "best_joint_combined": "plots/best_joint_combined.svg",
+    "delta_joint_combined_vs_baseline": "plots/delta_joint_combined_vs_baseline.svg"
+  }
+}

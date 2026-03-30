@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-03-21T11:34:53.337039+00:00",
+  "event_type": "checkpoint",
+  "elapsed_sec": 315.594,
+  "step": 94,
+  "epoch": 1,
+  "split": "checkpoint",
+  "checkpoint_path": "checkpoints/trial-20260321-full3/joint/epoch_001",
+  "is_best": false,
+  "metrics/epoch": 1,
+  "system/cpu_percent": 24.0,
+  "system/ram_used_gb": 84.098,
+  "system/ram_total_gb": 188.564,
+  "gpu/index": 0,
+  "gpu/name": "NVIDIA GeForce RTX 5090",
+  "gpu/mem_allocated_gb": 4.664,
+  "gpu/mem_reserved_gb": 5.75,
+  "gpu/mem_peak_allocated_gb": 15.401
+}

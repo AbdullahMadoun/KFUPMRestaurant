@@ -1,0 +1,47 @@
+{
+  "patched_count": 118,
+  "skipped_count": 0,
+  "sample_patched": [
+    {
+      "image_id": "Cluster_0_frame_frame_025403_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_0_frame_frame_025403_00.jpg"
+    },
+    {
+      "image_id": "Cluster_101_frame_frame_032220_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_101_frame_frame_032220_00.jpg"
+    },
+    {
+      "image_id": "Cluster_102_frame_frame_079520_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_102_frame_frame_079520_00.jpg"
+    },
+    {
+      "image_id": "Cluster_103_frame_frame_065710_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_103_frame_frame_065710_00.jpg"
+    },
+    {
+      "image_id": "Cluster_103_frame_frame_065743_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_103_frame_frame_065743_00.jpg"
+    },
+    {
+      "image_id": "Cluster_104_frame_frame_048467_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_104_frame_frame_048467_00.jpg"
+    },
+    {
+      "image_id": "Cluster_106_frame_frame_044250_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_106_frame_frame_044250_00.jpg"
+    },
+    {
+      "image_id": "Cluster_106_frame_frame_056987_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_106_frame_frame_056987_00.jpg"
+    },
+    {
+      "image_id": "Cluster_107_frame_frame_124610_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_107_frame_frame_124610_00.jpg"
+    },
+    {
+      "image_id": "Cluster_108_frame_frame_001968_00",
+      "pointer": "/workspace/KFUPMRestaurant/Sampled_Images_All/Cluster_108_frame_frame_001968_00.jpg"
+    }
+  ],
+  "sample_skipped": []
+}

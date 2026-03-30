@@ -1,0 +1,35 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local experiment noise
+wandb/
+_checkpoint_probe/
+validation_report.local.json
+
+# Restored checkpoint payloads generated from weights/best_checkpoint.tar
+checkpoints/**/joint/epoch_*/
+checkpoints/**/joint/best/stage1_lora/adapter_model.safetensors
+checkpoints/**/joint/best/stage2.pt
+checkpoints/**/joint/best/stage3.pt

@@ -1,0 +1,16 @@
+run,status,best_joint_combined,best_dev_stage1_recall@0.5,best_dev_stage2_mIoU,best_dev_stage3_acc,min_dev_loss_total,avg_train_samples_per_sec,max_gpu_mem_peak_allocated_gb,device,stage3_loss,joint_lr,effective_batch
+trial-20260321-cleandata1,completed,1.937596,0.863636,0.588312,0.5,3.193946,7.179687,26.135,cuda,cross_entropy,5e-06,8
+trial-20260321-converge4,failed,,,,,,,24.523,cuda,balanced_softmax,5e-06,8
+trial-20260321-converge5,unknown,,,,,,6.586769,25.905,cuda,balanced_softmax,5e-06,8
+trial-20260321-converge6,unknown,,,,,,6.84138,25.052,cuda,balanced_softmax,5e-06,8
+trial-20260321-converge7,unknown,0.818182,0.772727,0.0,0.045455,13.380745,6.705265,26.047,cuda,balanced_softmax,5e-06,8
+trial-20260321-full3,completed,1.906498,0.736842,0.569656,0.6,4.562164,,15.401,cuda,balanced_softmax,5e-06,1
+trial-20260321-full40-crossent1,completed,1.352102,0.772727,0.488981,0.090909,4.000943,6.407028,26.133,cuda,cross_entropy,5e-06,8
+trial-20260321-full40-puretf1,unknown,1.310169,0.772727,0.491988,0.181818,3.745266,7.092144,26.128,cuda,cross_entropy,5e-06,8
+trial-20260321-full40-tf08-1,completed,1.397059,0.772727,0.487968,0.136364,4.115771,5.570127,26.059,cuda,cross_entropy,5e-06,8
+trial-20260321-full40-tfmajority1,completed,,,,,,6.734671,26.063,cuda,cross_entropy,5e-06,8
+trial-20260321-stability1,unknown,,,,,,7.621317,26.128,cuda,balanced_softmax,5e-06,8
+trial-20260321-stability2,unknown,0.772727,0.772727,0.0,0.0,13.037923,7.27369,26.176,cuda,balanced_softmax,5e-06,8
+trial-20260321-stability3,completed,0.818182,0.772727,0.0,0.045455,12.732777,6.991192,26.199,cuda,balanced_softmax,5e-06,8
+trial-20260321-stability4,unknown,1.444272,0.772727,0.49086,0.181818,11.062845,7.005856,26.053,cuda,balanced_softmax,5e-06,8
+trial-20260321-stability5,completed,1.445001,0.772727,0.491058,0.181818,4.059867,6.477225,26.119,cuda,cross_entropy,5e-06,8

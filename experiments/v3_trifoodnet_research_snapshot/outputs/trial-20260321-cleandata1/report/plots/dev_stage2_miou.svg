@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="460" viewBox="0 0 980 460">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="86" y="24" font-size="20" font-family="Arial, sans-serif" fill="#111827">Dev Stage 2 mIoU</text>
+<text x="86" y="442" font-size="12" font-family="Arial, sans-serif" fill="#4b5563">step / epoch</text>
+<text x="18" y="52" font-size="12" font-family="Arial, sans-serif" fill="#4b5563" transform="rotate(-90 18 52)">dev/stage2_mIoU</text>
+<line x1="86" y1="396.00" x2="956" y2="396.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="400.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.453768</text>
+<line x1="86" y1="307.00" x2="956" y2="307.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="311.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.489895</text>
+<line x1="86" y1="218.00" x2="956" y2="218.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="222.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.526023</text>
+<line x1="86" y1="129.00" x2="956" y2="129.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="133.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.562151</text>
+<line x1="86" y1="40.00" x2="956" y2="40.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="44.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.598278</text>
+<line x1="86.00" y1="40" x2="86.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="86.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">-11.4000</text>
+<line x1="260.00" y1="40" x2="260.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="260.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">91.5600</text>
+<line x1="434.00" y1="40" x2="434.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="434.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">194.52</text>
+<line x1="608.00" y1="40" x2="608.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="608.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">297.48</text>
+<line x1="782.00" y1="40" x2="782.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="782.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">400.44</text>
+<line x1="956.00" y1="40" x2="956.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="956.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">503.40</text>
+<rect x="86" y="40" width="870" height="356" fill="none" stroke="#d1d5db" stroke-width="1"/>
+<polyline points="125.55,182.03 145.83,132.70 166.10,170.49 186.38,64.55 206.66,233.47 226.94,239.93 247.22,238.72 267.50,237.80 287.78,234.90 308.06,234.38 328.34,237.85 348.62,237.38 368.90,305.58 389.18,286.88 409.46,371.45 429.74,337.13 450.02,342.47 470.30,341.80 490.58,247.61 510.86,260.82 531.14,260.33 551.42,260.37 571.70,260.82 591.98,266.77 612.26,266.72 632.54,256.23 652.82,199.99 673.10,258.33 693.38,196.96 713.66,101.77 733.94,101.75 754.22,101.59 774.50,101.75 794.78,101.42 815.06,101.64 835.34,101.66 855.62,101.65 875.90,99.91 896.17,101.60 916.45,101.31" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="916.45" cy="101.31" r="3.5" fill="#2563eb"/>
+<line x1="776" y1="26" x2="794" y2="26" stroke="#2563eb" stroke-width="3"/>
+<text x="800" y="30" font-size="11" font-family="Arial, sans-serif" fill="#374151">trial-20260321-cleandata1</text>
+</svg>

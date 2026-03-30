@@ -1,0 +1,2 @@
+run,status,best_joint_combined,best_dev_stage1_recall@0.5,best_dev_stage2_mIoU,best_dev_stage3_acc,min_dev_loss_total,avg_train_samples_per_sec,max_gpu_mem_peak_allocated_gb,device,stage3_loss,joint_lr,effective_batch
+trial-20260321-stability5,completed,1.445001,0.772727,0.491058,0.181818,4.059867,6.477225,26.119,cuda,cross_entropy,5e-06,8

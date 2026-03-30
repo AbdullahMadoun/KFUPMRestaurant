@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="460" viewBox="0 0 980 460">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="86" y="24" font-size="20" font-family="Arial, sans-serif" fill="#111827">Train Step Total Loss</text>
+<text x="86" y="442" font-size="12" font-family="Arial, sans-serif" fill="#4b5563">step / epoch</text>
+<text x="18" y="52" font-size="12" font-family="Arial, sans-serif" fill="#4b5563" transform="rotate(-90 18 52)">train_step/loss_total</text>
+<line x1="86" y1="396.00" x2="956" y2="396.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="400.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">8.5752</text>
+<line x1="86" y1="307.00" x2="956" y2="307.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="311.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">11.3775</text>
+<line x1="86" y1="218.00" x2="956" y2="218.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="222.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">14.1799</text>
+<line x1="86" y1="129.00" x2="956" y2="129.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="133.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">16.9823</text>
+<line x1="86" y1="40.00" x2="956" y2="40.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="44.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">19.7846</text>
+<line x1="86.00" y1="40" x2="86.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="86.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">-0.750000</text>
+<line x1="260.00" y1="40" x2="260.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="260.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">6.9500</text>
+<line x1="434.00" y1="40" x2="434.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="434.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">14.6500</text>
+<line x1="608.00" y1="40" x2="608.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="608.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">22.3500</text>
+<line x1="782.00" y1="40" x2="782.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="782.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">30.0500</text>
+<line x1="956.00" y1="40" x2="956.00" y2="396" stroke="#f3f4f6" stroke-width="1"/>
+<text x="956.00" y="420" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#6b7280">37.7500</text>
+<rect x="86" y="40" width="870" height="356" fill="none" stroke="#d1d5db" stroke-width="1"/>
+<polyline points="125.55,318.70 148.14,303.95 170.74,121.53 193.34,225.00 215.94,334.24 238.53,326.99 261.13,319.36 283.73,64.55 306.32,188.33 328.92,347.33 328.92,255.00 351.52,363.52 374.12,351.16 396.71,341.64 419.31,309.65 441.91,333.12 464.51,256.33 487.10,329.24 509.70,324.18 532.30,330.45 554.90,339.44 554.90,327.87 577.49,315.61 600.09,219.89 622.69,230.96 645.29,295.17 667.88,317.37 690.48,229.66 713.08,353.82 735.68,232.54 758.27,256.35 780.87,347.31 780.87,279.87 803.47,331.67 826.06,371.45 848.66,292.10 871.26,308.42 893.86,359.28 916.45,345.20" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="916.45" cy="345.20" r="3.5" fill="#2563eb"/>
+<line x1="776" y1="26" x2="794" y2="26" stroke="#2563eb" stroke-width="3"/>
+<text x="800" y="30" font-size="11" font-family="Arial, sans-serif" fill="#374151">trial-20260321-stability3</text>
+</svg>

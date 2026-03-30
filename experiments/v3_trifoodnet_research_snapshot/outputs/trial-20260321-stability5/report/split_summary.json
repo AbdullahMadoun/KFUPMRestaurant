@@ -1,0 +1,181 @@
+{
+  "run_name": "trial-20260321-stability5",
+  "split_summary": {
+    "train": {
+      "images": 93,
+      "active_items": 164,
+      "class_image_counts": {
+        "soup": 3,
+        "lemon": 7,
+        "chicken": 37,
+        "rice": 44,
+        "Aseeda_brown": 4,
+        "okra": 7,
+        "hummus": 2,
+        "Chicken_kebab": 3,
+        "meat": 18,
+        "Koshari": 1,
+        "Muttabal": 1,
+        "Meat_kebab": 2,
+        "Aseeda_white": 3,
+        "cake": 4,
+        "vegetables_steamed": 6,
+        "Fasoolia": 1,
+        "fish": 5,
+        "pasta": 11
+      }
+    },
+    "dev": {
+      "images": 12,
+      "active_items": 22,
+      "class_image_counts": {
+        "Fasoolia": 1,
+        "Muttabal": 1,
+        "hummus": 1,
+        "soup": 1,
+        "Aseeda_white": 1,
+        "fish": 1,
+        "rice": 4,
+        "cake": 1,
+        "okra": 1,
+        "lemon": 3,
+        "chicken": 1,
+        "Koshari": 1,
+        "pasta": 1,
+        "Chicken_kebab": 1,
+        "Meat_kebab": 1,
+        "vegetables_steamed": 1,
+        "Aseeda_brown": 1
+      }
+    },
+    "test": {
+      "images": 11,
+      "active_items": 15,
+      "class_image_counts": {
+        "Chicken_kebab": 1,
+        "rice": 3,
+        "Meat_kebab": 1,
+        "meat": 1,
+        "Aseeda_brown": 1,
+        "Fasoolia": 1,
+        "soup": 1,
+        "cake": 1,
+        "Muttabal": 1,
+        "Aseeda_white": 1,
+        "fish": 1,
+        "hummus": 1,
+        "Koshari": 1
+      }
+    }
+  },
+  "stage3_split_summary": {
+    "train": {
+      "items": 164,
+      "class_item_counts": {
+        "soup": 3,
+        "chicken": 39,
+        "lemon": 7,
+        "rice": 45,
+        "Aseeda_brown": 4,
+        "okra": 7,
+        "hummus": 2,
+        "Chicken_kebab": 3,
+        "meat": 18,
+        "Koshari": 1,
+        "Muttabal": 1,
+        "Meat_kebab": 2,
+        "Aseeda_white": 3,
+        "cake": 4,
+        "vegetables_steamed": 8,
+        "Fasoolia": 1,
+        "fish": 5,
+        "pasta": 11
+      }
+    },
+    "dev": {
+      "items": 22,
+      "class_item_counts": {
+        "Fasoolia": 1,
+        "Muttabal": 1,
+        "hummus": 1,
+        "soup": 1,
+        "Aseeda_white": 1,
+        "rice": 4,
+        "fish": 1,
+        "cake": 1,
+        "chicken": 1,
+        "lemon": 3,
+        "okra": 1,
+        "Koshari": 1,
+        "Chicken_kebab": 1,
+        "pasta": 1,
+        "Meat_kebab": 1,
+        "Aseeda_brown": 1,
+        "vegetables_steamed": 1
+      }
+    },
+    "test": {
+      "items": 15,
+      "class_item_counts": {
+        "rice": 3,
+        "Chicken_kebab": 1,
+        "Meat_kebab": 1,
+        "Aseeda_brown": 1,
+        "meat": 1,
+        "Fasoolia": 1,
+        "soup": 1,
+        "cake": 1,
+        "Muttabal": 1,
+        "Aseeda_white": 1,
+        "fish": 1,
+        "hummus": 1,
+        "Koshari": 1
+      }
+    }
+  },
+  "supported_classes": [
+    "Aseeda_brown",
+    "Aseeda_white",
+    "Chicken_kebab",
+    "Fasoolia",
+    "Koshari",
+    "Meat_kebab",
+    "Muttabal",
+    "cake",
+    "chicken",
+    "fish",
+    "hummus",
+    "lemon",
+    "meat",
+    "okra",
+    "pasta",
+    "rice",
+    "soup",
+    "vegetables_steamed"
+  ],
+  "removed_classes": [
+    "Bashamil",
+    "salad",
+    "tabboulah"
+  ],
+  "supported_class_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ]
+}

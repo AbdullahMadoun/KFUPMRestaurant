@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="460" viewBox="0 0 980 460">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="86" y="24" font-size="20" font-family="Arial, sans-serif" fill="#111827">Best Joint Combined Score</text>
+<line x1="86" y1="368.00" x2="956" y2="368.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="372.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.632943</text>
+<line x1="86" y1="286.00" x2="956" y2="286.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="290.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">0.994052</text>
+<line x1="86" y1="204.00" x2="956" y2="204.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="208.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">1.3552</text>
+<line x1="86" y1="122.00" x2="956" y2="122.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="126.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">1.7163</text>
+<line x1="86" y1="40.00" x2="956" y2="40.00" stroke="#e5e7eb" stroke-width="1"/>
+<text x="76" y="44.00" font-size="11" text-anchor="end" font-family="Arial, sans-serif" fill="#6b7280">2.0774</text>
+<line x1="86" y1="368.00" x2="956" y2="368.00" stroke="#9ca3af" stroke-width="1.5"/>
+<rect x="86" y="40" width="870" height="328" fill="none" stroke="#d1d5db" stroke-width="1"/>
+<rect x="103.40" y="71.74" width="52.20" height="296.26" fill="#2563eb" rx="4"/>
+<text x="129.50" y="63.74" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.9376</text>
+<text x="129.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-cleandata1</text>
+<rect x="190.40" y="325.94" width="52.20" height="42.06" fill="#dc2626" rx="4"/>
+<text x="216.50" y="317.94" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">0.818182</text>
+<text x="216.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-converge7</text>
+<rect x="277.40" y="78.80" width="52.20" height="289.20" fill="#059669" rx="4"/>
+<text x="303.50" y="70.80" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.9065</text>
+<text x="303.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-full3</text>
+<rect x="364.40" y="204.69" width="52.20" height="163.31" fill="#ea580c" rx="4"/>
+<text x="390.50" y="196.69" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.3521</text>
+<text x="390.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-full40-crossent1</text>
+<rect x="451.40" y="214.22" width="52.20" height="153.78" fill="#7c3aed" rx="4"/>
+<text x="477.50" y="206.22" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.3102</text>
+<text x="477.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-full40-puretf1</text>
+<rect x="538.40" y="194.49" width="52.20" height="173.51" fill="#0f766e" rx="4"/>
+<text x="564.50" y="186.49" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.3971</text>
+<text x="564.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-full40-tf08-1</text>
+<rect x="625.40" y="336.26" width="52.20" height="31.74" fill="#c2410c" rx="4"/>
+<text x="651.50" y="328.26" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">0.772727</text>
+<text x="651.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-stability2</text>
+<rect x="712.40" y="325.94" width="52.20" height="42.06" fill="#4f46e5" rx="4"/>
+<text x="738.50" y="317.94" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">0.818182</text>
+<text x="738.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-stability3</text>
+<rect x="799.40" y="183.76" width="52.20" height="184.24" fill="#2563eb" rx="4"/>
+<text x="825.50" y="175.76" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.4443</text>
+<text x="825.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-stability4</text>
+<rect x="886.40" y="183.60" width="52.20" height="184.40" fill="#dc2626" rx="4"/>
+<text x="912.50" y="175.60" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#374151">1.4450</text>
+<text x="912.50" y="412" font-size="11" text-anchor="middle" font-family="Arial, sans-serif" fill="#4b5563">trial-20260321-stability5</text>
+</svg>

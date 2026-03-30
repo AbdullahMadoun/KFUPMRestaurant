@@ -1,0 +1,3 @@
+include master_config.yaml
+include restore_best_checkpoint.sh
+recursive-include pictsure_library *

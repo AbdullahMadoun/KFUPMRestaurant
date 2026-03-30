@@ -1,0 +1,20 @@
+{
+  "date_utc": "2026-03-30T08:54:18.661595+00:00",
+  "snapshot_dir": "/workspace/snapshot_20260330",
+  "source_repo_root": "/root/rest_model",
+  "source_is_git_repo": false,
+  "ancillary_git": {
+    "/root/KFUPMRestaurant_remote": {
+      "branch": "3-stage-MVP",
+      "commit": "e7110428272759a61b6837c138b889c220de8db6"
+    },
+    "/root/sam3": {
+      "branch": "main",
+      "commit": "86ed77094094e5cabb16b0414ec60c5ba9ce0a0f"
+    }
+  },
+  "python_version": "3.12.13 | packaged by conda-forge | (main, Mar  5 2026, 16:50:00) [GCC 14.3.0]",
+  "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.39",
+  "git_branch": null,
+  "git_commit": null
+}

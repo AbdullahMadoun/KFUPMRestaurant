@@ -1,0 +1,322 @@
+[
+  {
+    "image_id": "Cluster_30_frame_frame_135227_00",
+    "items": [
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          108,
+          13,
+          547,
+          596
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          394,
+          208,
+          599,
+          474
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 6649.44,
+      "stage2": 336.52,
+      "stage3": 78.06,
+      "total": 7064.03
+    }
+  },
+  {
+    "image_id": "Cluster_33_frame_frame_066413_00",
+    "items": [
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          97,
+          286,
+          540,
+          439
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          148,
+          114,
+          364,
+          300
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          264,
+          109,
+          590,
+          316
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          210,
+          336,
+          462,
+          544
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 11858.51,
+      "stage2": 342.54,
+      "stage3": 86.54,
+      "total": 12287.59
+    }
+  },
+  {
+    "image_id": "Cluster_84_frame_frame_058896_00",
+    "items": [
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          109,
+          34,
+          625,
+          597
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 4045.73,
+      "stage2": 356.21,
+      "stage3": 70.93,
+      "total": 4472.89
+    }
+  },
+  {
+    "image_id": "Cluster_85_frame_frame_134045_00",
+    "items": [
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          53,
+          140,
+          347,
+          416
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          308,
+          229,
+          582,
+          426
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 7809.5,
+      "stage2": 451.12,
+      "stage3": 96.11,
+      "total": 8356.74
+    }
+  },
+  {
+    "image_id": "Cluster_14_frame_frame_014137_00",
+    "items": [
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          207,
+          119,
+          364,
+          218
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          305,
+          240,
+          419,
+          320
+        ]
+      },
+      {
+        "label": "Unknown-Error",
+        "confidence": 0.0,
+        "box": [
+          305,
+          330,
+          486,
+          534
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 12154.0,
+      "stage2": 339.58,
+      "stage3": 17612.73,
+      "total": 30106.32
+    }
+  },
+  {
+    "image_id": "Cluster_176_frame_frame_089700_00",
+    "items": [
+      {
+        "label": "okra",
+        "confidence": 0.8833212852478027,
+        "box": [
+          64,
+          89,
+          615,
+          593
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 3945.81,
+      "stage2": 420.05,
+      "stage3": 10741.19,
+      "total": 15107.06
+    }
+  },
+  {
+    "image_id": "Cluster_118_frame_frame_046211_00",
+    "items": [
+      {
+        "label": "meat",
+        "confidence": 0.3289749026298523,
+        "box": [
+          98,
+          267,
+          583,
+          604
+        ]
+      },
+      {
+        "label": "meat",
+        "confidence": 0.4718281924724579,
+        "box": [
+          142,
+          28,
+          580,
+          339
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 8610.09,
+      "stage2": 1086.02,
+      "stage3": 17594.36,
+      "total": 27291.02
+    }
+  },
+  {
+    "image_id": "Cluster_165_frame_frame_099707_00",
+    "items": [
+      {
+        "label": "Aseeda_brown",
+        "confidence": 0.4621288776397705,
+        "box": [
+          0,
+          46,
+          398,
+          578
+        ]
+      },
+      {
+        "label": "Aseeda_brown",
+        "confidence": 0.5249955058097839,
+        "box": [
+          289,
+          50,
+          600,
+          623
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 7727.51,
+      "stage2": 343.4,
+      "stage3": 12630.44,
+      "total": 20701.37
+    }
+  },
+  {
+    "image_id": "Cluster_148_frame_frame_121744_00",
+    "items": [
+      {
+        "label": "okra",
+        "confidence": 0.8252249360084534,
+        "box": [
+          30,
+          4,
+          547,
+          408
+        ]
+      },
+      {
+        "label": "vegetables_steamed",
+        "confidence": 0.25213029980659485,
+        "box": [
+          139,
+          260,
+          498,
+          570
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 7324.97,
+      "stage2": 394.38,
+      "stage3": 31067.9,
+      "total": 38787.26
+    }
+  },
+  {
+    "image_id": "Cluster_27_frame_frame_012804_00",
+    "items": [
+      {
+        "label": "meat",
+        "confidence": 0.3922773599624634,
+        "box": [
+          68,
+          7,
+          560,
+          349
+        ]
+      },
+      {
+        "label": "okra",
+        "confidence": 0.2273532897233963,
+        "box": [
+          16,
+          275,
+          567,
+          542
+        ]
+      }
+    ],
+    "latency_ms": {
+      "stage1": 7090.83,
+      "stage2": 424.07,
+      "stage3": 31484.68,
+      "total": 38999.59
+    }
+  }
+]
