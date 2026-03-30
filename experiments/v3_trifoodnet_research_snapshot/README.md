@@ -109,6 +109,21 @@ analysis difficult if everything is compressed into one opaque prediction.
 The current refinement idea is to preserve that decomposition but reduce the
 joint optimization load by freezing Stage 2 more aggressively.
 
+## Operating Assumptions
+
+The retained V3 system should be read with these assumptions in mind:
+
+- input images are cafeteria-style tray scenes with one or more visible items
+- Stage 1 grounding is expected to provide useful boxes before segmentation
+- Stage 2 mainly converts those boxes into masks rather than carrying the full
+  burden of recognition
+- Stage 3 assumes the masked crops are informative enough for specialist
+  classification
+- the public GitHub copy is an evidence and review package, not a complete
+  benchmark release with all raw assets bundled
+- the current next-step hypothesis is that freezing SAM fully may simplify
+  optimization without discarding the staged design
+
 ## Architecture
 
 ```mermaid
@@ -187,6 +202,21 @@ This is the most defensible summary of the retained experiment arc:
 - Best-checkpoint provenance: `weights/CHECKPOINT_PROVENANCE.md`
 - Packaged validation evidence: `VALIDATION_REPORT.md`
 
+## Labeled Dev Output Examples
+
+The archived dev-visualization report references rendered prediction PNGs via
+`visual_path`, but those PNGs are not present in the public snapshot. To keep
+the review path concrete, this repo includes a small labeled set of V3 output
+examples copied from the local `batch_results_v8_500` export for dev cases that
+were correctly classified in the retained evaluation metadata.
+
+| Dev case | Original tray | Output visualization | Correctly classified items |
+| --- | --- | --- | --- |
+| `Cluster_149_frame_frame_013352_00` | ![Cluster 149 original](../../assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/original.jpg) | ![Cluster 149 visualization](../../assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/visualization.jpg) | `rice`, `fish` |
+| `Cluster_98_frame_frame_044320_00` | ![Cluster 98 original](../../assets/v3/dev_examples/Cluster_98_frame_frame_044320_00/original.jpg) | ![Cluster 98 visualization](../../assets/v3/dev_examples/Cluster_98_frame_frame_044320_00/visualization.jpg) | `Aseeda_brown`, `vegetables_steamed` |
+| `Cluster_147_frame_frame_105786_00` | ![Cluster 147 original](../../assets/v3/dev_examples/Cluster_147_frame_frame_105786_00/original.jpg) | ![Cluster 147 visualization](../../assets/v3/dev_examples/Cluster_147_frame_frame_105786_00/visualization.jpg) | `Aseeda_white` |
+| `Cluster_14_frame_frame_014137_00` | ![Cluster 14 original](../../assets/v3/dev_examples/Cluster_14_frame_frame_014137_00/original.jpg) | ![Cluster 14 visualization](../../assets/v3/dev_examples/Cluster_14_frame_frame_014137_00/visualization.jpg) | `cake` |
+
 ## Why This Repo May Be Worth Assessing
 
 From a research assessment perspective, the value of this repo is not only the
@@ -222,6 +252,7 @@ There is also a concrete next-step thesis question embedded in the repo:
 - checkpoint metadata under `checkpoints/`
 - detailed project and experiment documentation
 - representative `batch8` input examples under `../../assets/v3/batch8_samples/`
+- labeled public V3 dev examples under `../../assets/v3/dev_examples/`
 
 ## What Is Not Included
 
@@ -249,12 +280,10 @@ This public repo includes representative examples only:
 
 - `../../assets/v3/batch8_samples/`
 
-<p align="center">
-  <img src="../../assets/v3/batch8_samples/Cluster_105_frame_frame_000879_00/original.jpg" width="22%" alt="Batch8 original sample A" />
-  <img src="../../assets/v3/batch8_samples/Cluster_105_frame_frame_000879_00/visualization.jpg" width="22%" alt="Batch8 visualization sample A" />
-  <img src="../../assets/v3/batch8_samples/Cluster_34_frame_frame_111575_00/original.jpg" width="22%" alt="Batch8 original sample B" />
-  <img src="../../assets/v3/batch8_samples/Cluster_34_frame_frame_111575_00/visualization.jpg" width="22%" alt="Batch8 visualization sample B" />
-</p>
+| Public sample | Original tray | Output visualization |
+| --- | --- | --- |
+| `Cluster_105_frame_frame_000879_00` | ![Batch8 sample A original](../../assets/v3/batch8_samples/Cluster_105_frame_frame_000879_00/original.jpg) | ![Batch8 sample A visualization](../../assets/v3/batch8_samples/Cluster_105_frame_frame_000879_00/visualization.jpg) |
+| `Cluster_34_frame_frame_111575_00` | ![Batch8 sample B original](../../assets/v3/batch8_samples/Cluster_34_frame_frame_111575_00/original.jpg) | ![Batch8 sample B visualization](../../assets/v3/batch8_samples/Cluster_34_frame_frame_111575_00/visualization.jpg) |
 
 The public sample folders are intended to show what the real inputs and outputs
 look like without copying the entire raw package into Git.
