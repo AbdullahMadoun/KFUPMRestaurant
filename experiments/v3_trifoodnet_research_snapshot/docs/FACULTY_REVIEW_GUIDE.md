@@ -11,6 +11,7 @@ the project as research rather than as a casual software repository.
 4. Is the experimental evidence organized well enough to trust the claims?
 5. What gaps remain before this could become a publishable or externally
    reproducible research artifact?
+6. Is freezing SAM fully a sensible next-step simplification for future work?
 
 ## Recommended Reading Order
 
@@ -34,6 +35,10 @@ The project is strongest when read as a decomposition strategy:
 
 The key question is whether this decomposition improves interpretability and
 debuggability enough to justify the added engineering complexity.
+
+An important current follow-up question is whether Stage 2 should remain
+partially trainable at all, or whether a fully frozen SAM module would make the
+research program cleaner and easier to optimize.
 
 ### 2. Experimental Evidence
 
@@ -62,6 +67,18 @@ Gaps:
 - the public GitHub copy does not include the heavyweight checkpoint tarball
 - the original checkpoint path is weight-only rather than a full optimizer-state resume
 - exact runtime reproduction still depends on path and environment recovery
+
+### 4. Plausibility Of The Next Step
+
+The repository now frames one specific next-step hypothesis:
+
+- freeze SAM fully
+- keep the three-stage architecture
+- continue improving Stage 1 and Stage 3
+
+That is worth assessing because it is a focused research move rather than a
+vague “try more things” plan. It aims to reduce optimization burden while
+preserving the interpretability advantages of the staged design.
 
 ## Fast Evaluation Heuristic
 

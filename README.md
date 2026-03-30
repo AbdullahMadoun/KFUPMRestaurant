@@ -1,8 +1,15 @@
-# 🍴 Intelligent Food Analysis & Segmentation Showcase
+# 🍴 Intelligent Food Analysis, Segmentation, and TriFoodNet Research
 
-This repository documents the evolution of specialized food recognition technology, transitioning from few-shot classification to advanced multimodal reasoning.
+This repository now serves two purposes at once:
 
-[![Main Showcase](assets/v2/run6_final/segmented_mixed3.jpg)](experiments/v2_sam3_qwen_vl/)
+- a public showcase of the earlier V1 and V2 food-analysis pipelines
+- the main public home of the V3 TriFoodNet research track
+
+The V3 track is now the primary focus. It preserves the training-oriented code,
+retained experiment evidence, faculty-review documentation, and representative
+`batch8` source samples behind the latest multi-stage system.
+
+[![TriFoodNet Research Track](assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/visualization.jpg)](experiments/v3_trifoodnet_research_snapshot/)
 
 ---
 
@@ -27,7 +34,62 @@ research system with preserved empirical evidence.
 
 ---
 
-## 🔬 Experiment V2: SAM3 + Qwen-VL (State of the Art)
+## 🧪 Main Track: V3 TriFoodNet Research Snapshot
+
+The main active direction in this repository is the V3 TriFoodNet research
+snapshot under `experiments/v3_trifoodnet_research_snapshot/`. This is the part
+of the repo intended for technical review, thesis discussion, and future model
+development.
+
+It keeps:
+
+- the end-to-end three-stage training code
+- retained multi-run logs and reports
+- a faculty-facing review path
+- representative `batch8` source inputs and visual outputs
+- architecture and loss diagrams
+
+### Current Research Position
+
+The retained best run still used a partially trainable SAM path:
+
+- Stage 2 image encoder: frozen
+- Stage 2 prompt encoder: frozen
+- Stage 2 mask decoder: trainable
+
+The next planned simplification is to freeze SAM completely and treat it as a
+fixed segmentation module while focusing optimization on Stage 1 and Stage 3.
+The reason is not that this is already proven as the final answer; it is the
+current research hypothesis for reducing training complexity and isolating where
+the largest remaining gains are likely to come from.
+
+In other words:
+
+- preserve SAM as a stable segmentation component
+- reduce Stage 2 optimization burden in joint training
+- push the learning effort toward grounding and masked-item recognition
+
+### Why Freeze SAM Further
+
+Based on the retained snapshot:
+
+- the best run already froze most of SAM and only left the mask decoder trainable
+- the overall training stack is complex, and the project already has strong
+  evidence that Stage 1 and Stage 3 are the more strategic places to keep
+  iterating
+- freezing SAM fully is the cleanest next experiment if the goal is to simplify
+  the training path without discarding the three-stage design
+
+### Research Snapshot Links
+
+- **Main V3 README:** [TriFoodNet research snapshot](./experiments/v3_trifoodnet_research_snapshot/README.md)
+- **Faculty review guide:** [Review path](./experiments/v3_trifoodnet_research_snapshot/docs/FACULTY_REVIEW_GUIDE.md)
+- **All-trials report:** [Retained cross-run comparison](./experiments/v3_trifoodnet_research_snapshot/outputs/all_trials_report_20260321/index.md)
+- **Best-run summary:** [Cleandata1 summary](./experiments/v3_trifoodnet_research_snapshot/outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md)
+
+---
+
+## 🔬 Experiment V2: SAM3 + Qwen-VL Showcase
 
 The current production-grade pipeline uses **Qwen2.5-VL-3B** for reasoning and **SAM3** for precise pixel-level masking. It was developed through 6 rigorous experimental iterations to reach peak performance.
 
@@ -105,7 +167,7 @@ We meticulously refined the pipeline through these major phases. Click to expand
 
 ---
 
-## 🧪 Research Track V3: TriFoodNet Multi-Stage Snapshot
+## 📚 V3 Snapshot Overview
 
 This repository now also includes a separate research-facing track under
 `experiments/v3_trifoodnet_research_snapshot/`. Unlike the public V2 inference

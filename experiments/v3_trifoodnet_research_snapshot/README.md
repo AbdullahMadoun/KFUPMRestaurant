@@ -18,6 +18,31 @@ If you only have 10 to 15 minutes, read these first:
 4. `outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md`
 5. `BATCH8_DATASET_NOTE.md`
 
+## Current Research Direction
+
+The best retained run in this snapshot still treated Stage 2 as partially
+trainable:
+
+- image encoder frozen
+- prompt encoder frozen
+- mask decoder trainable
+
+The next planned training direction is to freeze SAM fully and use it as a
+fixed segmentation component while continuing to optimize the rest of the
+pipeline.
+
+Why this is the current direction:
+
+- the project already relies on SAM mostly as a structured intermediate module,
+  not as the main source of modeling novelty
+- freezing Stage 2 further should simplify the joint training problem
+- that makes it easier to test whether future gains should come primarily from
+  Stage 1 grounding and Stage 3 masked-item recognition
+
+This should be read as the current research hypothesis and proposed next step,
+not as a claim that the fully frozen-SAM setting has already been validated as
+the final best configuration.
+
 ## Relationship to `KFUPMRestaurant`
 
 This repository should be read as a research-focused companion to the public
@@ -80,6 +105,9 @@ interpretability across the chain:
 That decomposition matters for real-world cafeteria or food-service settings,
 where mixed trays, occlusion, and visually similar dishes make end-to-end error
 analysis difficult if everything is compressed into one opaque prediction.
+
+The current refinement idea is to preserve that decomposition but reduce the
+joint optimization load by freezing Stage 2 more aggressively.
 
 ## Architecture
 
@@ -177,6 +205,11 @@ This makes it possible to assess the work on four axes:
 2. quality of engineering and experiment tracking,
 3. credibility of the retained empirical evidence,
 4. reproducibility gaps that would need to be closed for publication.
+
+There is also a concrete next-step thesis question embedded in the repo:
+
+- should SAM be treated as a fully frozen segmentation primitive while the
+  research effort concentrates on Stage 1 and Stage 3?
 
 ## What Is Included
 
