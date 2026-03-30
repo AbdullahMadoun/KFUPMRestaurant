@@ -54,13 +54,23 @@ Positives:
 
 - the repo preserves code, logs, reports, and checkpoint provenance
 - validation and resume documentation are present
-- a packaged best checkpoint is included
+- the best retained run and checkpoint provenance are documented clearly
 
 Gaps:
 
 - the external dataset is not bundled
-- the checkpoint is weight-only
+- the public GitHub copy does not include the heavyweight checkpoint tarball
+- the original checkpoint path is weight-only rather than a full optimizer-state resume
 - exact runtime reproduction still depends on path and environment recovery
+
+## Fast Evaluation Heuristic
+
+If you want one compact judgment test, ask whether the repo answers these three
+questions convincingly:
+
+1. Why is the 3-stage design better than a one-shot model for this problem?
+2. Do the retained logs and reports make the claimed best run believable?
+3. Is the remaining reproducibility gap acceptable for a thesis-stage research artifact?
 
 ## Suggested Judgment
 

@@ -8,15 +8,22 @@ This repository documents the evolution of specialized food recognition technolo
 
 ## 🏆 The Evolution of the Pipeline
 
-We present two distinct generations of our food analysis engine. While both achieve high-quality results, the transition to V2 represents a paradigm shift in how AI understands culinary scenes.
+This repository now presents three complementary tracks:
 
-| Feature | **V1: Hybrid Classification** | **V2: Multimodal Reasoning** |
-| :--- | :--- | :--- |
-| **Logic** | Few-shot comparison against refs | Zero-shot visual reasoning |
-| **Models** | FoodSAM + PictSure | **Qwen2.5-VL + SAM3** |
-| **Context** | Required manually provided context images | Understands scene context natively |
-| **Thresholding** | Fixed confidence scores | **Dynamic Auto-Retry Logic** |
-| **Precision** | Standard segmentation | **Global NMS** (Overlapping detection fix) |
+- `V1`: an early hybrid FoodSAM + PictSure pipeline
+- `V2`: a polished public Qwen2.5-VL + SAM3 inference showcase
+- `V3`: a research-facing TriFoodNet snapshot with training code, reports, and retained experiments
+
+Together they show the progression from a practical prototype to a more serious
+research system with preserved empirical evidence.
+
+| Feature | **V1: Hybrid Classification** | **V2: Multimodal Reasoning** | **V3: Research Snapshot** |
+| :--- | :--- | :--- | :--- |
+| **Primary goal** | early functional prototype | public inference showcase | faculty-facing training and evaluation package |
+| **Models** | FoodSAM + PictSure | **Qwen2.5-VL + SAM3** | **Qwen2.5-VL + SAM + PictSure-style classifier** |
+| **Context** | manual reference context | scene-level reasoning | staged end-to-end research workflow |
+| **Evidence style** | example outputs | polished visual runs | logs, reports, metrics, validation, docs |
+| **Best use** | lineage | demo | technical assessment |
 
 ---
 
@@ -139,6 +146,13 @@ workspace. That package contains:
 Representative public samples are included under:
 
 - `assets/v3/batch8_samples/`
+
+<p align="center">
+  <img src="assets/v3/batch8_samples/Cluster_0_frame_frame_025403_00/original.jpg" width="22%" alt="Batch8 original sample 1" />
+  <img src="assets/v3/batch8_samples/Cluster_0_frame_frame_025403_00/visualization.jpg" width="22%" alt="Batch8 visualization sample 1" />
+  <img src="assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/original.jpg" width="22%" alt="Batch8 original sample 2" />
+  <img src="assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/visualization.jpg" width="22%" alt="Batch8 visualization sample 2" />
+</p>
 
 ### Review-Oriented Entry Points
 

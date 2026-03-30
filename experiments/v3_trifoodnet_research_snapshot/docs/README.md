@@ -43,7 +43,7 @@ point instead of scanning the root directory manually.
 
 - `logs/`: retained training logs per run
 - `outputs/`: markdown, CSV, JSON, SVG, and visualization outputs
-- `weights/`: packaged checkpoint tarball and provenance
+- `weights/`: checkpoint provenance for the strongest retained run
 - `checkpoints/`: lightweight checkpoint metadata plus restore targets
 
 ## Historical Notes

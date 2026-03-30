@@ -8,6 +8,16 @@ best packaged checkpoint, and supporting documentation are grouped so a reviewer
 can assess novelty, technical coherence, empirical quality, and reproducibility
 without reconstructing the project history manually.
 
+## Quick Review Path
+
+If you only have 10 to 15 minutes, read these first:
+
+1. `README.md`
+2. `docs/FACULTY_REVIEW_GUIDE.md`
+3. `outputs/all_trials_report_20260321/index.md`
+4. `outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md`
+5. `BATCH8_DATASET_NOTE.md`
+
 ## Relationship to `KFUPMRestaurant`
 
 This repository should be read as a research-focused companion to the public
@@ -89,6 +99,11 @@ Stage responsibilities:
 - `stage2_sam.py`: segmentation from Stage 1 boxes
 - `stage3_icl.py`: masked-item classification using a PictSure-style path
 - `pipeline.py`: end-to-end orchestration across all three stages
+
+Visual references used in the parent repo:
+
+- `../../assets/v3/diagrams/trifoodnet_inference_pipeline.png`
+- `../../assets/v3/diagrams/trifoodnet_multitask_loss.png`
 
 ## Latest Retained Results
 
@@ -201,6 +216,13 @@ This public repo includes representative examples only:
 
 - `../../assets/v3/batch8_samples/`
 
+<p align="center">
+  <img src="../../assets/v3/batch8_samples/Cluster_105_frame_frame_000879_00/original.jpg" width="22%" alt="Batch8 original sample A" />
+  <img src="../../assets/v3/batch8_samples/Cluster_105_frame_frame_000879_00/visualization.jpg" width="22%" alt="Batch8 visualization sample A" />
+  <img src="../../assets/v3/batch8_samples/Cluster_34_frame_frame_111575_00/original.jpg" width="22%" alt="Batch8 original sample B" />
+  <img src="../../assets/v3/batch8_samples/Cluster_34_frame_frame_111575_00/visualization.jpg" width="22%" alt="Batch8 visualization sample B" />
+</p>
+
 The public sample folders are intended to show what the real inputs and outputs
 look like without copying the entire raw package into Git.
 
@@ -271,7 +293,10 @@ These are the main limitations a reviewer should keep in mind:
 
 - the snapshot is not a full paper-release package
 - dataset assets are external and must be restored separately
-- the packaged checkpoint is weight-only, not a true optimizer-state resume
+- checkpoint provenance is preserved, but the large public GitHub copy does not
+  include the checkpoint tarball itself
+- even in the original snapshot, the checkpoint path is weight-only rather than
+  a true optimizer-state resume
 - `master_config.yaml` still reflects the original Linux training layout
 - some historical runs are incomplete or failed, although they remain useful as
   evidence of the experiment path
