@@ -1,0 +1,46 @@
+# TriFoodNet — training-only branch
+# Pinned to versions that match SAM3 + Blackwell-compatible torch.
+#
+# Install:
+#   pip install -r requirements.txt
+#
+# Notes:
+# - Sam3Model was added in transformers 4.56. Earlier versions WILL fail with
+#   ImportError at stage2_sam.py:62.
+# - For RTX 5090 (sm_120, Blackwell): you ALSO need a CUDA-12.8 torch wheel
+#   (the 4090's stock torch 2.5.1+cu124 lacks Blackwell kernels and crashes
+#   with "no kernel image is available for execution on the device"). Install
+#   the nightly cu128 wheel separately AFTER this requirements file:
+#     pip install --pre torch torchvision \
+#       --index-url https://download.pytorch.org/whl/nightly/cu128
+#   For RTX 4090 (sm_89), the version below is fine.
+
+# ── Core deep learning ─────────────────────────────────────────────────────
+torch>=2.5,<3.0
+torchvision
+
+# ── HuggingFace stack (SAM3 needs ≥4.56) ───────────────────────────────────
+transformers>=4.56
+accelerate>=1.0
+peft>=0.13
+bitsandbytes>=0.45     # 0.43-0.44 break with new triton; pin floor at 0.45+
+
+# ── Result tracking ────────────────────────────────────────────────────────
+tensorboard>=2.15
+
+# ── Utilities ──────────────────────────────────────────────────────────────
+numpy
+pillow
+psutil
+pyyaml
+
+# ── Dataset distribution (instance-side download from Drive) ───────────────
+gdown>=5.0,<7.0        # 5.x has the new positional CLI we use; pin <7 in case 7.x changes again
+
+# ── Optional: experiment tracking (off by default in master_config.yaml) ───
+# wandb
+
+# ── PictSure (vendored fallback in pictsure_library/) ──────────────────────
+# stage3_icl.py first tries `from PictSure import PictSure` from a system
+# install; if missing, it falls back to the vendored pictsure_library/.
+# The vendored copy is committed so installs are deterministic.

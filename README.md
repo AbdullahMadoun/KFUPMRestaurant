@@ -1,173 +1,79 @@
-# Intelligent Food Analysis, Segmentation, and TriFoodNet Research
+# TriFoodNet — `training-only` branch
 
-This repository is now organized as a documentation-first review package.
+This branch contains **only what you need to train**. No legacy V1/V2 code, no inference scripts, no demo assets. Pull this branch on any GPU server and you can launch a training run with one command.
 
-Its main purpose is to present the V3 `TriFoodNet` research line clearly:
+## Where to look first
 
-- what the model is
-- what assumptions it makes
-- what the latest retained evidence shows
-- where to read the detailed markdown documentation
+All training code, configs, and docs live in:
 
-Older V1 and V2 work is still preserved, but it is no longer the main story on
-the front page.
+```
+experiments/v3_trifoodnet_research_snapshot/
+```
 
-[![TriFoodNet public sample output](assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/visualization.jpg)](experiments/v3_trifoodnet_research_snapshot/)
+Open these in order:
 
-## Start Here
+1. **`experiments/v3_trifoodnet_research_snapshot/TRAIN_GUIDE.md`** — the deterministic, step-by-step guide for getting a run going. **An LLM agent should read this first and follow it literally.**
+2. **`experiments/v3_trifoodnet_research_snapshot/CONFIG_GUIDE.md`** — what every config field does and which ones to override per experiment.
+3. **`experiments/v3_trifoodnet_research_snapshot/EXPERIMENT_GUIDE.md`** — how to name runs, document changes, and read TensorBoard.
+4. **`experiments/v3_trifoodnet_research_snapshot/SECRETS.md`** — HuggingFace token handling, gitignored `.env` workflow.
 
-If you are reviewing the project for research quality, read these in order:
+## One-command quick start
 
-1. [V3 TriFoodNet Snapshot README](./experiments/v3_trifoodnet_research_snapshot/README.md)
-2. [Faculty Review Guide](./experiments/v3_trifoodnet_research_snapshot/docs/FACULTY_REVIEW_GUIDE.md)
-3. [All Trials Report](./experiments/v3_trifoodnet_research_snapshot/outputs/all_trials_report_20260321/index.md)
-4. [Best Run Summary](./experiments/v3_trifoodnet_research_snapshot/outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md)
-5. [Batch8 Dataset Note](./experiments/v3_trifoodnet_research_snapshot/BATCH8_DATASET_NOTE.md)
+```bash
+git clone -b training-only https://github.com/AbdullahMadoun/KFUPMRestaurant.git
+cd KFUPMRestaurant/experiments/v3_trifoodnet_research_snapshot
+pip install -r requirements.txt
+python scripts/smoke_phase3.py    # ~5s, must show "All checks green"
+python -m train_joint              # launches training with master_config.yaml
+```
 
-## Main Track
+Plus, in another terminal:
 
-The active research track is:
+```bash
+tensorboard --logdir logs/
+```
 
-- [experiments/v3_trifoodnet_research_snapshot](./experiments/v3_trifoodnet_research_snapshot/)
+## What this branch is
 
-This track preserves:
+- The complete TriFoodNet pipeline: Qwen 2.5-VL (Stage 1) → SAM 3 (Stage 2) → PictSure-style ICL transformer (Stage 3)
+- All four Tier-0 audit fixes applied (query-in-support leak, best-checkpoint mismatch, silent NaN, NMS off)
+- Phase-1 dataset adapter for the v3 export format
+- Phase-2 trustworthy base: deterministic seed, single eval harness, per-stage learning rates, config validation, full provenance metadata
+- Retrieval-vs-transformer diagnostic metrics built into eval
+- TensorBoard wired in as the canonical result tracker
+- Vast.ai launcher scripts that pull data from Google Drive and start training in tmux
 
-- the three-stage training and inference code
-- retained experiment logs and reports
-- a faculty-facing review path
-- architecture and loss diagrams
-- representative V3 image outputs
+## What this branch is not
 
-## Model Summary
+- It is **not** a place to add new exploratory features, demos, or one-off scripts. Those go on a feature branch off `main`.
+- It is **not** the inference repo. Production inference belongs in a separate deploy branch.
+- It does **not** contain the dataset. Dataset is hosted on Google Drive and pulled by `scripts/vast/00b_pull_dataset_from_drive.sh` directly to the training machine.
 
-TriFoodNet is a staged food-understanding pipeline:
+## Where things live
 
-1. Stage 1 uses `Qwen2.5-VL` to ground food items in the full tray image.
-2. Stage 2 uses `SAM` to convert grounded boxes into masks.
-3. Stage 3 classifies masked item crops with a specialist classifier.
+| What | Where |
+|---|---|
+| Training entry point | `experiments/v3_trifoodnet_research_snapshot/train_joint.py` |
+| Master config | `experiments/v3_trifoodnet_research_snapshot/master_config.yaml` |
+| Local pre-flight smoke | `experiments/v3_trifoodnet_research_snapshot/scripts/smoke_phase3.py` |
+| Vast.ai launcher | `experiments/v3_trifoodnet_research_snapshot/scripts/vast/` |
+| Run comparison | `experiments/v3_trifoodnet_research_snapshot/scripts/compare_runs.py` |
+| Experiment registry | `experiments/v3_trifoodnet_research_snapshot/experiments/registry.jsonl` |
+| Contract tests | `experiments/v3_trifoodnet_research_snapshot/tests/` |
 
-The main design claim is not that one stage solves everything. The system is
-intentionally decomposed so that detection, segmentation, and item recognition
-can be inspected separately.
+## Branch policy
 
-## Current Research Direction
+- `training-only` is a long-lived branch. Bug fixes and improvements to the training loop land here.
+- New features go on `feature/<name>` branches off `training-only`, then PR back.
+- The branch must always pass `python scripts/smoke_phase3.py`. If it doesn't, fix that first.
+- Update `EXPERIMENT_GUIDE.md` whenever the run / docs / metric naming convention changes.
 
-The best retained run still used a partially trainable Stage 2 setup:
+## Asking for help
 
-- SAM image encoder frozen
-- SAM prompt encoder frozen
-- SAM mask decoder trainable
+If something is unclear, the hierarchy is:
+1. The four guide MDs above
+2. The committed history (`git log --oneline experiments/v3_trifoodnet_research_snapshot/`)
+3. `experiments/v3_trifoodnet_research_snapshot/PHASE3_EXPECTATIONS.md` — locked predictions for the baseline rerun
+4. `experiments/v3_trifoodnet_research_snapshot/experiments/registry.jsonl` — every previous run's headline metrics
 
-The current next-step hypothesis is to freeze SAM fully and keep optimization
-pressure on Stage 1 and Stage 3. That should be read as a research direction,
-not as a completed empirical result.
-
-## Core Assumptions
-
-The V3 pipeline is built around these assumptions:
-
-- the input is a cafeteria-style tray image with one or more visible food items
-- Stage 1 can provide useful candidate boxes before segmentation is attempted
-- Stage 2 is mainly a structured mask generator, not the primary novelty source
-- Stage 3 depends on reasonably aligned masked crops from earlier stages
-- reproducibility currently depends on restoring external dataset assets
-- the public GitHub copy is a review package, not a fully self-contained
-  benchmark release
-
-## Latest Retained Results
-
-These are the latest retained numbers for the strongest run currently preserved
-in the repo.
-
-| Item | Value |
-| --- | --- |
-| Strongest retained run | `trial-20260321-cleandata1` |
-| Best retained checkpoint | `epoch_038` by `joint/combined = 1.9375961198969618` |
-| Final retained epoch | `epoch_040` |
-| Final dev Stage 1 recall@0.5 | `0.8636363636363636` |
-| Final dev Stage 2 mIoU | `0.5733921838932934` |
-| Final dev Stage 3 accuracy | `0.5` |
-| Final dev combined score | `1.937028547529657` |
-| Runs compared in retained report | `15` |
-
-## Architecture References
-
-| Reference | Image |
-| --- | --- |
-| Inference pipeline | ![TriFoodNet inference pipeline](assets/v3/diagrams/trifoodnet_inference_pipeline.png) |
-| Multi-task loss structure | ![TriFoodNet multi-task loss](assets/v3/diagrams/trifoodnet_multitask_loss.png) |
-
-## Labeled Dev Examples
-
-The archived V3 dev report references rendered prediction PNGs, but those PNGs
-were not included in the public snapshot. To keep the README concrete, the
-examples below use local V3 outputs corresponding to correctly classified dev
-cases and label them explicitly.
-
-| Dev case | Original tray | Output visualization | Correctly classified items |
-| --- | --- | --- | --- |
-| `Cluster_149_frame_frame_013352_00` | ![Cluster 149 original](assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/original.jpg) | ![Cluster 149 visualization](assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/visualization.jpg) | `rice`, `fish` |
-| `Cluster_98_frame_frame_044320_00` | ![Cluster 98 original](assets/v3/dev_examples/Cluster_98_frame_frame_044320_00/original.jpg) | ![Cluster 98 visualization](assets/v3/dev_examples/Cluster_98_frame_frame_044320_00/visualization.jpg) | `Aseeda_brown`, `vegetables_steamed` |
-| `Cluster_147_frame_frame_105786_00` | ![Cluster 147 original](assets/v3/dev_examples/Cluster_147_frame_frame_105786_00/original.jpg) | ![Cluster 147 visualization](assets/v3/dev_examples/Cluster_147_frame_frame_105786_00/visualization.jpg) | `Aseeda_white` |
-| `Cluster_14_frame_frame_014137_00` | ![Cluster 14 original](assets/v3/dev_examples/Cluster_14_frame_frame_014137_00/original.jpg) | ![Cluster 14 visualization](assets/v3/dev_examples/Cluster_14_frame_frame_014137_00/visualization.jpg) | `cake` |
-
-## Public Batch8 Samples
-
-The V3 MVP image source came from the `batch_results_v8_500` export in the
-`v3_3stage_mvp` workspace. The public repo keeps a small sample only.
-
-| Public sample | Original tray | Output visualization |
-| --- | --- | --- |
-| `Cluster_0_frame_frame_025403_00` | ![Batch8 sample 0 original](assets/v3/batch8_samples/Cluster_0_frame_frame_025403_00/original.jpg) | ![Batch8 sample 0 visualization](assets/v3/batch8_samples/Cluster_0_frame_frame_025403_00/visualization.jpg) |
-| `Cluster_161_frame_frame_091147_00` | ![Batch8 sample 161 original](assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/original.jpg) | ![Batch8 sample 161 visualization](assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/visualization.jpg) |
-
-## Documentation Guide
-
-The repository is intended to be navigated through markdown documentation rather
-than by browsing files blindly.
-
-### V3 Research Docs
-
-- [V3 Snapshot README](./experiments/v3_trifoodnet_research_snapshot/README.md)
-- [Faculty Review Guide](./experiments/v3_trifoodnet_research_snapshot/docs/FACULTY_REVIEW_GUIDE.md)
-- [Documentation Hub](./experiments/v3_trifoodnet_research_snapshot/docs/README.md)
-- [Repository Map](./experiments/v3_trifoodnet_research_snapshot/docs/REPOSITORY_MAP.md)
-- [Architecture Notes](./experiments/v3_trifoodnet_research_snapshot/ARCHITECTURE.md)
-- [Training Guide](./experiments/v3_trifoodnet_research_snapshot/TRAINING_GUIDE.md)
-- [Evaluation Guide](./experiments/v3_trifoodnet_research_snapshot/EVAL_GUIDE.md)
-- [Data Pipeline Guide](./experiments/v3_trifoodnet_research_snapshot/DATA_PIPELINE.md)
-- [Resume Guide](./experiments/v3_trifoodnet_research_snapshot/RESUME_GUIDE.md)
-- [Experiments Index](./experiments/v3_trifoodnet_research_snapshot/EXPERIMENTS_INDEX.md)
-
-### Result Evidence
-
-- [All Trials Report](./experiments/v3_trifoodnet_research_snapshot/outputs/all_trials_report_20260321/index.md)
-- [Best Run Summary](./experiments/v3_trifoodnet_research_snapshot/outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md)
-- [Validation Report](./experiments/v3_trifoodnet_research_snapshot/VALIDATION_REPORT.md)
-- [Checkpoint Provenance](./experiments/v3_trifoodnet_research_snapshot/weights/CHECKPOINT_PROVENANCE.md)
-
-## Historical Tracks
-
-The earlier tracks are still preserved for lineage and comparison:
-
-- [V2 Showcase](./experiments/v2_sam3_qwen_vl/)
-- [V1 Legacy Hybrid Pipeline](./experiments/v1_hybrid_foodsam_pictsure/)
-
-They remain useful as historical context, but the main technical review target
-is V3.
-
-## Packaging Limits
-
-The public repo intentionally does not bundle everything:
-
-- no full reviewed dataset release
-- no `Sampled_Images_All/` tree inside Git
-- no heavyweight `best_checkpoint.tar` in the public tree
-- no optimizer-state resume package
-
-That limitation is deliberate. The repo is optimized for assessment,
-documentation, and code review first.
-
----
-
-Developed by Antigravity
+Ping the team only after all four come up dry.

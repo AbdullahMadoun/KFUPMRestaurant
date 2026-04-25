@@ -1,9 +1,0 @@
-# Run Summary
-
-- status: completed
-- run_name: trial-20260321-full40-tfmajority1
-- finished_utc: 2026-03-21T19:48:51.696932+00:00
-- elapsed_sec: 200.127
-
-## Best Metrics
-- none

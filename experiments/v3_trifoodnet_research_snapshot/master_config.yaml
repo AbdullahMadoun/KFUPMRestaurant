@@ -86,6 +86,10 @@ hardware:
 #  SECTION 4 — LOGGING
 # ─────────────────────────────────────────
 logging:
+  # TensorBoard is the canonical result tracker for this branch. Each run writes
+  # scalars to <ckpt_dir>/joint/tensorboard/. Aim `tensorboard --logdir logs/`
+  # at the parent dir to compare runs side-by-side.
+  tensorboard:        true
   wandb:              true
   wandb_project:      "trifoodnet"
   jsonl:              true

@@ -37,6 +37,11 @@ try:
 except ImportError:
     wandb = None
 
+try:
+    from torch.utils.tensorboard import SummaryWriter as _TBWriter
+except ImportError:
+    _TBWriter = None
+
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -190,6 +195,33 @@ class ExperimentLogger:
                 tags=getattr(cfg.run, "tags", None),
             )
 
+        # ── TensorBoard (canonical result tracker for this branch) ────────
+        # Off only when explicitly disabled OR when the writer can't import.
+        # Logs land at <run_dir>/tensorboard/ — point `tensorboard --logdir`
+        # at the parent logs/ folder to compare runs side by side.
+        self._tb_enabled = bool(
+            getattr(cfg.logging, "tensorboard", True) and _TBWriter is not None
+        )
+        self._tb_writer: Optional["_TBWriter"] = None
+        if self._tb_enabled:
+            tb_dir = self.root_dir / "tensorboard"
+            tb_dir.mkdir(parents=True, exist_ok=True)
+            self._tb_writer = _TBWriter(log_dir=str(tb_dir))
+            # Hyperparameter snapshot → TB's HPARAMS tab. Only flat scalar/bool/string
+            # types are accepted by add_hparams; we filter accordingly.
+            try:
+                hparams = {
+                    k: v for k, v in flatten_metrics(cfg.to_dict()).items()
+                    if isinstance(v, (int, float, bool, str))
+                }
+                # add_hparams needs a metric dict too; we leave it empty (best-effort)
+                self._tb_writer.add_text(
+                    "config_snapshot",
+                    "```yaml\n" + json.dumps(cfg.to_dict(), indent=2, default=str) + "\n```",
+                )
+            except Exception:
+                pass
+
         self._write_json(self.root_dir / "run_metadata.json", build_run_metadata(cfg, device))
         self._write_json(self.root_dir / "config_snapshot.json", cfg.to_dict())
         self._write_pip_freeze(self.root_dir / "requirements_resolved.txt")
@@ -265,6 +297,22 @@ class ExperimentLogger:
         if self._wandb_enabled:
             wandb.log({k: v for k, v in payload.items() if isinstance(v, (int, float))}, step=step, commit=commit_wandb)
 
+        if self._tb_writer is not None:
+            # Mirror every numeric metric to TensorBoard. Use the global step when
+            # provided so X-axis aligns across train_step / eval_epoch events;
+            # fall back to elapsed_sec (rounded) when step is missing.
+            tb_step = int(step) if step is not None else int(payload.get("elapsed_sec", 0))
+            for key, value in payload.items():
+                if not isinstance(value, (int, float)):
+                    continue
+                if key in ("step", "epoch", "elapsed_sec"):
+                    continue
+                try:
+                    self._tb_writer.add_scalar(key, float(value), global_step=tb_step)
+                except Exception:
+                    # TB has strict tag rules; skip silently rather than kill the run.
+                    pass
+
     def update_best(self, name: str, value: float, step: int, epoch: int):
         current = self._best_metrics.get(name)
         if current is None or value > current.value:
@@ -324,6 +372,13 @@ class ExperimentLogger:
         self.summary_path.write_text("\n".join(summary_lines), encoding="utf-8")
         if self._wandb_enabled:
             wandb.finish()
+        if self._tb_writer is not None:
+            try:
+                self._tb_writer.flush()
+                self._tb_writer.close()
+            except Exception:
+                pass
+            self._tb_writer = None
 
     @staticmethod
     def _write_json(path: Path, payload: Dict[str, Any]):
