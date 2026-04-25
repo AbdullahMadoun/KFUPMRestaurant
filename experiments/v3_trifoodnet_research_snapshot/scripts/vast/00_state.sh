@@ -38,11 +38,11 @@ export DOCKER_IMAGE="pytorch/pytorch:2.7.0-cuda12.8-cudnn9-devel"
 # checkpoints (~2GB) + headroom. 50 is the floor; bumping to 80 to be safe.
 export DISK_GB="${DISK_GB:-80}"
 
-# Hard cap so we cannot leak credit. Auto-destroy via cron-on-instance + local
-# scheduled vastai destroy as belt-and-suspenders. Default 240 min = 4 hrs gives
-# room for a 10-epoch full-pass training run plus eval and report generation.
-# Override per-launch:  AUTO_DESTROY_MINUTES=360 bash 01_launch.sh
-export AUTO_DESTROY_MINUTES="${AUTO_DESTROY_MINUTES:-240}"
+# Auto-destroy DISABLED by default for real training runs — user controls
+# termination manually via 06_destroy.sh. Setting >0 here would silently kill
+# the box mid-epoch on long runs. Override per-launch if you genuinely want
+# a watchdog:  AUTO_DESTROY_MINUTES=240 bash 01_launch.sh
+export AUTO_DESTROY_MINUTES="${AUTO_DESTROY_MINUTES:-0}"
 
 # ── Remote paths inside the container ─────────────────────────────────────────
 export REMOTE_WORK="/root/work"
@@ -70,19 +70,24 @@ load_state || true
 if [[ -z "${RUN_NAME:-}" ]]; then
     export RUN_NAME="trial-$(date -u +%Y%m%d-%H%M)-real-1hr"
 fi
-# Real run: 10 full epochs, dev eval every epoch so we see the curve, save
-# checkpoint every epoch (rotated, keep last 5). Tuned for "let it cook for
-# at least an hour, extend if good, kill cleanly."
+# Real run: 5 full epochs, dev eval every epoch so we see the curve, save
+# checkpoint every epoch (rotated, keep last 5). batch_size=2 + grad_accum=4
+# saturates the 5090's VRAM without OOM. compile=true gives ~30% step speedup
+# after the first warmup batch. num_workers=8 keeps the 5090 fed.
+# Stage 1 dev eval is batched (chunk=8) so eval.interval=1 stays cheap.
 export TRAIN_OVERRIDES=(
     "run.name=${RUN_NAME}"
-    "joint.training.epochs=10"
+    "joint.training.epochs=5"
+    "joint.training.batch_size=2"
+    "joint.training.grad_accum_steps=4"
     "joint.training.max_batches_per_epoch=0"   # 0 = full pass (no cap)
-    "joint.eval.interval=1"                     # eval each epoch
-    "data.num_workers=4"
+    "joint.eval.interval=1"                     # eval each epoch (batched, cheap)
+    "data.num_workers=8"
     "logging.save_every_n_epochs=1"             # checkpoint every epoch
     "logging.keep_last_n_ckpts=5"               # 5 epoch ckpts on disk + best/ + best_by_monitor/
     "logging.wandb=false"
-    "hardware.compile=false"
+    "hardware.compile=true"
+    "inference.stage1_chunk_size=8"
     "data.integration.adapter.export_root=${REMOTE_DATASET}"
 )
 
