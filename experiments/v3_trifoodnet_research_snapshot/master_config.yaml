@@ -52,10 +52,16 @@ data:
     # items.jsonl + manifest.json + classes.json from `adapter.export_root`.
     adapter:
       kind:             "v3_export"
-      export_root:      "/Users/abdulrazzak/Resturant_Pipeline_Feb/results_v2/exports/v3_2026-04-24_61ac038c"
+      # MUST set per environment. Either override on the CLI:
+      #   python -m train_joint data.integration.adapter.export_root=/path/to/v3_export
+      # or export TRIFOODNET_DATASET_DIR before launching — train_joint reads it as
+      # a fallback when this field is empty. Keeping this empty in master_config so
+      # a fresh clone fails-fast with a clear message instead of silently
+      # resolving to someone else's local path.
+      export_root:      ""
       expected_version: "v3"
       expected_hash:    "61ac038c"
-      splits_path:      ""              # default: <export_root>/splits.json
+      splits_path:      ""              # default: writable cache dir, see CONFIG_GUIDE
     # ── Legacy fields (still consumed by snapshot/utility scripts) ─────────
     batch_root:    "/root/dataset"
     export_root:   ""

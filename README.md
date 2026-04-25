@@ -20,9 +20,14 @@ Open these in order:
 ## One-command quick start
 
 ```bash
-git clone -b training-only https://github.com/AbdullahMadoun/KFUPMRestaurant.git
+# --single-branch keeps clone size small (skips main's heavy history)
+git clone --single-branch --branch training-only https://github.com/AbdullahMadoun/KFUPMRestaurant.git
 cd KFUPMRestaurant/experiments/v3_trifoodnet_research_snapshot
 pip install -r requirements.txt
+# Set HF token (one-time per machine; see SECRETS.md)
+echo 'HF_TOKEN=hf_your_token_here' > .env && chmod 600 .env
+# Point at your dataset (or set TRIFOODNET_DATASET_DIR env var)
+export TRIFOODNET_DATASET_DIR=/path/to/v3_2026-04-24_61ac038c
 python scripts/smoke_phase3.py    # ~5s, must show "All checks green"
 python -m train_joint              # launches training with master_config.yaml
 ```

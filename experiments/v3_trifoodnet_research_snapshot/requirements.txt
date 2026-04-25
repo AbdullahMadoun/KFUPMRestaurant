@@ -37,6 +37,9 @@ pyyaml
 # ── Dataset distribution (instance-side download from Drive) ───────────────
 gdown>=5.0,<7.0        # 5.x has the new positional CLI we use; pin <7 in case 7.x changes again
 
+# ── Dev / test (needed for `pytest tests/` to collect) ────────────────────
+pytest>=7.0
+
 # ── Optional: experiment tracking (off by default in master_config.yaml) ───
 # wandb
 

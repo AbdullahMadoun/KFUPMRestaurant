@@ -105,7 +105,8 @@ class FoodClassifier(nn.Module):
         self.pictsure_model = PictSure.from_pretrained(clip_model, device="cpu")
         self._expand_num_classes(resolved_num_classes)
 
-        if lora_cfg and lora_cfg.get("enabled", False):
+        self._lora_enabled = bool(lora_cfg and lora_cfg.get("enabled", False))
+        if self._lora_enabled:
             from peft import LoraConfig, get_peft_model
 
             peft_config = LoraConfig(
@@ -130,6 +131,8 @@ class FoodClassifier(nn.Module):
         self._cached_support_prototypes: Optional[torch.Tensor] = None
         self._cached_support_class_ids: Optional[torch.Tensor] = None
         self._cached_support_device: Optional[str] = None
+        # Versioning so the support cache invalidates when weights change.
+        self._support_cache_version: int = 0
         self._set_trainability()
 
     def _expand_num_classes(self, target_num_classes: int):
@@ -160,8 +163,24 @@ class FoodClassifier(nn.Module):
         self.pictsure_model.num_classes = target_num_classes
 
     def _set_trainability(self):
-        for parameter in self.pictsure_model.parameters():
-            parameter.requires_grad_(True)
+        """Decide which Stage 3 params get gradients.
+
+        With LoRA enabled, peft has already frozen the transformer's base weights
+        and exposed only the LoRA adapters as trainable. We must NOT undo that —
+        previously this method blindly set every param to require_grad=True,
+        which trained the full base transformer in addition to the LoRA, defeating
+        the LoRA-only-training intent.
+
+        With LoRA disabled, full Stage 3 fine-tunes — the legacy behavior.
+
+        ``train_embedding=False`` always freezes the encoder regardless of LoRA.
+        """
+        if not self._lora_enabled:
+            # No LoRA → full transformer + (optionally) embedding train.
+            for parameter in self.pictsure_model.parameters():
+                parameter.requires_grad_(True)
+        # else: keep peft's freeze-base-train-LoRA configuration.
+        # Encoder freeze still respected in either mode.
         if not self.train_embedding:
             for parameter in self.pictsure_model.embedding.parameters():
                 parameter.requires_grad_(False)
@@ -301,6 +320,17 @@ class FoodClassifier(nn.Module):
             )
         embedded = self.pictsure_model.embedding(normalized)
         return embedded.view(-1, embedded.shape[-1])
+
+    def invalidate_support_cache(self):
+        """Drop cached support embeddings/prototypes. Call this after any weight
+        update to the embedding (e.g., end of epoch, post-checkpoint-load) so the
+        cosine retriever re-embeds against the current encoder. Without this,
+        retrieval silently uses stale embeddings from before training started."""
+        self._cached_support_embeddings = None
+        self._cached_support_prototypes = None
+        self._cached_support_class_ids = None
+        self._cached_support_device = None
+        self._support_cache_version += 1
 
     def _ensure_support_cache(self, device: torch.device):
         if (

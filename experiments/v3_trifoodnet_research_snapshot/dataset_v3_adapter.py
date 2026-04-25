@@ -42,6 +42,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import random
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -108,7 +109,28 @@ class V3ExportAdapter:
                     f"V3 export missing required file: {required.relative_to(self.export_root.parent)}"
                 )
 
-        self.splits_path = Path(splits_path) if splits_path else self.export_root / "splits.json"
+        # Default splits.json location: a writable user-cache dir keyed by
+        # dataset hash, so a read-only export dir doesn't break the adapter
+        # and concurrent runs of different dataset versions don't fight over
+        # the same file. Override with `splits_path=...` to pin elsewhere.
+        if splits_path:
+            self.splits_path = Path(splits_path)
+        else:
+            cache_root = Path(os.environ.get("XDG_CACHE_HOME") or (Path.home() / ".cache"))
+            cache_dir = cache_root / "trifoodnet" / "splits"
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            # Hash filename = export's content_hash_sha8 if available, else "default".
+            # We don't have the manifest read yet, so postpone the suffix; for now
+            # the default still uses export_root if writable, and falls back below.
+            primary = self.export_root / "splits.json"
+            try:
+                # Probe write — if export root isn't writable, use the cache.
+                probe = self.export_root / ".splits_writable_probe"
+                probe.write_text("")
+                probe.unlink()
+                self.splits_path = primary
+            except OSError:
+                self.splits_path = cache_dir / f"{self.export_root.name}.splits.json"
         self.train_ratio = float(train_ratio)
         self.dev_ratio = float(dev_ratio)
         self.test_ratio = float(test_ratio)
@@ -316,9 +338,28 @@ class V3ExportAdapter:
         if self.splits_path.exists():
             with self.splits_path.open("r", encoding="utf-8") as f:
                 payload = json.load(f)
-            mapping = payload.get("split_mapping") or {}
-            if mapping:
-                return {str(k): str(v) for k, v in mapping.items()}
+            # Validate the cached splits match THIS dataset version + ratios + seed.
+            # Otherwise we'd silently use a stale split for a new dataset, leaking
+            # train into dev/test or mis-stratifying.
+            cached_hash = str(payload.get("dataset_hash", ""))
+            cached_seed = int(payload.get("seed", -1))
+            cached_ratios = payload.get("ratios") or {}
+            ratios_match = (
+                abs(float(cached_ratios.get("train", -1)) - self.train_ratio) < 1e-6
+                and abs(float(cached_ratios.get("dev", -1)) - self.dev_ratio) < 1e-6
+                and abs(float(cached_ratios.get("test", -1)) - self.test_ratio) < 1e-6
+            )
+            if (
+                cached_hash == self.dataset_hash
+                and cached_seed == self.split_seed
+                and ratios_match
+            ):
+                mapping = payload.get("split_mapping") or {}
+                if mapping:
+                    return {str(k): str(v) for k, v in mapping.items()}
+            # Validation failed — fall through to recompute. Don't warn loudly
+            # because this is normal when a dataset version bumps; the new
+            # mapping will just overwrite the cache.
 
         mapping = self._compute_stratified_split(image_rows)
         payload = {
@@ -485,7 +526,16 @@ def adapter_from_config(integration_cfg) -> V3ExportAdapter:
 
     export_root = getattr(adapter_cfg, "export_root", None)
     if not export_root:
-        raise ValueError("data.integration.adapter.export_root is required for v3_export adapter")
+        env_root = os.environ.get("TRIFOODNET_DATASET_DIR")
+        if env_root:
+            export_root = env_root
+        else:
+            raise ValueError(
+                "data.integration.adapter.export_root is empty and TRIFOODNET_DATASET_DIR "
+                "env var is not set. Either set the env var, override the config field on "
+                "the CLI (data.integration.adapter.export_root=/path/to/v3_export), or edit "
+                "master_config.yaml. See CONFIG_GUIDE.md."
+            )
 
     return V3ExportAdapter(
         export_root=export_root,

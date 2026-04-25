@@ -110,9 +110,11 @@ def build_record(log_dir: Path) -> dict:
         "final_train_stage3_episode_acc": final_train.get("train/stage3_episode_acc"),
         "final_train_stage3_acc": final_train.get("train/stage3_acc"),
         "final_train_loss_total": final_train.get("train/loss_total"),
-        # health signals
-        "train_nan_total": final_train.get("train/nan_total") or 0,
-        "train_episode_leak_fallback_total": final_train.get("train/episode_leak_fallback_total") or 0,
+        # Health signals — keep None when missing so a dead/incomplete run is
+        # distinguishable from a healthy one. `or 0` here would silently mark
+        # crashed runs as having zero NaN events.
+        "train_nan_total": final_train.get("train/nan_total"),
+        "train_episode_leak_fallback_total": final_train.get("train/episode_leak_fallback_total"),
     }
 
 

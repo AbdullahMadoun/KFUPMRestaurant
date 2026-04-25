@@ -321,12 +321,23 @@ class TriFoodNet(nn.Module):
             stage1_metrics = {"stage1/lm_loss": float(loss1.detach().item())}
 
             # Teacher forcing uses GT boxes during training. Inference/eval can switch
-            # to Qwen-generated boxes by setting use_gt_boxes=False.
-            prompt_boxes = batch["boxes"] if use_gt_boxes else self._stage1_prompt_boxes(batch["pil_images"], batch["boxes"])
+            # to Qwen-generated boxes by setting use_gt_boxes=False — but in that
+            # case the predicted boxes are NOT aligned with the GT mask order, so
+            # the per-mask loss in stage2_sam.forward would zip predictions against
+            # mismatched GT masks. We pass gt_masks=None in that case so Stage 2
+            # runs forward-only (returns predictions for the predicted boxes, no
+            # supervised loss on them). This avoids a real correctness bug found
+            # in code review.
+            if use_gt_boxes:
+                prompt_boxes = batch["boxes"]
+                s2_gt_masks = batch.get("masks")
+            else:
+                prompt_boxes = self._stage1_prompt_boxes(batch["pil_images"], batch["boxes"])
+                s2_gt_masks = None
             s2_out = self.stage2(
                 pixel_values = batch["images"],
                 input_boxes  = prompt_boxes,
-                gt_masks     = batch.get("masks"),
+                gt_masks     = s2_gt_masks,
             )
             loss2 = self._safe_loss(s2_out["loss"], "stage2")
             stage2_loss_info = s2_out.get("loss_info", {})

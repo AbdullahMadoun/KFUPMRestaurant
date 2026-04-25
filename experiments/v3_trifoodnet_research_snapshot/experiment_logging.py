@@ -126,10 +126,13 @@ def _collect_git_state() -> Dict[str, Any]:
             ["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL, text=True, cwd=os.getcwd(),
         ).strip()
         state["sha"] = sha
-        diff = subprocess.run(
-            ["git", "diff", "--quiet"], stderr=subprocess.DEVNULL, cwd=os.getcwd(),
+        # `git diff --quiet` ignores untracked files, so a brand-new untracked
+        # script wouldn't flip dirty=True and the run would falsely look reproducible.
+        # Use `git status --porcelain` which captures untracked + modified + staged.
+        porcelain = subprocess.check_output(
+            ["git", "status", "--porcelain"], stderr=subprocess.DEVNULL, text=True, cwd=os.getcwd(),
         )
-        state["dirty"] = diff.returncode != 0
+        state["dirty"] = bool(porcelain.strip())
         try:
             branch = subprocess.check_output(
                 ["git", "rev-parse", "--abbrev-ref", "HEAD"],
@@ -199,9 +202,14 @@ class ExperimentLogger:
         # Off only when explicitly disabled OR when the writer can't import.
         # Logs land at <run_dir>/tensorboard/ — point `tensorboard --logdir`
         # at the parent logs/ folder to compare runs side by side.
-        self._tb_enabled = bool(
-            getattr(cfg.logging, "tensorboard", True) and _TBWriter is not None
-        )
+        tb_requested = bool(getattr(cfg.logging, "tensorboard", True))
+        if tb_requested and _TBWriter is None:
+            print(
+                "[ExperimentLogger] WARN: cfg.logging.tensorboard=true but "
+                "torch.utils.tensorboard.SummaryWriter could not be imported. "
+                "Install with `pip install tensorboard`. Continuing without TB."
+            )
+        self._tb_enabled = bool(tb_requested and _TBWriter is not None)
         self._tb_writer: Optional["_TBWriter"] = None
         if self._tb_enabled:
             tb_dir = self.root_dir / "tensorboard"

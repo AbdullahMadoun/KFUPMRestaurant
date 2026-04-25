@@ -36,17 +36,12 @@ fi
 # - transformers + accelerate (Qwen + SAM)
 # - PIL / Pillow already there
 # - psutil / pyyaml for the logger + config
-echo "[run] installing pip deps (cached after first run)..."
+echo "[run] installing from requirements.txt (single source of truth)..."
 "${SSH_BASE[@]}" "
     set -e
     cd ${REMOTE_WORK}/code
-    pip install --quiet --no-cache-dir \
-        peft \
-        bitsandbytes \
-        'transformers>=4.56' \
-        accelerate \
-        psutil pyyaml omegaconf
-    python3 -c "import transformers; assert hasattr(transformers, 'Sam3Model'), 'Sam3Model missing — transformers ${'$'}{transformers.__version__} too old'"
+    pip install --quiet --no-cache-dir -r requirements.txt
+    python3 -c 'import transformers; assert hasattr(transformers, \"Sam3Model\"), \"Sam3Model missing — bump transformers in requirements.txt\"'
 "
 
 # ── 2. Quick local smoke before burning model-load time ──────────────────────

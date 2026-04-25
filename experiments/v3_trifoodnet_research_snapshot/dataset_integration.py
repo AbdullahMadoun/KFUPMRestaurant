@@ -978,7 +978,13 @@ class JointFoodDataset(Dataset):
         adapter: Optional[object] = None,
     ):
         self.split = normalize_split_name(split)
-        self.episode_support_split = normalize_split_name(episode_support_split or self.split)
+        # Safer default: support always comes from train, NEVER from dev/test.
+        # The previous default (mirroring `split`) meant a dev dataset would by
+        # default sample its support from dev itself — a leak vector if a caller
+        # forgot to pass episode_support_split. Existing call sites in
+        # train_joint already pass `episode_support_split="train"` explicitly,
+        # so this only affects new/forgetful callers.
+        self.episode_support_split = normalize_split_name(episode_support_split or "train")
         self.image_size = image_size
         self.train_ratio = train_ratio
         self.val_ratio = val_ratio

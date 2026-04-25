@@ -26,6 +26,7 @@ from __future__ import annotations
 from contextlib import nullcontext
 import inspect
 import math
+import os
 from pathlib import Path
 import shutil
 import time
@@ -64,7 +65,28 @@ from stage3_icl import FoodClassifier
 
 
 # --- Snapshot note: Primary training entry point used for the best reported experiments. ---
+def _load_dotenv():
+    """Lightweight .env loader. Reads KEY=VALUE pairs from ./.env if present
+    and exports them into os.environ unless the key is already set. Used to
+    propagate HF_TOKEN to local training without requiring users to remember
+    `export HF_TOKEN=...` before every run. Vast launcher already pushes
+    .env contents to the remote separately."""
+    env_file = Path(__file__).resolve().parent / ".env"
+    if not env_file.exists():
+        return
+    for line in env_file.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
 def train_joint(config_path: Optional[str] = None, overrides=None):
+    _load_dotenv()
     cfg = load_config(config_path, overrides)
     jc = cfg.joint
     h = cfg.hardware
@@ -87,11 +109,24 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
     )
 
     device = _resolve_device(getattr(h, "device", "auto"))
-    _configure_training_runtime(device)
+    _configure_training_runtime(
+        device,
+        deterministic=str(getattr(cfg.run, "determinism_mode", "deterministic")) != "loose",
+    )
     amp_dtype = _resolve_amp_dtype(h, device)
 
     ckpt_dir = Path(cfg.paths.checkpoints) / cfg.run.name / "joint"
     log_dir = Path(cfg.paths.logs) / cfg.run.name / "joint"
+    # Refuse to silently overwrite a previous run with the same name. Either
+    # bump run.name or pass run.allow_overwrite=true (off by default). Without
+    # this guard, two runs with the same name would interleave events into
+    # the same jsonl, corrupting the source of truth.
+    allow_overwrite = bool(getattr(cfg.run, "allow_overwrite", False))
+    if log_dir.exists() and any(log_dir.iterdir()) and not allow_overwrite:
+        raise ValueError(
+            f"Log directory already exists and is non-empty: {log_dir}\n"
+            f"Either change run.name (preferred) or set run.allow_overwrite=true."
+        )
     ckpt_dir.mkdir(parents=True, exist_ok=True)
     log_dir.mkdir(parents=True, exist_ok=True)
     cfg.save(ckpt_dir / "config_snapshot.yaml")
@@ -571,6 +606,11 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
                 **{f"train/nan_{k}": float(v) for k, v in train_nan_counts.items()},
             }
             logger.log("train_epoch_end", epoch_metrics, step=global_step, epoch=epoch, split="train")
+            # Stage 3 caches its support-set embeddings; weights changed this epoch,
+            # so the cache is now stale. Invalidate so the cosine retriever uses
+            # the current encoder when dev eval runs below.
+            if hasattr(pipeline.stage3, "invalidate_support_cache"):
+                pipeline.stage3.invalidate_support_cache()
 
             if epoch % jc.eval.interval == 0:
                 dev_report = evaluate_split(
@@ -672,6 +712,9 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
             pipeline.load(str(best_checkpoint_path))
             if best_stage2_state_by_combined is not None:
                 pipeline.stage2.load_state_dict(best_stage2_state_by_combined, strict=False)
+            # Stage 3 weights just changed → drop the support-embedding cache.
+            if hasattr(pipeline.stage3, "invalidate_support_cache"):
+                pipeline.stage3.invalidate_support_cache()
             pipeline.eval()
             train_eval_report = evaluate_split(
                 pipeline,
@@ -694,6 +737,42 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
                 split="train",
                 update_latest=False,
             )
+        # Post-training artifacts. Inside the main try-block so they share the
+        # try/finally lifecycle. We catch their failures separately so a bad
+        # artifact step downgrades status to `completed_with_artifact_errors`
+        # instead of `completed` (the run trained fine, only the report failed).
+        if run_status == "completed":
+            try:
+                if best_checkpoint_path.exists():
+                    pipeline.load(str(best_checkpoint_path))
+                    if best_stage2_state_by_combined is not None:
+                        pipeline.stage2.load_state_dict(best_stage2_state_by_combined, strict=False)
+                    if hasattr(pipeline.stage3, "invalidate_support_cache"):
+                        pipeline.stage3.invalidate_support_cache()
+                pipeline.eval()
+                if device.type == "cuda":
+                    torch.cuda.empty_cache()
+                generate_split_visualizations(
+                    pipeline,
+                    cfg,
+                    report_root / "dev_visualizations",
+                    split="dev",
+                    include_ground_truth=False,
+                )
+                generate_split_summary(cfg, report_root)
+                generate_training_report(cfg, log_dir, report_root)
+            except Exception as artifact_exc:
+                run_status = "completed_with_artifact_errors"
+                logger.log(
+                    "post_training_artifacts_error",
+                    {
+                        "system/error_type": artifact_exc.__class__.__name__,
+                        "system/error_message": str(artifact_exc),
+                    },
+                    step=global_step or None,
+                    split="system",
+                )
+                # Don't re-raise — training succeeded; only artifacts failed.
     except Exception as exc:
         run_status = "failed"
         logger.log(
@@ -710,24 +789,6 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
         if profiler is not None:
             profiler.stop()
         logger.close(status=run_status)
-
-    if run_status == "completed":
-        if best_checkpoint_path.exists():
-            pipeline.load(str(best_checkpoint_path))
-            if best_stage2_state_by_combined is not None:
-                pipeline.stage2.load_state_dict(best_stage2_state_by_combined, strict=False)
-        pipeline.eval()
-        if device.type == "cuda":
-            torch.cuda.empty_cache()
-        generate_split_visualizations(
-            pipeline,
-            cfg,
-            report_root / "dev_visualizations",
-            split="dev",
-            include_ground_truth=False,
-        )
-        generate_split_summary(cfg, report_root)
-        generate_training_report(cfg, log_dir, report_root)
 
     return pipeline
 
@@ -801,11 +862,17 @@ def _build_param_groups(pipeline, joint_training_cfg, c1, c2, c3) -> tuple[list,
     ]
 
     def _resolve(name: str, attr: str, fallback: float, stage_cfg) -> float:
-        # Tier 1: explicit joint per-stage override
-        if per_stage is not None and getattr(per_stage, name, None) is not None:
-            return float(getattr(per_stage, name))
-        if attr == "weight_decay" and per_stage_wd is not None and getattr(per_stage_wd, name, None) is not None:
-            return float(getattr(per_stage_wd, name))
+        # Tier 1: explicit joint per-stage override.
+        # Critical: per_stage is the LR map; only use it for learning_rate lookups.
+        # Previously, weight_decay would also pick up the LR value from this map,
+        # silently writing the LR into the optimizer's weight_decay arg (a real
+        # correctness bug surfaced by code review).
+        if attr == "learning_rate":
+            if per_stage is not None and getattr(per_stage, name, None) is not None:
+                return float(getattr(per_stage, name))
+        elif attr == "weight_decay":
+            if per_stage_wd is not None and getattr(per_stage_wd, name, None) is not None:
+                return float(getattr(per_stage_wd, name))
         # Tier 2: stageN.training.<attr> if present
         if stage_cfg is not None and getattr(stage_cfg, attr, None) is not None:
             return float(getattr(stage_cfg, attr))
@@ -1034,13 +1101,21 @@ def _build_bnb_config(hardware_cfg, device: torch.device):
     )
 
 
-def _configure_training_runtime(device: torch.device):
+def _configure_training_runtime(device: torch.device, deterministic: bool = False):
+    """Set torch matmul/cudnn knobs.
+
+    When ``deterministic`` is True, do NOT enable cudnn.benchmark — that auto-tuner
+    picks different kernels run-to-run, undoing whatever ``set_seed`` arranged.
+    Caller passes the determinism flag from the seed setup so the two stay in sync.
+    """
     if hasattr(torch, "set_float32_matmul_precision"):
         torch.set_float32_matmul_precision("high")
     if device.type == "cuda":
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
-        torch.backends.cudnn.benchmark = True
+        if not deterministic:
+            torch.backends.cudnn.benchmark = True
+        # else: leave whatever set_seed configured (benchmark=False, deterministic=True)
 
 
 def _start_profiler_if_enabled(log_cfg, profile_dir: Path, device: torch.device):
