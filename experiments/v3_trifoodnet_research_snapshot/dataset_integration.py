@@ -862,7 +862,15 @@ class Stage3EpisodeLibrary:
         self,
         seed_key: str,
         required_class_names: Optional[Sequence[str]] = None,
+        exclude_image_id: Optional[str] = None,
     ) -> dict:
+        """Sample a k-shot support set per selected class.
+
+        ``exclude_image_id`` filters out support candidates from the same source image as
+        the calling query, preventing query-in-support leakage. When the filtered pool
+        for a class is empty, the function falls back to sampling from the unfiltered
+        pool with replacement and records ``leak_fallback_classes`` so callers can audit.
+        """
         seed_int = int(hashlib.sha1(seed_key.encode("utf-8")).hexdigest()[:8], 16)
         rng = random.Random(seed_int)
         required = []
@@ -880,16 +888,31 @@ class Stage3EpisodeLibrary:
         support_images: List[Image.Image] = []
         support_labels: List[int] = []
         class_count_vector = [1.0] * max(self.num_classes, 1)
+        leak_fallback_classes: List[str] = []
+        exclude_id = str(exclude_image_id) if exclude_image_id is not None else None
 
         for class_name in selected:
-            support_candidates = list(self.support_by_class[class_name])
-            if len(support_candidates) < self.k_shot:
-                support_rows = [rng.choice(support_candidates) for _ in range(self.k_shot)]
+            full_pool = list(self.support_by_class[class_name])
+            if exclude_id is not None:
+                filtered_pool = [r for r in full_pool if str(r.get("image_id")) != exclude_id]
             else:
-                support_rows = rng.sample(support_candidates, self.k_shot)
+                filtered_pool = full_pool
+
+            if not filtered_pool:
+                # No leak-free candidate exists for this class+query combination.
+                # Fall back to the unfiltered pool with replacement and flag it.
+                support_pool = full_pool
+                leak_fallback_classes.append(class_name)
+            else:
+                support_pool = filtered_pool
+
+            if len(support_pool) < self.k_shot:
+                support_rows = [rng.choice(support_pool) for _ in range(self.k_shot)]
+            else:
+                support_rows = rng.sample(support_pool, self.k_shot)
 
             class_id = int(support_rows[0]["class_id"])
-            class_count_vector[class_id] = float(self.class_counts_by_id.get(class_id, len(support_candidates)))
+            class_count_vector[class_id] = float(self.class_counts_by_id.get(class_id, len(full_pool)))
 
             for row in support_rows:
                 support_images.append(self._load_cached_crop(row))
@@ -900,6 +923,7 @@ class Stage3EpisodeLibrary:
             "support_labels": support_labels,
             "class_names": selected,
             "class_counts": class_count_vector,
+            "leak_fallback_classes": leak_fallback_classes,
         }
 
     def sample_episode(self, seed_key: str) -> dict:
@@ -938,7 +962,7 @@ class JointFoodDataset(Dataset):
 
     def __init__(
         self,
-        batch_root: str | Path,
+        batch_root: Optional[str | Path] = None,
         export_root: Optional[str | Path] = None,
         repo_root: Optional[str | Path] = None,
         split: str = "train",
@@ -951,8 +975,8 @@ class JointFoodDataset(Dataset):
         k_shot: int = 5,
         query_per_class: int = 1,
         episode_support_split: Optional[str] = None,
+        adapter: Optional[object] = None,
     ):
-        self.paths = build_export_paths(batch_root, export_root=export_root, repo_root=repo_root)
         self.split = normalize_split_name(split)
         self.episode_support_split = normalize_split_name(episode_support_split or self.split)
         self.image_size = image_size
@@ -960,21 +984,55 @@ class JointFoodDataset(Dataset):
         self.val_ratio = val_ratio
         self.test_ratio = test_ratio
         self.split_seed = split_seed
+        self.adapter = adapter
 
-        image_rows = read_jsonl(self.paths.export_root / "images_manifest.jsonl")
-        all_stage3_rows = read_jsonl(self.paths.export_root / "stage3_item_classification.jsonl")
-        labeled_images = [
-            row for row in image_rows
-            if any(item.get("classification_status") == "labeled" for item in row.get("items", []))
-        ]
-        contract = enforce_supported_class_contract(
-            labeled_images,
-            all_stage3_rows,
-            train_ratio=self.train_ratio,
-            val_ratio=self.val_ratio,
-            test_ratio=self.test_ratio,
-            seed=self.split_seed,
-        )
+        if adapter is not None:
+            # ── New v3-export path: adapter has already produced the legacy contract ──
+            adapter_data = adapter.load() if hasattr(adapter, "load") else adapter
+            asset_root = Path(adapter_data.export_root)
+            self.paths = ExportPaths(
+                batch_root=asset_root,
+                export_root=asset_root,
+                repo_root=Path(repo_root).resolve() if repo_root else asset_root,
+                annotations_root=asset_root,
+            )
+            contract = {
+                "image_rows": adapter_data.image_rows,
+                "stage3_rows": adapter_data.stage3_rows,
+                "retained_image_ids": adapter_data.retained_image_ids,
+                "split_mapping": adapter_data.split_mapping,
+                "split_summary": adapter_data.split_summary,
+                "stage3_split_summary": adapter_data.stage3_split_summary,
+                "supported_classes": adapter_data.supported_classes,
+                "removed_classes": adapter_data.removed_classes,
+            }
+            all_stage3_rows = list(adapter_data.stage3_rows)
+            self.classes = list(adapter_data.classes)
+            self.dataset_version = adapter_data.dataset_version
+            self.dataset_hash = adapter_data.dataset_hash
+        else:
+            # ── Legacy path: read manifests directly from <export_root>/dataset/ ──
+            if batch_root is None:
+                raise ValueError("batch_root is required when adapter is not provided")
+            self.paths = build_export_paths(batch_root, export_root=export_root, repo_root=repo_root)
+            image_rows = read_jsonl(self.paths.export_root / "images_manifest.jsonl")
+            all_stage3_rows = read_jsonl(self.paths.export_root / "stage3_item_classification.jsonl")
+            labeled_images = [
+                row for row in image_rows
+                if any(item.get("classification_status") == "labeled" for item in row.get("items", []))
+            ]
+            contract = enforce_supported_class_contract(
+                labeled_images,
+                all_stage3_rows,
+                train_ratio=self.train_ratio,
+                val_ratio=self.val_ratio,
+                test_ratio=self.test_ratio,
+                seed=self.split_seed,
+            )
+            self.classes = read_json(self.paths.export_root / "classes.json")
+            self.dataset_version = "legacy"
+            self.dataset_hash = ""
+
         self.split_mapping = contract["split_mapping"]
         self.split_summary = contract["split_summary"]
         self.stage3_split_summary = contract["stage3_split_summary"]
@@ -988,7 +1046,6 @@ class JointFoodDataset(Dataset):
             and row.get("use_for_export", True)
         ]
         self._image_id_to_split = self.split_mapping
-        self.classes = read_json(self.paths.export_root / "classes.json")
         self.class_names, self.class_name_to_id = build_class_name_index(
             self.paths.export_root,
             classes=self.classes,
@@ -1061,6 +1118,7 @@ class JointFoodDataset(Dataset):
                 support_episode = self.stage3_library.sample_support_episode(
                     f"{self.split}:{row['image_id']}:{index}:{label_name}",
                     required_class_names=[label_name],
+                    exclude_image_id=str(row["image_id"]),
                 )
                 support_cache[label_name] = support_episode
             stage3_support_episodes.append(support_episode)
@@ -1195,6 +1253,7 @@ class JointBatchCollator:
         query_labels: List[int] = []
         class_counts: List[List[int]] = []
         support_sizes: List[int] = []
+        leak_fallback_count = 0
 
         for example in examples:
             query_class_ids = list(example.get("stage3_query_labels", []))
@@ -1229,6 +1288,7 @@ class JointBatchCollator:
                 query_labels.append(int(class_id))
                 class_counts.append(list(episode["class_counts"]))
                 support_sizes.append(len(support_images))
+                leak_fallback_count += len(episode.get("leak_fallback_classes", []) or [])
 
         if not support_sizes:
             return {}
@@ -1246,6 +1306,7 @@ class JointBatchCollator:
             "support_labels": support_labels_tensor,
             "query_labels": query_labels_tensor,
             "episode_class_counts": torch.tensor(class_counts, dtype=torch.float32),
+            "leak_fallback_count": int(leak_fallback_count),
         }
 
 

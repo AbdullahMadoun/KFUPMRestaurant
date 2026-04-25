@@ -33,3 +33,7 @@ checkpoints/**/joint/epoch_*/
 checkpoints/**/joint/best/stage1_lora/adapter_model.safetensors
 checkpoints/**/joint/best/stage2.pt
 checkpoints/**/joint/best/stage3.pt
+.env
+SECRETS.md
+.env.local
+*.token

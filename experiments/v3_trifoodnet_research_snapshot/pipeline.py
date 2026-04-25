@@ -4,7 +4,7 @@
 # PURPOSE: End-to-end TriFoodNet orchestration for inference, checkpoint I/O, and joint loss wiring.
 # DEPENDENCIES: item_processing.py, losses.py, stage1_qwen.py, stage2_sam.py, stage3_icl.py
 # USED BY: benchmark_runtime.py, check_trainable.py, run_dev_inference.py, run_single_inference.py, train_joint.py, validate_pipeline_contracts.py, visualize_val_predictions.py
-# KEY CLASSES/FUNCTIONS: PriceLookup, FoodItem, PipelineOutput, TriFoodNet, _ms, _finite_loss_or_zero, _trainable_state_dict, _load_compatible_state_dict
+# KEY CLASSES/FUNCTIONS: PriceLookup, FoodItem, PipelineOutput, TriFoodNet, _ms, _trainable_state_dict, _load_compatible_state_dict
 # LAST MODIFIED: 2026-03-21T14:36:20.391748+00:00
 # SNAPSHOT NOTES: no major inline issues detected during snapshot generation
 # =============================================================================
@@ -83,6 +83,11 @@ class FoodItem:
     label:      str
     confidence: float
     price:      float = 0.0
+    # Diagnostic: classes the Stage 3 cosine retriever surfaced for this query
+    # before the transformer made its pick. Populated by pipeline.run when the
+    # underlying FoodClassifier exposes last_candidate_class_names. Used by
+    # eval_harness to compute stage3_retrieval_recall@K vs stage3_acc separately.
+    candidate_classes: List[str] = field(default_factory=list)
 
 @dataclass
 class PipelineOutput:
@@ -124,6 +129,34 @@ class TriFoodNet(nn.Module):
         self.stage3       = stage3
         self.price_lookup = price_lookup or PriceLookup()
         self.debug        = bool(debug)
+        # NaN/Inf accounting. Train mode counts and zeros; eval mode (strict_finite=True)
+        # raises so dev/test metrics are never silently corrupted.
+        self._nan_counts: Dict[str, int] = {
+            "stage1": 0,
+            "stage2": 0,
+            "stage2_internal": 0,  # propagated from segmentation_loss zero-fill events
+            "stage3": 0,
+            "total": 0,
+        }
+        self._strict_finite: bool = False
+
+    def reset_nan_counts(self):
+        for key in self._nan_counts:
+            self._nan_counts[key] = 0
+
+    def get_nan_counts(self) -> Dict[str, int]:
+        return dict(self._nan_counts)
+
+    def _safe_loss(self, loss: torch.Tensor, name: str) -> torch.Tensor:
+        if torch.isfinite(loss).all():
+            return loss
+        self._nan_counts[name] = self._nan_counts.get(name, 0) + 1
+        if self._strict_finite:
+            raise RuntimeError(
+                f"Non-finite {name} loss in strict mode (loss={loss.detach().cpu()}). "
+                "Eval/test runs must hard-fail on NaN — fix the upstream cause."
+            )
+        return loss.detach().new_zeros(())
 
     # ── single-image inference ────────────────────────────────────────────────
 
@@ -212,6 +245,10 @@ class TriFoodNet(nn.Module):
             )
             best_class, confidence = preds[0] if preds else (det.get("label", "unknown"), 0.0)
             price = self.price_lookup.get_price(best_class)
+            # Read the per-query candidate-class list the cosine retriever
+            # populated inside stage3.classify(). Empty list (default) is fine
+            # — eval_harness silently skips the diagnostic when it's empty.
+            candidate_classes = list(getattr(self.stage3, "last_candidate_class_names", []) or [])
 
             items.append(FoodItem(
                 box=det["box"],
@@ -219,6 +256,7 @@ class TriFoodNet(nn.Module):
                 label=best_class,
                 confidence=confidence,
                 price=price,
+                candidate_classes=candidate_classes,
             ))
 
         t3_end = time.perf_counter()
@@ -245,6 +283,7 @@ class TriFoodNet(nn.Module):
         use_gt_boxes:  bool = True,
         loss_weights:  Tuple[float, float, float] = (1.0, 1.0, 1.0),
         stage3_loss_fn: Optional[Stage3Loss] = None,
+        strict_finite: bool = False,
     ) -> Dict[str, torch.Tensor]:
         """
         Joint training forward pass.
@@ -255,90 +294,101 @@ class TriFoodNet(nn.Module):
         use_gt_boxes  : True  → use GT boxes as SAM prompts (curriculum epoch 1)
                         False → use Stage 1 predicted boxes
         loss_weights  : (lambda1, lambda2, lambda3)
+        strict_finite : True → raise on any non-finite per-stage or total loss
+                        (use for dev/test eval). False → swallow + count
+                        (use for train so a single bad batch doesn't kill the run).
 
         Returns
         -------
         dict with keys: loss_stage1, loss_stage2, loss_stage3, loss_total
         """
-        lam1, lam2, lam3 = loss_weights
-        loss_device = batch["images"].device if "images" in batch else next(self.stage2.parameters()).device
+        self._strict_finite = bool(strict_finite)
+        try:
+            lam1, lam2, lam3 = loss_weights
+            loss_device = batch["images"].device if "images" in batch else next(self.stage2.parameters()).device
 
-        # Stage 1 forward (returns HF loss)
-        s1_out = self.stage1(
-            input_ids      = batch["input_ids"],
-            attention_mask = batch["attention_mask"],
-            pixel_values   = batch.get("pixel_values"),
-            image_grid_thw = batch.get("image_grid_thw"),
-            video_grid_thw = batch.get("video_grid_thw"),
-            labels         = batch.get("s1_labels"),
-        )
-        loss1 = s1_out.loss if s1_out.loss is not None else torch.zeros((), device=loss_device)
-        loss1 = _finite_loss_or_zero(loss1)
-        stage1_metrics = {"stage1/lm_loss": float(loss1.detach().item())}
-
-        # Teacher forcing uses GT boxes during training. Inference/eval can switch
-        # to Qwen-generated boxes by setting use_gt_boxes=False.
-        prompt_boxes = batch["boxes"] if use_gt_boxes else self._stage1_prompt_boxes(batch["pil_images"], batch["boxes"])
-        s2_out = self.stage2(
-            pixel_values = batch["images"],
-            input_boxes  = prompt_boxes,
-            gt_masks     = batch.get("masks"),
-        )
-        loss2 = _finite_loss_or_zero(s2_out["loss"])
-        stage2_loss_info = s2_out.get("loss_info", {})
-        stage2_metrics = {
-            "stage2/bce_loss": float(stage2_loss_info.get("bce", 0.0)),
-            "stage2/dice_loss": float(stage2_loss_info.get("dice", 0.0)),
-            "stage2/loss": float(loss2.detach().item()),
-        }
-
-        # Stage 3 forward (episodic — only if episode data present)
-        loss3 = torch.zeros((), device=loss_device)
-        stage3_metrics = {
-            "stage3/ce_loss": 0.0,
-            "stage3/acc": 0.0,
-        }
-        if "support_images" in batch and "support_labels" in batch:
-            logits = self.stage3(
-                support_images = batch["support_images"],
-                query_images   = batch["query_images"],
-                support_labels = batch["support_labels"],
+            # Stage 1 forward (returns HF loss)
+            s1_out = self.stage1(
+                input_ids      = batch["input_ids"],
+                attention_mask = batch["attention_mask"],
+                pixel_values   = batch.get("pixel_values"),
+                image_grid_thw = batch.get("image_grid_thw"),
+                video_grid_thw = batch.get("video_grid_thw"),
+                labels         = batch.get("s1_labels"),
             )
-            if stage3_loss_fn is not None:
-                loss3, stage3_loss_info = stage3_loss_fn(
-                    logits,
-                    batch["query_labels"],
-                    sample_per_class=batch.get("episode_class_counts"),
+            loss1 = s1_out.loss if s1_out.loss is not None else torch.zeros((), device=loss_device)
+            loss1 = self._safe_loss(loss1, "stage1")
+            stage1_metrics = {"stage1/lm_loss": float(loss1.detach().item())}
+
+            # Teacher forcing uses GT boxes during training. Inference/eval can switch
+            # to Qwen-generated boxes by setting use_gt_boxes=False.
+            prompt_boxes = batch["boxes"] if use_gt_boxes else self._stage1_prompt_boxes(batch["pil_images"], batch["boxes"])
+            s2_out = self.stage2(
+                pixel_values = batch["images"],
+                input_boxes  = prompt_boxes,
+                gt_masks     = batch.get("masks"),
+            )
+            loss2 = self._safe_loss(s2_out["loss"], "stage2")
+            stage2_loss_info = s2_out.get("loss_info", {})
+            # Surface internal NaN events from segmentation_loss (which zero-fills per-mask)
+            self._nan_counts["stage2_internal"] = self._nan_counts.get("stage2_internal", 0) + int(
+                stage2_loss_info.get("nonfinite_count", 0) or 0
+            )
+            stage2_metrics = {
+                "stage2/bce_loss": float(stage2_loss_info.get("bce", 0.0)),
+                "stage2/dice_loss": float(stage2_loss_info.get("dice", 0.0)),
+                "stage2/loss": float(loss2.detach().item()),
+            }
+
+            # Stage 3 forward (episodic — only if episode data present)
+            loss3 = torch.zeros((), device=loss_device)
+            stage3_metrics = {
+                "stage3/ce_loss": 0.0,
+                "stage3/acc": 0.0,
+            }
+            if "support_images" in batch and "support_labels" in batch:
+                logits = self.stage3(
+                    support_images = batch["support_images"],
+                    query_images   = batch["query_images"],
+                    support_labels = batch["support_labels"],
                 )
-                loss3 = _finite_loss_or_zero(loss3)
-                stage3_metrics = {
-                    "stage3/ce_loss": float(stage3_loss_info["ce"]),
-                    "stage3/acc": float(stage3_loss_info["acc"]),
-                }
-            else:
-                import torch.nn.functional as F
-                loss3 = F.cross_entropy(logits, batch["query_labels"])
-                loss3 = _finite_loss_or_zero(loss3)
-                stage3_metrics = {
-                    "stage3/ce_loss": float(loss3.detach().item()),
-                    "stage3/acc": float((logits.argmax(dim=-1) == batch["query_labels"]).float().mean().item()),
-                }
+                if stage3_loss_fn is not None:
+                    loss3, stage3_loss_info = stage3_loss_fn(
+                        logits,
+                        batch["query_labels"],
+                        sample_per_class=batch.get("episode_class_counts"),
+                    )
+                    loss3 = self._safe_loss(loss3, "stage3")
+                    stage3_metrics = {
+                        "stage3/ce_loss": float(stage3_loss_info["ce"]),
+                        "stage3/acc": float(stage3_loss_info["acc"]),
+                    }
+                else:
+                    import torch.nn.functional as F
+                    loss3 = F.cross_entropy(logits, batch["query_labels"])
+                    loss3 = self._safe_loss(loss3, "stage3")
+                    stage3_metrics = {
+                        "stage3/ce_loss": float(loss3.detach().item()),
+                        "stage3/acc": float((logits.argmax(dim=-1) == batch["query_labels"]).float().mean().item()),
+                    }
 
-        loss_total = _finite_loss_or_zero(lam1 * loss1 + lam2 * loss2 + lam3 * loss3)
-        metrics = {
-            **stage1_metrics,
-            **stage2_metrics,
-            **stage3_metrics,
-            "joint/loss": float(loss_total.detach().item()),
-        }
+            loss_total = self._safe_loss(lam1 * loss1 + lam2 * loss2 + lam3 * loss3, "total")
+            metrics = {
+                **stage1_metrics,
+                **stage2_metrics,
+                **stage3_metrics,
+                "joint/loss": float(loss_total.detach().item()),
+            }
 
-        return {
-            "loss_stage1": loss1,
-            "loss_stage2": loss2,
-            "loss_stage3": loss3,
-            "loss_total":  loss_total,
-            "metrics": metrics,
-        }
+            return {
+                "loss_stage1": loss1,
+                "loss_stage2": loss2,
+                "loss_stage3": loss3,
+                "loss_total":  loss_total,
+                "metrics": metrics,
+            }
+        finally:
+            self._strict_finite = False
 
     # ── serialization ─────────────────────────────────────────────────────────
 
@@ -416,12 +466,6 @@ class TriFoodNet(nn.Module):
 
 def _ms(t_start: float, t_end: float) -> float:
     return round((t_end - t_start) * 1000, 2)
-
-
-def _finite_loss_or_zero(loss: torch.Tensor) -> torch.Tensor:
-    if torch.isfinite(loss).all():
-        return loss
-    return loss.detach().new_zeros(())
 
 
 def _trainable_state_dict(module: nn.Module) -> Dict[str, torch.Tensor]:

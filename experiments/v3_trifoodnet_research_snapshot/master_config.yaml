@@ -13,6 +13,14 @@ run:
   name: "trial-20260321-cleandata1"
   notes: "Best retained snapshot run packaged for resume/evaluation"
   tags: ["joint", "snapshot", "best_run"]
+  # Seed for all RNGs (torch, numpy, python, CUDA). Captured in run_metadata.json.
+  seed: 1337
+  # determinism_mode: loose | deterministic | strict
+  #   loose         — fastest, non-reproducible cudnn benchmark
+  #   deterministic — default for research; cudnn deterministic, ~10-20% slower
+  #   strict        — torch.use_deterministic_algorithms(True), some ops will fail without
+  #                   a deterministic implementation; use for paper-grade reproducibility
+  determinism_mode: "deterministic"
 
 
 # ─────────────────────────────────────────
@@ -35,10 +43,20 @@ paths:
 # ─────────────────────────────────────────
 data:
   image_size:   640        # longest-edge resize
-  num_classes:  29         # derived from the current exported classes.json
+  num_classes:  32         # contiguous compact_ids 0..31 in the v3 export
   num_workers:  8
   pin_memory:   true
   integration:
+    # ── Adapter (v3 export) — preferred path for new runs ──────────────────
+    # When `adapter.kind` is set, the loader bypasses batch_root/export_root and reads
+    # items.jsonl + manifest.json + classes.json from `adapter.export_root`.
+    adapter:
+      kind:             "v3_export"
+      export_root:      "/Users/abdulrazzak/Resturant_Pipeline_Feb/results_v2/exports/v3_2026-04-24_61ac038c"
+      expected_version: "v3"
+      expected_hash:    "61ac038c"
+      splits_path:      ""              # default: <export_root>/splits.json
+    # ── Legacy fields (still consumed by snapshot/utility scripts) ─────────
     batch_root:    "/root/dataset"
     export_root:   ""
     repo_root:     "."     # used to resolve pointer images into Sampled_Images_All/
@@ -149,8 +167,8 @@ stage2:
     dice_weight: 2.0
 
   nms:
-    iou_threshold:   0.0         # 0 disables post-SAM mask NMS for prompt-conditioned finetuning/inference
-    score_threshold: 0.0         # keep prompt masks even when SAM confidence is poorly calibrated
+    iou_threshold:   0.5         # mask-IoU NMS threshold; matches `inference.nms_iou_threshold`
+    score_threshold: 0.0         # SAM scores are not well-calibrated; global_nms falls back to keep-all if filter empties the set
 
   eval:
     interval: 1
@@ -220,8 +238,21 @@ joint:
     batch_size:       1
     grad_accum_steps: 8
     max_batches_per_epoch: 0    # 0 = full pass, >0 = mini-epochs for faster dev checks
+    # Global fallback. Used by any stage that does not have a per_stage_lr override
+    # AND does not have its own stage{N}.training.learning_rate.
     learning_rate:    5.0e-6
     weight_decay:     1.0e-4
+    # Per-stage overrides. Set any to null to skip; falls back to stage{N}.training.learning_rate.
+    # Recommended starting values reflect the standalone-trained settings each stage
+    # used before joint training started averaging them down to 5e-6.
+    per_stage_lr:
+      stage1: 2.0e-5    # Qwen LoRA — was 2e-5 standalone
+      stage2: 5.0e-5    # SAM3 mask decoder — was 5e-5 standalone
+      stage3: 1.0e-4    # PictSure ICL transformer — was 1e-4 standalone
+    per_stage_weight_decay:
+      stage1: 1.0e-4
+      stage2: 1.0e-4
+      stage3: 1.0e-4
     warmup_ratio:     0.05
     lr_scheduler:     "cosine"
     max_grad_norm:    0.3

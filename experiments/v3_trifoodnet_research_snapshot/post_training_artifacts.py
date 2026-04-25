@@ -27,8 +27,38 @@ from dataset_integration import (
     normalize_split_name,
     read_json,
 )
+from dataset_v3_adapter import V3ExportAdapter, adapter_from_config
 from experiment_report import generate_report
 from metrics import greedy_box_matches
+
+
+def _build_dataset_from_cfg(cfg, *, split: str, episode_support_split: str, n_way: int,
+                             k_shot: int, query_per_class: int) -> JointFoodDataset:
+    """Construct a JointFoodDataset honoring data.integration.adapter when set.
+
+    All three callers in this module share the same dataset args, so we keep a
+    single helper to avoid drift between train_joint.py and the report scripts.
+    """
+    integration = cfg.data.integration
+    adapter_cfg = getattr(integration, "adapter", None)
+    use_adapter = bool(adapter_cfg is not None and getattr(adapter_cfg, "kind", ""))
+    adapter = adapter_from_config(integration) if use_adapter else None
+    return JointFoodDataset(
+        batch_root=(None if use_adapter else integration.batch_root),
+        export_root=(None if use_adapter else (integration.export_root or None)),
+        repo_root=(integration.repo_root or None),
+        split=split,
+        episode_support_split=episode_support_split,
+        image_size=cfg.data.image_size,
+        train_ratio=integration.train_ratio,
+        val_ratio=_dev_ratio(integration),
+        test_ratio=integration.test_ratio,
+        split_seed=integration.split_seed,
+        n_way=n_way,
+        k_shot=k_shot,
+        query_per_class=query_per_class,
+        adapter=adapter,
+    )
 
 
 PALETTE = [
@@ -49,23 +79,20 @@ def _dev_ratio(integration_cfg) -> float:
 
 def build_stage3_reference_library(cfg) -> tuple[List[Image.Image], List[int], Dict[str, object]]:
     integration = cfg.data.integration
-    dataset = JointFoodDataset(
-        batch_root=integration.batch_root,
-        export_root=(integration.export_root or None),
-        repo_root=(integration.repo_root or None),
+    dataset = _build_dataset_from_cfg(
+        cfg,
         split="train",
         episode_support_split="train",
-        image_size=cfg.data.image_size,
-        train_ratio=integration.train_ratio,
-        val_ratio=_dev_ratio(integration),
-        test_ratio=integration.test_ratio,
-        split_seed=integration.split_seed,
         n_way=cfg.stage3.eval.n_way,
         k_shot=cfg.stage3.eval.k_shot,
         query_per_class=1,
     )
 
-    class_records = read_json(dataset.paths.export_root / "classes.json")
+    # Adapter mode emits the legacy class records in-memory on the dataset; in
+    # legacy mode we still read classes.json from disk.
+    class_records = list(getattr(dataset, "classes", None) or [])
+    if not class_records:
+        class_records = read_json(dataset.paths.export_root / "classes.json")
     class_names, _ = build_class_name_index(
         dataset.paths.export_root,
         classes=class_records if isinstance(class_records, list) else None,
@@ -121,18 +148,10 @@ def build_stage3_reference_library(cfg) -> tuple[List[Image.Image], List[int], D
 def generate_split_summary(cfg, output_dir: str | Path) -> Dict[str, object]:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    integration = cfg.data.integration
-    dataset = JointFoodDataset(
-        batch_root=integration.batch_root,
-        export_root=(integration.export_root or None),
-        repo_root=(integration.repo_root or None),
+    dataset = _build_dataset_from_cfg(
+        cfg,
         split="train",
         episode_support_split="train",
-        image_size=cfg.data.image_size,
-        train_ratio=integration.train_ratio,
-        val_ratio=_dev_ratio(integration),
-        test_ratio=integration.test_ratio,
-        split_seed=integration.split_seed,
         n_way=cfg.stage3.eval.n_way,
         k_shot=cfg.stage3.eval.k_shot,
         query_per_class=1,
@@ -293,22 +312,14 @@ def generate_split_visualizations(
     images_dir = output_dir / "images"
     images_dir.mkdir(parents=True, exist_ok=True)
 
-    integration = cfg.data.integration
     support_images, support_labels, support_stats = build_stage3_reference_library(cfg)
     pipeline.stage3.set_support_set(support_images, support_labels)
     pipeline.eval()
 
-    dataset = JointFoodDataset(
-        batch_root=integration.batch_root,
-        export_root=(integration.export_root or None),
-        repo_root=(integration.repo_root or None),
+    dataset = _build_dataset_from_cfg(
+        cfg,
         split=split,
         episode_support_split="train",
-        image_size=cfg.data.image_size,
-        train_ratio=integration.train_ratio,
-        val_ratio=_dev_ratio(integration),
-        test_ratio=integration.test_ratio,
-        split_seed=integration.split_seed,
         n_way=cfg.stage3.eval.n_way,
         k_shot=cfg.stage3.eval.k_shot,
         query_per_class=1,

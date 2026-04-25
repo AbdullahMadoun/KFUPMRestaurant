@@ -4,7 +4,7 @@
 # PURPOSE: Main joint trainer that builds the full pipeline, datasets, optimizer, scheduler, evaluation, and checkpointing.
 # DEPENDENCIES: config_loader.py, dataset_integration.py, experiment_logging.py, losses.py, metrics.py, pipeline.py, post_training_artifacts.py, stage1_qwen.py, stage2_sam.py, stage3_icl.py
 # USED BY: validate_pipeline_contracts.py
-# KEY CLASSES/FUNCTIONS: train_joint, evaluate_objective, evaluate_inference_dataset, _load_existing_checkpoints, _build_adamw_kwargs, _prune_old_checkpoints, _maybe_generate_epoch_visualizations, _accumulate_metrics, _to_device, _move_to_device, _resolve_amp_dtype, _resolve_dev_ratio
+# KEY CLASSES/FUNCTIONS: train_joint, _load_existing_checkpoints, _build_adamw_kwargs, _build_param_groups, _prune_old_checkpoints, _maybe_generate_epoch_visualizations, _accumulate_metrics, _to_device, _move_to_device, _resolve_amp_dtype, _resolve_dev_ratio
 # LAST MODIFIED: 2026-03-21T21:22:00.859567+00:00
 # SNAPSHOT NOTES: no major inline issues detected during snapshot generation
 # =============================================================================
@@ -45,6 +45,9 @@ from dataset_integration import (
     read_json,
     snapshot_export_contract,
 )
+from dataset_v3_adapter import V3ExportAdapter, adapter_from_config
+from determinism import set_seed, dataloader_generator, worker_init_fn
+from eval_harness import EvalMode, evaluate_split, combined_score, COMBINED_FORMULA_VERSION
 from experiment_logging import ExperimentLogger
 from losses import Stage3Loss
 from metrics import EpisodicAccumulator, format_metrics_table, greedy_box_matches, mask_iou
@@ -68,11 +71,20 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
     log_cfg = cfg.logging
     integration = cfg.data.integration
 
-    if not getattr(integration, "batch_root", ""):
+    # Either an adapter must be configured, or the legacy batch_root path.
+    adapter_cfg_pre = getattr(integration, "adapter", None)
+    has_adapter_cfg = bool(adapter_cfg_pre is not None and getattr(adapter_cfg_pre, "kind", ""))
+    if not has_adapter_cfg and not getattr(integration, "batch_root", ""):
         raise ValueError(
-            "Set `data.integration.batch_root` to the dataset batch root from "
-            "INTEGRATION_DATASET_GUIDE.md before running joint training."
+            "Configure either `data.integration.adapter` (preferred) or "
+            "`data.integration.batch_root` before running joint training."
         )
+
+    # Pin all RNGs early so dataset construction and model init are reproducible.
+    seed_meta = set_seed(
+        seed=getattr(cfg.run, "seed", None),
+        mode=str(getattr(cfg.run, "determinism_mode", "deterministic")),
+    )
 
     device = _resolve_device(getattr(h, "device", "auto"))
     _configure_training_runtime(device)
@@ -103,16 +115,78 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
 
     bnb_config = _build_bnb_config(h, device)
     dev_ratio = _resolve_dev_ratio(integration)
-    export_paths = build_export_paths(
-        integration.batch_root,
-        export_root=(integration.export_root or None),
-        repo_root=(integration.repo_root or None),
-    )
-    class_records = read_json(export_paths.export_root / "classes.json")
-    class_names, class_name_to_id = build_class_name_index(
-        export_paths.export_root,
-        classes=class_records if isinstance(class_records, list) else None,
-    )
+
+    # Build the v3-export adapter once and share it across train/dev/train_eval
+    # datasets so manifest reads, split computation, and asset roots are all
+    # cached. When `data.integration.adapter` is unset, we fall back to the
+    # legacy on-disk export contract (batch_root/_review/dataset/...).
+    adapter_cfg = getattr(integration, "adapter", None)
+    adapter_kind = str(getattr(adapter_cfg, "kind", "")) if adapter_cfg is not None else ""
+    use_adapter = bool(adapter_kind)
+
+    if use_adapter:
+        adapter = adapter_from_config(integration)
+        adapter_data = adapter.load()
+        export_paths = build_export_paths(
+            adapter_data.export_root,
+            export_root=adapter_data.export_root,
+            repo_root=(integration.repo_root or None),
+        )
+        class_records = list(adapter_data.classes)
+        class_names, class_name_to_id = build_class_name_index(
+            adapter_data.export_root,
+            classes=class_records,
+            stage3_rows=adapter_data.stage3_rows,
+        )
+        # Stamp dataset provenance into run_metadata.json.
+        logger.update_run_metadata(
+            dataset={
+                "version": adapter_data.dataset_version,
+                "hash": adapter_data.dataset_hash,
+                "export_root": str(adapter_data.export_root),
+                "n_classes": len(adapter_data.classes),
+                "n_images_total": len(adapter_data.retained_image_ids),
+                "n_stage3_items_total": len(adapter_data.stage3_rows),
+            },
+            seed_meta=seed_meta,
+        )
+        # Run dataset-dependent validation now that adapter has reported counts.
+        try:
+            from config_validation import validate_config
+            train_class_counts = (
+                adapter_data.stage3_split_summary.get("train", {}).get("class_item_counts", {})
+            )
+            min_train_class_size = min(train_class_counts.values()) if train_class_counts else 0
+            num_classes_in_dataset = max(adapter_data.classes_compact_ids, default=-1) + 1
+            extra_warnings = validate_config(
+                cfg,
+                dataset_class_count=num_classes_in_dataset,
+                dataset_min_train_class_size=min_train_class_size,
+            )
+            for msg in extra_warnings:
+                print(f"[Config] WARN: {msg}")
+        except ImportError:
+            pass
+    else:
+        adapter = None
+        export_paths = build_export_paths(
+            integration.batch_root,
+            export_root=(integration.export_root or None),
+            repo_root=(integration.repo_root or None),
+        )
+        class_records = read_json(export_paths.export_root / "classes.json")
+        class_names, class_name_to_id = build_class_name_index(
+            export_paths.export_root,
+            classes=class_records if isinstance(class_records, list) else None,
+        )
+        logger.update_run_metadata(
+            dataset={
+                "version": "legacy",
+                "hash": "",
+                "export_root": str(export_paths.export_root),
+            },
+            seed_meta=seed_meta,
+        )
 
     stage1 = QwenGrounder(
         model_name=c1.model_name,
@@ -160,72 +234,87 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
     max_batches_per_epoch = int(getattr(jc.training, "max_batches_per_epoch", 0) or 0)
     if 0 < max_batches_per_epoch < int(jc.training.grad_accum_steps):
         raise ValueError("joint.training.max_batches_per_epoch must be >= grad_accum_steps when enabled.")
-    train_ds = JointFoodDataset(
-        batch_root=integration.batch_root,
-        export_root=(integration.export_root or None),
+    common_dataset_kwargs = dict(
+        batch_root=(None if use_adapter else integration.batch_root),
+        export_root=(None if use_adapter else (integration.export_root or None)),
         repo_root=(integration.repo_root or None),
-        split="train",
-        episode_support_split="train",
         image_size=cfg.data.image_size,
         train_ratio=integration.train_ratio,
         val_ratio=dev_ratio,
         test_ratio=integration.test_ratio,
         split_seed=integration.split_seed,
+        adapter=adapter,
+    )
+    train_ds = JointFoodDataset(
+        split="train",
+        episode_support_split="train",
         n_way=c3.episode.n_way,
         k_shot=c3.episode.k_shot,
         query_per_class=c3.episode.query_per_class,
+        **common_dataset_kwargs,
     )
     train_eval_ds = JointFoodDataset(
-        batch_root=integration.batch_root,
-        export_root=(integration.export_root or None),
-        repo_root=(integration.repo_root or None),
         split="train",
         episode_support_split="train",
-        image_size=cfg.data.image_size,
-        train_ratio=integration.train_ratio,
-        val_ratio=dev_ratio,
-        test_ratio=integration.test_ratio,
-        split_seed=integration.split_seed,
         n_way=c3.eval.n_way,
         k_shot=c3.eval.k_shot,
         query_per_class=1,
+        **common_dataset_kwargs,
     )
     dev_ds = JointFoodDataset(
-        batch_root=integration.batch_root,
-        export_root=(integration.export_root or None),
-        repo_root=(integration.repo_root or None),
         split="dev",
         episode_support_split="train",
-        image_size=cfg.data.image_size,
-        train_ratio=integration.train_ratio,
-        val_ratio=dev_ratio,
-        test_ratio=integration.test_ratio,
-        split_seed=integration.split_seed,
         n_way=c3.eval.n_way,
         k_shot=c3.eval.k_shot,
         query_per_class=1,
+        **common_dataset_kwargs,
     )
     reference_support_images, reference_support_labels, reference_support_stats = build_stage3_reference_library(cfg)
     pipeline.stage3.set_support_set(reference_support_images, reference_support_labels)
 
+    effective_seed = int(seed_meta.get("system/seed_seed", 1337))
     loader_kwargs = {
         "batch_size": jc.training.batch_size,
         "num_workers": cfg.data.num_workers,
         "pin_memory": bool(cfg.data.pin_memory and device.type == "cuda"),
         "collate_fn": collator,
+        "worker_init_fn": worker_init_fn(effective_seed) if cfg.data.num_workers > 0 else None,
     }
     if cfg.data.num_workers > 0:
         loader_kwargs["persistent_workers"] = True
         loader_kwargs["prefetch_factor"] = 2
-    train_loader = DataLoader(train_ds, shuffle=True, **loader_kwargs)
-    train_eval_loader = DataLoader(train_eval_ds, shuffle=False, **loader_kwargs)
-    dev_loader = DataLoader(dev_ds, shuffle=False, **loader_kwargs)
+    # Distinct generators per loader so train shuffle order is independent
+    # from eval order — but each is reproducible from the effective seed.
+    train_loader = DataLoader(
+        train_ds, shuffle=True,
+        generator=dataloader_generator(effective_seed),
+        **loader_kwargs,
+    )
+    train_eval_loader = DataLoader(
+        train_eval_ds, shuffle=False,
+        generator=dataloader_generator(effective_seed + 1),
+        **loader_kwargs,
+    )
+    dev_loader = DataLoader(
+        dev_ds, shuffle=False,
+        generator=dataloader_generator(effective_seed + 2),
+        **loader_kwargs,
+    )
     batches_per_epoch = len(train_loader)
     if max_batches_per_epoch > 0:
         batches_per_epoch = min(batches_per_epoch, max_batches_per_epoch)
 
-    trainable = [p for p in pipeline.parameters() if p.requires_grad]
-    optimizer = torch.optim.AdamW(trainable, **_build_adamw_kwargs(device, jc.training))
+    # Per-stage param groups so heterogeneous stages can run at their natural LRs.
+    # Falls back to the joint global lr/weight_decay when a stage has no override.
+    param_groups, param_group_summary = _build_param_groups(pipeline, jc.training, c1, c2, c3)
+    if not param_groups:
+        raise RuntimeError("Pipeline has no trainable parameters across all stages.")
+    adamw_kwargs = _build_adamw_kwargs(device, jc.training)
+    # The per-group lr/weight_decay overrides the global kwargs, so AdamW
+    # honors them per-stage. We keep `lr`/`weight_decay` in adamw_kwargs as
+    # the fallback for any group that does not specify them.
+    optimizer = torch.optim.AdamW(param_groups, **adamw_kwargs)
+    trainable = [p for g in param_groups for p in g["params"]]
     optimizer_steps_per_epoch = max(1, math.ceil(batches_per_epoch / max(int(jc.training.grad_accum_steps), 1)))
     total_steps = max(1, optimizer_steps_per_epoch * int(jc.training.epochs))
     warmup_steps = int(total_steps * jc.training.warmup_ratio)
@@ -272,6 +361,18 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
 
     profiler = _start_profiler_if_enabled(log_cfg, logger.profiles_dir, device)
     report_root = Path(cfg.paths.outputs) / cfg.run.name / "report"
+    per_stage_lr_log = {
+        f"optimizer/{entry['name']}_lr": float(entry["lr"]) for entry in param_group_summary
+    }
+    per_stage_wd_log = {
+        f"optimizer/{entry['name']}_weight_decay": float(entry["weight_decay"])
+        for entry in param_group_summary
+    }
+    per_stage_params_log = {
+        f"model/{entry['name']}_trainable_params": float(entry["param_count"])
+        for entry in param_group_summary
+    }
+
     logger.log(
         "run_start",
         {
@@ -283,6 +384,9 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
             "optimizer/total_steps": total_steps,
             "optimizer/warmup_steps": warmup_steps,
             "model/trainable_params": float(sum(p.numel() for p in trainable)),
+            **per_stage_lr_log,
+            **per_stage_wd_log,
+            **per_stage_params_log,
             "stage3/loss_kind": getattr(c3.loss, "name", "cross_entropy"),
             "curriculum/gt_boxes_epochs_legacy": int(getattr(jc.curriculum, "gt_boxes_epochs", 0)),
             "curriculum/teacher_forcing_sustain_epochs": int(
@@ -327,9 +431,16 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
         update_latest=False,
     )
 
-    best_checkpoint_path = ckpt_dir / "best"
+    # `best/` (alias for best-by-combined) is the headline checkpoint matching the
+    # `dev/combined` metric reported in summaries. `best_by_monitor/` tracks whatever
+    # `early_stopping.monitor` is configured to (e.g., dev/loss_total). Saving both
+    # avoids the historical mismatch where the on-disk `best/` did not reproduce the
+    # reported best combined score.
+    best_checkpoint_path = ckpt_dir / "best"               # = best by combined
+    best_by_monitor_path = ckpt_dir / "best_by_monitor"
     best_monitor_value = float("-inf") if early_mode == "max" else float("inf")
-    best_stage2_state = None
+    best_stage2_state_by_combined = None
+    best_stage2_state_by_monitor = None
     best_combined = float("-inf")
     epochs_without_improvement = 0
     early_stopped = False
@@ -341,6 +452,7 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
     try:
         for epoch in range(1, jc.training.epochs + 1):
             pipeline.train()
+            pipeline.reset_nan_counts()
             optimizer.zero_grad(set_to_none=True)
             teacher_forcing_prob = _resolve_teacher_forcing_probability(
                 jc.curriculum,
@@ -359,6 +471,7 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
             data_fetch_start = time.perf_counter()
             accum_counter = 0
             current_accum_target = min(int(jc.training.grad_accum_steps), max(batches_per_epoch, 1))
+            epoch_leak_fallback_total = 0
 
             for step, batch in enumerate(train_loader):
                 if max_batches_per_epoch > 0 and step >= max_batches_per_epoch:
@@ -369,6 +482,7 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
                 data_time = time.perf_counter() - data_fetch_start
                 step_start = time.perf_counter()
                 batch = _to_device(batch, device)
+                epoch_leak_fallback_total += int(batch.get("leak_fallback_count", 0) or 0)
                 use_gt = _sample_teacher_forcing(teacher_forcing_prob)
 
                 autocast_ctx = (
@@ -450,58 +564,66 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
 
                 data_fetch_start = time.perf_counter()
 
+            train_nan_counts = pipeline.get_nan_counts()
             epoch_metrics = {
                 "train/epoch_time_sec": time.perf_counter() - epoch_start,
+                "train/episode_leak_fallback_total": float(epoch_leak_fallback_total),
+                **{f"train/nan_{k}": float(v) for k, v in train_nan_counts.items()},
             }
             logger.log("train_epoch_end", epoch_metrics, step=global_step, epoch=epoch, split="train")
 
             if epoch % jc.eval.interval == 0:
-                dev_metrics = evaluate_objective(
+                dev_report = evaluate_split(
                     pipeline,
-                    dev_loader,
-                    device=device,
+                    dataset=dev_ds,
+                    loader=dev_loader,
+                    mode=EvalMode.END_TO_END,
                     cfg=cfg,
+                    device=device,
                     amp_dtype=amp_dtype,
                     stage3_loss_fn=stage3_loss_fn,
-                    metric_prefix="dev",
+                    split_name="dev",
                 )
-                dev_metrics.update(
-                    evaluate_inference_dataset(
-                        pipeline,
-                        dev_ds,
-                        cfg=cfg,
-                        metric_prefix="dev",
-                    )
-                )
+                dev_metrics = dev_report.flat_metrics(prefix="dev")
                 print(format_metrics_table({"epoch": epoch, "split": "dev", **dev_metrics}))
 
-                combined = (
-                    dev_metrics.get("dev/stage1_recall@0.5", 0.0)
-                    + dev_metrics.get("dev/stage2_mIoU", 0.0)
-                    + dev_metrics.get("dev/stage3_acc", 0.0)
-                )
-                dev_metrics["dev/combined"] = combined
+                combined = dev_report.combined
                 monitor_value = _resolve_early_stop_metric(early_monitor, {}, dev_metrics, combined)
                 dev_metrics["dev/early_stop_monitor"] = monitor_value
                 logger.log("eval_epoch", dev_metrics, step=global_step, epoch=epoch, split="dev")
 
                 logger.update_best("joint/combined", combined, step=global_step, epoch=epoch)
-                improved = _is_improvement(
+                improved_monitor = _is_improvement(
                     current=monitor_value,
                     best=best_monitor_value,
                     mode=early_mode,
                     min_delta=early_min_delta,
                 )
-                if improved:
+                improved_combined = combined > best_combined
+
+                # Save by monitor (early-stopping driver, possibly dev/loss_total).
+                if improved_monitor:
                     best_monitor_value = monitor_value
                     epochs_without_improvement = 0
-                    if combined > best_combined:
-                        best_combined = combined
-                    pipeline.save(str(best_checkpoint_path))
-                    logger.record_checkpoint(best_checkpoint_path, dev_metrics, step=global_step, epoch=epoch, is_best=True)
-                    best_stage2_state = _capture_module_state_cpu(pipeline.stage2)
+                    pipeline.save(str(best_by_monitor_path))
+                    logger.record_checkpoint(
+                        best_by_monitor_path, dev_metrics,
+                        step=global_step, epoch=epoch, is_best=False,
+                    )
+                    best_stage2_state_by_monitor = _capture_module_state_cpu(pipeline.stage2)
                 elif epoch >= early_min_epochs:
                     epochs_without_improvement += 1
+
+                # Save by combined (the headline metric). The `best/` directory is the
+                # canonical "best" so downstream loaders reproduce the reported number.
+                if improved_combined:
+                    best_combined = combined
+                    pipeline.save(str(best_checkpoint_path))
+                    logger.record_checkpoint(
+                        best_checkpoint_path, dev_metrics,
+                        step=global_step, epoch=epoch, is_best=True,
+                    )
+                    best_stage2_state_by_combined = _capture_module_state_cpu(pipeline.stage2)
 
                 if device.type == "cuda":
                     torch.cuda.empty_cache()
@@ -548,26 +670,21 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
                 break
         if best_checkpoint_path.exists():
             pipeline.load(str(best_checkpoint_path))
-            if best_stage2_state is not None:
-                pipeline.stage2.load_state_dict(best_stage2_state, strict=False)
+            if best_stage2_state_by_combined is not None:
+                pipeline.stage2.load_state_dict(best_stage2_state_by_combined, strict=False)
             pipeline.eval()
-            final_train_metrics = evaluate_objective(
+            train_eval_report = evaluate_split(
                 pipeline,
-                train_eval_loader,
-                device=device,
+                dataset=train_eval_ds,
+                loader=train_eval_loader,
+                mode=EvalMode.END_TO_END,
                 cfg=cfg,
+                device=device,
                 amp_dtype=amp_dtype,
                 stage3_loss_fn=stage3_loss_fn,
-                metric_prefix="train",
+                split_name="train_final",
             )
-            final_train_metrics.update(
-                evaluate_inference_dataset(
-                    pipeline,
-                    train_eval_ds,
-                    cfg=cfg,
-                    metric_prefix="train",
-                )
-            )
+            final_train_metrics = train_eval_report.flat_metrics(prefix="train")
             print(format_metrics_table({"epoch": epoch, "split": "train_final", **final_train_metrics}))
             logger.log(
                 "train_eval_final",
@@ -597,8 +714,8 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
     if run_status == "completed":
         if best_checkpoint_path.exists():
             pipeline.load(str(best_checkpoint_path))
-            if best_stage2_state is not None:
-                pipeline.stage2.load_state_dict(best_stage2_state, strict=False)
+            if best_stage2_state_by_combined is not None:
+                pipeline.stage2.load_state_dict(best_stage2_state_by_combined, strict=False)
         pipeline.eval()
         if device.type == "cuda":
             torch.cuda.empty_cache()
@@ -615,136 +732,10 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
     return pipeline
 
 
-@torch.no_grad()
-# --- Snapshot note: Teacher-forced objective evaluation used during training and reporting. ---
-def evaluate_objective(
-    pipeline,
-    eval_loader,
-    device: torch.device,
-    cfg,
-    amp_dtype: Optional[torch.dtype],
-    stage3_loss_fn: Stage3Loss,
-    metric_prefix: str = "dev",
-):
-    pipeline.eval()
-    stage3_episode = EpisodicAccumulator()
-    loss_sums: Dict[str, float] = {}
-    num_batches = 0
-
-    for batch in eval_loader:
-        batch = _to_device(batch, device)
-        autocast_ctx = (
-            torch.autocast(device_type=device.type, dtype=amp_dtype)
-            if amp_dtype is not None
-            else nullcontext()
-        )
-        with autocast_ctx:
-            losses = pipeline.forward(
-                batch,
-                use_gt_boxes=True,
-                loss_weights=(
-                    cfg.joint.loss_weights.lambda1,
-                    cfg.joint.loss_weights.lambda2,
-                    cfg.joint.loss_weights.lambda3,
-                ),
-                stage3_loss_fn=stage3_loss_fn,
-            )
-
-        metrics = losses["metrics"]
-        loss_sums = _accumulate_metrics(
-            loss_sums,
-            {
-                f"{metric_prefix}/loss_stage1": float(losses["loss_stage1"].item()),
-                f"{metric_prefix}/loss_stage2": float(losses["loss_stage2"].item()),
-                f"{metric_prefix}/loss_stage3": float(losses["loss_stage3"].item()),
-                f"{metric_prefix}/loss_total": float(losses["loss_total"].item()),
-                f"{metric_prefix}/stage1_lm_loss": float(metrics["stage1/lm_loss"]),
-                f"{metric_prefix}/stage2_bce_loss": float(metrics["stage2/bce_loss"]),
-                f"{metric_prefix}/stage2_dice_loss": float(metrics["stage2/dice_loss"]),
-                f"{metric_prefix}/stage3_ce_loss": float(metrics["stage3/ce_loss"]),
-            },
-        )
-        stage3_episode.correct += int(round(metrics["stage3/acc"] * batch["query_labels"].numel()))
-        stage3_episode.total += int(batch["query_labels"].numel())
-        num_batches += 1
-
-    averaged = {key: value / max(num_batches, 1) for key, value in loss_sums.items()}
-    averaged[f"{metric_prefix}/stage3_episode_acc"] = stage3_episode.accuracy
-
-    if device.type == "cuda":
-        torch.cuda.empty_cache()
-
-    return averaged
-
-
-@torch.no_grad()
-# --- Snapshot note: True end-to-end inference evaluation over a dataset split. ---
-def evaluate_inference_dataset(
-    pipeline,
-    eval_dataset,
-    cfg,
-    metric_prefix: str = "dev",
-):
-    pipeline.eval()
-    threshold = float(cfg.stage1.eval.iou_threshold)
-    total_gt = 0
-    total_pred = 0
-    total_matches = 0
-    total_class_correct = 0
-    total_mask_iou = 0.0
-    latency_sums: Dict[str, float] = {"stage1": 0.0, "stage2": 0.0, "stage3": 0.0, "total": 0.0}
-
-    for index in range(len(eval_dataset)):
-        sample = eval_dataset[index]
-        output = pipeline.run(
-            pil_image=sample["pil_image"],
-            image_id=str(sample["image_id"]),
-            nms_iou_threshold=cfg.stage2.nms.iou_threshold,
-            score_threshold=cfg.stage2.nms.score_threshold,
-            top_k_classes=1,
-        )
-
-        pred_items = list(output.items)
-        gt_items = list(sample.get("stage1_items", []))
-        gt_masks = list(sample.get("masks", []))
-        pred_boxes = [item.box for item in pred_items]
-        gt_boxes = [item["box"] for item in gt_items]
-        matches = greedy_box_matches(pred_boxes, gt_boxes, threshold=threshold)
-
-        total_gt += len(gt_items)
-        total_pred += len(pred_items)
-        total_matches += len(matches)
-
-        for match in matches:
-            pred_item = pred_items[match.pred_index]
-            gt_item = gt_items[match.gt_index]
-            gt_mask = gt_masks[match.gt_index] if match.gt_index < len(gt_masks) else None
-
-            if pred_item.mask is not None and gt_mask is not None:
-                total_mask_iou += mask_iou(pred_item.mask, gt_mask)
-
-            if pred_item.label == gt_item["label"]:
-                total_class_correct += 1
-
-        for key, value in output.latency_ms.items():
-            latency_sums[key] = latency_sums.get(key, 0.0) + float(value)
-
-    image_count = max(len(eval_dataset), 1)
-    metrics = {
-        f"{metric_prefix}/stage1_recall@0.5": total_matches / max(total_gt, 1),
-        f"{metric_prefix}/stage1_precision@0.5": total_matches / max(total_pred, 1),
-        f"{metric_prefix}/stage2_mIoU": total_mask_iou / max(total_gt, 1),
-        f"{metric_prefix}/stage3_acc": total_class_correct / max(total_gt, 1),
-        f"{metric_prefix}/stage3_matched_acc": total_class_correct / max(total_matches, 1),
-        f"{metric_prefix}/pred_items_per_image": total_pred / image_count,
-        f"{metric_prefix}/latency_stage1_ms": latency_sums["stage1"] / image_count,
-        f"{metric_prefix}/latency_stage2_ms": latency_sums["stage2"] / image_count,
-        f"{metric_prefix}/latency_stage3_ms": latency_sums["stage3"] / image_count,
-        f"{metric_prefix}/latency_total_ms": latency_sums["total"] / image_count,
-    }
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
-    return metrics
+# NOTE: ``evaluate_objective`` and ``evaluate_inference_dataset`` were removed
+# in Phase 2 of the base refactor. Their behavior is now in eval_harness.py:
+# call ``evaluate_split(pipeline, dataset=..., loader=..., mode=EvalMode.END_TO_END)``
+# for the same effect, and pull a flat metric dict via ``report.flat_metrics(prefix=...)``.
 
 
 def _load_existing_checkpoints(cfg, pipeline: TriFoodNet, logger: ExperimentLogger):
@@ -766,6 +757,12 @@ def _load_existing_checkpoints(cfg, pipeline: TriFoodNet, logger: ExperimentLogg
 
 
 def _build_adamw_kwargs(device: torch.device, training_cfg) -> Dict[str, float | bool]:
+    """Backwards-compatible AdamW kwargs for single-LR optimizer construction.
+
+    For per-stage param groups, callers should instead use
+    ``_build_param_groups`` and pass the resulting list as the first argument
+    to ``torch.optim.AdamW``.
+    """
     kwargs: Dict[str, float | bool] = {
         "lr": training_cfg.learning_rate,
         "weight_decay": training_cfg.weight_decay,
@@ -776,6 +773,59 @@ def _build_adamw_kwargs(device: torch.device, training_cfg) -> Dict[str, float |
     elif "foreach" in adamw_params:
         kwargs["foreach"] = True
     return kwargs
+
+
+def _build_param_groups(pipeline, joint_training_cfg, c1, c2, c3) -> tuple[list, list]:
+    """Construct per-stage AdamW param groups + a parallel summary list.
+
+    Each stage gets its own LR + weight_decay. Resolution order per stage:
+        joint.training.per_stage_lr.<stage>          (preferred)
+        stage{N}.training.learning_rate              (fallback to standalone cfg)
+        joint.training.learning_rate                 (final fallback)
+    Same precedence applies to weight_decay.
+
+    Returns
+    -------
+    groups : list of dicts ready for AdamW(...)
+    summary : list of {"name", "lr", "weight_decay", "param_count"} dicts for logging
+    """
+    per_stage = getattr(joint_training_cfg, "per_stage_lr", None)
+    per_stage_wd = getattr(joint_training_cfg, "per_stage_weight_decay", None)
+    fallback_lr = float(joint_training_cfg.learning_rate)
+    fallback_wd = float(joint_training_cfg.weight_decay)
+
+    stage_specs = [
+        ("stage1", pipeline.stage1, getattr(c1, "training", None)),
+        ("stage2", pipeline.stage2, getattr(c2, "training", None)),
+        ("stage3", pipeline.stage3, getattr(c3, "training", None)),
+    ]
+
+    def _resolve(name: str, attr: str, fallback: float, stage_cfg) -> float:
+        # Tier 1: explicit joint per-stage override
+        if per_stage is not None and getattr(per_stage, name, None) is not None:
+            return float(getattr(per_stage, name))
+        if attr == "weight_decay" and per_stage_wd is not None and getattr(per_stage_wd, name, None) is not None:
+            return float(getattr(per_stage_wd, name))
+        # Tier 2: stageN.training.<attr> if present
+        if stage_cfg is not None and getattr(stage_cfg, attr, None) is not None:
+            return float(getattr(stage_cfg, attr))
+        # Tier 3: shared joint default
+        return fallback
+
+    groups = []
+    summary = []
+    for name, module, stage_cfg in stage_specs:
+        params = [p for p in module.parameters() if p.requires_grad]
+        if not params:
+            summary.append({"name": name, "lr": 0.0, "weight_decay": 0.0, "param_count": 0,
+                            "trainable": False})
+            continue
+        lr = _resolve(name, "learning_rate", fallback_lr, stage_cfg)
+        wd = _resolve(name, "weight_decay", fallback_wd, stage_cfg)
+        groups.append({"params": params, "lr": lr, "weight_decay": wd, "name": name})
+        summary.append({"name": name, "lr": lr, "weight_decay": wd,
+                        "param_count": sum(p.numel() for p in params), "trainable": True})
+    return groups, summary
 
 
 def _prune_old_checkpoints(ckpt_dir: Path, keep_last_n: int):

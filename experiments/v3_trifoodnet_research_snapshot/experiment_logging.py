@@ -81,6 +81,27 @@ def build_run_metadata(cfg, device: torch.device) -> Dict[str, Any]:
         "cwd": os.getcwd(),
         "run_name": getattr(cfg.run, "name", "unknown"),
         "notes": getattr(cfg.run, "notes", ""),
+        # ── reproducibility / determinism ─────────────────────────────────
+        "seed": getattr(cfg.run, "seed", None),
+        "determinism_mode": getattr(cfg.run, "determinism_mode", "deterministic"),
+        # ── environment knobs that affect numeric outcomes ────────────────
+        "env": {
+            "CUDA_VISIBLE_DEVICES": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "PYTORCH_CUDA_ALLOC_CONF": os.environ.get("PYTORCH_CUDA_ALLOC_CONF"),
+            "PYTHONHASHSEED": os.environ.get("PYTHONHASHSEED"),
+            "CUBLAS_WORKSPACE_CONFIG": os.environ.get("CUBLAS_WORKSPACE_CONFIG"),
+            "TRIFOODNET_SEED": os.environ.get("TRIFOODNET_SEED"),
+        },
+        # ── git / source provenance ───────────────────────────────────────
+        "git": _collect_git_state(),
+        # ── package versions (full pip freeze written to a sibling file) ──
+        "packages": _collect_pip_freeze_summary(),
+        # ── dataset provenance (filled in by train_joint after adapter loads) ──
+        "dataset": {
+            "version": None,
+            "hash": None,
+            "export_root": None,
+        },
     }
     if device.type == "cuda" and torch.cuda.is_available():
         meta["cuda"] = {
@@ -89,6 +110,50 @@ def build_run_metadata(cfg, device: torch.device) -> Dict[str, Any]:
             "devices": [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())],
         }
     return meta
+
+
+def _collect_git_state() -> Dict[str, Any]:
+    """Capture the current commit + dirty flag without raising on non-git checkouts."""
+    import subprocess
+    state: Dict[str, Any] = {"sha": None, "dirty": None, "branch": None}
+    try:
+        sha = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL, text=True, cwd=os.getcwd(),
+        ).strip()
+        state["sha"] = sha
+        diff = subprocess.run(
+            ["git", "diff", "--quiet"], stderr=subprocess.DEVNULL, cwd=os.getcwd(),
+        )
+        state["dirty"] = diff.returncode != 0
+        try:
+            branch = subprocess.check_output(
+                ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                stderr=subprocess.DEVNULL, text=True, cwd=os.getcwd(),
+            ).strip()
+            state["branch"] = branch
+        except subprocess.CalledProcessError:
+            pass
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        # Not a git repo, or git not installed — leave fields as None.
+        pass
+    return state
+
+
+def _collect_pip_freeze_summary() -> Dict[str, Any]:
+    """Collect installed package versions for the most relevant deps.
+
+    Full pip freeze is also written to ``<run_dir>/requirements_resolved.txt``
+    by ExperimentLogger so that exhaustive reproduction is possible without
+    bloating run_metadata.json.
+    """
+    summary: Dict[str, Any] = {}
+    for pkg in ("torch", "transformers", "peft", "bitsandbytes", "accelerate", "numpy", "PIL", "Pillow"):
+        try:
+            import importlib.metadata as md
+            summary[pkg] = md.version(pkg)
+        except Exception:
+            summary[pkg] = None
+    return summary
 
 
 @dataclass
@@ -127,6 +192,38 @@ class ExperimentLogger:
 
         self._write_json(self.root_dir / "run_metadata.json", build_run_metadata(cfg, device))
         self._write_json(self.root_dir / "config_snapshot.json", cfg.to_dict())
+        self._write_pip_freeze(self.root_dir / "requirements_resolved.txt")
+
+    def update_run_metadata(self, **fields: Any) -> None:
+        """Merge fields into run_metadata.json so callers can fill in late-arriving
+        provenance such as the dataset version/hash reported by the adapter.
+        """
+        path = self.root_dir / "run_metadata.json"
+        try:
+            with path.open("r", encoding="utf-8") as f:
+                payload = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            payload = {}
+        for key, value in fields.items():
+            if isinstance(value, dict) and isinstance(payload.get(key), dict):
+                payload[key].update(value)
+            else:
+                payload[key] = value
+        self._write_json(path, payload)
+
+    @staticmethod
+    def _write_pip_freeze(path: Path) -> None:
+        """Snapshot installed packages for reproducibility. Best-effort only."""
+        import subprocess
+        try:
+            output = subprocess.check_output(
+                [sys.executable, "-m", "pip", "freeze"],
+                stderr=subprocess.DEVNULL, text=True,
+            )
+            path.write_text(output, encoding="utf-8")
+        except (FileNotFoundError, subprocess.CalledProcessError, OSError):
+            # Pip not available or sandboxed — skip silently.
+            pass
 
     def log(
         self,

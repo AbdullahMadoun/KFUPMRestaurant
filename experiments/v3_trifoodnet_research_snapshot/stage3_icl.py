@@ -330,13 +330,21 @@ class FoodClassifier(nn.Module):
         self,
         query_tensor: torch.Tensor,
         device: torch.device,
-    ) -> tuple[torch.Tensor, torch.Tensor]:
+    ) -> tuple[torch.Tensor, torch.Tensor, list[int]]:
+        """Pick the top-K most-similar classes to the query and return their support
+        images + labels. Also returns the class ids the retriever selected so
+        callers can audit retrieval recall vs transformer accuracy separately.
+
+        Returns:
+            support_images, support_labels, selected_class_ids (sorted by descending similarity)
+        """
         support_images = self.support_images.to(device)
         support_labels = self.support_labels.to(device)
         unique_labels = torch.unique(support_labels)
 
         if unique_labels.numel() <= self.inference_n_way:
-            return support_images, support_labels
+            # No retrieval narrowing needed — every class is a candidate.
+            return support_images, support_labels, [int(c) for c in unique_labels.tolist()]
 
         self._ensure_support_cache(device)
         assert self._cached_support_prototypes is not None
@@ -358,10 +366,14 @@ class FoodClassifier(nn.Module):
             selected_indices.extend(class_indices[: self.inference_k_shot])
 
         if not selected_indices:
-            return support_images, support_labels
+            return support_images, support_labels, [int(c) for c in unique_labels.tolist()]
 
         index_tensor = torch.tensor(selected_indices, dtype=torch.long, device=device)
-        return support_images.index_select(0, index_tensor), support_labels.index_select(0, index_tensor)
+        return (
+            support_images.index_select(0, index_tensor),
+            support_labels.index_select(0, index_tensor),
+            [int(c) for c in selected_class_ids],
+        )
 
     def set_support_set(
         self,
@@ -430,7 +442,18 @@ class FoodClassifier(nn.Module):
         self.to(runtime_device)
 
         query_tensor = self._prepare_query_tensor(query_image).to(runtime_device)
-        support_images, support_labels = self._select_support_subset(query_tensor, runtime_device)
+        support_images, support_labels, selected_class_ids = self._select_support_subset(
+            query_tensor, runtime_device
+        )
+
+        # Diagnostic: which classes did the cosine retriever surface? Caller
+        # (pipeline.run) reads this attribute right after classify() returns,
+        # then attaches it to the FoodItem so eval can compute retrieval recall.
+        self.last_candidate_class_ids: list[int] = list(selected_class_ids)
+        self.last_candidate_class_names: list[str] = [
+            self.class_names[cid] if 0 <= cid < len(self.class_names) else f"class_{cid}"
+            for cid in selected_class_ids
+        ]
 
         # Keep inference on the trainable transformer ICL path so the
         # deployed classifier matches the model optimized during training.

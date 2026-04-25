@@ -164,6 +164,16 @@ def load_config(
         for override in overrides:
             _apply_override(cfg, override)
 
+    # Static (dataset-independent) validation. Dataset-dependent checks run
+    # in train_joint.py after the adapter has reported class counts.
+    try:
+        from config_validation import validate_config, ConfigValidationError
+    except ImportError:
+        # Validation module is optional; fall through if unavailable.
+        return cfg
+    warnings = validate_config(cfg)
+    for msg in warnings:
+        print(f"[Config] WARN: {msg}")
     return cfg
 
 

@@ -178,6 +178,7 @@ class SAM3Segmenter(nn.Module):
         total_loss = torch.tensor(0.0, device=device)
         n_items = 0
         loss_sums = {"bce": 0.0, "dice": 0.0, "total": 0.0}
+        nonfinite_count = 0
 
         for b_idx in range(len(input_boxes)):
             boxes = input_boxes[b_idx]      # [N, 4]
@@ -207,6 +208,8 @@ class SAM3Segmenter(nn.Module):
                     n_items += 1
                     for key in loss_sums:
                         loss_sums[key] += float(loss_info[key])
+                    if loss_info.get("nonfinite"):
+                        nonfinite_count += 1
 
             all_masks.append(img_masks)
             all_logits.append(img_logits)
@@ -220,7 +223,10 @@ class SAM3Segmenter(nn.Module):
             "mask_logits": all_logits,
             "iou_scores": all_ious,
             "loss":       total_loss,
-            "loss_info":  {key: value / max(n_items, 1) for key, value in loss_sums.items()},
+            "loss_info":  {
+                **{key: value / max(n_items, 1) for key, value in loss_sums.items()},
+                "nonfinite_count": int(nonfinite_count),
+            },
         }
 
     def _forward_single(
@@ -501,12 +507,19 @@ def segmentation_loss(
     bce  = F.binary_cross_entropy_with_logits(pred, gt)
     dice = dice_loss(torch.sigmoid(pred), gt)
     total = bce_weight * bce + dice_weight * dice
+    nonfinite = False
     if not torch.isfinite(total):
         total = pred.new_zeros(())
         bce = pred.new_zeros(())
         dice = pred.new_zeros(())
+        nonfinite = True
     if return_details:
-        return total, {"bce": float(bce.item()), "dice": float(dice.item()), "total": float(total.item())}
+        return total, {
+            "bce": float(bce.item()),
+            "dice": float(dice.item()),
+            "total": float(total.item()),
+            "nonfinite": nonfinite,
+        }
     return total
 
 
