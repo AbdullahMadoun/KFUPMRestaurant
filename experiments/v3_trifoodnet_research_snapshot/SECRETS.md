@@ -79,8 +79,9 @@ curl -s -o /dev/null -w "HTTP %{http_code}\n" \
 3. Re-run the "Set or rotate the local token" steps above
 4. Re-run training; new instances pick up the new token automatically
 
-## Token rotation history (no values, just context)
+## Token rotation log
 
-| Date | Account | Why rotated |
-|---|---|---|
-| 2026-04-25 | Razak111 | initial token; not yet SAM3-approved → cleandata1 trainer's account substituted |
+Keep rotation history in a separate, untracked location (e.g. team password
+manager or a private gist). Do not record account names, dates, or rotation
+reasons in this committed doc — that's operational metadata that doesn't
+belong in the public repo.

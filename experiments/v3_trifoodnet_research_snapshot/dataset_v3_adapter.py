@@ -363,10 +363,21 @@ class V3ExportAdapter:
                     # the cache was written.
                     cached_image_ids = {str(k) for k in mapping.keys()}
                     current_image_ids = {str(row["image_id"]) for row in image_rows}
-                    if current_image_ids.issubset(cached_image_ids):
+                    # Value validation: every cached split label must be one of the
+                    # three accepted names. A typo or corruption like "trian" would
+                    # otherwise be passed through normalize_split_name as-is and
+                    # silently exclude rows from train/dev/test entirely.
+                    valid_split_names = {"train", "dev", "test"}
+                    values_valid = all(
+                        str(v) in valid_split_names for v in mapping.values()
+                    )
+                    if (
+                        current_image_ids.issubset(cached_image_ids)
+                        and values_valid
+                    ):
                         return {str(k): str(v) for k, v in mapping.items()}
-                    # else: image_rows contains IDs the cache doesn't cover
-                    # → fall through to recompute.
+                    # else: image_rows contains IDs the cache doesn't cover OR the
+                    # cached file has bogus split values → fall through to recompute.
             # Validation failed — fall through to recompute. Don't warn loudly
             # because this is normal when a dataset version bumps; the new
             # mapping will just overwrite the cache.

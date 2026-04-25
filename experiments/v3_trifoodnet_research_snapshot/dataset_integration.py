@@ -83,6 +83,12 @@ def build_export_paths(
 
 
 def normalize_split_name(split: str | None) -> str:
+    """Map a free-form split name to one of the three canonical names.
+
+    Raises on unknown names so a typo (e.g. 'trian') in cached splits.json or
+    a config field doesn't silently filter every row out of train/dev/test.
+    Callers that want forgiving behavior must check before calling.
+    """
     normalized = str(split or "train").strip().lower()
     aliases = {
         "train": "train",
@@ -92,7 +98,12 @@ def normalize_split_name(split: str | None) -> str:
         "validation": "dev",
         "test": "test",
     }
-    return aliases.get(normalized, normalized)
+    if normalized not in aliases:
+        raise ValueError(
+            f"Unknown split name {split!r} (normalized to {normalized!r}). "
+            f"Expected one of: train, dev/val/valid/validation, test."
+        )
+    return aliases[normalized]
 
 
 def stratified_split(
