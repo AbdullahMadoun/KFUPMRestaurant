@@ -45,10 +45,23 @@ export REMOTE_DATASET="${REMOTE_WORK}/dataset_v3_export"
 export REMOTE_LOGS="${REMOTE_WORK}/logs"
 export REMOTE_CKPTS="${REMOTE_WORK}/checkpoints"
 
+# ── Instance state, persisted between scripts ────────────────────────────────
+load_state() {
+    if [[ -f "$STATE_FILE" ]]; then
+        # shellcheck disable=SC1090
+        source "$STATE_FILE"
+    fi
+}
+
+# Load persisted state FIRST so a RUN_NAME written by 01_launch.sh wins over
+# a fresh timestamp. Earlier this ran AFTER the RUN_NAME default block, which
+# meant TRAIN_OVERRIDES locked in the new timestamp before the cached one
+# could win — silently routing every later script to the wrong log path.
+load_state || true
+
 # ── Mini-run config overrides ────────────────────────────────────────────────
 # Passed positionally to `python -m train_joint`. Each is "key=value".
-# RUN_NAME must be stable across script invocations — load from .state if persisted,
-# else compute fresh and let save_state() persist it later.
+# RUN_NAME comes from .state (if persisted by 01_launch.sh) or fresh timestamp.
 if [[ -z "${RUN_NAME:-}" ]]; then
     export RUN_NAME="trial-$(date -u +%Y%m%d-%H%M)-mini-smoke"
 fi
@@ -63,19 +76,6 @@ export TRAIN_OVERRIDES=(
     "hardware.compile=false"
     "data.integration.adapter.export_root=${REMOTE_DATASET}"
 )
-
-# ── Instance state, persisted between scripts ────────────────────────────────
-load_state() {
-    if [[ -f "$STATE_FILE" ]]; then
-        # shellcheck disable=SC1090
-        source "$STATE_FILE"
-    fi
-}
-
-# Load BEFORE the RUN_NAME default below so a persisted run name wins over a
-# fresh timestamp. Without this, every script invocation produces a new
-# RUN_NAME and the live monitor / pull scripts target the wrong log path.
-load_state || true
 
 save_state() {
     {
@@ -96,5 +96,5 @@ ssh_cmd() {
     echo "ssh -p ${SSH_PORT} root@${SSH_HOST}"
 }
 
-# Note: load_state was moved to before the RUN_NAME default earlier in this file.
-# Leaving this trailing call would clobber any RUN_NAME computed in this session.
+# Trailing load_state was removed — it would have clobbered RUN_NAME values
+# computed in this session.

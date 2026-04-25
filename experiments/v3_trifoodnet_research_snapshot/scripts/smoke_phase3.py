@@ -653,15 +653,30 @@ def main() -> int:
         print(f"[FATAL] config not found: {config_path}", file=sys.stderr)
         return 2
 
-    # Resolve export_root from config or override.
+    # Resolve export_root: CLI override → master_config → TRIFOODNET_DATASET_DIR env var.
+    # Mirrors what dataset_v3_adapter.adapter_from_config does so the smoke run honors
+    # the same precedence as the actual training pipeline.
     import yaml
     raw_cfg = yaml.safe_load(config_path.read_text())
     adapter_cfg = raw_cfg.get("data", {}).get("integration", {}).get("adapter", {})
     expected_version = str(adapter_cfg.get("expected_version") or "")
     expected_hash = str(adapter_cfg.get("expected_hash") or "")
-    export_root = Path(args.export_root or adapter_cfg.get("export_root") or "")
-    if not export_root or not export_root.is_dir():
-        print(f"[FATAL] export_root not found: {export_root}", file=sys.stderr)
+    resolved_path = (
+        args.export_root
+        or adapter_cfg.get("export_root")
+        or os.environ.get("TRIFOODNET_DATASET_DIR")
+        or ""
+    )
+    if not resolved_path:
+        print(
+            "[FATAL] No dataset path. Set TRIFOODNET_DATASET_DIR env var, "
+            "pass --export-root, or fill data.integration.adapter.export_root in master_config.yaml.",
+            file=sys.stderr,
+        )
+        return 2
+    export_root = Path(resolved_path)
+    if not export_root.is_dir():
+        print(f"[FATAL] export_root not found on disk: {export_root}", file=sys.stderr)
         return 2
 
     print(f"smoke: export_root = {export_root}")

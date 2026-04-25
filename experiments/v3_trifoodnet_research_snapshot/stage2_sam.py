@@ -239,10 +239,16 @@ class SAM3Segmenter(nn.Module):
 
         if self.processor is not None:
             device, model_dtype = self._model_device_dtype()
+            # pixel_values arrives already-rescaled to [0,1] by the dataset's
+            # `image_tensor = pil_to_tensor(image).float() / 255`. SAM3's processor
+            # rescales by default (multiply by 1/255), so without do_rescale=False
+            # we'd divide by 255 a second time → all-near-zero inputs and degenerate
+            # masks. Pass do_rescale=False to skip the second rescale.
             inputs = self.processor(
                 images=pixel_values,
                 input_boxes=boxes.unsqueeze(0).tolist(),
                 return_tensors="pt",
+                do_rescale=False,
             )
             processed_inputs = {}
             for key, value in inputs.items():

@@ -1,6 +1,12 @@
 # Secrets handling
 
-**This file is gitignored. Do not commit. Do not paste real values into Slack / PRs / docs.**
+**This file IS committed.** It documents the workflow only — it must contain
+**zero real secret values**. Real secrets live in `.env` (gitignored, mode 600)
+on each developer's laptop and in `/root/.hf_env` on rented instances.
+
+**Do not paste real tokens into this file, into Slack, into PR descriptions, or
+into commit messages.** If a token leaks anywhere visible to git history, rotate
+it immediately at https://huggingface.co/settings/tokens.
 
 ## What lives where
 

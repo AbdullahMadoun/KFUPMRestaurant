@@ -356,7 +356,17 @@ class V3ExportAdapter:
             ):
                 mapping = payload.get("split_mapping") or {}
                 if mapping:
-                    return {str(k): str(v) for k, v in mapping.items()}
+                    # Coverage check: every image_id we're about to load must be in
+                    # the cached mapping. Otherwise downstream code calling
+                    # split_mapping.get(id, "train") silently labels missing items
+                    # as train — a leak vector for any image added/renamed after
+                    # the cache was written.
+                    cached_image_ids = {str(k) for k in mapping.keys()}
+                    current_image_ids = {str(row["image_id"]) for row in image_rows}
+                    if current_image_ids.issubset(cached_image_ids):
+                        return {str(k): str(v) for k, v in mapping.items()}
+                    # else: image_rows contains IDs the cache doesn't cover
+                    # → fall through to recompute.
             # Validation failed — fall through to recompute. Don't warn loudly
             # because this is normal when a dataset version bumps; the new
             # mapping will just overwrite the cache.
