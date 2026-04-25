@@ -158,9 +158,12 @@ stage1:
 stage2:
   model_name: "facebook/sam3"
   freeze:
-    image_encoder:  true         # recommended on the reviewed dataset size
-    prompt_encoder: true
-    mask_decoder:   false
+    image_encoder:  true         # the big ViT backbone, never fine-tune
+    prompt_encoder: true         # small but coupled to box embeddings
+    mask_decoder:   true         # FULLY FROZEN. Cleandata1 had this trainable but
+                                 # mask quality regressed visually vs untouched SAM3
+                                 # — Madoun confirmed. Treat SAM3 as a fixed module.
+                                 # Set to false to restore the cleandata1 behavior.
 
   training:
     epochs:           10
@@ -191,7 +194,10 @@ stage2:
 stage3:
   clip_model: "pictsure/pictsure-vit"
   embed_dim:  512
-  train_embedding: true
+  # Freeze the PictSure ViT backbone. Only the transformer LoRA adapters above
+  # learn — matches the PictSure paper's finding that frozen backbones outperform
+  # fine-tuned ones on few-shot tasks. Set to true to also fine-tune the ViT.
+  train_embedding: false
   lora:
     enabled:        true
     r:              16

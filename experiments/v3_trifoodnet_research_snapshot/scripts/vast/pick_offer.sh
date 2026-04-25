@@ -8,12 +8,15 @@
 
 set -euo pipefail
 
-GPU_NAME="${GPU_NAME:-RTX_4090}"
+GPU_NAME="${GPU_NAME:-RTX_5090}"
 MIN_INET="${MIN_INET:-500}"
 MIN_DISK="${MIN_DISK:-80}"
 MIN_RELIABILITY="${MIN_RELIABILITY:-0.95}"
+# 5090 needs CUDA 12.8+ host driver to run sm_120 wheels. cuda_max_good is the
+# host's max supported CUDA version reported by vast.
+MIN_CUDA="${MIN_CUDA:-12.8}"
 
-QUERY="gpu_name=${GPU_NAME} num_gpus=1 verified=true rentable=true inet_down>=${MIN_INET} inet_up>=${MIN_INET} disk_space>=${MIN_DISK} reliability>=${MIN_RELIABILITY}"
+QUERY="gpu_name=${GPU_NAME} num_gpus=1 verified=true rentable=true inet_down>=${MIN_INET} inet_up>=${MIN_INET} disk_space>=${MIN_DISK} reliability>=${MIN_RELIABILITY} cuda_max_good>=${MIN_CUDA}"
 
 OFFERS=$(vastai search offers --raw "${QUERY}" -o 'dph_total' 2>&1)
 

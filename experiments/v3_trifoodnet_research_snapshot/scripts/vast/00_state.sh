@@ -27,17 +27,22 @@ export DATASET_EXPECTED_HASH="${DATASET_EXPECTED_HASH:-61ac038c}"  # manifest.js
 # README for the dependency cascade we hit. Use 4090 (sm_89) for guaranteed-clean.
 export OFFER_ID="${OFFER_ID:-}"
 
-# Image: PyTorch 2.5 + CUDA 12.4. Cudnn-devel variant has compilers we need
-# for bitsandbytes + flash-attn if those need building from source.
-export DOCKER_IMAGE="pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel"
+# Image: PyTorch 2.7 + CUDA 12.8. CUDA 12.8 is required for sm_120 (Blackwell)
+# wheels — last attempt with cu124 hit "no kernel image" on the 5090 because
+# the older wheel set lacks Blackwell kernels. PyTorch 2.7 was the first stable
+# release with proper sm_120 compatibility.
+# For 4090 (sm_89), `pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel` also works.
+export DOCKER_IMAGE="pytorch/pytorch:2.7.0-cuda12.8-cudnn9-devel"
 
 # Reasonable disk: dataset (~3GB) + HF model cache (Qwen ~3GB + SAM ~1GB) +
 # checkpoints (~2GB) + headroom. 50 is the floor; bumping to 80 to be safe.
 export DISK_GB="${DISK_GB:-80}"
 
 # Hard cap so we cannot leak credit. Auto-destroy via cron-on-instance + local
-# scheduled vastai destroy as belt-and-suspenders.
-export AUTO_DESTROY_MINUTES="${AUTO_DESTROY_MINUTES:-60}"
+# scheduled vastai destroy as belt-and-suspenders. Default 240 min = 4 hrs gives
+# room for a 10-epoch full-pass training run plus eval and report generation.
+# Override per-launch:  AUTO_DESTROY_MINUTES=360 bash 01_launch.sh
+export AUTO_DESTROY_MINUTES="${AUTO_DESTROY_MINUTES:-240}"
 
 # ── Remote paths inside the container ─────────────────────────────────────────
 export REMOTE_WORK="/root/work"
@@ -63,15 +68,19 @@ load_state || true
 # Passed positionally to `python -m train_joint`. Each is "key=value".
 # RUN_NAME comes from .state (if persisted by 01_launch.sh) or fresh timestamp.
 if [[ -z "${RUN_NAME:-}" ]]; then
-    export RUN_NAME="trial-$(date -u +%Y%m%d-%H%M)-mini-smoke"
+    export RUN_NAME="trial-$(date -u +%Y%m%d-%H%M)-real-1hr"
 fi
+# Real run: 10 full epochs, dev eval every epoch so we see the curve, save
+# checkpoint every epoch (rotated, keep last 5). Tuned for "let it cook for
+# at least an hour, extend if good, kill cleanly."
 export TRAIN_OVERRIDES=(
     "run.name=${RUN_NAME}"
-    "joint.training.epochs=5"
-    "joint.training.max_batches_per_epoch=50"
-    "joint.eval.interval=5"
+    "joint.training.epochs=10"
+    "joint.training.max_batches_per_epoch=0"   # 0 = full pass (no cap)
+    "joint.eval.interval=1"                     # eval each epoch
     "data.num_workers=4"
-    "logging.save_every_n_epochs=5"
+    "logging.save_every_n_epochs=1"             # checkpoint every epoch
+    "logging.keep_last_n_ckpts=5"               # 5 epoch ckpts on disk + best/ + best_by_monitor/
     "logging.wandb=false"
     "hardware.compile=false"
     "data.integration.adapter.export_root=${REMOTE_DATASET}"

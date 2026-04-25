@@ -86,13 +86,20 @@ fi
 save_state
 echo "[launch] saved instance id + ssh details to ${STATE_FILE}"
 
-# ── Schedule auto-destroy locally as belt-and-suspenders ─────────────────────
-DESTROY_LOG="${SCRIPT_DIR}/.auto_destroy.log"
-nohup bash -c "sleep $((AUTO_DESTROY_MINUTES * 60)); vastai destroy instance ${INSTANCE_ID} >> '${DESTROY_LOG}' 2>&1" \
-    >/dev/null 2>&1 &
-DESTROY_PID=$!
-echo "${DESTROY_PID}" > "${SCRIPT_DIR}/.auto_destroy.pid"
-echo "[launch] auto-destroy scheduled at +${AUTO_DESTROY_MINUTES} min (pid ${DESTROY_PID}, log: ${DESTROY_LOG})"
+# ── Optional auto-destroy watchdog (set AUTO_DESTROY_MINUTES=0 to skip) ─────
+# Skip the watchdog entirely for long-running training where the user wants
+# manual control over termination. With AUTO_DESTROY_MINUTES=0, the instance
+# stays up until `06_destroy.sh` is run.
+if [[ "${AUTO_DESTROY_MINUTES}" -gt 0 ]]; then
+    DESTROY_LOG="${SCRIPT_DIR}/.auto_destroy.log"
+    nohup bash -c "sleep $((AUTO_DESTROY_MINUTES * 60)); vastai destroy instance ${INSTANCE_ID} >> '${DESTROY_LOG}' 2>&1" \
+        >/dev/null 2>&1 &
+    DESTROY_PID=$!
+    echo "${DESTROY_PID}" > "${SCRIPT_DIR}/.auto_destroy.pid"
+    echo "[launch] auto-destroy scheduled at +${AUTO_DESTROY_MINUTES} min (pid ${DESTROY_PID}, log: ${DESTROY_LOG})"
+else
+    echo "[launch] auto-destroy DISABLED (AUTO_DESTROY_MINUTES=0). Run 06_destroy.sh when done."
+fi
 
 echo
 echo "[launch] DONE."

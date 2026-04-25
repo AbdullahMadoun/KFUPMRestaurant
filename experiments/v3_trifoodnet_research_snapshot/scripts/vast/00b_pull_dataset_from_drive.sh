@@ -83,7 +83,10 @@ echo "[drive] extracting..."
     set -e
     rm -rf ${REMOTE_DATASET}
     mkdir -p ${REMOTE_DATASET%/*}
-    EXTRACTED_NAME=\$(tar -tf ${REMOTE_TAR_PATH} 2>/dev/null | head -1 | cut -d/ -f1)
+    # Skip macOS xattr metadata entries (._foo) which sometimes lead the archive
+    # depending on how it was created. These are files, not dirs, and would fail
+    # the [[ -d ]] check below, leaving the actual extracted folder un-renamed.
+    EXTRACTED_NAME=\$(tar -tf ${REMOTE_TAR_PATH} 2>/dev/null | grep -v '/\\._' | grep -v '^\\._' | head -1 | cut -d/ -f1)
     echo \"[drive]   tar top-level dir: \${EXTRACTED_NAME}\"
     cd ${REMOTE_DATASET%/*} && tar -xf ${REMOTE_TAR_PATH} 2>/dev/null
     # Strip macOS-specific xattr metadata files (._foo) — harmless but noisy.
