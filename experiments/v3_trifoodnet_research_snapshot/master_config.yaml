@@ -337,6 +337,9 @@ inference:
   top_k_classes:      1
   target_latency_ms:  2000       # production constraint
   device:             "cuda"
+  # Batch size for Stage 1 (Qwen.generate). Used by pipeline.run_batched during
+  # dev/test eval to amortize per-call generate overhead. Stages 2/3 stay per-image.
+  stage1_chunk_size:  8
 
 
 # ─────────────────────────────────────────

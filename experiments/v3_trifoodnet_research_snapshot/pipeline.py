@@ -275,6 +275,115 @@ class TriFoodNet(nn.Module):
             image_id=image_id,
         )
 
+    # ── batched inference for dev eval ────────────────────────────────────────
+
+    @torch.inference_mode()
+    def run_batched(
+        self,
+        pil_images: List[Image.Image],
+        image_ids: Optional[List[Optional[str]]] = None,
+        nms_iou_threshold: float = 0.5,
+        score_threshold: float = 0.5,
+        top_k_classes: int = 1,
+        stage1_chunk_size: int = 8,
+    ) -> List[PipelineOutput]:
+        """Batched end-to-end inference. Main win: Stage 1 (Qwen autoregressive
+        generation) runs on chunks of `stage1_chunk_size` images at once instead
+        of per-image. Per-call overhead is amortized → ~5× speedup on dev eval.
+
+        Stages 2 + 3 stay per-image because each image has variable detection
+        counts and the per-image cost is already small relative to Stage 1.
+
+        Returns one PipelineOutput per input image, in the same order.
+        """
+        if image_ids is None:
+            image_ids = [None] * len(pil_images)
+        assert len(image_ids) == len(pil_images), \
+            f"len(image_ids)={len(image_ids)} != len(pil_images)={len(pil_images)}"
+
+        # ── Stage 1 BATCHED: chunk through Qwen.generate ─────────────────────
+        t1_start = time.perf_counter()
+        all_detections: List[List[Dict]] = []
+        for chunk_start in range(0, len(pil_images), stage1_chunk_size):
+            chunk = pil_images[chunk_start : chunk_start + stage1_chunk_size]
+            chunk_dets = self.stage1.generate_detections(chunk)
+            all_detections.extend(chunk_dets)
+        t1_total_sec = time.perf_counter() - t1_start
+        # Amortize stage1 latency across all images for per-image latency reporting.
+        stage1_per_image_ms = (t1_total_sec * 1000.0) / max(len(pil_images), 1)
+
+        # ── Stages 2 + 3 PER-IMAGE ───────────────────────────────────────────
+        outputs: List[PipelineOutput] = []
+        import numpy as np
+        for pil_image, detections, image_id in zip(pil_images, all_detections, image_ids):
+            if not detections:
+                outputs.append(PipelineOutput(
+                    items=[], total_price=0.0,
+                    latency_ms={"stage1": stage1_per_image_ms, "stage2": 0, "stage3": 0,
+                                "total": stage1_per_image_ms},
+                    raw_detections=[], image_id=image_id,
+                ))
+                continue
+
+            # Stage 2
+            t2_start = time.perf_counter()
+            img_np = np.array(pil_image)
+            img_tensor = torch.from_numpy(img_np.transpose(2, 0, 1)).float() / 255.0
+            img_tensor = img_tensor.unsqueeze(0).to(next(self.stage2.parameters()).device)
+            boxes = torch.tensor([d["box"] for d in detections], dtype=torch.float32).to(img_tensor.device)
+            seg_output = self.stage2.predict(
+                img_tensor, [boxes],
+                nms_iou_threshold=nms_iou_threshold,
+                score_threshold=score_threshold,
+            )
+            masks = seg_output["pred_masks"][0]
+            kept_indices = seg_output.get("kept_indices", [[]])[0]
+            t2_end = time.perf_counter()
+
+            # Stage 3
+            t3_start = time.perf_counter()
+            detection_mask_pairs = []
+            if masks and kept_indices:
+                for det_idx, mask in zip(kept_indices, masks):
+                    if det_idx < len(detections):
+                        detection_mask_pairs.append((detections[det_idx], mask.detach().cpu()))
+            if not detection_mask_pairs and detections:
+                detection_mask_pairs = [(det, None) for det in detections]
+
+            items: List[FoodItem] = []
+            for det, mask in detection_mask_pairs:
+                x1, y1, x2, y2 = [int(v) for v in det["box"]]
+                crop = (
+                    masked_crop_from_pil(pil_image, mask, det["box"])
+                    if mask is not None
+                    else pil_image.crop((x1, y1, x2, y2))
+                )
+                preds = self.stage3.classify(
+                    crop, device=img_tensor.device.type, top_k=top_k_classes,
+                )
+                best_class, confidence = preds[0] if preds else (det.get("label", "unknown"), 0.0)
+                price = self.price_lookup.get_price(best_class)
+                candidate_classes = list(getattr(self.stage3, "last_candidate_class_names", []) or [])
+                items.append(FoodItem(
+                    box=det["box"], mask=mask, label=best_class,
+                    confidence=confidence, price=price,
+                    candidate_classes=candidate_classes,
+                ))
+            t3_end = time.perf_counter()
+
+            outputs.append(PipelineOutput(
+                items=items, total_price=sum(it.price for it in items),
+                latency_ms={
+                    "stage1": stage1_per_image_ms,
+                    "stage2": _ms(t2_start, t2_end),
+                    "stage3": _ms(t3_start, t3_end),
+                    "total":  stage1_per_image_ms + _ms(t2_start, t3_end),
+                },
+                raw_detections=detections, image_id=image_id,
+            ))
+
+        return outputs
+
     # ── joint training forward ────────────────────────────────────────────────
 
     def forward(

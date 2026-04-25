@@ -222,15 +222,29 @@ def evaluate_inference_loop(
     diag_given_recalled_correct = 0
     diag_cosine_top1_correct = 0
 
-    for index in range(len(eval_dataset)):
-        sample = eval_dataset[index]
-        output = pipeline.run(
-            pil_image=sample["pil_image"],
-            image_id=str(sample["image_id"]),
-            nms_iou_threshold=cfg.stage2.nms.iou_threshold,
-            score_threshold=cfg.stage2.nms.score_threshold,
-            top_k_classes=1,
-        )
+    # Batched Stage 1 (Qwen.generate) — process the dataset in chunks so per-call
+    # generate overhead is amortized. We materialize one chunk of samples at a
+    # time (rather than the whole split) to keep CPU RAM bounded — masks alone
+    # can be ~1.6 MB each and a 370-image split adds up fast.
+    stage1_chunk_size = int(getattr(cfg.inference, "stage1_chunk_size", 8))
+
+    def _iter_chunks():
+        n = len(eval_dataset)
+        for chunk_start in range(0, n, stage1_chunk_size):
+            chunk_indices = range(chunk_start, min(chunk_start + stage1_chunk_size, n))
+            chunk_samples = [eval_dataset[i] for i in chunk_indices]
+            chunk_outputs = pipeline.run_batched(
+                pil_images=[s["pil_image"] for s in chunk_samples],
+                image_ids=[str(s["image_id"]) for s in chunk_samples],
+                nms_iou_threshold=cfg.stage2.nms.iou_threshold,
+                score_threshold=cfg.stage2.nms.score_threshold,
+                top_k_classes=1,
+                stage1_chunk_size=stage1_chunk_size,
+            )
+            for s, o in zip(chunk_samples, chunk_outputs):
+                yield s, o
+
+    for sample, output in _iter_chunks():
         pred_items = list(output.items)
         gt_items = list(sample.get("stage1_items", []))
         gt_masks = list(sample.get("masks", []))
