@@ -12,7 +12,9 @@ if [[ -z "${SSH_HOST:-}" ]]; then
 fi
 
 export STAGE1_RUN_NAME="${STAGE1_RUN_NAME:-${RUN_NAME:-stage1-qwen7b}}"
-export STAGE1_REFERENCE_POLICY="${STAGE1_REFERENCE_POLICY:-include}"
+export STAGE1_REFERENCE_POLICY="${STAGE1_REFERENCE_POLICY:-exclude}"
+export STAGE1_PREVIEW_SAMPLES="${STAGE1_PREVIEW_SAMPLES:-12}"
+export STAGE1_PREVIEW_SEED="${STAGE1_PREVIEW_SEED:-20260426}"
 export STAGE1_PREVIEW_DIR="${REMOTE_WORK}/stage1_runs/${STAGE1_RUN_NAME}/previews"
 export STAGE1_EXPECTED_HASH="${STAGE1_EXPECTED_HASH:-${DATASET_EXPECTED_HASH:-}}"
 
@@ -61,8 +63,10 @@ echo "[stage1_prepare] rendering 5 training-data previews..."
       --export-root ${REMOTE_DATASET} \
       --output-dir ${STAGE1_PREVIEW_DIR} \
       --split train \
-      --max-samples 5 \
-      --reference-policy ${STAGE1_REFERENCE_POLICY}
+      --max-samples ${STAGE1_PREVIEW_SAMPLES} \
+      --reference-policy ${STAGE1_REFERENCE_POLICY} \
+      --seed ${STAGE1_PREVIEW_SEED} \
+      --selection class-diverse
 "
 
 LOCAL_PREVIEW_DIR="${REPO_DIR}/outputs/${STAGE1_RUN_NAME}/previews"

@@ -46,7 +46,7 @@ python train.py \
 
 If the export contains reference items, default training exits before model load. Choose the policy explicitly:
 
-- `--reference-policy exclude`: safest no-leakage policy; excludes every source image containing a reference item.
+- `--reference-policy exclude`: safest no-leakage policy; excludes every source image containing a reference item. This is the default for remote previews and training.
 - `--reference-policy train`: keeps reference images in train only.
 - `--reference-policy include`: diagnostic only; keeps references eligible for any split.
 
@@ -90,11 +90,13 @@ python -m stage1_kcfd.visualize \
   --export-root /root/work/dataset_v3_export \
   --output-dir /root/work/stage1_runs/previews \
   --split train \
-  --max-samples 5 \
-  --reference-policy include
+  --max-samples 12 \
+  --reference-policy exclude \
+  --seed 20260426 \
+  --selection class-diverse
 ```
 
-Each sample writes a mask-native preview and a full-resolution preview. Inspect these locally before starting the full run.
+Each sample writes a mask-native preview and a full-resolution preview. The preview manifest records selected image ids and distinct class slugs so the sample can be audited for diversity. Inspect these locally before starting the full run.
 
 Every 5 training epochs, validation predictions are drawn against GT boxes and logged to TensorBoard.
 

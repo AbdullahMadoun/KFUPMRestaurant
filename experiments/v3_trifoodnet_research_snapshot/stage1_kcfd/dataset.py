@@ -18,6 +18,9 @@ from .qwen_io import build_assistant_conversation, build_user_conversation, proc
 from .schema import Stage1Item, Stage1Target, normalize_text, target_to_json, target_to_payload
 
 
+SPLIT_METHOD = "stage1_image_level_stratified_class_item_balance_v2"
+
+
 def read_json(path: str | Path) -> Any:
     with Path(path).open("r", encoding="utf-8") as handle:
         return json.load(handle)
@@ -227,6 +230,10 @@ def _split_labels_from_rows(samples: Sequence[Stage1ImageSample]) -> Dict[str, s
     return labels
 
 
+def _sample_item_counts(samples: Sequence[Stage1ImageSample]) -> Dict[str, int]:
+    return {sample.image_id: len(sample.items) for sample in samples}
+
+
 def _allocate_split_sizes(n: int, config: Stage1Config) -> Dict[str, int]:
     ratio_sum = config.train_ratio + config.val_ratio + config.test_ratio
     raw = {
@@ -244,11 +251,20 @@ def _allocate_split_sizes(n: int, config: Stage1Config) -> Dict[str, int]:
 
 def _compute_stratified_image_split(samples: Sequence[Stage1ImageSample], config: Stage1Config) -> Dict[str, str]:
     labels_by_image = _split_labels_from_rows(samples)
+    item_counts = _sample_item_counts(samples)
     ids = sorted(labels_by_image)
     rng = random.Random(config.split_seed)
     rng.shuffle(ids)
     target_sizes = _allocate_split_sizes(len(ids), config)
+    total_items = sum(item_counts.values())
+    ratio_sum = config.train_ratio + config.val_ratio + config.test_ratio
+    target_items = {
+        "train": total_items * config.train_ratio / ratio_sum,
+        "dev": total_items * config.val_ratio / ratio_sum,
+        "test": total_items * config.test_ratio / ratio_sum,
+    }
     split_counts = {"train": 0, "dev": 0, "test": 0}
+    split_item_counts = {"train": 0, "dev": 0, "test": 0}
     split_label_counts: Dict[str, Dict[str, int]] = {"train": {}, "dev": {}, "test": {}}
     assignments: Dict[str, str] = {}
     label_to_images: Dict[str, List[str]] = {}
@@ -261,8 +277,19 @@ def _compute_stratified_image_split(samples: Sequence[Stage1ImageSample], config
             return
         assignments[image_id] = split
         split_counts[split] += 1
+        split_item_counts[split] += item_counts.get(image_id, 0)
         for label in labels_by_image.get(image_id, set()):
             split_label_counts[split][label] = split_label_counts[split].get(label, 0) + 1
+
+    target_label_counts = {
+        split: {
+            label: len(images) * (
+                config.train_ratio if split == "train" else config.val_ratio if split == "dev" else config.test_ratio
+            ) / ratio_sum
+            for label, images in label_to_images.items()
+        }
+        for split in ("train", "dev", "test")
+    }
 
     for split in ("train", "dev", "test"):
         if target_sizes[split] <= 0:
@@ -276,16 +303,54 @@ def _compute_stratified_image_split(samples: Sequence[Stage1ImageSample], config
             if candidates:
                 assign(candidates[0], split)
 
-    for image_id in ids:
+    remaining = [image_id for image_id in ids if image_id not in assignments]
+    remaining.sort(key=lambda image_id: (
+        -sum(1.0 / max(len(label_to_images[label]), 1) for label in labels_by_image.get(image_id, set())),
+        -len(labels_by_image.get(image_id, set())),
+        -item_counts.get(image_id, 0),
+        image_id,
+    ))
+
+    def split_score(image_id: str, split: str) -> tuple[float, float, float, float, str]:
+        size_deficit = (target_sizes[split] - split_counts[split]) / max(target_sizes[split], 1)
+        item_deficit = (target_items[split] - split_item_counts[split]) / max(target_items[split], 1.0)
+        label_deficit = 0.0
+        for label in labels_by_image.get(image_id, set()):
+            desired = target_label_counts[split].get(label, 0.0)
+            current = split_label_counts[split].get(label, 0)
+            label_deficit += max(0.0, desired - current)
+        eval_preference = 0.1 if split in {"dev", "test"} else 0.0
+        return (label_deficit, item_deficit, size_deficit, eval_preference, split)
+
+    for image_id in remaining:
         if image_id in assignments:
             continue
-        for split in ("train", "dev", "test"):
-            if split_counts[split] < target_sizes[split]:
-                assign(image_id, split)
-                break
+        candidates = [split for split in ("train", "dev", "test") if split_counts[split] < target_sizes[split]]
+        if candidates:
+            assign(image_id, max(candidates, key=lambda split: split_score(image_id, split)))
         else:
             assign(image_id, "train")
     return assignments
+
+
+def _summarize_splits(samples: Sequence[Stage1ImageSample], split_mapping: Dict[str, str]) -> Dict[str, Any]:
+    summary: Dict[str, Any] = {
+        split: {"images": 0, "items": 0, "class_image_counts": {}, "class_item_counts": {}}
+        for split in ("train", "dev", "test")
+    }
+    for sample in samples:
+        split = split_mapping.get(sample.image_id, "train")
+        bucket = summary.setdefault(split, {"images": 0, "items": 0, "class_image_counts": {}, "class_item_counts": {}})
+        bucket["images"] += 1
+        bucket["items"] += len(sample.items)
+        seen = set()
+        for row in sample.items:
+            label = str(row.get("class_slug") or row.get("class_display_name") or row.get("name") or "food")
+            bucket["class_item_counts"][label] = bucket["class_item_counts"].get(label, 0) + 1
+            seen.add(label)
+        for label in seen:
+            bucket["class_image_counts"][label] = bucket["class_image_counts"].get(label, 0) + 1
+    return summary
 
 
 def _default_splits_path(config: Stage1Config, manifest: dict) -> Path:
@@ -313,6 +378,7 @@ def _load_or_compute_split_ids(samples: Sequence[Stage1ImageSample], config: Sta
         "seed": config.split_seed,
         "ratios": {"train": config.train_ratio, "dev": config.val_ratio, "test": config.test_ratio},
         "reference_policy": config.reference_policy,
+        "method": SPLIT_METHOD,
     }
     current_ids = {sample.image_id for sample in samples}
     if path.exists():
@@ -325,6 +391,7 @@ def _load_or_compute_split_ids(samples: Sequence[Stage1ImageSample], config: Sta
             and str(payload.get("dataset_version", "")) == expected["dataset_version"]
             and int(payload.get("seed", -1)) == expected["seed"]
             and str(payload.get("reference_policy", "")) == expected["reference_policy"]
+            and str(payload.get("method", "")) == SPLIT_METHOD
             and ratios_match
         )
         if metadata_match and current_ids.issubset(set(mapping)) and all(value in {"train", "dev", "test"} for value in mapping.values()):
@@ -333,7 +400,7 @@ def _load_or_compute_split_ids(samples: Sequence[Stage1ImageSample], config: Sta
     mapping = _compute_stratified_image_split(samples, config)
     payload = {
         **expected,
-        "method": "stage1_image_level_stratified_by_class_slug_v1",
+        "method": SPLIT_METHOD,
         "n_train": sum(1 for value in mapping.values() if value == "train"),
         "n_dev": sum(1 for value in mapping.values() if value == "dev"),
         "n_test": sum(1 for value in mapping.values() if value == "test"),
@@ -379,6 +446,7 @@ class Stage1KCFDDataset(Dataset):
         if requested == "train" and config.train_max_images > 0:
             self.samples = self.samples[:config.train_max_images]
         self.split_mapping = split_mapping
+        self.all_samples = all_samples
         self.image_ids = [sample.image_id for sample in self.samples]
 
     def __len__(self) -> int:
@@ -468,7 +536,13 @@ def build_datasets_from_config(config: Stage1Config) -> Stage1DatasetBundle:
         "train_images": len(train),
         "val_images": len(val),
         "test_images": len(test),
+        "train_items": sum(len(sample.items) for sample in train.samples),
+        "val_items": sum(len(sample.items) for sample in val.samples),
+        "test_items": sum(len(sample.items) for sample in test.samples),
         "split_leakage": int(bool(set(train.image_ids) & set(val.image_ids) or set(train.image_ids) & set(test.image_ids) or set(val.image_ids) & set(test.image_ids))),
+        "split_method": SPLIT_METHOD,
+        "split_summary": _summarize_splits(train.all_samples, train.split_mapping),
+        "reference_policy_applied": config.reference_policy,
     })
     serializable = asdict(config)
     for key in ("export_root", "output_dir", "splits_path"):

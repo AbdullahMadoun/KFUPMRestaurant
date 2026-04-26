@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 from pathlib import Path
 from typing import Any, Iterable, List, Sequence
 
@@ -95,35 +96,91 @@ def _scaled_gt_items(example: dict, export_root: Path) -> List[Stage1Item]:
     return scaled
 
 
+def _sample_labels(sample) -> set[str]:
+    labels = {
+        str(row.get("class_slug") or row.get("class_display_name") or row.get("name") or "food")
+        for row in sample.items
+    }
+    labels.discard("")
+    return labels
+
+
+def select_preview_indices(
+    dataset: Stage1KCFDDataset,
+    *,
+    max_samples: int,
+    seed: int,
+    mode: str,
+) -> List[int]:
+    n = len(dataset)
+    indices = list(range(n))
+    rng = random.Random(seed)
+    rng.shuffle(indices)
+    if mode == "random":
+        return indices[:max_samples]
+    if mode == "first":
+        return list(range(min(n, max_samples)))
+    if mode != "class-diverse":
+        raise ValueError("preview selection must be one of: first, random, class-diverse")
+
+    selected: List[int] = []
+    seen: set[str] = set()
+    remaining = indices[:]
+    while remaining and len(selected) < max_samples:
+        best_pos = 0
+        best_score = None
+        for pos, idx in enumerate(remaining):
+            labels = _sample_labels(dataset.samples[idx])
+            new_labels = labels - seen
+            score = (len(new_labels), len(labels), len(dataset.samples[idx].items), -pos)
+            if best_score is None or score > best_score:
+                best_score = score
+                best_pos = pos
+        idx = remaining.pop(best_pos)
+        selected.append(idx)
+        seen.update(_sample_labels(dataset.samples[idx]))
+    return selected
+
+
 def save_training_previews(
     dataset: Stage1KCFDDataset,
     output_dir: str | Path,
     *,
     max_samples: int = 5,
     include_full_resolution: bool = True,
+    seed: int = 1337,
+    selection: str = "class-diverse",
 ) -> List[Path]:
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
     paths: List[Path] = []
-    count = min(len(dataset), max_samples)
-    for idx in range(count):
-        example = dataset[idx]
+    indices = select_preview_indices(dataset, max_samples=max_samples, seed=seed, mode=selection)
+    selected_manifest = []
+    for out_idx, dataset_idx in enumerate(indices):
+        example = dataset[dataset_idx]
         image_id = str(example["image_id"])
+        labels = sorted(_sample_labels(dataset.samples[dataset_idx]))
+        selected_manifest.append({"dataset_index": dataset_idx, "image_id": image_id, "classes": labels})
         mask_native = draw_items(example["image"], example["items"], color=GT_COLOR, prefix="GT ")
-        mask_path = output / f"{idx:02d}_{image_id}_mask_native_gt.png"
+        mask_path = output / f"{out_idx:02d}_{image_id}_mask_native_gt.png"
         mask_native.save(mask_path)
         paths.append(mask_path)
 
         if include_full_resolution and example["raw_items"]:
             full_image = load_image_at_v3_resolution(example["raw_items"][0], dataset.export_root)
             full = draw_items(full_image, _scaled_gt_items(example, dataset.export_root), color=GT_COLOR, prefix="GT ")
-            full_path = output / f"{idx:02d}_{image_id}_full_res_gt.png"
+            full_path = output / f"{out_idx:02d}_{image_id}_full_res_gt.png"
             full.save(full_path)
             paths.append(full_path)
 
     manifest = {
         "split": dataset.config.split,
+        "reference_policy": dataset.config.reference_policy,
+        "selection": selection,
+        "seed": seed,
         "count": len(paths),
+        "selected": selected_manifest,
+        "distinct_classes": sorted({label for row in selected_manifest for label in row["classes"]}),
         "files": [str(path) for path in paths],
         "coordinate_note": "mask_native_gt uses model-input coordinates; full_res_gt scales boxes to original image size.",
     }
@@ -175,8 +232,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--split", choices=["train", "val", "test"], default="train")
     parser.add_argument("--max-samples", type=int, default=5)
-    parser.add_argument("--reference-policy", choices=["pause", "exclude", "train", "include"], default="include")
+    parser.add_argument("--reference-policy", choices=["pause", "exclude", "train", "include"], default="exclude")
     parser.add_argument("--seed", type=int, default=1337)
+    parser.add_argument("--selection", choices=["first", "random", "class-diverse"], default="class-diverse")
     return parser.parse_args()
 
 
@@ -189,7 +247,13 @@ def main() -> None:
         split_seed=args.seed,
     )
     dataset = Stage1KCFDDataset(config)
-    paths = save_training_previews(dataset, args.output_dir, max_samples=args.max_samples)
+    paths = save_training_previews(
+        dataset,
+        args.output_dir,
+        max_samples=args.max_samples,
+        seed=args.seed,
+        selection=args.selection,
+    )
     print(json.dumps({"files": [str(path) for path in paths]}, indent=2))
 
 

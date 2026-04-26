@@ -463,7 +463,7 @@ def test_split_mapping_is_persisted_with_dataset_metadata(v3_export_root: Path, 
 
     assert splits_path.exists()
     assert payload["dataset_hash"] == "stage1fx"
-    assert payload["method"] == "stage1_image_level_stratified_by_class_slug_v1"
+    assert payload["method"] == "stage1_image_level_stratified_class_item_balance_v2"
     assert first.split_mapping == second.split_mapping
 
 
