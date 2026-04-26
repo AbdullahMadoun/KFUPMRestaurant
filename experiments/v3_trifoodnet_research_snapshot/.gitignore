@@ -41,3 +41,10 @@ checkpoints/**/joint/best/stage3.pt
 scripts/vast/.state
 scripts/vast/.auto_destroy.pid
 scripts/vast/.auto_destroy.log
+
+# Large per-run artifacts — share via Drive, not git.
+# (events.jsonl, tensorboard, prediction PNGs, etc. — see HANDOFF.md)
+logs/
+outputs/
+yolo_smoke_results/
+comparisons_3panel/
