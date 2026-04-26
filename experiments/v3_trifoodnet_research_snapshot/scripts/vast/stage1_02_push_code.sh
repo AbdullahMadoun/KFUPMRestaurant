@@ -12,7 +12,7 @@ if [[ -z "${SSH_HOST:-}" ]]; then
 fi
 
 SSH_BASE=(ssh -p "${SSH_PORT}" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@"${SSH_HOST}")
-RSYNC_BASE=(rsync -azh --delete --progress -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null")
+RSYNC_BASE=(rsync -azh --delete --delete-excluded --progress -e "ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null")
 
 echo "[stage1_push] waiting for remote bootstrap..."
 for i in $(seq 1 60); do
@@ -25,15 +25,15 @@ done
 
 "${SSH_BASE[@]}" "mkdir -p ${REMOTE_WORK}/code"
 "${RSYNC_BASE[@]}" \
-    --include="stage1_kcfd/" --include="stage1_kcfd/**/*.py" \
+    --exclude="**/__pycache__/**" --exclude="*.pyc" \
+    --include="stage1_kcfd/" --include="stage1_kcfd/*.py" \
     --include="scripts/" --include="scripts/vast/" \
     --include="scripts/vast/00_state.sh" --include="scripts/vast/00b_pull_dataset_from_drive.sh" \
     --include="scripts/vast/06_destroy.sh" --include="scripts/vast/99_attach_tmux.sh" \
     --include="scripts/vast/stage1_*.sh" \
-    --include="tests/" --include="tests/test_stage1_kcfd*.py" \
-    --include="docs/" --include="docs/STAGE1_KCFD.md" \
-    --include="train.py" --include="requirements-stage1.txt" --include="*.py" \
-    --include="*.md" --include="*.json" --include="*/" \
+    --include="tests/" --include="tests/test_stage1_kcfd*.py" --include="tests/conftest.py" \
+    --include="docs/" --include="docs/STAGE1_KCFD.md" --include="docs/STAGE1_REMOTE_RUN.md" \
+    --include="train.py" --include="requirements-stage1.txt" \
     --exclude="outputs/" --exclude="logs/" --exclude="checkpoints/" \
     --exclude="__pycache__/" --exclude=".pytest_cache/" --exclude="*.pyc" \
     --exclude="*" \

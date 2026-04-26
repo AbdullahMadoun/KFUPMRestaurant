@@ -9,7 +9,7 @@ from typing import Any, Iterable, List, Sequence
 from PIL import Image, ImageDraw, ImageFont
 
 from .bbox_canonical import get_bbox_scale_factor, load_image_at_v3_resolution, scale_bbox
-from .config import STAGE1_PROMPT, Stage1Config
+from .config import CANONICAL_STAGE1_SPLIT_SEED, STAGE1_PROMPT, Stage1Config
 from .dataset import Stage1KCFDDataset
 from .eval import generate_text
 from .schema import Stage1Item, Stage1Target, parse_prediction
@@ -175,8 +175,10 @@ def save_training_previews(
 
     manifest = {
         "split": dataset.config.split,
+        "split_seed": dataset.config.split_seed,
         "reference_policy": dataset.config.reference_policy,
         "selection": selection,
+        "selection_seed": seed,
         "seed": seed,
         "count": len(paths),
         "selected": selected_manifest,
@@ -233,7 +235,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--split", choices=["train", "val", "test"], default="train")
     parser.add_argument("--max-samples", type=int, default=5)
     parser.add_argument("--reference-policy", choices=["pause", "exclude", "train", "include"], default="exclude")
-    parser.add_argument("--seed", type=int, default=1337)
+    parser.add_argument("--split-seed", type=int, default=CANONICAL_STAGE1_SPLIT_SEED)
+    parser.add_argument("--seed", type=int, default=1337, help="Preview selection seed, not the train/val/test split seed.")
     parser.add_argument("--selection", choices=["first", "random", "class-diverse"], default="class-diverse")
     return parser.parse_args()
 
@@ -244,7 +247,7 @@ def main() -> None:
         export_root=Path(args.export_root),
         split=args.split,
         reference_policy=args.reference_policy,
-        split_seed=args.seed,
+        split_seed=args.split_seed,
     )
     dataset = Stage1KCFDDataset(config)
     paths = save_training_previews(

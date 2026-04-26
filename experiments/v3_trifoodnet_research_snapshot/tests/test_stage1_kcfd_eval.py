@@ -4,7 +4,7 @@ import math
 
 import numpy as np
 
-from stage1_kcfd.eval import average_metrics, evaluate_pair, iou_matrix
+from stage1_kcfd.eval import average_metrics, evaluate_pair, giou_matrix, hungarian_matches, iou_matrix
 from stage1_kcfd.schema import Stage1Item, Stage1Target, parse_prediction
 
 
@@ -63,6 +63,53 @@ def test_parse_prediction_invalid_json_returns_empty_prediction_without_crashing
     assert valid is False
     assert pred.items == []
     assert error
+
+
+def test_invalid_schema_prediction_scores_as_invalid_json_and_count_miss():
+    valid, pred, error = parse_prediction('{"items":[{"name":"rice","bbox":[0,0,10,10]}]}')
+    gt = _target([0, 0, 10, 10], [20, 20, 30, 30])
+
+    metrics = evaluate_pair(pred, gt, valid=valid)
+
+    assert valid is False
+    assert error
+    assert metrics["valid_json_rate"] == 0.0
+    assert metrics["json_schema_accuracy"] == 0.0
+    assert metrics["bbox_validity_rate"] == 0.0
+    assert metrics["exact_count_accuracy"] == 0.0
+    assert metrics["count_mae"] == 2.0
+    assert metrics["undercount_rate"] == 1.0
+
+
+def test_hungarian_matching_is_order_invariant_for_same_box_set():
+    gt_boxes = np.asarray([[0, 0, 10, 10], [20, 0, 30, 10], [0, 20, 10, 30]], dtype=np.float64)
+    pred_boxes = np.asarray([[0, 20, 10, 30], [0, 0, 10, 10], [20, 0, 30, 10]], dtype=np.float64)
+
+    pairs = hungarian_matches(iou_matrix(pred_boxes, gt_boxes))
+    matched_gt_for_pred = {pred_idx: gt_idx for pred_idx, gt_idx in pairs}
+
+    assert matched_gt_for_pred == {0: 2, 1: 0, 2: 1}
+
+
+def test_exact_set_match_false_when_count_matches_but_iou_threshold_fails():
+    gt = _target([0, 0, 10, 10])
+    pred = _target([7, 7, 17, 17])
+
+    metrics = evaluate_pair(pred, gt, valid=True)
+
+    assert metrics["exact_count_accuracy"] == 1.0
+    assert metrics["matched_recall@0.5"] == 0.0
+    assert metrics["exact_set_match@0.5"] == 0.0
+
+
+def test_giou_matrix_is_negative_for_disjoint_boxes():
+    gious = giou_matrix(
+        pred=np.asarray([[0, 0, 10, 10]], dtype=np.float64),
+        gt=np.asarray([[20, 20, 30, 30]], dtype=np.float64),
+    )
+
+    assert gious.shape == (1, 1)
+    assert gious[0, 0] < 0.0
 
 
 def test_average_metrics_uses_present_denominators_for_conditional_metrics():

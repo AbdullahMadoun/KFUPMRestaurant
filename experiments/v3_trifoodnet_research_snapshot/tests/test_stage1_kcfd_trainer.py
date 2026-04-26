@@ -106,6 +106,19 @@ def test_training_config_rejects_invalid_values(field: str, value, message: str)
         TrainingConfig(**kwargs)
 
 
+def test_training_config_accepts_zero_visualize_interval_to_disable_previews():
+    config = TrainingConfig(
+        epochs=1,
+        per_device_batch_size=1,
+        gradient_accumulation_steps=1,
+        learning_rate=1e-3,
+        eval_every_epochs=1,
+        visualize_every_epochs=0,
+    )
+
+    assert config.visualize_every_epochs == 0
+
+
 def test_stage1_requirements_pin_numpy_below_2_3():
     requirements_path = Path(__file__).resolve().parents[1] / "requirements-stage1.txt"
     requirements = [

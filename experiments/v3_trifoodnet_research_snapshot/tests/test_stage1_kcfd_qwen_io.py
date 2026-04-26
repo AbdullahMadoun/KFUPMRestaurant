@@ -64,3 +64,47 @@ def test_collator_masks_prompt_tokens_correctly_when_processor_left_pads():
     assert batch["labels"][0, 3].item() == -100
     assert batch["labels"][0, 4].item() == -100
     assert batch["labels"][0, 5].item() != -100
+
+
+class PrefixTargetProcessor(FakeProcessor):
+    def apply_chat_template(self, conversation, tokenize=False, add_generation_prompt=False):
+        roles = ",".join(row["role"] for row in conversation)
+        return roles
+
+    def __call__(self, *, text, images, return_tensors, padding, **kwargs):
+        if all("assistant" in row for row in text):
+            return {
+                "input_ids": torch.tensor(
+                    [
+                        [10, 11, 12, 20, 21, 0],
+                        [10, 11, 12, 30, 31, 32],
+                    ],
+                    dtype=torch.long,
+                ),
+                "attention_mask": torch.tensor(
+                    [
+                        [1, 1, 1, 1, 1, 0],
+                        [1, 1, 1, 1, 1, 1],
+                    ],
+                    dtype=torch.long,
+                ),
+            }
+        return {
+            "input_ids": torch.tensor([[10, 11, 12], [10, 11, 12]], dtype=torch.long),
+            "attention_mask": torch.tensor([[1, 1, 1], [1, 1, 1]], dtype=torch.long),
+        }
+
+
+def test_collator_masks_user_image_prefix_and_keeps_assistant_target_labels():
+    image = Image.new("RGB", (8, 8), "white")
+    collator = Stage1Collator(PrefixTargetProcessor(), prompt="prompt")
+
+    batch = collator([
+        {"image": image, "image_id": "img-1", "target_json": '{"items":[]}'},
+        {"image": image, "image_id": "img-2", "target_json": '{"items":[1]}'},
+    ])
+
+    assert batch["labels"].tolist() == [
+        [-100, -100, -100, 20, 21, -100],
+        [-100, -100, -100, 30, 31, 32],
+    ]

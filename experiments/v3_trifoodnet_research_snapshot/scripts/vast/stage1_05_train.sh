@@ -14,6 +14,8 @@ fi
 export STAGE1_RUN_NAME="${STAGE1_RUN_NAME:-${RUN_NAME:-stage1-qwen7b}}"
 export STAGE1_REFERENCE_POLICY="${STAGE1_REFERENCE_POLICY:-exclude}"
 export STAGE1_EXPECTED_HASH="${STAGE1_EXPECTED_HASH:-${DATASET_EXPECTED_HASH:-}}"
+export STAGE1_SEED="${STAGE1_SEED:-1337}"
+export STAGE1_SPLIT_SEED="${STAGE1_SPLIT_SEED:-420}"
 export STAGE1_EPOCHS="${STAGE1_EPOCHS:-10}"
 export STAGE1_MODEL_ID="${STAGE1_MODEL_ID:-Qwen/Qwen2.5-VL-7B-Instruct}"
 export STAGE1_NUM_WORKERS="${STAGE1_NUM_WORKERS:-4}"
@@ -41,6 +43,7 @@ if [[ "${STAGE1_PROBE_BATCH}" == "1" && -z "${STAGE1_PER_DEVICE_BATCH_SIZE:-}" ]
           --export-root ${REMOTE_DATASET} \
           --model-id ${STAGE1_MODEL_ID} \
           --reference-policy ${STAGE1_REFERENCE_POLICY} \
+          --split-seed ${STAGE1_SPLIT_SEED} \
           ${HASH_ARGS[*]} \
           --candidate-batches ${STAGE1_CANDIDATE_BATCHES:-4,2,1} \
           --max-pixels ${STAGE1_MAX_PIXELS} \
@@ -76,6 +79,8 @@ echo "[stage1_train] microbatch:      ${STAGE1_PER_DEVICE_BATCH_SIZE}"
 echo "[stage1_train] grad accum:      ${STAGE1_GRAD_ACCUM}"
 echo "[stage1_train] effective batch: $((STAGE1_PER_DEVICE_BATCH_SIZE * STAGE1_GRAD_ACCUM))"
 echo "[stage1_train] reference policy:${STAGE1_REFERENCE_POLICY}"
+echo "[stage1_train] training seed:   ${STAGE1_SEED}"
+echo "[stage1_train] split seed:      ${STAGE1_SPLIT_SEED}"
 
 "${SSH_BASE[@]}" "
     set -e
@@ -89,6 +94,8 @@ echo "[stage1_train] reference policy:${STAGE1_REFERENCE_POLICY}"
           --export-root ${REMOTE_DATASET} \
           --output-dir ${REMOTE_WORK}/stage1_runs \
           --run-name ${STAGE1_RUN_NAME} \
+          --seed ${STAGE1_SEED} \
+          --split-seed ${STAGE1_SPLIT_SEED} \
           --reference-policy ${STAGE1_REFERENCE_POLICY} \
           --model-id ${STAGE1_MODEL_ID} \
           --epochs ${STAGE1_EPOCHS} \

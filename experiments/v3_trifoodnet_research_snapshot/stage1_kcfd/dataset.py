@@ -19,6 +19,7 @@ from .schema import Stage1Item, Stage1Target, normalize_text, target_to_json, ta
 
 
 SPLIT_METHOD = "stage1_image_level_stratified_class_item_balance_v2"
+BBOX_MINOR_OUT_OF_FRAME_TOLERANCE_PX = 2.0
 
 
 def read_json(path: str | Path) -> Any:
@@ -78,6 +79,8 @@ def _bbox_frame_stats(root: Path, rows: Sequence[dict]) -> Dict[str, int]:
         "invalid_bbox_count": 0,
         "bbox_nonpositive_count": 0,
         "bbox_out_of_frame_count": 0,
+        "bbox_out_of_frame_minor_count": 0,
+        "bbox_out_of_frame_major_count": 0,
         "bbox_frame_from_mask_count": 0,
         "bbox_frame_from_image_count": 0,
         "image_mask_size_mismatch_count": 0,
@@ -127,6 +130,11 @@ def _bbox_frame_stats(root: Path, rows: Sequence[dict]) -> Dict[str, int]:
         width, height = frame_dims
         if x1 < 0 or y1 < 0 or x2 > width or y2 > height:
             stats["bbox_out_of_frame_count"] += 1
+            max_excess = max(-x1, -y1, x2 - width, y2 - height)
+            if max_excess <= BBOX_MINOR_OUT_OF_FRAME_TOLERANCE_PX:
+                stats["bbox_out_of_frame_minor_count"] += 1
+            else:
+                stats["bbox_out_of_frame_major_count"] += 1
     return stats
 
 
@@ -136,18 +144,39 @@ def _bbox_center(row: dict) -> tuple[float, float, int]:
     return ((y1 + y2) / 2.0, (x1 + x2) / 2.0, int(row.get("src_item_index", 0) or 0))
 
 
-def _target_from_items(items: Sequence[dict]) -> Stage1Target:
+def _clamp_bbox_to_frame(bbox: Sequence[Any], frame_size: tuple[int, int] | None) -> List[float]:
+    values = [float(v) for v in bbox]
+    if frame_size is None:
+        return values
+    width, height = frame_size
+    x1, y1, x2, y2 = values
+    return [
+        max(0.0, min(float(width), x1)),
+        max(0.0, min(float(height), y1)),
+        max(0.0, min(float(width), x2)),
+        max(0.0, min(float(height), y2)),
+    ]
+
+
+def _format_bbox_for_json(bbox: Sequence[float]) -> List[int | float]:
+    return [
+        int(round(float(v))) if abs(float(v) - round(float(v))) < 1e-6 else round(float(v), 3)
+        for v in bbox
+    ]
+
+
+def _target_from_items(items: Sequence[dict], *, frame_size: tuple[int, int] | None = None) -> Stage1Target:
     target_items: List[Stage1Item] = []
     for row in sorted(items, key=_bbox_center):
         name = _name_for_item(row)
         descriptor = _descriptor_for_item(row)
         if not name or not descriptor:
             continue
+        bbox = _clamp_bbox_to_frame(row["bbox"], frame_size)
         target_items.append(
             Stage1Item(
                 name=name,
-                bbox=[int(round(float(v))) if abs(float(v) - round(float(v))) < 1e-6 else round(float(v), 3)
-                      for v in row["bbox"]],
+                bbox=_format_bbox_for_json(bbox),
                 descriptor=descriptor,
             )
         )
@@ -192,7 +221,7 @@ def incomplete_export_counts(stats: Dict[str, Any]) -> Dict[str, int]:
         "missing_descriptor_count",
         "invalid_bbox_count",
         "bbox_nonpositive_count",
-        "bbox_out_of_frame_count",
+        "bbox_out_of_frame_major_count",
     ]
     return {key: int(stats.get(key, 0) or 0) for key in bad_keys if int(stats.get(key, 0) or 0) > 0}
 
@@ -456,7 +485,7 @@ class Stage1KCFDDataset(Dataset):
         sample = self.samples[index]
         first = sorted(sample.items, key=lambda item: int(item.get("src_item_index", 0) or 0))[0]
         image = load_image_at_mask_resolution(first, self.export_root)
-        target = _target_from_items(sample.items)
+        target = _target_from_items(sample.items, frame_size=image.size)
         return {
             "image": image,
             "image_id": sample.image_id,

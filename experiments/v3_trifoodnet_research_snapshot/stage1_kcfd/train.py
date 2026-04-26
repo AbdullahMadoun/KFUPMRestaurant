@@ -10,7 +10,7 @@ from typing import Any, Dict
 import numpy as np
 import torch
 
-from .config import Stage1Config
+from .config import CANONICAL_STAGE1_SPLIT_SEED, Stage1Config
 from .dataset import build_datasets_from_config, incomplete_export_counts, preflight_stage1_kcfd_export
 from .eval import Stage1Evaluator
 from .model import ModelConfig, build_model_and_processor, trainable_parameter_summary
@@ -24,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", default="outputs/stage1_kcfd")
     parser.add_argument("--run-name", default=None)
     parser.add_argument("--seed", type=int, default=1337)
-    parser.add_argument("--split-seed", type=int, default=None)
+    parser.add_argument("--split-seed", type=int, default=CANONICAL_STAGE1_SPLIT_SEED)
     parser.add_argument("--epochs", type=int, default=10)
     parser.add_argument("--train-ratio", type=float, default=0.80)
     parser.add_argument("--val-ratio", type=float, default=0.10)
@@ -100,7 +100,7 @@ def main() -> None:
         output_dir=Path(args.output_dir),
         run_name=args.run_name,
         seed=args.seed,
-        split_seed=args.split_seed if args.split_seed is not None else args.seed,
+        split_seed=args.split_seed,
         train_ratio=args.train_ratio,
         val_ratio=args.val_ratio,
         test_ratio=args.test_ratio,

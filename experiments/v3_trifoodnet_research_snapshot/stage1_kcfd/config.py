@@ -14,6 +14,8 @@ STAGE1_PROMPT = (
     "No prose or markdown."
 )
 
+CANONICAL_STAGE1_SPLIT_SEED = 420
+
 
 @dataclass
 class Stage1Config:
@@ -25,7 +27,7 @@ class Stage1Config:
     train_ratio: float = 0.80
     val_ratio: float = 0.10
     test_ratio: float = 0.10
-    split_seed: int = 1337
+    split_seed: int = CANONICAL_STAGE1_SPLIT_SEED
     expected_version: str | None = "v3"
     expected_hash: str | None = None
     splits_path: Path | None = None

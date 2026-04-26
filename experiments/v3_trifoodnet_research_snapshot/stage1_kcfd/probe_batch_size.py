@@ -9,7 +9,7 @@ from typing import Any, Dict, List
 import torch
 from torch.utils.data import DataLoader
 
-from .config import Stage1Config
+from .config import CANONICAL_STAGE1_SPLIT_SEED, Stage1Config
 from .dataset import Stage1Collator, Stage1KCFDDataset
 from .model import ModelConfig, build_model_and_processor, first_parameter_device
 from .trainer import forward_ce_loss
@@ -20,6 +20,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--export-root", required=True)
     parser.add_argument("--model-id", default="Qwen/Qwen2.5-VL-7B-Instruct")
     parser.add_argument("--reference-policy", choices=["exclude", "train", "include"], default="exclude")
+    parser.add_argument("--split-seed", type=int, default=CANONICAL_STAGE1_SPLIT_SEED)
     parser.add_argument("--expected-hash", default=None)
     parser.add_argument("--candidate-batches", default="4,2,1")
     parser.add_argument("--num-samples", type=int, default=4)
@@ -64,6 +65,7 @@ def main() -> None:
         export_root=Path(args.export_root),
         split="train",
         reference_policy=args.reference_policy,
+        split_seed=args.split_seed,
         expected_hash=args.expected_hash,
         allow_incomplete_export=False,
         train_max_images=max(args.num_samples, max(candidates)),

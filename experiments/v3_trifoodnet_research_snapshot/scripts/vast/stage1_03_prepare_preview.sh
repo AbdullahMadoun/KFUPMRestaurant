@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install Stage 1 deps, run preflight, render 5 training examples, and pull them locally.
+# Install Stage 1 deps, run preflight, render training examples, and pull them locally.
 
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,6 +13,7 @@ fi
 
 export STAGE1_RUN_NAME="${STAGE1_RUN_NAME:-${RUN_NAME:-stage1-qwen7b}}"
 export STAGE1_REFERENCE_POLICY="${STAGE1_REFERENCE_POLICY:-exclude}"
+export STAGE1_SPLIT_SEED="${STAGE1_SPLIT_SEED:-420}"
 export STAGE1_PREVIEW_SAMPLES="${STAGE1_PREVIEW_SAMPLES:-12}"
 export STAGE1_PREVIEW_SEED="${STAGE1_PREVIEW_SEED:-20260426}"
 export STAGE1_PREVIEW_DIR="${REMOTE_WORK}/stage1_runs/${STAGE1_RUN_NAME}/previews"
@@ -55,7 +56,7 @@ echo "[stage1_prepare] running preflight..."
       ${HASH_ARGS[*]}
 "
 
-echo "[stage1_prepare] rendering 5 training-data previews..."
+echo "[stage1_prepare] rendering training-data previews..."
 "${SSH_BASE[@]}" "
     set -e
     cd ${REMOTE_WORK}/code
@@ -65,6 +66,7 @@ echo "[stage1_prepare] rendering 5 training-data previews..."
       --split train \
       --max-samples ${STAGE1_PREVIEW_SAMPLES} \
       --reference-policy ${STAGE1_REFERENCE_POLICY} \
+      --split-seed ${STAGE1_SPLIT_SEED} \
       --seed ${STAGE1_PREVIEW_SEED} \
       --selection class-diverse
 "

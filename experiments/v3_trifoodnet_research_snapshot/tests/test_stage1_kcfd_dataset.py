@@ -431,6 +431,36 @@ def test_preflight_reports_reference_and_missing_metadata_counts(v3_export_root:
     assert _stat(stats, "missing_name_count", "missing_names") == 1
     assert _stat(stats, "bbox_checked_count") == 7
     assert _stat(stats, "bbox_out_of_frame_count") == 0
+    assert _stat(stats, "bbox_out_of_frame_minor_count") == 0
+    assert _stat(stats, "bbox_out_of_frame_major_count") == 0
+
+
+def test_minor_boundary_box_overruns_are_reported_clipped_and_not_training_blockers(v3_export_root: Path):
+    api = _load_dataset_api()
+    rows = [
+        json.loads(line)
+        for line in (v3_export_root / "items.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    for row in rows:
+        if row["sample_id"] == "img_004__rice":
+            row["bbox"] = [-1, -2, 82, 81]
+    with (v3_export_root / "items.jsonl").open("w", encoding="utf-8") as handle:
+        for row in rows:
+            _write_item(handle, **row)
+
+    stats = api.preflight_stage1_kcfd_export(v3_export_root)
+    bad = api.incomplete_export_counts(stats)
+    dataset = _make_dataset(api, v3_export_root)
+    example = next(example for example in _examples(dataset) if _example_image_id(example) == "img_004")
+    target = _target_payload(example)
+
+    assert stats["bbox_out_of_frame_count"] == 1
+    assert stats["bbox_out_of_frame_minor_count"] == 1
+    assert stats["bbox_out_of_frame_major_count"] == 0
+    assert "bbox_out_of_frame_count" not in bad
+    assert "bbox_out_of_frame_major_count" not in bad
+    assert target["items"][0]["bbox"] == [0, 0, 80, 80]
 
 
 def test_dataset_rejects_incomplete_exports_by_default(v3_export_root: Path):
@@ -503,11 +533,11 @@ def test_preflight_only_prints_reference_counts_without_training_gate(v3_export_
 @pytest.mark.parametrize(
     ("extra_args", "expected_split_seed"),
     [
-        ([], 77),
+        ([], 420),
         (["--split-seed", "314"], 314),
     ],
 )
-def test_train_cli_uses_seed_as_default_split_seed_and_allows_override(
+def test_train_cli_uses_canonical_split_seed_and_allows_override(
     v3_export_root: Path,
     tmp_path: Path,
     monkeypatch,
@@ -543,6 +573,52 @@ def test_train_cli_uses_seed_as_default_split_seed_and_allows_override(
         stage1_train.main()
 
     assert captured["split_seed"] == expected_split_seed
+
+
+def test_visualize_cli_keeps_split_seed_separate_from_preview_selection_seed(
+    v3_export_root: Path,
+    tmp_path: Path,
+    monkeypatch,
+):
+    visualize = importlib.import_module("stage1_kcfd.visualize")
+    captured: dict[str, Any] = {}
+
+    class FakeDataset:
+        def __init__(self, config):
+            captured["split_seed"] = config.split_seed
+            self.config = config
+
+    def fake_save_training_previews(dataset, output_dir, *, max_samples, seed, selection, **kwargs):
+        captured["selection_seed"] = seed
+        captured["selection"] = selection
+        return []
+
+    monkeypatch.setattr(visualize, "Stage1KCFDDataset", FakeDataset)
+    monkeypatch.setattr(visualize, "save_training_previews", fake_save_training_previews)
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "visualize.py",
+            "--export-root",
+            str(v3_export_root),
+            "--output-dir",
+            str(tmp_path / "previews"),
+            "--split-seed",
+            "420",
+            "--seed",
+            "20260426",
+            "--selection",
+            "class-diverse",
+        ],
+    )
+
+    visualize.main()
+
+    assert captured == {
+        "split_seed": 420,
+        "selection_seed": 20260426,
+        "selection": "class-diverse",
+    }
 
 
 def test_train_cli_blocks_incomplete_exports_before_dataset_build(v3_export_root: Path, tmp_path: Path, monkeypatch):
