@@ -68,3 +68,46 @@ You have three ways to watch the run:
 `01_launch.sh` sets a 1-hour auto-destroy schedule on the instance. If anything
 goes wrong and you walk away, the instance dies automatically. Hard cap on cost:
 ~$0.30. Confirm balance with `vastai show user`.
+
+## Stage 1 Qwen standard-container flow
+
+Use the `stage1_*` scripts for Stage 1-only Qwen training. They keep their own
+`.stage1_state`, launch a standard Vast container only, and never start training
+until the explicit tmux start command is run.
+
+```bash
+# 1. Pick fastest expected offer under $2.10/hr and launch a standard container.
+bash scripts/vast/stage1_launch.sh
+
+# 2. Push Stage 1 code, including requirements-stage1.txt.
+bash scripts/vast/stage1_push.sh
+
+# 3. Pull the Drive dataset on the remote container.
+bash scripts/vast/stage1_pull_dataset_from_drive.sh
+
+# 4. Install Stage 1 deps and run the dataset preflight.
+bash scripts/vast/stage1_preflight.sh
+
+# 5. Render five training previews remotely and pull them local.
+bash scripts/vast/stage1_render_previews.sh
+
+# 6. Start TensorBoard remotely and an SSH tunnel at http://127.0.0.1:6006.
+bash scripts/vast/stage1_tensorboard.sh start
+
+# 7. Start training only after inspecting previews.
+bash scripts/vast/stage1_train_tmux.sh start
+```
+
+Useful overrides:
+
+```bash
+STAGE1_MAX_DPH=2.10 STAGE1_MIN_GPU_RAM_GB=48 bash scripts/vast/stage1_launch.sh
+STAGE1_RUN_NAME=stage1-qwen7b-v1 STAGE1_REFERENCE_POLICY=exclude bash scripts/vast/stage1_train_tmux.sh start
+STAGE1_MODEL_ID=Qwen/Qwen2.5-VL-3B-Instruct bash scripts/vast/stage1_train_tmux.sh start
+```
+
+The offer picker ranks by Vast `dlperf` first, falling back to a GPU-name speed
+estimate only when `dlperf` is missing. Price is used as a tie breaker, not as
+the primary sort. HF tokens are not stored in these scripts; if a gated model is
+used, create `/root/.stage1_hf_env` on the instance yourself or source it in the
+remote shell before starting training.

@@ -13,4 +13,4 @@ if [[ -z "${SSH_HOST:-}" ]]; then
 fi
 
 ssh -t -p "${SSH_PORT}" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-    root@"${SSH_HOST}" 'tmux attach -t train'
+    root@"${SSH_HOST}" "tmux attach -t ${TMUX_SESSION:-train}"

@@ -1,0 +1,8 @@
+torch
+transformers
+peft
+numpy<2.3
+scipy
+Pillow
+tensorboard
+qwen-vl-utils
