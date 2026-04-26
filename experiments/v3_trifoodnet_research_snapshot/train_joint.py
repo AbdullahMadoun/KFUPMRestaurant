@@ -245,19 +245,43 @@ def train_joint(config_path: Optional[str] = None, overrides=None):
         bce_weight=float(getattr(c2.loss, "bce_weight", 1.0)),
         dice_weight=float(getattr(c2.loss, "dice_weight", 1.0)),
     )
-    stage3 = FoodClassifier(
-        clip_model=c3.clip_model,
-        num_layers=c3.transformer.num_layers,
-        num_heads=c3.transformer.num_heads,
-        ff_dim=c3.transformer.ff_dim,
-        dropout=c3.transformer.dropout,
-        lora_cfg=getattr(c3, "lora", None),
-        num_classes=max(int(cfg.data.num_classes), len(class_names), (max(class_name_to_id.values()) + 1) if class_name_to_id else 0),
-        class_names=class_names,
-        train_embedding=bool(getattr(c3, "train_embedding", True)),
-        inference_n_way=int(c3.eval.n_way),
-        inference_k_shot=int(c3.eval.k_shot),
-    ).to(device)
+    # Stage 3 backend selection. Default: ICL transformer (the trained classifier).
+    # Set master_config.yaml::stage3.backend = "vector_db" to use the inference-only
+    # cosine top-1 classifier from stage3_vector_db (see docs/VECTOR_DB.md).
+    stage3_backend = str(getattr(c3, "backend", "icl_transformer")).lower()
+    if stage3_backend == "vector_db":
+        from stage3_vector_db import FoodVectorDB
+        vdb_cfg = getattr(c3, "vector_db", None)
+        ref_root = getattr(vdb_cfg, "reference_root", None) if vdb_cfg else None
+        if not ref_root:
+            ref_root = str(cfg.paths.reference_library)
+        encoder = getattr(vdb_cfg, "encoder", "facebook/dinov2-large") if vdb_cfg else "facebook/dinov2-large"
+        text_weight = float(getattr(vdb_cfg, "text_weight", 0.0)) if vdb_cfg else 0.0
+        text_encoder = getattr(vdb_cfg, "text_encoder", None) if vdb_cfg else None
+        logger.info(f"Stage 3 backend: vector_db ({encoder}, refs at {ref_root})")
+        stage3 = FoodVectorDB(
+            reference_root=ref_root,
+            class_names=class_names,
+            encoder=encoder,
+            device=str(device),
+            text_weight=text_weight,
+            text_encoder=text_encoder,
+        )
+    else:
+        logger.info("Stage 3 backend: icl_transformer (trainable)")
+        stage3 = FoodClassifier(
+            clip_model=c3.clip_model,
+            num_layers=c3.transformer.num_layers,
+            num_heads=c3.transformer.num_heads,
+            ff_dim=c3.transformer.ff_dim,
+            dropout=c3.transformer.dropout,
+            lora_cfg=getattr(c3, "lora", None),
+            num_classes=max(int(cfg.data.num_classes), len(class_names), (max(class_name_to_id.values()) + 1) if class_name_to_id else 0),
+            class_names=class_names,
+            train_embedding=bool(getattr(c3, "train_embedding", True)),
+            inference_n_way=int(c3.eval.n_way),
+            inference_k_shot=int(c3.eval.k_shot),
+        ).to(device)
     pipeline = TriFoodNet(stage1, stage2, stage3)
 
     _load_existing_checkpoints(cfg, pipeline, logger)

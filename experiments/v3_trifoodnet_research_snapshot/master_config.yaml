@@ -188,10 +188,26 @@ stage2:
 
 
 # ─────────────────────────────────────────
-#  SECTION 7 — STAGE 3  (ICL Transformer)
-#  The cross-attention few-shot classifier.
+#  SECTION 7 — STAGE 3  (classifier)
+#  Two backends supported, switchable via `backend`:
+#    icl_transformer (default, training-only branch) — PictSure ViT + LoRA transformer
+#    vector_db (vector-db-classifier branch)         — DINOv2 cosine top-1, no training
+#  See docs/VECTOR_DB.md for the rationale and trade-off analysis.
 # ─────────────────────────────────────────
 stage3:
+  # Backend selector — set to "vector_db" to use stage3_vector_db.FoodVectorDB.
+  # When set, the icl_transformer config below is ignored (no Stage 3 training).
+  # On this branch (vector-db-classifier) the default IS vector_db.
+  backend: "vector_db"
+
+  # Vector DB backend config (only consumed when backend == "vector_db")
+  vector_db:
+    encoder:        "facebook/dinov2-large"     # frozen image encoder for prototypes
+    reference_root: ""                            # if blank, falls back to paths.reference_library
+    text_weight:    0.0                           # 0 = pure image cosine. >0 fuses SigLIP text retrieval.
+    text_encoder:   "google/siglip2-base-patch16-224"
+
+  # ICL transformer config (only consumed when backend == "icl_transformer")
   clip_model: "pictsure/pictsure-vit"
   embed_dim:  512
   # Freeze the PictSure ViT backbone. Only the transformer LoRA adapters above
