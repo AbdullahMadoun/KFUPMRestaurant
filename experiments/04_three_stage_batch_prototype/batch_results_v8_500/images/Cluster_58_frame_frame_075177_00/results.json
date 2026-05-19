@@ -1,0 +1,89 @@
+{
+  "image_id": "Cluster_58_frame_frame_075177_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 6,
+  "items": [
+    {
+      "index": 0,
+      "description": "golden-brown mashed potato with melted cheese, square shape, top center of plate",
+      "bbox": [
+        315,
+        292,
+        1084,
+        986
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9846
+    },
+    {
+      "index": 1,
+      "description": "lemon wedges, curved shapes, right side of plate",
+      "bbox": [
+        1143,
+        338,
+        1416,
+        583
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9817
+    },
+    {
+      "index": 2,
+      "description": "green beans with red sauce, irregular shapes, bottom left of plate",
+      "bbox": [
+        148,
+        581,
+        908,
+        1323
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9803
+    },
+    {
+      "index": 3,
+      "description": "lemon wedges, curved shapes, right side of plate",
+      "bbox": [
+        924,
+        879,
+        1177,
+        1110
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9781
+    },
+    {
+      "index": 4,
+      "description": "cherry tomatoes with red sauce, round shapes, top right of plate",
+      "bbox": [
+        758,
+        87,
+        1015,
+        385
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9532
+    },
+    {
+      "index": 5,
+      "description": "golden-brown roasted potatoes, irregular shapes, right side of plate",
+      "bbox": [
+        997,
+        515,
+        1230,
+        937
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9292
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 1.93,
+  "match_results": null
+}

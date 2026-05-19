@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_250_frame_frame_109438_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        3,
+        154,
+        653,
+        1001
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.985
+    },
+    {
+      "index": 1,
+      "name": "beef stew",
+      "description": "brown chunks of beef with orange carrot pieces and yellow potato pieces",
+      "bbox": [
+        556,
+        154,
+        1106,
+        949
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9814
+    }
+  ],
+  "stage1_time": 1.59,
+  "stage2_time": 0.35,
+  "match_results": null
+}

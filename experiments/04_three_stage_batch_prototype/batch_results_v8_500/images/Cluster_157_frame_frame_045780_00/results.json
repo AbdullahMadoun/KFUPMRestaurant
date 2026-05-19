@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_157_frame_frame_045780_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy mixture with green specks, covering most of the plate",
+      "bbox": [
+        75,
+        149,
+        679,
+        719
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    },
+    {
+      "index": 1,
+      "description": "yellowish liquid drizzled in a star pattern on top of the creamy mixture",
+      "bbox": [
+        165,
+        200,
+        510,
+        608
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9373
+    }
+  ],
+  "stage1_time": 0.61,
+  "stage2_time": 0.64,
+  "match_results": null
+}

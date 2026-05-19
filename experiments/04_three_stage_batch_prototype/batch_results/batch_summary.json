@@ -1,0 +1,12 @@
+{
+  "total_images": 500,
+  "success": 499,
+  "failed": 1,
+  "skipped": 0,
+  "total_time_seconds": 1038.3,
+  "avg_time_per_image": 2.1,
+  "seed": 42,
+  "stage3_enabled": false,
+  "source_dir": "/workspace/KFUPMRestaurant/Sampled_Images_All",
+  "device": "cuda"
+}

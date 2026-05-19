@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_198_frame_frame_074134_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced meat",
+      "description": "brown chunks of meat with visible spices and green pepper pieces",
+      "bbox": [
+        280,
+        619,
+        1213,
+        1345
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice grains with yellow and orange specks",
+      "bbox": [
+        305,
+        106,
+        1201,
+        773
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9889
+    }
+  ],
+  "stage1_time": 1.49,
+  "stage2_time": 0.4,
+  "match_results": null
+}

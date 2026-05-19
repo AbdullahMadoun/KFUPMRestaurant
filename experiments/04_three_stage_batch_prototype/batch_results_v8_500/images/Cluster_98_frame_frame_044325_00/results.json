@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_98_frame_frame_044325_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "orange-brown rice grains with small orange carrot pieces, mound covering the left half of the plate",
+      "bbox": [
+        428,
+        127,
+        1097,
+        879
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9917
+    },
+    {
+      "index": 1,
+      "description": "green broccoli florets with a vibrant green color, small and clustered, occupying the left side of the plate",
+      "bbox": [
+        141,
+        232,
+        715,
+        984
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.989
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.9,
+  "match_results": null
+}

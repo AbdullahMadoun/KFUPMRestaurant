@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_206_frame_frame_018670_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "dark brown, charred chicken leg with a crispy, textured surface",
+      "bbox": [
+        634,
+        311,
+        1111,
+        955
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "long, slender white grains with a matte surface",
+      "bbox": [
+        16,
+        229,
+        960,
+        1213
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9656
+    }
+  ],
+  "stage1_time": 1.94,
+  "stage2_time": 0.4,
+  "match_results": null
+}

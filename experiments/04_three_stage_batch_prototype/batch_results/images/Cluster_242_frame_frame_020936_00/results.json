@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_242_frame_frame_020936_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of red velvet cake with white cream filling, topped with a blueberry and a drizzle of red sauce, placed in the center of the plate",
+      "bbox": [
+        183,
+        226,
+        770,
+        523
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9882
+    }
+  ],
+  "stage1_time": 0.86,
+  "stage2_time": 0.22,
+  "match_results": null
+}

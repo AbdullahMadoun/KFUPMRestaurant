@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_182_frame_frame_066911_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "lemon wedges",
+      "description": "yellow lemon slices with visible pulp and rind",
+      "bbox": [
+        205,
+        718,
+        912,
+        988
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9868
+    },
+    {
+      "index": 1,
+      "name": "spiced rice dish",
+      "description": "orange-yellow rice grains with mixed textures and specks of vegetables",
+      "bbox": [
+        91,
+        87,
+        987,
+        864
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9863
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.34,
+  "match_results": null
+}

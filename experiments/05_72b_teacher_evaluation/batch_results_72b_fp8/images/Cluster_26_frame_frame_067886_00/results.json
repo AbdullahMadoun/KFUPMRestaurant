@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_26_frame_frame_067886_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "lemon slice",
+      "description": "yellow citrus slice with white pith and green rind",
+      "bbox": [
+        120,
+        519,
+        374,
+        757
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9791
+    },
+    {
+      "index": 1,
+      "name": "mixed salad",
+      "description": "green and purple leafy vegetables with white cauliflower florets and orange carrot pieces",
+      "bbox": [
+        89,
+        69,
+        749,
+        731
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9691
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.34,
+  "match_results": null
+}

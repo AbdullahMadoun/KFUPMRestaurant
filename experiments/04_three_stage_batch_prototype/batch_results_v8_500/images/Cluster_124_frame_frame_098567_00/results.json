@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_124_frame_frame_098567_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "creamy white sauce with green herbs and yellow oil drizzle, covering most of the plate",
+      "bbox": [
+        135,
+        110,
+        969,
+        908
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9782
+    },
+    {
+      "index": 1,
+      "description": "chickpeas with a light brown color, scattered on the creamy sauce",
+      "bbox": [
+        422,
+        542,
+        624,
+        796
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9642
+    }
+  ],
+  "stage1_time": 0.49,
+  "stage2_time": 0.57,
+  "match_results": null
+}

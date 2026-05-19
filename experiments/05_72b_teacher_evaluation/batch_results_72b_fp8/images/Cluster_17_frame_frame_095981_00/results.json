@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_17_frame_frame_095981_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "steamed vegetables",
+      "description": "green leafy vegetables with yellow stems",
+      "bbox": [
+        104,
+        134,
+        692,
+        777
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9658
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.17,
+  "match_results": null
+}

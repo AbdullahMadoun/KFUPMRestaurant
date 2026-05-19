@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_212_frame_frame_064848_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried fish",
+      "description": "golden-brown fish with a crispy, slightly charred surface and visible flakes",
+      "bbox": [
+        156,
+        417,
+        599,
+        965
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9921
+    },
+    {
+      "index": 1,
+      "name": "fried fish",
+      "description": "golden-brown fish with a crispy, slightly charred surface and visible flakes",
+      "bbox": [
+        462,
+        150,
+        870,
+        725
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9915
+    }
+  ],
+  "stage1_time": 1.53,
+  "stage2_time": 0.3,
+  "match_results": null
+}

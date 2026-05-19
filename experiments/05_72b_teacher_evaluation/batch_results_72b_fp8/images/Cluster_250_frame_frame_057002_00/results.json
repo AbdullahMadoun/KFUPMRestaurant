@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_250_frame_frame_057002_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed vegetables and meat",
+      "description": "chunks of red and yellow bell peppers, tomatoes, and browned meat pieces with a glossy surface",
+      "bbox": [
+        392,
+        216,
+        1225,
+        1130
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9804
+    },
+    {
+      "index": 1,
+      "name": "yellow rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        71,
+        72,
+        894,
+        1092
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9711
+    }
+  ],
+  "stage1_time": 1.59,
+  "stage2_time": 0.4,
+  "match_results": null
+}

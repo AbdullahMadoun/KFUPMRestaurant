@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_45_frame_frame_079633_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "curried chicken",
+      "description": "golden-yellow pieces with a glossy, saucy texture and mixed vegetables",
+      "bbox": [
+        55,
+        73,
+        763,
+        789
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    }
+  ],
+  "stage1_time": 1.9,
+  "stage2_time": 0.16,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_244_frame_frame_071768_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "water bottle",
+      "description": "clear plastic with condensation droplets",
+      "bbox": [
+        42,
+        634,
+        347,
+        1017
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9808
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.18,
+  "match_results": null
+}

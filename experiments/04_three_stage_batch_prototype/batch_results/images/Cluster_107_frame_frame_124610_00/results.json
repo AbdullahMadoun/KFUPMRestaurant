@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_107_frame_frame_124610_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of lemon with a white label, placed on top of the leafy vegetable",
+      "bbox": [
+        304,
+        14,
+        603,
+        327
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9733
+    },
+    {
+      "index": 1,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        6,
+        8,
+        447,
+        766
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9575
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        445,
+        14,
+        761,
+        754
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9413
+    },
+    {
+      "index": 3,
+      "description": "green leafy vegetable with small white and red pieces, covering the center of the plate",
+      "bbox": [
+        165,
+        18,
+        689,
+        765
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.88
+    }
+  ],
+  "stage1_time": 2.02,
+  "stage2_time": 0.85,
+  "match_results": null
+}

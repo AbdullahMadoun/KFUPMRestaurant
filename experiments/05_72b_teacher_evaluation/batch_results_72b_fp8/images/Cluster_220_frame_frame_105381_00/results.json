@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_220_frame_frame_105381_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "baked pasta",
+      "description": "golden-brown pasta with melted cheese and a crispy, browned top layer",
+      "bbox": [
+        5,
+        10,
+        1046,
+        1060
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9931
+    }
+  ],
+  "stage1_time": 1.48,
+  "stage2_time": 0.15,
+  "match_results": null
+}

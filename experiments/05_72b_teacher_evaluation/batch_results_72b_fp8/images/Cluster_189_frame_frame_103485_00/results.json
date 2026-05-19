@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_189_frame_frame_103485_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a glossy sheen, mixed with bits of vegetables and possibly meat",
+      "bbox": [
+        5,
+        3,
+        856,
+        879
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9926
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.14,
+  "match_results": null
+}

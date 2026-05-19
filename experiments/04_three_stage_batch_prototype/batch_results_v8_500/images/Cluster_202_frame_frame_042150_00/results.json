@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_202_frame_frame_042150_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains with small yellow and orange specks, covering the left half of the plate",
+      "bbox": [
+        229,
+        574,
+        1152,
+        1216
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.982
+    },
+    {
+      "index": 1,
+      "description": "chunks of glazed meat with a yellowish-brown color, irregularly shaped, on the right side of the plate",
+      "bbox": [
+        206,
+        215,
+        1042,
+        618
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9723
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 0.67,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_213_frame_frame_002650_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced meat",
+      "description": "brown meat pieces with visible spices and a glossy sauce",
+      "bbox": [
+        385,
+        583,
+        859,
+        1089
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9808
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains",
+      "bbox": [
+        548,
+        216,
+        1163,
+        1193
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9789
+    },
+    {
+      "index": 2,
+      "name": "yellow vegetable",
+      "description": "smooth yellow slice with a glossy surface",
+      "bbox": [
+        475,
+        782,
+        651,
+        1173
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9774
+    }
+  ],
+  "stage1_time": 1.53,
+  "stage2_time": 0.56,
+  "match_results": null
+}

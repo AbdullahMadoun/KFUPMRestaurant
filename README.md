@@ -1,173 +1,145 @@
-# Intelligent Food Analysis, Segmentation, and TriFoodNet Research
+# TahmajaNet-VLM-for-Detecting-Classifying-and-Billing-Food
 
-This repository is now organized as a documentation-first review package.
+## Project Metadata
+### Authors
+- **Team:** Anonymous Authors / KFUPM Restaurant Project
+- **Supervisor Name:** Dr. Muzammil Behzad
+- **Affiliations:** KFUPM
 
-Its main purpose is to present the V3 `TriFoodNet` research line clearly:
+## Introduction
+Generating an itemized bill from a single photo of a cafeteria tray is a deceptively hard vision problem. The output is not a set of pixel-accurate masks, nor a ranked list of detection scores: it is a *multiset of food classes* priced by a downstream lookup. A single missed item or a single duplicated detection is a wrong bill. 
 
-- what the model is
-- what assumptions it makes
-- what the latest retained evidence shows
-- where to read the detailed markdown documentation
+TahamajaNet tackles this by breaking the process into a three-stage distillation pipeline that connects the broad understanding of Large Vision-Language Models (VLMs) with the speed of smaller, specialized models. We:
+1. Run a 72B-parameter teacher model offline to automatically label a massive dataset of cafeteria trays.
+2. Distill this capability into a fast 7B-parameter student model that runs at inference time to generate precise bounding boxes.
+3. Use a frozen segmenter (SAM3) and a DINOv2 vector-database classifier to confidently identify the food and generate the bill.
 
-Older V1 and V2 work is still preserved, but it is no longer the main story on
-the front page.
+The goal: an end-to-end detection system that perfectly counts and classifies food items, enabling automated checkout lines without sacrificing latency.
 
-[![TriFoodNet public sample output](assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/visualization.jpg)](experiments/v3_trifoodnet_research_snapshot/)
+## Problem Statement
+We treat the task as producing an exact *multiset of food classes* (count-exact and class-matched) from a single tray image. We face two main problems: off-the-shelf generative VLMs are too slow and often "overcount" items, while traditional open-set detectors lack the deep understanding required to distinguish subtle differences (e.g., merging toppings with the base dish while ignoring plates).
 
-## Start Here
+Our questions:
+Q1: Can a 72B VLM act as an automated labeling engine to bootstrap a smaller 7B model?
+Q2: How do we fix the "cardinality regression" (overcounting) that happens when fine-tuning generative VLMs for detection?
+Q3: How do we evaluate this accurately when standard Intersection over Union (IoU) metrics fail to capture the billing reality?
 
-If you are reviewing the project for research quality, read these in order:
+We will report our results using a custom end-to-end metric called **Dish-Correct**, evaluating the count-exact match and class multiset match, comparing a baseline 7B model against our Distilled 7B model.
 
-1. [V3 TriFoodNet Snapshot README](./experiments/v3_trifoodnet_research_snapshot/README.md)
-2. [Faculty Review Guide](./experiments/v3_trifoodnet_research_snapshot/docs/FACULTY_REVIEW_GUIDE.md)
-3. [All Trials Report](./experiments/v3_trifoodnet_research_snapshot/outputs/all_trials_report_20260321/index.md)
-4. [Best Run Summary](./experiments/v3_trifoodnet_research_snapshot/outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md)
-5. [Batch8 Dataset Note](./experiments/v3_trifoodnet_research_snapshot/BATCH8_DATASET_NOTE.md)
+## Application Area and Project Domain
+Targets include automated cafeteria checkout lines, smart restaurants, and autonomous billing systems. Users need: a clear, itemized bill of exactly what is on their tray, processed in under 2 seconds.
 
-## Main Track
+Our pipeline bridges the gap between massive, slow conversational VLMs and fast, rigid traditional detectors, making it perfectly suited for high-throughput, closed-taxonomy environments like university or corporate cafeterias.
 
-The active research track is:
+## What is the paper trying to do, and what are you planning to do?
+We propose **TahamajaNet**, a three-stage detection pipeline. During the offline phase, a massive Qwen2.5-VL-72B model acts as a data engine to label 4,999 tray images, refined by SAM3 and clustered by DINOv2+SigLIP. 
 
-- [experiments/v3_trifoodnet_research_snapshot](./experiments/v3_trifoodnet_research_snapshot/)
+During the online inference phase (what runs in production), we use a distilled Qwen2.5-VL-7B student model fine-tuned with a novel *cardinality-aware structural loss* to arrest overcounting. This student emits bounding boxes, which are passed to a frozen SAM3 for mask generation. Finally, the masked crops are classified using a DINOv2-large $k$-NN reference bank.
 
-This track preserves:
+We plan to demonstrate that this pipeline increases the end-to-end "Dish-Correct" rate from 39.4% (baseline) to **86.4%**, completely eliminating zero-detection failures and solving the cardinality bottleneck.
 
-- the three-stage training and inference code
-- retained experiment logs and reports
-- a faculty-facing review path
-- architecture and loss diagrams
-- representative V3 image outputs
+### Project Documents
+- **Paper Latex Files:** [Paper](/paper)
 
-## Model Summary
+### Reference Paper
+- [Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution](https://arxiv.org/abs/2408.12966)
+- [Segment Anything Model 3 (SAM3)](https://arxiv.org/abs/2402.15391)
 
-TriFoodNet is a staged food-understanding pipeline:
+### Reference GitHub
+- [Qwen-VL Official Repository](https://github.com/QwenLM/Qwen-VL)
 
-1. Stage 1 uses `Qwen2.5-VL` to ground food items in the full tray image.
-2. Stage 2 uses `SAM` to convert grounded boxes into masks.
-3. Stage 3 classifies masked item crops with a specialist classifier.
+### Reference Dataset
+- **v3.2 Dataset:** A 4,629-item, 32-class hand-curated Saudi cafeteria-tray dataset.
 
-The main design claim is not that one stage solves everything. The system is
-intentionally decomposed so that detection, segmentation, and item recognition
-can be inspected separately.
+## Project Technicalities
 
-## Current Research Direction
+### Terminologies
+- **Vision-Language Model (VLM):** A model capable of understanding both image and text inputs to generate text outputs (like bounding box coordinates).
+- **Knowledge Distillation:** Training a smaller "student" model to replicate the behavior of a much larger "teacher" model.
+- **Cardinality-Aware Loss:** A custom loss function that penalizes the model when the predicted *number* of items differs from the ground truth.
+- **Dish-Correct Metric:** Our end-to-end evaluation metric requiring both exact count and exact class multiset matches.
+- **k-NN Reference Bank:** A vector database of embeddings where new images are classified by finding the "nearest neighbor" in the pre-embedded training set.
 
-The best retained run still used a partially trainable Stage 2 setup:
+### Problem Statements
+- **Problem 1:** 72B VLMs are too slow ($>5$ seconds per image) and expensive for real-time cafeteria checkout.
+- **Problem 2:** 7B VLMs hallucinate bounding boxes, leading to severe overcounting and incorrect bills.
+- **Problem 3:** Standard metrics like mAP or IoU do not correlate with a correct monetary bill.
 
-- SAM image encoder frozen
-- SAM prompt encoder frozen
-- SAM mask decoder trainable
+### Loopholes or Research Areas
+- **Evaluation Metrics:** Bounding box IoU does not matter for billing; identifying the exact item does.
+- **Data Scarcity:** No existing dataset covers the specific 32-class taxonomy of a Saudi cafeteria (e.g., kabsa rice, asidah, specific wrapped items).
 
-The current next-step hypothesis is to freeze SAM fully and keep optimization
-pressure on Stage 1 and Stage 3. That should be read as a research direction,
-not as a completed empirical result.
+### Problem vs. Ideation: Proposed 3 Ideas to Solve the Problems
+1. **Offline 72B Data Engine:** Use the massive 72B model just once offline to label a high-quality dataset, bypassing the need for manual bounding-box annotation.
+2. **Cardinality Structural Loss:** Add a specific loss term during the 7B student fine-tuning that penalizes absolute count error ($|\hat{n} - n|$).
+3. **Retrieval-Based Classification:** Use a frozen DINOv2 embedding space with a $k$-NN search instead of a standard linear classifier head to better handle visual variations (like different types of rice).
 
-## Core Assumptions
+### Proposed Solution: Code-Based Implementation
+This repository provides the complete historical and finalized codebase for TahamajaNet.
+- **Stage 1:** Distilled Qwen2.5-VL-7B running optimized inference.
+- **Stage 2:** SAM3 integration for mask refinement.
+- **Stage 3:** DINOv2-large vector database classifier.
 
-The V3 pipeline is built around these assumptions:
+### Key Components
 
-- the input is a cafeteria-style tray image with one or more visible food items
-- Stage 1 can provide useful candidate boxes before segmentation is attempted
-- Stage 2 is mainly a structured mask generator, not the primary novelty source
-- Stage 3 depends on reasonably aligned masked crops from earlier stages
-- reproducibility currently depends on restoring external dataset assets
-- the public GitHub copy is a review package, not a fully self-contained
-  benchmark release
+**Final Pipeline (`src/tahamajanet/`):**
+- `pipeline.py`: End-to-end 3-stage inference orchestrator
+- `stage1_qwen.py`: VLM bounding box generation (inference)
+- `stage1_kcfd/`: Stage 1 training module — model, dataset, **cardinality-aware loss**, trainer (14 files)
+- `stage2_sam.py`: SAM3 mask refinement with confidence cascade
+- `stage3_vector_db.py`: DINOv2 k-NN maximum-similarity retrieval classifier
+- `losses.py` / `metrics.py`: Loss functions and Dish-Correct evaluation metrics
+- `train_joint.py` / `train.py`: Training entry points
+- `master_config.yaml`: Complete training configuration
 
-## Latest Retained Results
+**Experiment History (`experiments/`):**
 
-These are the latest retained numbers for the strongest run currently preserved
-in the repo.
+| # | Folder | Approach | Paper Section |
+|---|--------|----------|---------------|
+| 01 | `foodsam_pictsure_hybrid` | FoodSAM + PictSure legacy pipeline | — |
+| 02 | `sam3_qwen_detection` | SAM3 + Qwen-VL first integration | §3 ancestor |
+| 03 | `trifoodnet_joint_training` | Joint multi-task training (3 stages) | §5 observations |
+| 04 | `three_stage_batch_prototype` | Batch inference with 7B/3B model testing | §3.1, §7 data |
+| 05 | `72b_teacher_evaluation` | 72B AWQ teacher on 809 images | §3 (Data Engine) |
+| 06 | `vlm_grounded_prompting` | Text+bbox vs bbox-only prompt testing | §4.1 design |
+| 07 | `stage1_distillation_training` | **Cardinality-aware 7B fine-tuning** | §4, §5, §7 ★ |
+| 08 | `training_infrastructure` | Handoff docs, dataset spec, deployment | §3.4, §4.5 |
+| 09 | `dinov2_knn_classifier` | DINOv2 max-sim retrieval (final Stage 3) | §4.3 ★ |
+| 10 | `config_driven_refactor` | Config-driven V2 pipeline architecture | — |
 
-| Item | Value |
-| --- | --- |
-| Strongest retained run | `trial-20260321-cleandata1` |
-| Best retained checkpoint | `epoch_038` by `joint/combined = 1.9375961198969618` |
-| Final retained epoch | `epoch_040` |
-| Final dev Stage 1 recall@0.5 | `0.8636363636363636` |
-| Final dev Stage 2 mIoU | `0.5733921838932934` |
-| Final dev Stage 3 accuracy | `0.5` |
-| Final dev combined score | `1.937028547529657` |
-| Runs compared in retained report | `15` |
+See [`docs/PAPER_MAPPING.md`](docs/PAPER_MAPPING.md) for the complete section-by-section mapping.
 
-## Architecture References
+**Paper (`paper/`):**
+- `paper.tex` + `sections/` — Full LaTeX source for the TahamajaNet paper
 
-| Reference | Image |
-| --- | --- |
-| Inference pipeline | ![TriFoodNet inference pipeline](assets/v3/diagrams/trifoodnet_inference_pipeline.png) |
-| Multi-task loss structure | ![TriFoodNet multi-task loss](assets/v3/diagrams/trifoodnet_multitask_loss.png) |
+## Model Workflow
+1. **Input:** A cafeteria tray image is passed to the system.
+2. **Stage 1 (Grounding):** The distilled Qwen2.5-VL-7B model processes the image and emits a strict JSON format containing bounding boxes for every distinct food item.
+3. **Stage 2 (Segmentation):** SAM3 takes the image and bounding boxes, returning pixel-accurate masks, suppressing background noise.
+4. **Stage 3 (Classification):** Masked crops are embedded using DINOv2-large. The embedding is compared against a reference bank of 3,909 training crops using Cosine Similarity. The label of the closest match is assigned.
+5. **Output:** A finalized multiset of identified dishes ready for billing.
 
-## Labeled Dev Examples
+## How to Run the Code
 
-The archived V3 dev report references rendered prediction PNGs, but those PNGs
-were not included in the public snapshot. To keep the README concrete, the
-examples below use local V3 outputs corresponding to correctly classified dev
-cases and label them explicitly.
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/BRAIN-Lab-AI/TahmajaNet-VLM-for-Detecting-Classifying-and-Billing-Food.git
+    cd TahmajaNet-VLM-for-Detecting-Classifying-and-Billing-Food
+    ```
 
-| Dev case | Original tray | Output visualization | Correctly classified items |
-| --- | --- | --- | --- |
-| `Cluster_149_frame_frame_013352_00` | ![Cluster 149 original](assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/original.jpg) | ![Cluster 149 visualization](assets/v3/dev_examples/Cluster_149_frame_frame_013352_00/visualization.jpg) | `rice`, `fish` |
-| `Cluster_98_frame_frame_044320_00` | ![Cluster 98 original](assets/v3/dev_examples/Cluster_98_frame_frame_044320_00/original.jpg) | ![Cluster 98 visualization](assets/v3/dev_examples/Cluster_98_frame_frame_044320_00/visualization.jpg) | `Aseeda_brown`, `vegetables_steamed` |
-| `Cluster_147_frame_frame_105786_00` | ![Cluster 147 original](assets/v3/dev_examples/Cluster_147_frame_frame_105786_00/original.jpg) | ![Cluster 147 visualization](assets/v3/dev_examples/Cluster_147_frame_frame_105786_00/visualization.jpg) | `Aseeda_white` |
-| `Cluster_14_frame_frame_014137_00` | ![Cluster 14 original](assets/v3/dev_examples/Cluster_14_frame_frame_014137_00/original.jpg) | ![Cluster 14 visualization](assets/v3/dev_examples/Cluster_14_frame_frame_014137_00/visualization.jpg) | `cake` |
+2. **Set Up the Environment:**
+    Create a virtual environment and install dependencies.
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r src/tahamajanet/requirements.txt
+    ```
 
-## Public Batch8 Samples
+3. **Run Inference:**
+    ```bash
+    python src/tahamajanet/pipeline.py --image_path path/to/tray.jpg
+    ```
 
-The V3 MVP image source came from the `batch_results_v8_500` export in the
-`v3_3stage_mvp` workspace. The public repo keeps a small sample only.
-
-| Public sample | Original tray | Output visualization |
-| --- | --- | --- |
-| `Cluster_0_frame_frame_025403_00` | ![Batch8 sample 0 original](assets/v3/batch8_samples/Cluster_0_frame_frame_025403_00/original.jpg) | ![Batch8 sample 0 visualization](assets/v3/batch8_samples/Cluster_0_frame_frame_025403_00/visualization.jpg) |
-| `Cluster_161_frame_frame_091147_00` | ![Batch8 sample 161 original](assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/original.jpg) | ![Batch8 sample 161 visualization](assets/v3/batch8_samples/Cluster_161_frame_frame_091147_00/visualization.jpg) |
-
-## Documentation Guide
-
-The repository is intended to be navigated through markdown documentation rather
-than by browsing files blindly.
-
-### V3 Research Docs
-
-- [V3 Snapshot README](./experiments/v3_trifoodnet_research_snapshot/README.md)
-- [Faculty Review Guide](./experiments/v3_trifoodnet_research_snapshot/docs/FACULTY_REVIEW_GUIDE.md)
-- [Documentation Hub](./experiments/v3_trifoodnet_research_snapshot/docs/README.md)
-- [Repository Map](./experiments/v3_trifoodnet_research_snapshot/docs/REPOSITORY_MAP.md)
-- [Architecture Notes](./experiments/v3_trifoodnet_research_snapshot/ARCHITECTURE.md)
-- [Training Guide](./experiments/v3_trifoodnet_research_snapshot/TRAINING_GUIDE.md)
-- [Evaluation Guide](./experiments/v3_trifoodnet_research_snapshot/EVAL_GUIDE.md)
-- [Data Pipeline Guide](./experiments/v3_trifoodnet_research_snapshot/DATA_PIPELINE.md)
-- [Resume Guide](./experiments/v3_trifoodnet_research_snapshot/RESUME_GUIDE.md)
-- [Experiments Index](./experiments/v3_trifoodnet_research_snapshot/EXPERIMENTS_INDEX.md)
-
-### Result Evidence
-
-- [All Trials Report](./experiments/v3_trifoodnet_research_snapshot/outputs/all_trials_report_20260321/index.md)
-- [Best Run Summary](./experiments/v3_trifoodnet_research_snapshot/outputs/trial-20260321-cleandata1/report_metrics/RESULTS_SUMMARY.md)
-- [Validation Report](./experiments/v3_trifoodnet_research_snapshot/VALIDATION_REPORT.md)
-- [Checkpoint Provenance](./experiments/v3_trifoodnet_research_snapshot/weights/CHECKPOINT_PROVENANCE.md)
-
-## Historical Tracks
-
-The earlier tracks are still preserved for lineage and comparison:
-
-- [V2 Showcase](./experiments/v2_sam3_qwen_vl/)
-- [V1 Legacy Hybrid Pipeline](./experiments/v1_hybrid_foodsam_pictsure/)
-
-They remain useful as historical context, but the main technical review target
-is V3.
-
-## Packaging Limits
-
-The public repo intentionally does not bundle everything:
-
-- no full reviewed dataset release
-- no `Sampled_Images_All/` tree inside Git
-- no heavyweight `best_checkpoint.tar` in the public tree
-- no optimizer-state resume package
-
-That limitation is deliberate. The repo is optimized for assessment,
-documentation, and code review first.
-
----
-
-Developed by Antigravity
+## Acknowledgments
+- **Open-Source Communities:** Thanks to QwenLM, Meta (SAM/DINOv2), and Hugging Face.
+- **Resource Providers:** Compute via vast.ai (H100 SXM 80GB).

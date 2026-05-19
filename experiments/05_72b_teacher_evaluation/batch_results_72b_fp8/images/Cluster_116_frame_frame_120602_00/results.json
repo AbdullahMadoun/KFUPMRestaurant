@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_116_frame_frame_120602_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "meat and vegetables",
+      "description": "brown chunks of meat with yellow, green, and red bell peppers, and onions, all coated in a glossy sauce",
+      "bbox": [
+        66,
+        251,
+        948,
+        1018
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9901
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a light sheen",
+      "bbox": [
+        215,
+        124,
+        1133,
+        951
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9838
+    }
+  ],
+  "stage1_time": 2.84,
+  "stage2_time": 0.37,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_257_frame_frame_000973_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "cooked vegetables",
+      "description": "red, green, and yellow pieces with a glossy surface",
+      "bbox": [
+        669,
+        356,
+        1108,
+        1074
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9782
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        110,
+        101,
+        827,
+        1096
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9651
+    },
+    {
+      "index": 2,
+      "name": "grilled meat",
+      "description": "brown, slightly charred pieces with a rough texture",
+      "bbox": [
+        736,
+        190,
+        1086,
+        725
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9359
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.61,
+  "match_results": null
+}

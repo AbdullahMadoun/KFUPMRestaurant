@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_192_frame_frame_080137_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "baked pasta",
+      "description": "golden-brown melted cheese with a slightly crispy surface, layered pasta underneath",
+      "bbox": [
+        90,
+        36,
+        966,
+        883
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9877
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow lemon slice with a smooth, shiny surface",
+      "bbox": [
+        491,
+        719,
+        818,
+        952
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9852
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.33,
+  "match_results": null
+}

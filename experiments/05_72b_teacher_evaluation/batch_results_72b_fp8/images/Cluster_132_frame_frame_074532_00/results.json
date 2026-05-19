@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_132_frame_frame_074532_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried cutlet",
+      "description": "golden-brown, crispy, irregularly shaped cutlet",
+      "bbox": [
+        589,
+        171,
+        801,
+        617
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9869
+    },
+    {
+      "index": 1,
+      "name": "vegetable stew",
+      "description": "brownish sauce with visible chunks of green peppers, red tomatoes, and onions",
+      "bbox": [
+        68,
+        117,
+        602,
+        784
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9862
+    }
+  ],
+  "stage1_time": 2.05,
+  "stage2_time": 0.31,
+  "match_results": null
+}

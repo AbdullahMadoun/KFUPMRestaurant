@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_133_frame_frame_003701_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks",
+      "bbox": [
+        181,
+        500,
+        1147,
+        1210
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9786
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "golden-brown chicken pieces with a glossy sauce",
+      "bbox": [
+        188,
+        112,
+        955,
+        988
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9686
+    },
+    {
+      "index": 2,
+      "name": "green pepper",
+      "description": "green, elongated pepper with a smooth surface",
+      "bbox": [
+        960,
+        400,
+        1158,
+        524
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9615
+    },
+    {
+      "index": 3,
+      "name": "red tomato",
+      "description": "red, round tomato with a smooth surface",
+      "bbox": [
+        887,
+        383,
+        1006,
+        504
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9595
+    }
+  ],
+  "stage1_time": 2.05,
+  "stage2_time": 0.84,
+  "match_results": null
+}

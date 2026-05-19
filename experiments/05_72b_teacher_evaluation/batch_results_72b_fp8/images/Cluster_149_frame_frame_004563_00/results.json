@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_149_frame_frame_004563_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a crispy, slightly charred surface, irregular shape",
+      "bbox": [
+        330,
+        553,
+        1142,
+        1153
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9878
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with specks of yellow and orange, long grains",
+      "bbox": [
+        160,
+        66,
+        1111,
+        977
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9774
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.34,
+  "match_results": null
+}

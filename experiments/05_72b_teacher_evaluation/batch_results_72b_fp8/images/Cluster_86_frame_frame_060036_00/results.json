@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_86_frame_frame_060036_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "lamb stew",
+      "description": "brown chunks of meat with visible bones, orange carrot slices, and yellow spices",
+      "bbox": [
+        213,
+        125,
+        912,
+        1227
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9896
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight yellow tint",
+      "bbox": [
+        640,
+        175,
+        1318,
+        1238
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.981
+    }
+  ],
+  "stage1_time": 1.3,
+  "stage2_time": 0.42,
+  "match_results": null
+}

@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_137_frame_frame_106358_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        29,
+        33,
+        669,
+        651
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9907
+    }
+  ],
+  "stage1_time": 1.12,
+  "stage2_time": 0.41,
+  "match_results": null
+}

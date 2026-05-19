@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_11_frame_frame_113328_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellow specks and green peas",
+      "bbox": [
+        207,
+        7,
+        1081,
+        968
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9887
+    },
+    {
+      "index": 1,
+      "name": "red chili",
+      "description": "bright red, smooth, elongated chili pepper",
+      "bbox": [
+        334,
+        806,
+        1000,
+        1048
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9805
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "golden-brown chicken with crispy skin and charred spots",
+      "bbox": [
+        446,
+        541,
+        1009,
+        1061
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9755
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.6,
+  "match_results": null
+}

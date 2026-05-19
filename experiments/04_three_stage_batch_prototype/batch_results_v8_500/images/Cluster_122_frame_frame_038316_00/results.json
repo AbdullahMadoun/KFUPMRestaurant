@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_122_frame_frame_038316_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "green okra pieces in a reddish broth, covering most of the plate",
+      "bbox": [
+        64,
+        58,
+        580,
+        560
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9867
+    },
+    {
+      "index": 1,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        251,
+        122,
+        461,
+        389
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9435
+    }
+  ],
+  "stage1_time": 0.49,
+  "stage2_time": 0.53,
+  "match_results": null
+}

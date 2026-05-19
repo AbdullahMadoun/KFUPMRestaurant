@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_89_frame_frame_132257_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "pinkish-red, translucent, gelatinous pieces with irregular shapes, covering most of the plate",
+      "bbox": [
+        2,
+        2,
+        503,
+        503
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9881
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.26,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_210_frame_frame_079211_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellow lemon slice with rind, top left corner of plate",
+      "bbox": [
+        310,
+        204,
+        586,
+        446
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9816
+    },
+    {
+      "index": 1,
+      "description": "green leafy herbs with small stems, covering right half of plate",
+      "bbox": [
+        204,
+        168,
+        868,
+        911
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9741
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 0.63,
+  "match_results": null
+}

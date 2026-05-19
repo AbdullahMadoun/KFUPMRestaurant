@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_214_frame_frame_061227_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "mashed potatoes",
+      "description": "creamy beige texture with some visible chunks and a slightly uneven surface",
+      "bbox": [
+        39,
+        90,
+        924,
+        934
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9922
+    }
+  ],
+  "stage1_time": 1.44,
+  "stage2_time": 0.14,
+  "match_results": null
+}

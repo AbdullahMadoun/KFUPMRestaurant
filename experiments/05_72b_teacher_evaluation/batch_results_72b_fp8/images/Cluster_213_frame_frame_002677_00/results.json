@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_213_frame_frame_002677_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed vegetables and meat",
+      "description": "chunks of brown meat with colorful vegetables including green, red, and yellow bell peppers, and purple onions, all coated in a glossy sauce",
+      "bbox": [
+        114,
+        409,
+        790,
+        1151
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9856
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        335,
+        200,
+        1094,
+        1168
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9834
+    }
+  ],
+  "stage1_time": 1.89,
+  "stage2_time": 0.38,
+  "match_results": null
+}

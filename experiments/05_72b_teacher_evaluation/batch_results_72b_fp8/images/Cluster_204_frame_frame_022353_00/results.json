@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_204_frame_frame_022353_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "pilaf rice",
+      "description": "yellow rice grains mixed with small pieces of vegetables and possibly meat, with a slightly oily sheen",
+      "bbox": [
+        501,
+        179,
+        1257,
+        1107
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 1,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a flaky texture and visible grill marks",
+      "bbox": [
+        257,
+        448,
+        845,
+        1065
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9869
+    },
+    {
+      "index": 2,
+      "name": "water bottle",
+      "description": "clear plastic bottle with a white cap",
+      "bbox": [
+        274,
+        1163,
+        895,
+        1429
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9714
+    },
+    {
+      "index": 3,
+      "name": "vegetable curry",
+      "description": "chunky mixture of green vegetables in a brownish sauce",
+      "bbox": [
+        5,
+        765,
+        120,
+        1033
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9373
+    }
+  ],
+  "stage1_time": 2.27,
+  "stage2_time": 0.79,
+  "match_results": null
+}

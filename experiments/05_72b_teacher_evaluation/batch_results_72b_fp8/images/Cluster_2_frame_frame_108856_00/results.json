@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_2_frame_frame_108856_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "chicken curry",
+      "description": "chunks of chicken in a reddish-brown sauce with visible spices and green beans",
+      "bbox": [
+        146,
+        226,
+        1207,
+        1049
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9921
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "long, slender white grains with a fluffy texture",
+      "bbox": [
+        185,
+        121,
+        1253,
+        1221
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9835
+    }
+  ],
+  "stage1_time": 1.95,
+  "stage2_time": 0.39,
+  "match_results": null
+}

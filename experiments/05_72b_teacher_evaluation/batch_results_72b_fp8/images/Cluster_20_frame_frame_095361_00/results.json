@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_20_frame_frame_095361_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "stewed fish",
+      "description": "chunks of light-brown fish with a glossy, saucy texture, mixed with green and red vegetables",
+      "bbox": [
+        113,
+        48,
+        848,
+        836
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9905
+    },
+    {
+      "index": 1,
+      "name": "lemon slices",
+      "description": "yellow slices with a smooth, shiny surface and visible white pith",
+      "bbox": [
+        4,
+        424,
+        464,
+        809
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9801
+    }
+  ],
+  "stage1_time": 1.32,
+  "stage2_time": 0.32,
+  "match_results": null
+}

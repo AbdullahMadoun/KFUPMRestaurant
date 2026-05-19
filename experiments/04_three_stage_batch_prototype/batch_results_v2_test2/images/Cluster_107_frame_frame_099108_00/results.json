@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_107_frame_frame_099108_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "Green, finely chopped salad with small red pieces and a yellow lemon wedge, forming a mound in the center of the plate",
+      "bbox": [
+        140,
+        86,
+        969,
+        886
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9389
+    },
+    {
+      "index": 1,
+      "description": "A single, bright yellow, glossy lemon wedge, standing upright in the center of the salad",
+      "bbox": [
+        495,
+        354,
+        679,
+        725
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.7661
+    }
+  ],
+  "stage1_time": 2.23,
+  "stage2_time": 0.81,
+  "match_results": null
+}

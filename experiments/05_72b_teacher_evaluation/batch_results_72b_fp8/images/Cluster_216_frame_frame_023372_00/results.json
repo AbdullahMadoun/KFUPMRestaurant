@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_216_frame_frame_023372_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains mixed with small orange carrot slivers and bits of brown meat",
+      "bbox": [
+        12,
+        115,
+        1215,
+        1203
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9893
+    },
+    {
+      "index": 1,
+      "name": "omelette",
+      "description": "golden-brown fried egg with a slightly crispy surface and some tomato pieces on top",
+      "bbox": [
+        337,
+        426,
+        964,
+        1074
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9722
+    }
+  ],
+  "stage1_time": 1.89,
+  "stage2_time": 0.36,
+  "match_results": null
+}

@@ -1,0 +1,89 @@
+Standard detection metrics --- COCO-style mAP, mean IoU, set-IoU --- penalise
+geometric error and reward ranking quality. Neither aligns with the
+bill-generation objective. A box that overlaps the ground truth at IoU $0.55$
+versus $0.92$ is, for the downstream price lookup, indistinguishable; both
+will be cropped, classified, and priced. Conversely, a pipeline that emits
+five bboxes for a tray that has three items will produce a wrong bill no
+matter how clean each bbox is.
+
+We therefore evaluate on a hierarchy of \emph{semantic} metrics. Let $\mathcal{P}$
+denote the predicted multiset of class names for a single tray image and
+$\mathcal{G}$ the ground-truth multiset. We define:
+
+\begin{align}
+\textsc{count-exact}(\mathcal{P}, \mathcal{G}) &\;=\; \mathbb{1}[|\mathcal{P}| = |\mathcal{G}|] \\
+\textsc{set-iou}(\mathcal{P}, \mathcal{G}) &\;=\; \frac{|\mathrm{set}(\mathcal{P}) \cap \mathrm{set}(\mathcal{G})|}{|\mathrm{set}(\mathcal{P}) \cup \mathrm{set}(\mathcal{G})|} \\
+\textsc{multiset-match}(\mathcal{P}, \mathcal{G}) &\;=\; \mathbb{1}[\mathcal{P} = \mathcal{G}] \\
+\textsc{dish-correct}(\mathcal{P}, \mathcal{G}) &\;=\; \textsc{count-exact}(\mathcal{P}, \mathcal{G}) \;\wedge\; \textsc{multiset-match}(\mathcal{P}, \mathcal{G})
+\end{align}
+
+\textsc{dish-correct} is the strictest and the one we report as the
+headline metric. The intermediate metrics serve as diagnostics
+(Figure~\ref{fig:metric-tree}):
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=4pt and 6pt,
+  every node/.style={font=\footnotesize, align=center},
+  metric/.style={rectangle, draw=black, rounded corners=2pt,
+                 minimum width=2cm, minimum height=0.7cm, fill=blue!8},
+  example/.style={rectangle, draw=gray!50, rounded corners=1pt,
+                  minimum height=0.55cm, fill=gray!5, font=\scriptsize\ttfamily},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+  \node[example]                            (gt)   {GT: rice $\times$2, chicken};
+  \node[example, right=of gt]               (p1)   {pred: rice, chicken};
+  \node[example, right=of p1]               (p2)   {pred: rice, salad, chicken};
+  \node[example, right=of p2]               (p3)   {pred: rice $\times$2, chicken};
+
+  \node[metric, below=14pt of gt]           (cex)   {count-exact};
+  \node[metric, right=of cex]               (siou)  {set-IoU};
+  \node[metric, right=of siou]              (mm)    {multiset-match};
+  \node[metric, right=of mm, fill=blue!22]  (dc)    {\textbf{dish-correct}};
+
+  \node[below=4pt of cex, font=\scriptsize] {2$\neq$3 $\rightarrow$ \ding{55}};
+  \node[below=4pt of siou, font=\scriptsize] {$\frac{2}{3}=0.67$};
+  \node[below=4pt of mm, font=\scriptsize] {$\neq$ $\rightarrow$ \ding{55}};
+  \node[below=4pt of dc, font=\scriptsize] {\ding{55}};
+
+  \draw[arrow, gray] (p1) -- (cex);
+  \draw[arrow, gray] (p2) -- (siou);
+  \draw[arrow, gray] (p3) -- (mm);
+\end{tikzpicture}
+\caption{The dish-correct hierarchy on a worked example. GT is
+\texttt{rice $\times$2, chicken}. Pred~1 (\texttt{rice, chicken}) gets the
+class set right but the count wrong. Pred~2 hallucinates a salad: count
+right but multiset wrong. Pred~3 nails everything. Only Pred~3 satisfies
+\textsc{dish-correct} (count-exact $\wedge$ multiset-match).}
+\label{fig:metric-tree}
+\end{figure}
+
+\begin{itemize}\itemsep1pt
+  \item \textsc{count-exact} isolates the cardinality-regression effect:
+    a model that systematically over- or under-detects loses dish-correct
+    points entirely from this term.
+  \item \textsc{set-iou} forgives duplicates and is robust to bipartite
+    matching ambiguity. A model that gets every distinct dish but
+    duplicates one of them scores 1.0 here but 0 on \textsc{multiset-match}.
+  \item \textsc{multiset-match} captures the actual bill quality: ``rice
+    $\times 2$, chicken $\times 1$'' is a genuinely different bill from
+    ``rice $\times 1$, chicken $\times 1$''.
+\end{itemize}
+
+We also report two count-error diagnostics: the signed mean
+$\Delta n = \mathbb{E}[|\mathcal{P}| - |\mathcal{G}|]$ (positive values
+indicate over-detection bias, negative under-detection) and the
+mean absolute count error $\mathbb{E}[\,\big||\mathcal{P}| - |\mathcal{G}|\big|\,]$.
+A pipeline with $\Delta n \approx 0$ but high mean absolute error is
+unbiased but noisy --- the count regression we observe in
+\S\ref{sec:cardinality} appears as the latter pattern.
+
+\paragraph{What we deliberately do not measure.} We do not report
+bbox IoU or mAP. The Stage~1 detector is class-agnostic by design (\S\ref{sec:st:s1}),
+so per-box class accuracy is undefined. We do not report Stage~3 top-$k$
+accuracy in isolation, since classifier-level accuracy on test crops is a
+noisy proxy --- the upstream Stage~1+2 cascade can deliver crops that are
+trivially classifiable (clean, central) or hopelessly miscropped, and the
+test-set distribution over crop quality is what \textsc{dish-correct}
+already integrates over.

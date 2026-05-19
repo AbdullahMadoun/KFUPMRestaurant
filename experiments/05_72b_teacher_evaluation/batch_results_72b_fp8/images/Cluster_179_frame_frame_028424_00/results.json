@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_179_frame_frame_028424_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "chunky orange and yellow vegetables in a thick red sauce",
+      "bbox": [
+        48,
+        57,
+        576,
+        570
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9902
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.15,
+  "match_results": null
+}

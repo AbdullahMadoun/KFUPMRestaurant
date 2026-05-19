@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_241_frame_frame_001784_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable salad",
+      "description": "mixed green leaves with orange carrot shreds, purple onion slices, and a yellow lemon slice on top",
+      "bbox": [
+        55,
+        72,
+        838,
+        836
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9855
+    }
+  ],
+  "stage1_time": 1.35,
+  "stage2_time": 0.16,
+  "match_results": null
+}

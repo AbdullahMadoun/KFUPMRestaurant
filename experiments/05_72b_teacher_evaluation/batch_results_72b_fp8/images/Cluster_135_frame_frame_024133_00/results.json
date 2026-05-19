@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_135_frame_frame_024133_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "corn kernels",
+      "description": "bright yellow, small, round kernels",
+      "bbox": [
+        583,
+        232,
+        1298,
+        1008
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9681
+    },
+    {
+      "index": 1,
+      "name": "meat stew",
+      "description": "brown, chunky pieces with a glossy, oily surface",
+      "bbox": [
+        291,
+        350,
+        906,
+        965
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9649
+    }
+  ],
+  "stage1_time": 2.05,
+  "stage2_time": 0.45,
+  "match_results": null
+}

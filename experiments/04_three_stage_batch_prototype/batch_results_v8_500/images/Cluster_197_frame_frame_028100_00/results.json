@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_197_frame_frame_028100_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "clear glass plate with decorative pattern, surrounding the food",
+      "bbox": [
+        4,
+        4,
+        892,
+        893
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9945
+    },
+    {
+      "index": 1,
+      "description": "white creamy substance with green herbs and yellow leaf pattern, central portion of plate",
+      "bbox": [
+        141,
+        136,
+        769,
+        784
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.993
+    }
+  ],
+  "stage1_time": 0.55,
+  "stage2_time": 0.59,
+  "match_results": null
+}

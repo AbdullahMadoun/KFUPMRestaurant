@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_265_frame_frame_001517_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "meatballs",
+      "description": "brown, textured, cylindrical shapes",
+      "bbox": [
+        148,
+        57,
+        647,
+        620
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9777
+    },
+    {
+      "index": 1,
+      "name": "vegetables",
+      "description": "colorful, sliced pieces including orange, green, and yellow",
+      "bbox": [
+        68,
+        127,
+        772,
+        765
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9774
+    }
+  ],
+  "stage1_time": 2.46,
+  "stage2_time": 0.35,
+  "match_results": null
+}

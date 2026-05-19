@@ -1,0 +1,109 @@
+{
+  "image_id": "Cluster_161_frame_frame_064606_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 7,
+  "items": [
+    {
+      "index": 0,
+      "name": "steamed broccoli",
+      "description": "green broccoli florets with a rough, tree-like texture",
+      "bbox": [
+        620,
+        681,
+        1047,
+        1067
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9838
+    },
+    {
+      "index": 1,
+      "name": "steamed cauliflower",
+      "description": "white cauliflower florets with a soft, porous texture",
+      "bbox": [
+        334,
+        925,
+        715,
+        1301
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9826
+    },
+    {
+      "index": 2,
+      "name": "crispy chicken",
+      "description": "golden-brown breaded chicken pieces with a rough, crunchy texture",
+      "bbox": [
+        669,
+        303,
+        1166,
+        1240
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9811
+    },
+    {
+      "index": 3,
+      "name": "steamed cauliflower",
+      "description": "white cauliflower florets with a soft, porous texture",
+      "bbox": [
+        628,
+        464,
+        941,
+        772
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9808
+    },
+    {
+      "index": 4,
+      "name": "lemon wedge",
+      "description": "yellow lemon slice with a smooth, glossy texture and visible pulp",
+      "bbox": [
+        702,
+        1152,
+        900,
+        1402
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9779
+    },
+    {
+      "index": 5,
+      "name": "pilaf rice",
+      "description": "fluffy white rice grains with yellow specks and green herbs",
+      "bbox": [
+        27,
+        222,
+        745,
+        1118
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9745
+    },
+    {
+      "index": 6,
+      "name": "pineapple chunk",
+      "description": "yellow pineapple piece with a smooth, juicy texture",
+      "bbox": [
+        1069,
+        566,
+        1198,
+        881
+      ],
+      "crop": "crops/item_006.jpg",
+      "mask": "masks/item_006_mask.png",
+      "sam_score": 0.9353
+    }
+  ],
+  "stage1_time": 2.9,
+  "stage2_time": 1.37,
+  "match_results": null
+}

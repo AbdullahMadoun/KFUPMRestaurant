@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_148_frame_frame_132152_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly glossy texture",
+      "bbox": [
+        83,
+        119,
+        1029,
+        938
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9818
+    },
+    {
+      "index": 1,
+      "name": "red chili pepper",
+      "description": "bright red chili pepper with a smooth, glossy surface",
+      "bbox": [
+        738,
+        422,
+        955,
+        902
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9753
+    },
+    {
+      "index": 2,
+      "name": "spiced chicken",
+      "description": "brownish-orange chicken pieces with a glossy, seasoned surface",
+      "bbox": [
+        178,
+        10,
+        855,
+        645
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9265
+    }
+  ],
+  "stage1_time": 1.67,
+  "stage2_time": 0.53,
+  "match_results": null
+}

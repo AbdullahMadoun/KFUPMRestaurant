@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_186_frame_frame_024769_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "golden-brown chicken with a crispy, slightly charred surface and melted cheese",
+      "bbox": [
+        392,
+        293,
+        1070,
+        803
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9901
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "fluffy white and yellow rice grains with a light, airy texture",
+      "bbox": [
+        204,
+        0,
+        1133,
+        858
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9891
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.36,
+  "match_results": null
+}

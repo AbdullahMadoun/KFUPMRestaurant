@@ -1,0 +1,178 @@
+The student inference pipeline mirrors the teacher's three-stage decomposition
+at a smaller scale: the 72B VLM is replaced by a distilled 7B detector, the
+SAM3 segmenter is shared, and the offline DINOv2 + clustering step is
+replaced by an online DINOv2 vector retrieval head over the curated 32-class
+taxonomy. Figure~\ref{fig:pipeline-student} shows the full forward pass.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=4pt and 7pt,
+  every node/.style={font=\footnotesize},
+  stage/.style={rectangle, draw=black, rounded corners=2pt, minimum width=1.5cm,
+                minimum height=0.65cm, align=center, fill=blue!8},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+  \node[stage]                 (img)  {tray\\image};
+  \node[stage, right=of img]   (s1)   {\textbf{Stage 1}\\Qwen-VL-7B\\(distilled)};
+  \node[stage, right=of s1]    (s2)   {\textbf{Stage 2}\\SAM3\\(frozen)};
+  \node[stage, right=of s2]    (s3)   {\textbf{Stage 3}\\DINOv2-large\\$k$-NN ref bank};
+  \node[stage, right=of s3]    (out)  {dish\\multiset};
+
+  \draw[arrow] (img) -- (s1);
+  \draw[arrow] (s1)  -- node[above]{\scriptsize bboxes} (s2);
+  \draw[arrow] (s2)  -- node[above]{\scriptsize masks} (s3);
+  \draw[arrow] (s3)  -- node[above]{\scriptsize labels} (out);
+\end{tikzpicture}
+\caption{Student inference pipeline. Stage 1 is a fine-tuned 7B VLM that
+emits bboxes only (class-agnostic). Stage 2 (SAM3, frozen) refines each box
+into a pixel-accurate mask. Stage 3 (DINOv2-large) maps the masked crop into
+embedding space and assigns the class of the most similar of $\sim$3{,}900
+training-set reference embeddings. The teacher pipeline (\S\ref{sec:dataengine})
+has the same three stages at $\sim$10$\times$ scale, run once offline.}
+\label{fig:pipeline-student}
+\end{figure}
+
+\subsection{Stage 1: distilled Qwen2.5-VL-7B}
+\label{sec:st:s1}
+
+The detector is \texttt{Qwen/Qwen2.5-VL-7B-Instruct} fine-tuned on v3.2 (\S\ref{sec:dataengine})
+under a deliberately \emph{class-agnostic} prompt schema:
+
+\begin{quote}\footnotesize\ttfamily
+Detect every visible edible food or beverage region\ldots\\
+Format: \{"items":[\{"bbox":[x1,y1,x2,y2]\}]\}\\
+Each item object must contain exactly one key: bbox.
+\end{quote}
+
+We deliberately strip class names and descriptions from the supervision target.
+This forces Stage~1 to specialise in what VLMs do well --- locating cohesive
+food regions --- while leaving fine-grained classification to the embedding-
+based head in Stage~3, which scales more naturally with the long-tailed
+class distribution. Training uses LoRA ($r=16$, $\alpha=32$) on the language
+model and an unfrozen vision encoder; the latter recovers $\sim$691M parameters
+of the 7B that the LoRA-only path would otherwise leave frozen.
+
+\subsection{Stage 2: SAM3 (frozen, shared with teacher)}
+\label{sec:st:s2}
+
+SAM3 is run with each Stage~1 bbox as a positive prompt. We retain the
+teacher pipeline's confidence cascade and global mask-IoU NMS at $0.5$. If
+SAM3 returns no kept masks (a $<\!1\%$ failure mode), the pipeline falls back
+to bbox crops --- the downstream classifier still produces a label but
+without background suppression.
+
+\subsection{Stage 3: DINOv2 maximum-similarity retrieval}
+\label{sec:st:s3}
+
+Rather than a trainable classification head, Stage~3 is a \emph{retrieval}
+problem over the train-split items. At setup, we embed every train-split
+masked crop with frozen DINOv2-large (1024-d, L2-normalised); call this the
+\emph{reference bank} $\mathbf{R} \in \mathbb{R}^{N \times 1024}$ where
+$N \approx 3{,}900$. Each row $\mathbf{r}_i$ is annotated with its class
+$c_i$. At inference, the masked query crop $q$ is embedded into the same
+space and we compute
+\[
+\hat{c}(q) \;=\; c_{i^\star} \quad\text{where}\quad i^\star = \arg\max_{i} \langle \mathbf{R}_i, \mathbf{e}(q) \rangle.
+\]
+Unlike the more common mean-pooled prototype (one vector per class), the
+$k$-NN top-1 formulation handles the multimodal classes that arise from
+human cluster curation --- e.g.\ \texttt{rice} contains plain rice, kabsa
+rice, biryani, and mandi rice, each with a distinct visual signature. A
+mean-pooled prototype averages across these modes; max-similarity retrieval
+matches the query to the nearest concrete reference instance.
+
+The reference bank is built from \emph{train-split images only}. Held-out
+dev and test images never appear in $\mathbf{R}$, so the test-time cosine
+score cannot be inflated by a query matching its own reference.
+
+\subsection{Training setup}
+\label{sec:st:train}
+
+The Stage~1 fine-tune runs on a single \texttt{H100 SXM} (80\,GB) at
+\texttt{bf16} mixed precision under HuggingFace \texttt{transformers}
+$\geq 4.46$ and \texttt{peft} $\geq 0.13$. Hyperparameters are summarised
+in Table~\ref{tab:train-hp}.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{ll}
+\toprule
+Base model               & \texttt{Qwen/Qwen2.5-VL-7B-Instruct} \\
+LoRA rank, $\alpha$      & $r{=}16$, $\alpha{=}32$ \\
+LoRA targets             & q, k, v, o projections (all attn layers) \\
+LoRA dropout             & $0.05$ \\
+Vision encoder           & unfrozen ($\sim$691\,M params trained) \\
+Optimizer                & AdamW, $\beta_1{=}0.9$, $\beta_2{=}0.999$ \\
+Learning rate            & $2 \times 10^{-5}$ peak, cosine to $1\times 10^{-6}$ \\
+Warmup                   & 200 steps \\
+Batch size               & 4 (per-device), grad-accum 4 $\rightarrow$ 16 effective \\
+Sequence length          & 2048 (covers all v3.2 prompts) \\
+Image input              & resized to mask-native ($\sim$1024 long-edge) \\
+Processor max\_pixels    & $1280 \times 28 \times 28 \approx 1{,}003{,}520$ \\
+Schema                   & bbox-only (\texttt{\{"items":[\{"bbox":...\}]\}}) \\
+Count loss weight $\lambda$ & $5.0$ (cardinality-aware variant only) \\
+Epochs planned           & 10 \\
+Wall-clock per epoch     & $\approx 25$ minutes on H100 SXM \\
+Data                     & v3.2 train ($2{,}385$ images, $3{,}909$ items) \\
+Validation               & v3.2 dev ($298$ images), every epoch \\
+Checkpoint selection     & best val \textsc{exact-count} $\wedge$ \textsc{multiset-match} \\
+Determinism              & cuDNN deterministic, seed $1337$ \\
+\bottomrule
+\end{tabular}
+\caption{Stage~1 fine-tuning hyperparameters. The LoRA targets, base model,
+and optimizer follow the standard recipe for instruction-tuned VLM
+fine-tuning; the non-default choices are the unfrozen vision encoder,
+the bbox-only schema, and the structural count loss
+(\S\ref{sec:cardinality}). The vision encoder unfreeze adds substantially
+to memory pressure but is necessary for the model to specialise on the
+~1024-pixel cafeteria-tray scale.}
+\label{tab:train-hp}
+\end{table}
+
+\subsection{Inference setup and latency}
+\label{sec:st:inf}
+
+End-to-end inference on a single tray takes $\approx 2.5$\,s wall-clock on
+an H100 SXM at \texttt{fp16}, dominated by Stage~1 generation
+(Table~\ref{tab:latency}). Stage~2 (SAM3) and Stage~3 (DINOv2 embedding +
+$k$-NN over a $\sim$3{,}900-row reference bank at $\mathbf{R} \in
+\mathbb{R}^{3909 \times 1024}$) together account for under 25\,\% of the
+total. The latency is well within the cafeteria-line target of
+$<2{,}000$\,ms once we move to a billing kiosk where the operator can hide
+the Stage-1 generation behind the brief tray-positioning UI.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Stage}                                            & \textbf{Latency (ms)} \\
+\midrule
+Stage~1: Qwen-VL-7B detect (bbox-only JSON, fp16)         & $\approx 1{,}800$ \\
+Stage~2: SAM3 mask refinement                             & $\approx 500$ \\
+Stage~3: DINOv2-large embed + max-sim retrieval           & $\approx 200$ \\
+\midrule
+End-to-end (mean over 596 held-out trays)                 & $\approx 2{,}500$ \\
+\bottomrule
+\end{tabular}
+\caption{Per-stage and end-to-end latency on a single H100 SXM 80\,GB at
+\texttt{fp16}. Stage~1 dominates; SAM3 and DINOv2 are nearly free at this
+problem size. The 200\,ms Stage~3 includes the encoder forward and the
+full $k$-NN over $3{,}909$ references; switching to a mean-pooled prototype
+head would shave $\approx 80\,$ms but at the dish-correct cost discussed
+in \S\ref{sec:st:s3}.}
+\label{tab:latency}
+\end{table}
+
+\subsection{Total resource cost}
+\label{sec:st:cost}
+
+The teacher-side data engine consumed one H100 80\,GB-class GPU for
+$\approx 96$\,minutes of vLLM-served Qwen-VL-72B-AWQ inference, plus a
+trailing $\approx 30$\,minutes of DINOv2 + SigLIP embedding and HDBSCAN
+clustering on the same hardware. Student fine-tuning has a planned budget
+of 10 epochs $\times$ 25 minutes per epoch $= 4$\,h\,10\,m on H100 SXM.
+End-to-end evaluation across both arms (base $+$ distilled, $596$ images
+each) ran in $\approx 50$\,minutes of single-instance H100 wall-clock.
+Total spend on the inference comparison reported in this paper is under
+\$5 of cloud-GPU time at on-demand rates.

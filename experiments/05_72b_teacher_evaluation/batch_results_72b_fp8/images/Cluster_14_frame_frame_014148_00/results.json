@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_14_frame_frame_014148_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "chocolate cake",
+      "description": "dark brown cake with a rough, crumbly texture and yellow specks",
+      "bbox": [
+        278,
+        112,
+        649,
+        718
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9887
+    },
+    {
+      "index": 1,
+      "name": "chocolate sphere",
+      "description": "smooth, glossy brown sphere",
+      "bbox": [
+        402,
+        311,
+        540,
+        447
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9813
+    },
+    {
+      "index": 2,
+      "name": "raspberry",
+      "description": "bright red, bumpy surface of a whole raspberry",
+      "bbox": [
+        404,
+        453,
+        527,
+        569
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9803
+    }
+  ],
+  "stage1_time": 1.67,
+  "stage2_time": 0.47,
+  "match_results": null
+}

@@ -1,0 +1,237 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pifont}
+
+% Tighter spacing
+\setlength{\columnsep}{0.25in}
+\setlength{\parskip}{2pt}
+
+% ── Placeholder macros for headline result numbers ─────────────────────────
+% These are overwritten by figs/inject_results.py once predictions are scored.
+\newcommand{\PLBASEDISH}{39.4\%}
+\newcommand{\PLDISTDISH}{86.4\%}
+\newcommand{\PLBASECEX}{46.3\%}
+\newcommand{\PLDISTCEX}{90.3\%}
+\newcommand{\PLBASEMM}{39.4\%}
+\newcommand{\PLDISTMM}{86.4\%}
+\newcommand{\PLBASESETIOU}{47.0\%}
+\newcommand{\PLDISTSETIOU}{92.1\%}
+\newcommand{\PLBASEDELTAN}{$-0.54$}
+\newcommand{\PLDISTDELTAN}{$-0.04$}
+\newcommand{\PLBASEABSDELTAN}{0.57}
+\newcommand{\PLDISTABSDELTAN}{0.10}
+\newcommand{\PLBASEZERODET}{37.8\%}
+\newcommand{\PLDISTZERODET}{0.0\%}
+\newcommand{\PLDISHDELTA}{+47.0~pp}
+\newcommand{\PLNEVAL}{596}
+
+\title{\vspace{-2em}\textbf{TahamajaNet:\ A 72B$\rightarrow$7B Distillation Pipeline\\with Cardinality-Aware Fine-Tuning and an End-to-End Semantic Metric for Cafeteria Tray Analysis}}
+
+\author{Anonymous Authors\\KFUPM Restaurant Project}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+We present \textbf{TahamajaNet}, a three-stage detection pipeline that turns
+a single cafeteria-tray image into the multiset of food items needed to
+generate a bill, and we identify the central failure mode of generative-VLM
+detection on this task: \emph{for VLM-as-detector, syntax and localization
+are not the bottleneck; cardinality is}. We make four contributions.
+\textbf{(i)~A 72B$\rightarrow$7B distillation pipeline}: a 72B teacher
+labels $4{,}999$ trays once offline (Qwen2.5-VL-72B-AWQ\,$\rightarrow$\,SAM3\,$\rightarrow$\,DINOv2/SigLIP cluster
+review) and a 7B student runs the same three stages online. \textbf{(ii)~A
+cardinality-aware structural loss} that addresses an asymmetric overcount
+regression we measure quantitatively: matched bbox IoU climbs from $0.32$ to
+$0.90$ across training while exact-count accuracy drops from $86.8\%$ to
+$53.5\%$. \textbf{(iii)~Dish-Correct}, an end-to-end semantic metric
+(count-exact $\wedge$ class-multiset-match) that aligns with bill correctness
+and forgives bbox geometry. \textbf{(iv)~The v3.2 dataset}, a $4{,}629$-item,
+$32$-class, hand-curated Saudi cafeteria-tray dataset, released with splits.
+On $596$ held-out images, the distilled 7B reaches
+\textbf{\PLDISTDISH{}} dish-correct, a \textbf{\PLDISHDELTA{}} absolute lift
+over the off-the-shelf $7$B baseline (zero-detection rate
+$\PLBASEZERODET\!\rightarrow\!\PLDISTZERODET$, per-item recall
+$45.4\%\rightarrow90.6\%$).
+\end{abstract}
+
+%-----------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Generating an itemized bill from a single photo of a cafeteria tray is a
+deceptively hard vision problem. The output is not a set of pixel-accurate
+masks, nor a ranked list of detection scores: it is a \emph{multiset of
+food classes} priced by a downstream lookup. A single missed item or a single
+duplicated detection is a wrong bill. A bbox that overlaps the ground truth
+at IoU 0.5 versus 0.9 is, at the level of revenue, indistinguishable.
+
+This semantic objective interacts poorly with two off-the-shelf options.
+Large vision-language models (VLMs) at the 70B parameter scale will reliably
+\emph{describe} a tray image but are too slow and too expensive for inference
+on every dish (target latency: $<2{\,}000$ ms per image). Small open-set
+detectors are fast but lack the dish-level concept ontology required to merge
+toppings with their base dish, separate co-located items, and ignore plates
+and utensils.
+
+We bridge these regimes with four contributions.
+
+\textbf{(1)~A 72B$\rightarrow$7B distillation pipeline (\S\ref{sec:dataengine},
+\S\ref{sec:student}).} A Qwen2.5-VL-72B-AWQ teacher labels 4{,}999 cafeteria
+images via a structured-JSON prompt, followed by SAM3 segmentation, DINOv2 +
+SigLIP clustering, and human cluster curation. The resulting 4{,}629-item
+dataset (32 classes) trains a Qwen2.5-VL-7B student via LoRA on the language
+model and an unfrozen vision encoder. The teacher pipeline runs once,
+offline; the student runs at every inference.
+
+\textbf{(2)~Cardinality-aware fine-tuning (\S\ref{sec:cardinality}).} We
+observe a clear \emph{cardinality-localization tradeoff}: standard supervised
+fine-tuning improves bbox geometry while degrading exact instance count, with
+overcount the dominant error mode. We introduce a structural count loss
+that penalises $|\hat{n} - n|$ during training and arrests the regression.
+Our central claim: \emph{for generative VLM-based detection, syntax and
+localization are not the bottleneck; cardinality is}.
+
+\textbf{(3)~Dish-Correct (\S\ref{sec:metric}).} We define an end-to-end
+semantic evaluation metric whose hierarchy --- count-exact, class set-IoU,
+class multiset match, dish-correct --- aligns with the bill-generation
+objective and forgives bbox geometry. We argue per-stage IoU is a misleading
+proxy in this regime, and we report all results on Dish-Correct.
+
+\textbf{(4)~The v3.2 dataset, public release.} A 4{,}629-item, 32-class
+hand-curated Saudi cafeteria-tray dataset --- the first of its scale and
+domain that we are aware of. The release reflects significant compute
+(96-minute Qwen-VL-72B vLLM run on 80\,GB GPUs, plus DINOv2-large +
+SigLIP embedding for $\sim$5{,}000 crops, plus HDBSCAN over the joint
+embedding) and significant human time: a curator inspected and labeled
+\emph{every cluster centroid}, collapsing 467 raw HDBSCAN clusters into
+the 32 production classes, and recovered 1{,}344 noise-bin items via
+visual review. Train / dev / test splits and the canonical 80/10/10 seed
+are part of the release.
+
+%-----------------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{VLM-based detection.} Recent instruction-tuned vision-language
+models (Qwen-VL, Qwen2.5-VL, LLaVA, InternVL, Florence-2, PaLI-X) cast
+bounding-box generation as a JSON-output token-prediction task: the model
+emits a structured response listing detected regions with coordinates and
+optional descriptors. This paradigm is attractive because the same prompt
+template generalises across object categories without needing a fixed-class
+detection head, and because the resulting boxes can be coupled with
+language-grounded captions in a single forward pass. The trade-off is
+twofold: (i)~there is no explicit objectness prior over the predicted
+\emph{number} of items, and (ii)~bbox coordinates are emitted as text
+tokens that compete for attention with the region-naming tokens. We
+inherit both of these trade-offs and address (i) directly with a structural
+count loss (\S\ref{sec:cardinality}); (ii) we sidestep by training under a
+\emph{bbox-only} schema that strips region names from the supervision
+target, leaving fine-grained classification to a downstream embedding head.
+
+\paragraph{Knowledge distillation.} The bulk of distillation literature ---
+Hinton's response-matching, FitNets feature-matching, attention transfer,
+self-distillation --- assumes a single \emph{model} teacher whose internal
+states or output distributions are aligned with those of a student. Our
+setup is structurally different: the 72B teacher is a \emph{labeling
+pipeline}, and the supervision target is the teacher's deterministic
+post-processed output (class-collapsed bboxes after SAM3 mask refinement
+and human cluster review) rather than soft logits. There is no
+hidden-state match, no temperature-softmax KL term, no auxiliary loss
+on intermediate features. This makes the teacher swap-replaceable: any
+labeling pipeline that produces structured-JSON detections at acceptable
+quality could substitute for Qwen-VL-72B-AWQ. The price we pay is that we
+cannot exploit the teacher's uncertainty signal --- a soft logit might
+have told us \emph{this is 60\% rice, 40\% biryani}, and our cluster-collapsed
+hard label cannot. We treat the resulting label noise as in-distribution.
+
+\paragraph{Multi-stage detection pipelines.} Two-stage R-CNN-family
+detectors (Faster R-CNN, Mask R-CNN) decouple region proposal from
+classification. End-to-end DETR and its descendants (Deformable DETR,
+DINO) use a single transformer over learned object queries. SAM and
+SAM2/SAM3 separated mask refinement from prompt generation, enabling
+compositional pipelines like Grounded-SAM (open-vocabulary box-from-text
+$\rightarrow$ SAM mask). Our pipeline is closest in spirit to
+Grounded-SAM but inverts the roles: the box generator is fine-tuned for a
+closed taxonomy, the segmenter is frozen, and the classification step is
+explicitly retrieval (cosine over a fixed reference bank) rather than a
+learned head. The key novelty is the \emph{symmetric} reuse of the same
+three-stage decomposition at both train-time labeling (72B) and inference
+(7B), at $\sim$10$\times$ different scales --- which makes the train/test
+distribution mismatch easier to reason about and lets us re-use
+infrastructure (the SAM3 segmenter, the DINOv2 vector DB) between the two
+phases verbatim.
+
+\paragraph{Open-vocabulary and food-specific detection.} Food recognition
+benchmarks (Food-101, Food-2K, ETHZ Food-101) are predominantly
+classification, not detection. The few detection-grade food datasets
+(UEC-Food100, UNIMIB, ETH Mensa) are small (under $5{,}000$ images each)
+and skewed toward European/Asian cuisines. None of them, to our knowledge,
+contain the class taxonomy or cuisine specificity required for Saudi
+cafeteria-tray analysis: kabsa rice, masakaah, asidah/Saudi porridge,
+chicken/meat koftas, hummus (cling-wrapped), and the wrapped/sealed
+dairy sub-categories absent from international datasets. Our v3.2 release
+fills this gap.
+
+\paragraph{Cardinality-aware evaluation.} Standard detection metrics ---
+COCO mAP, mean IoU, F1@0.5 --- reward bbox geometry and ranking quality
+but are blind to absolute item count. Recent work in dense crowd counting
+(MCNN, CSRNet) and instance-level industrial inspection has argued for
+cardinality-explicit objectives. Dish-Correct generalises this argument
+to the multi-class, multi-instance, item-level-billing regime: at the
+output of the pipeline, the only thing that matters is whether the
+predicted multiset of class labels matches the ground-truth multiset. Bbox
+geometry is just an internal coordinate, not a deliverable.
+
+%-----------------------------------------------------------------------------
+\section{Data Engine: The Teacher Pipeline}
+\label{sec:dataengine}
+
+\input{sections/03_data_engine.tex}
+
+%-----------------------------------------------------------------------------
+\section{Student Pipeline: TahamajaNet Inference}
+\label{sec:student}
+
+\input{sections/04_student.tex}
+
+%-----------------------------------------------------------------------------
+\section{Cardinality-Aware Fine-Tuning}
+\label{sec:cardinality}
+
+\input{sections/05_cardinality.tex}
+
+%-----------------------------------------------------------------------------
+\section{Dish-Correct: An End-to-End Semantic Metric}
+\label{sec:metric}
+
+\input{sections/06_metric.tex}
+
+%-----------------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+
+\input{sections/07_experiments.tex}
+
+%-----------------------------------------------------------------------------
+\section{Discussion and Future Work}
+\label{sec:discussion}
+
+\input{sections/08_discussion.tex}
+
+%-----------------------------------------------------------------------------
+\section*{Acknowledgments}
+KFUPM Restaurant Project. Compute via vast.ai (H100 SXM 80GB).
+
+\end{document}

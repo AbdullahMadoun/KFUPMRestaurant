@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_143_frame_frame_078823_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        205,
+        30,
+        1303,
+        1189
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9861
+    },
+    {
+      "index": 1,
+      "name": "mixed vegetable stew",
+      "description": "chunky green and yellow vegetables with red tomato pieces in a thick sauce",
+      "bbox": [
+        278,
+        220,
+        1293,
+        789
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9844
+    },
+    {
+      "index": 2,
+      "name": "fried meat",
+      "description": "brown, crispy pieces with a rough texture",
+      "bbox": [
+        405,
+        607,
+        916,
+        1263
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9726
+    }
+  ],
+  "stage1_time": 1.98,
+  "stage2_time": 0.63,
+  "match_results": null
+}

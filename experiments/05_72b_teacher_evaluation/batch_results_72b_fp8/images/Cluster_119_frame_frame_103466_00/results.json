@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_119_frame_frame_103466_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "fish stew",
+      "description": "golden-brown fish pieces with flaky texture in a rich, dark brown sauce with visible green olive slices",
+      "bbox": [
+        39,
+        115,
+        992,
+        969
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9839
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.17,
+  "match_results": null
+}

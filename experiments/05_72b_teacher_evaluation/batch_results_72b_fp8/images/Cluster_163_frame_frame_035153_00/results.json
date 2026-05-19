@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_163_frame_frame_035153_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "cream soup",
+      "description": "smooth, pale yellow liquid with small bubbles",
+      "bbox": [
+        51,
+        47,
+        570,
+        548
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9877
+    }
+  ],
+  "stage1_time": 2.9,
+  "stage2_time": 0.14,
+  "match_results": null
+}

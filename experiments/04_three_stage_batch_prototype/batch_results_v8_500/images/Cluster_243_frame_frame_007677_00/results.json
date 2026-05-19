@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_243_frame_frame_007677_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark gray plate with speckled texture, circular shape",
+      "bbox": [
+        5,
+        5,
+        1399,
+        1398
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9938
+    },
+    {
+      "index": 1,
+      "description": "golden-brown roasted chicken drumsticks with charred skin, right side of plate",
+      "bbox": [
+        417,
+        316,
+        1077,
+        1126
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9844
+    }
+  ],
+  "stage1_time": 0.65,
+  "stage2_time": 0.61,
+  "match_results": null
+}

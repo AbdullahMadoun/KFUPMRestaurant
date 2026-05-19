@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_168_frame_frame_090431_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "steamed broccoli",
+      "description": "bright green florets with a slightly glossy surface",
+      "bbox": [
+        189,
+        99,
+        1336,
+        876
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9896
+    },
+    {
+      "index": 1,
+      "name": "roasted chicken",
+      "description": "golden-brown, crispy skin with visible seasoning",
+      "bbox": [
+        288,
+        726,
+        1034,
+        1352
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9868
+    }
+  ],
+  "stage1_time": 1.62,
+  "stage2_time": 0.44,
+  "match_results": null
+}

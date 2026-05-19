@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_142_frame_frame_122427_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish, textured food with visible red and white flecks, irregular shape, occupying center-left of plate",
+      "bbox": [
+        35,
+        64,
+        679,
+        719
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9585
+    },
+    {
+      "index": 1,
+      "description": "bright orange, uniformly cut carrot pieces, triangular or wedge-shaped, piled on right side of plate",
+      "bbox": [
+        665,
+        560,
+        873,
+        707
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.7183
+    }
+  ],
+  "stage1_time": 2.77,
+  "stage2_time": 0.93,
+  "match_results": null
+}

@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_16_frame_frame_040866_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "white cauliflower florets with light yellowish hue, irregular shape, covering top and middle of plate",
+      "bbox": [
+        193,
+        49,
+        771,
+        482
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9797
+    },
+    {
+      "index": 1,
+      "description": "orange carrot pieces with smooth surface, rectangular shape, scattered around plate",
+      "bbox": [
+        485,
+        92,
+        794,
+        639
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9755
+    },
+    {
+      "index": 2,
+      "description": "yellow lemon slices with bright yellow color, curved shape, placed at bottom of plate",
+      "bbox": [
+        59,
+        454,
+        799,
+        745
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9708
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.91,
+  "match_results": null
+}

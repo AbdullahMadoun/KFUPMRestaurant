@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_8_frame_frame_106935_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "chicken curry",
+      "description": "shredded chicken in a reddish-brown sauce with visible chunks of vegetables",
+      "bbox": [
+        502,
+        214,
+        1484,
+        1273
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9899
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        5,
+        46,
+        845,
+        1133
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9795
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.42,
+  "match_results": null
+}

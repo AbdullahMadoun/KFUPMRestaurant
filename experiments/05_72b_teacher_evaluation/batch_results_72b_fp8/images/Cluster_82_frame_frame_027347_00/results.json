@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_82_frame_frame_027347_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "baked fish",
+      "description": "golden-brown fish with a crispy crust and visible herbs",
+      "bbox": [
+        456,
+        492,
+        1001,
+        1137
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9882
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow lemon slice with a textured rind and juicy interior",
+      "bbox": [
+        1030,
+        621,
+        1302,
+        779
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9821
+    },
+    {
+      "index": 2,
+      "name": "white rice",
+      "description": "fluffy white grains with a light sheen",
+      "bbox": [
+        173,
+        10,
+        1085,
+        1064
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9784
+    }
+  ],
+  "stage1_time": 2.36,
+  "stage2_time": 0.65,
+  "match_results": null
+}

@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_226_frame_frame_034876_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        170,
+        196,
+        1260,
+        897
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9786
+    },
+    {
+      "index": 1,
+      "name": "vegetables",
+      "description": "colorful vegetables including yellow and orange bell peppers, and carrots",
+      "bbox": [
+        246,
+        517,
+        924,
+        1222
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9722
+    },
+    {
+      "index": 2,
+      "name": "grilled meatballs",
+      "description": "brown, textured meatballs with a slightly charred surface",
+      "bbox": [
+        289,
+        664,
+        1188,
+        1249
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.967
+    },
+    {
+      "index": 3,
+      "name": "yellow sauce",
+      "description": "smooth, creamy yellow sauce",
+      "bbox": [
+        4,
+        765,
+        143,
+        1132
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9414
+    }
+  ],
+  "stage1_time": 1.89,
+  "stage2_time": 0.89,
+  "match_results": null
+}

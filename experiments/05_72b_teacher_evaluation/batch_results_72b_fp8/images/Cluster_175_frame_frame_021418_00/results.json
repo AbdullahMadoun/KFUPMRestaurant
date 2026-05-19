@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_175_frame_frame_021418_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "roasted chicken",
+      "description": "golden-brown skin with crispy texture and visible juices",
+      "bbox": [
+        96,
+        155,
+        760,
+        640
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9861
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.16,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_152_frame_frame_043487_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "basmati rice",
+      "description": "fluffy white rice grains with specks of yellow and orange",
+      "bbox": [
+        166,
+        40,
+        1137,
+        952
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9844
+    },
+    {
+      "index": 1,
+      "name": "vegetable curry",
+      "description": "chunky green and yellow vegetables in a reddish-brown sauce",
+      "bbox": [
+        111,
+        421,
+        702,
+        1027
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9839
+    },
+    {
+      "index": 2,
+      "name": "lemon slices",
+      "description": "yellow slices with visible white pith and juice vesicles",
+      "bbox": [
+        811,
+        116,
+        1073,
+        394
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9824
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.5,
+  "match_results": null
+}

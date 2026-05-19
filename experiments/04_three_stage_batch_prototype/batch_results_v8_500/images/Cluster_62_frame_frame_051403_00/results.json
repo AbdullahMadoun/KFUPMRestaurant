@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_62_frame_frame_051403_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy substance with green leaf-shaped garnish, covering most of the plate",
+      "bbox": [
+        119,
+        115,
+        803,
+        801
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9924
+    },
+    {
+      "index": 1,
+      "description": "green leaf-shaped garnish with red specks, placed on top of the creamy substance",
+      "bbox": [
+        264,
+        209,
+        679,
+        689
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9752
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.55,
+  "match_results": null
+}

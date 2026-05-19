@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_142_frame_frame_122427_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish, textured food with visible red and white pieces, occupying the left and center of the plate",
+      "bbox": [
+        9,
+        2,
+        886,
+        881
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9776
+    },
+    {
+      "index": 1,
+      "description": "bright orange, cubed vegetable pieces, clustered on the right side of the plate",
+      "bbox": [
+        317,
+        7,
+        885,
+        880
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9415
+    }
+  ],
+  "stage1_time": 2.61,
+  "stage2_time": 0.79,
+  "match_results": null
+}

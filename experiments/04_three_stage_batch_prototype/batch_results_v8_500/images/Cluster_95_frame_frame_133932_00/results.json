@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_95_frame_frame_133932_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "pasta with creamy white sauce and green herbs, occupying the right half of the plate",
+      "bbox": [
+        319,
+        45,
+        1048,
+        798
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9914
+    },
+    {
+      "index": 1,
+      "description": "golden-brown roasted chicken pieces with crispy skin, occupying the left half of the plate",
+      "bbox": [
+        267,
+        561,
+        664,
+        1049
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9905
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.61,
+  "match_results": null
+}

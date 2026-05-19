@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_79_frame_frame_047776_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white rice grains with a slight sheen",
+      "bbox": [
+        300,
+        17,
+        1144,
+        928
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9864
+    },
+    {
+      "index": 1,
+      "name": "vegetable curry",
+      "description": "chunks of green vegetables in a brownish sauce with visible spices",
+      "bbox": [
+        95,
+        184,
+        919,
+        950
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9756
+    }
+  ],
+  "stage1_time": 1.63,
+  "stage2_time": 0.36,
+  "match_results": null
+}

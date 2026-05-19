@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_176_frame_frame_097182_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown stew with green pickles and small white specks, covering most of the plate",
+      "bbox": [
+        50,
+        87,
+        811,
+        812
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9804
+    },
+    {
+      "index": 1,
+      "description": "slice of lemon, partially visible in the top left corner",
+      "bbox": [
+        32,
+        68,
+        191,
+        259
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9712
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.6,
+  "match_results": null
+}

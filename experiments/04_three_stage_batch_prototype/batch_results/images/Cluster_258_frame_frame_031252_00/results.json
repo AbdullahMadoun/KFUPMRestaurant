@@ -1,0 +1,89 @@
+{
+  "image_id": "Cluster_258_frame_frame_031252_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 6,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        41,
+        294,
+        1007,
+        1271
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9825
+    },
+    {
+      "index": 1,
+      "description": "red tomato pieces, scattered around the rice",
+      "bbox": [
+        545,
+        425,
+        743,
+        645
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.979
+    },
+    {
+      "index": 2,
+      "description": "yellow bell pepper pieces, scattered around the rice",
+      "bbox": [
+        614,
+        1,
+        800,
+        162
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9761
+    },
+    {
+      "index": 3,
+      "description": "green bell pepper pieces, scattered around the rice",
+      "bbox": [
+        390,
+        398,
+        552,
+        559
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9733
+    },
+    {
+      "index": 4,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        538,
+        117,
+        1129,
+        703
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9646
+    },
+    {
+      "index": 5,
+      "description": "red onion pieces, scattered around the rice",
+      "bbox": [
+        828,
+        100,
+        1056,
+        299
+      ],
+      "crop": "crops/item_005.jpg",
+      "mask": "masks/item_005_mask.png",
+      "sam_score": 0.9604
+    }
+  ],
+  "stage1_time": 2.97,
+  "stage2_time": 1.37,
+  "match_results": null
+}

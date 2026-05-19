@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_259_frame_frame_088139_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "scrambled eggs",
+      "description": "yellow, fluffy, and slightly browned with visible specks of seasoning",
+      "bbox": [
+        79,
+        226,
+        784,
+        885
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9759
+    },
+    {
+      "index": 1,
+      "name": "pilaf rice",
+      "description": "light brown, elongated grains with a slightly glossy surface",
+      "bbox": [
+        245,
+        546,
+        994,
+        1054
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9661
+    },
+    {
+      "index": 2,
+      "name": "green beans",
+      "description": "green, long, and stringy with some pieces cut into smaller segments",
+      "bbox": [
+        331,
+        256,
+        996,
+        764
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9577
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.48,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_28_frame_frame_037184_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white and golden rice grains with specks of seasoning",
+      "bbox": [
+        197,
+        111,
+        1147,
+        934
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9737
+    },
+    {
+      "index": 1,
+      "name": "meatballs",
+      "description": "brown, textured, round pieces with visible spices",
+      "bbox": [
+        413,
+        486,
+        969,
+        1127
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9543
+    },
+    {
+      "index": 2,
+      "name": "vegetables",
+      "description": "sliced red and green bell peppers with a glossy surface",
+      "bbox": [
+        475,
+        559,
+        1238,
+        988
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.936
+    }
+  ],
+  "stage1_time": 1.91,
+  "stage2_time": 0.57,
+  "match_results": null
+}

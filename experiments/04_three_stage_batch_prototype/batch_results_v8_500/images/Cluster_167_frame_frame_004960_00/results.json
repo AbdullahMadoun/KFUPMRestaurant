@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_167_frame_frame_004960_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        95,
+        92,
+        824,
+        630
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9849
+    },
+    {
+      "index": 1,
+      "description": "thin lemon wedge with bright yellow rind, placed on top of rice",
+      "bbox": [
+        665,
+        569,
+        867,
+        863
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9832
+    },
+    {
+      "index": 2,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        5,
+        473,
+        699,
+        1154
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9818
+    },
+    {
+      "index": 3,
+      "description": "red bell pepper slice with glossy surface, placed on top of rice",
+      "bbox": [
+        192,
+        448,
+        447,
+        615
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9541
+    }
+  ],
+  "stage1_time": 0.61,
+  "stage2_time": 1.28,
+  "match_results": null
+}

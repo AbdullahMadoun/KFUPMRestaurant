@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_240_frame_frame_022559_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta with sauce",
+      "description": "yellow penne pasta coated in a reddish-brown sauce with visible bits of meat",
+      "bbox": [
+        39,
+        242,
+        893,
+        1180
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9932
+    }
+  ],
+  "stage1_time": 1.35,
+  "stage2_time": 0.21,
+  "match_results": null
+}

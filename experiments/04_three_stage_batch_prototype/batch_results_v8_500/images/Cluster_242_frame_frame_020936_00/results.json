@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_242_frame_frame_020936_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "red and white layered dessert with blueberry on top, rectangular shape, occupying center of plate",
+      "bbox": [
+        183,
+        225,
+        769,
+        522
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9846
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.28,
+  "match_results": null
+}

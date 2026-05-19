@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_4_frame_frame_104754_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "okra stew",
+      "description": "green okra pieces in a reddish-brown sauce with a glossy surface",
+      "bbox": [
+        77,
+        62,
+        718,
+        663
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9882
+    }
+  ],
+  "stage1_time": 1.41,
+  "stage2_time": 0.14,
+  "match_results": null
+}

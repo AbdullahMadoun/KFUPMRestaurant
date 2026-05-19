@@ -1,0 +1,103 @@
+{
+  "total_images": 10,
+  "success": 10,
+  "failed": 0,
+  "skipped": 0,
+  "total_time_seconds": 115.6,
+  "avg_time_per_image": 11.6,
+  "timing": {
+    "stage1_vlm": {
+      "mean": 2.3,
+      "min": 2.3,
+      "max": 2.3,
+      "total": 23.0
+    },
+    "stage2_sam": {
+      "mean": 1.14,
+      "min": 0.55,
+      "max": 2.11,
+      "total": 11.4
+    },
+    "per_image": {
+      "mean": 3.44,
+      "min": 2.84,
+      "max": 4.41
+    }
+  },
+  "per_image_log": [
+    {
+      "id": "Cluster_107_frame_frame_099108_00",
+      "s1": 2.3,
+      "s2": 2.11,
+      "total": 4.41,
+      "items": 2
+    },
+    {
+      "id": "Cluster_130_frame_frame_103663_00",
+      "s1": 2.3,
+      "s2": 1.15,
+      "total": 3.45,
+      "items": 2
+    },
+    {
+      "id": "Cluster_134_frame_frame_034248_00",
+      "s1": 2.3,
+      "s2": 1.09,
+      "total": 3.39,
+      "items": 2
+    },
+    {
+      "id": "Cluster_142_frame_frame_122427_00",
+      "s1": 2.3,
+      "s2": 0.94,
+      "total": 3.24,
+      "items": 2
+    },
+    {
+      "id": "Cluster_169_frame_frame_042617_00",
+      "s1": 2.3,
+      "s2": 1.03,
+      "total": 3.33,
+      "items": 2
+    },
+    {
+      "id": "Cluster_175_frame_frame_135677_00",
+      "s1": 2.3,
+      "s2": 0.55,
+      "total": 2.84,
+      "items": 1
+    },
+    {
+      "id": "Cluster_184_frame_frame_059890_00",
+      "s1": 2.3,
+      "s2": 1.05,
+      "total": 3.35,
+      "items": 2
+    },
+    {
+      "id": "Cluster_53_frame_frame_059972_00",
+      "s1": 2.3,
+      "s2": 1.49,
+      "total": 3.79,
+      "items": 3
+    },
+    {
+      "id": "Cluster_83_frame_frame_074170_00",
+      "s1": 2.3,
+      "s2": 1.38,
+      "total": 3.68,
+      "items": 3
+    },
+    {
+      "id": "Cluster_85_frame_frame_104404_00",
+      "s1": 2.3,
+      "s2": 0.59,
+      "total": 2.89,
+      "items": 1
+    }
+  ],
+  "seed": 42,
+  "stage3_enabled": false,
+  "source_dir": "/workspace/KFUPMRestaurant/Sampled_Images_All",
+  "device": "cuda"
+}

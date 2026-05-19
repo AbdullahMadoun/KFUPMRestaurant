@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_192_frame_frame_080403_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "lasagna",
+      "description": "golden-brown melted cheese with slightly browned spots, layered with pasta sheets and a visible meaty filling underneath",
+      "bbox": [
+        110,
+        28,
+        905,
+        724
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9913
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.16,
+  "match_results": null
+}

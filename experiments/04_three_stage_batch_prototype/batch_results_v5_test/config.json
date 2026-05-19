@@ -1,0 +1,75 @@
+{
+  "device": "cuda",
+  "output_dir": "batch_results_v5_test",
+  "sam3_repo_path": "sam3",
+  "image_extensions": [
+    "*.jpg",
+    "*.jpeg",
+    "*.png",
+    "*.bmp",
+    "*.webp"
+  ],
+  "vlm": {
+    "model_name": "Qwen/Qwen3-VL-8B-Instruct",
+    "gpu_memory_utilization": 0.85,
+    "max_model_len": 4096,
+    "enforce_eager": false,
+    "enable_prefix_caching": true,
+    "allowed_local_media_path": "/workspace/KFUPMRestaurant",
+    "temperature": 0.3,
+    "max_tokens": 768,
+    "top_p": 0.8,
+    "top_k": 20,
+    "system_prompt": "You are a food visual analyzer. You describe exactly what you see in images \u2014 colors, textures, shapes, positions. You never guess food names. You output only valid JSON.",
+    "describe_template": "Examine this cafeteria plate carefully. There are usually 2-4 separate food portions served together (e.g. a protein, a carb like rice, and a side).\n\nFor EACH distinct food portion you can see:\n1. Describe its VISUAL APPEARANCE: color, texture, shape, surface pattern, approximate size relative to the plate\n2. Provide its bounding box as [x1, y1, x2, y2] in pixel coordinates\n3. Place 2-3 points [x, y] directly ON the food surface, spread across the portion\n\nRULES:\n- Describe what you SEE, not what you think it is called\n- Look carefully for items partially hidden under or next to other items\n- A portion of rice next to a portion of meat = TWO separate items, even if touching\n- If the same type of item appears in two different places, treat them as TWO separate items with TWO separate bounding boxes\n- A mixed dish (stew, salad with mixed ingredients) = ONE item\n- Ignore plates, bowls, cutlery, wrapping, plastic wrap, background\n- Each description must be UNIQUE \u2014 differentiate items by their specific visual traits\n- Bounding boxes should be GENEROUS \u2014 cover the entire food portion with extra margin. It is much better to have a box that is too big than too small. Include a ~20% margin around the food on all sides.\n\nReturn strictly as JSON:\n{\"items\": [\n  {\"description\": \"yellowish rice grains with small orange carrot pieces, mound covering left half of plate\", \"bbox\": [x1, y1, x2, y2], \"points\": [[px1, py1], [px2, py2]]},\n  {\"description\": \"dark brown glazed meat pieces with irregular chunky shape, right side of plate\", \"bbox\": [x1, y1, x2, y2], \"points\": [[px1, py1], [px2, py2]]},\n  ...\n]}\nReturn ONLY the JSON."
+  },
+  "sam": {
+    "model_path": "facebook/sam3",
+    "confidence_threshold": 0.1,
+    "fallback_thresholds": [
+      0.05,
+      0.02,
+      0.01
+    ],
+    "crop_padding": 10,
+    "bpe_search_paths": [
+      "/root/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz"
+    ],
+    "bbox_expand": 0.25,
+    "multi_box_prompt": false,
+    "multi_box_grid": 2,
+    "use_vlm_points": true
+  },
+  "match": {
+    "embedding_model": "google/siglip2-base-patch16-224",
+    "embedding_dim": 768,
+    "index_path": "menu.index",
+    "metadata_path": "menu_meta.json",
+    "top_k": 3,
+    "similarity_threshold": 0.5,
+    "text_weight": 0.3,
+    "use_text_matching": true
+  },
+  "nms": {
+    "max_objects": 8,
+    "iou_threshold": 0.7
+  },
+  "viz": {
+    "draw_boxes": true,
+    "alpha": 0.7,
+    "thickness": 3,
+    "font_scale": 0.9,
+    "font_thickness": 2,
+    "show_match_label": true,
+    "show_price": true,
+    "show_confidence": true,
+    "color_low": [
+      0,
+      50
+    ],
+    "color_high": [
+      180,
+      255
+    ]
+  }
+}

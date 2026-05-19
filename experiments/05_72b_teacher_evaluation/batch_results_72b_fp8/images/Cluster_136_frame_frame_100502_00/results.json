@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_136_frame_frame_100502_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "stewed meat",
+      "description": "brown, shredded meat with visible bone marrow, mixed with orange carrot cubes and green beans",
+      "bbox": [
+        124,
+        160,
+        926,
+        1255
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9922
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains, long and slender, loosely piled",
+      "bbox": [
+        718,
+        141,
+        1478,
+        1198
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9879
+    }
+  ],
+  "stage1_time": 1.87,
+  "stage2_time": 0.41,
+  "match_results": null
+}

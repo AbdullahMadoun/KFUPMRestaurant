@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_222_frame_frame_099477_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fish curry",
+      "description": "golden-yellow sauce with shredded vegetables and a slice of lemon on top",
+      "bbox": [
+        190,
+        134,
+        1229,
+        894
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9889
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        98,
+        688,
+        1289,
+        1475
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9812
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.36,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_132_frame_frame_078868_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "meatballs",
+      "description": "brownish meatballs with a slightly crispy texture, topped with saut\u00e9ed onions and peppers",
+      "bbox": [
+        193,
+        430,
+        836,
+        1148
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "name": "salad",
+      "description": "green leafy salad with a mix of herbs and possibly some small vegetables",
+      "bbox": [
+        435,
+        4,
+        1219,
+        377
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9704
+    }
+  ],
+  "stage1_time": 1.98,
+  "stage2_time": 0.4,
+  "match_results": null
+}

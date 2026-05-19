@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_178_frame_frame_048828_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white grains with a light texture",
+      "bbox": [
+        5,
+        179,
+        796,
+        1039
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9855
+    },
+    {
+      "index": 1,
+      "name": "chicken curry",
+      "description": "chunks of golden-brown chicken in a rich, glossy sauce with visible tomato pieces",
+      "bbox": [
+        377,
+        46,
+        922,
+        623
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9833
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.35,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_233_frame_frame_061620_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish paste with small orange pieces, covering left half of plate",
+      "bbox": [
+        75,
+        133,
+        908,
+        901
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9952
+    },
+    {
+      "index": 1,
+      "description": "slice of lemon with yellow rind and white pith, right side of plate",
+      "bbox": [
+        692,
+        196,
+        898,
+        500
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9835
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.57,
+  "match_results": null
+}

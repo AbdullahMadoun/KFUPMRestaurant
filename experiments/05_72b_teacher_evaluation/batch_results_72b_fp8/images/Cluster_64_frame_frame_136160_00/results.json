@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_64_frame_frame_136160_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        80,
+        82,
+        902,
+        981
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9888
+    },
+    {
+      "index": 1,
+      "name": "fried shrimp",
+      "description": "golden-brown shrimp with crispy texture and visible legs",
+      "bbox": [
+        530,
+        266,
+        949,
+        952
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9871
+    }
+  ],
+  "stage1_time": 1.76,
+  "stage2_time": 0.34,
+  "match_results": null
+}

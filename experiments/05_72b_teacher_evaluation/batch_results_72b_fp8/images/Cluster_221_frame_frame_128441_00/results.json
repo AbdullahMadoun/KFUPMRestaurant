@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_221_frame_frame_128441_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "macaroni and cheese",
+      "description": "creamy yellow pasta with a smooth, glossy texture",
+      "bbox": [
+        53,
+        89,
+        696,
+        655
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9831
+    }
+  ],
+  "stage1_time": 1.48,
+  "stage2_time": 0.15,
+  "match_results": null
+}

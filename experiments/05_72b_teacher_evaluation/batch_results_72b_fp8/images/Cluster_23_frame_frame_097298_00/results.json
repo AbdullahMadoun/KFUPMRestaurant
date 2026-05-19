@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_23_frame_frame_097298_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish with a crispy, slightly charred surface and visible scales",
+      "bbox": [
+        226,
+        299,
+        772,
+        1180
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9899
+    },
+    {
+      "index": 1,
+      "name": "vegetable curry",
+      "description": "chunky green and yellow vegetables in a thick, glossy sauce with visible spices",
+      "bbox": [
+        660,
+        411,
+        1416,
+        1088
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 2,
+      "name": "yellow rice",
+      "description": "fluffy yellow rice grains with a light, airy texture",
+      "bbox": [
+        625,
+        203,
+        1363,
+        1202
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9731
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.56,
+  "match_results": null
+}

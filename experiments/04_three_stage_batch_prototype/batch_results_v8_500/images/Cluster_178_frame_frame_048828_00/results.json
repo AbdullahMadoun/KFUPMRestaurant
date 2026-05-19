@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_178_frame_frame_048828_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white rice grains with a fluffy texture, covering the left half of the plate",
+      "bbox": [
+        5,
+        180,
+        790,
+        1040
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.991
+    },
+    {
+      "index": 1,
+      "description": "chunks of meat with a glossy, dark brown glaze, irregularly shaped, occupying the right side of the plate",
+      "bbox": [
+        302,
+        45,
+        921,
+        624
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9711
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.64,
+  "match_results": null
+}

@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_222_frame_frame_110388_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "mixed vegetables with visible red and green pieces, placed on the right side of the plate",
+      "bbox": [
+        137,
+        571,
+        1030,
+        1164
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9789
+    },
+    {
+      "index": 1,
+      "description": "white, fluffy rice grains, covering the left half of the plate",
+      "bbox": [
+        102,
+        109,
+        1090,
+        758
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9738
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.66,
+  "match_results": null
+}

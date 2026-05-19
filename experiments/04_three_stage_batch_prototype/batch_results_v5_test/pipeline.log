@@ -1,0 +1,126 @@
+[23:25:02] INFO Batch run starting — n=10, seed=42, output=batch_results_v5_test
+[23:25:02] INFO Found 809 total images in /workspace/KFUPMRestaurant/Sampled_Images_All
+[23:25:02] INFO Sampled 10 images (seed=42)
+[23:25:10] INFO Loading Stage 1: VLM...
+[23:26:01] INFO 
+Stage 1: Batch VLM inference — 10 images in 1 batch(es) of 32
+[23:26:01] INFO   VLM batch 1/1 (10 images)...
+[23:26:27] INFO Parsed 1 visual items from VLM response
+[23:26:27] WARNING Failed to parse VLM JSON response: {
+  "items": [
+    {
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [89, 259, 583, 856],
+      "points": [[228, 450], [3
+[23:26:27] WARNING Failed to parse VLM JSON response: {
+  "items": [
+    {
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [118, 166, 596, 776],
+      "points": [[250, 450], [
+[23:26:27] INFO Parsed 2 visual items from VLM response
+[23:26:27] INFO Parsed 2 visual items from VLM response
+[23:26:27] INFO Parsed 1 visual items from VLM response
+[23:26:27] INFO Parsed 2 visual items from VLM response
+[23:26:27] INFO Parsed 3 visual items from VLM response
+[23:26:27] INFO Parsed 2 visual items from VLM response
+[23:26:27] INFO Parsed 1 visual items from VLM response
+[23:26:27] INFO   VLM batch 1 done in 26.1s (2.61s/image)
+[23:26:27] INFO Unloading VLM to free GPU memory...
+[23:26:28] INFO Loading Stage 2: SAM3...
+[23:26:29] INFO Loading SAM3 model with bpe_path: /workspace/KFUPMRestaurant/experiments/v3_3stage_mvp/sam3/sam3/assets/bpe_simple_vocab_16e6.txt.gz
+[23:26:48] INFO 
+[1/10] Cluster_107_frame_frame_099108_00  (done=0, ETA=estimating...)
+[23:26:48] INFO   Stage 1 (2.6s): 1 items described
+[23:26:48] INFO Segmented 'green chopped leafy vegetable mixture wi' (3 points) at thresh 0.1, score=0.970
+[23:26:48] INFO Segmented 1 items from 1 visual descriptions
+[23:26:48] INFO   Stage 2 (0.8s): 1 items segmented
+[23:26:48] INFO   After NMS: 1 items
+[23:26:48] INFO Saved visualization to batch_results_v5_test/images/Cluster_107_frame_frame_099108_00/visualization.jpg
+[23:26:48] INFO   Done: S1=2.61s + S2=0.86s = 3.47s total, 1 items
+[23:26:48] INFO 
+[2/10] Cluster_130_frame_frame_103663_00  (done=1, ETA=14m 46s)
+[23:26:48] INFO   Stage 1 (2.6s): 0 items described
+[23:26:48] WARNING   Stage 1 returned no items, skipping Cluster_130_frame_frame_103663_00
+[23:26:48] INFO   Failed after 0.00s
+[23:26:48] INFO 
+[3/10] Cluster_134_frame_frame_034248_00  (done=2, ETA=6m 33s)
+[23:26:48] INFO   Stage 1 (2.6s): 0 items described
+[23:26:48] WARNING   Stage 1 returned no items, skipping Cluster_134_frame_frame_034248_00
+[23:26:48] INFO   Failed after 0.00s
+[23:26:48] INFO 
+[4/10] Cluster_142_frame_frame_122427_00  (done=3, ETA=3m 49s)
+[23:26:48] INFO   Stage 1 (2.6s): 2 items described
+[23:26:49] INFO Segmented 'yellowish, textured food with visible re' (3 points) at thresh 0.1, score=0.978
+[23:26:49] INFO Segmented 'bright orange, cubed vegetable pieces, c' (3 points) at thresh 0.1, score=0.941
+[23:26:49] INFO Segmented 2 items from 2 visual descriptions
+[23:26:49] INFO   Stage 2 (0.8s): 2 items segmented
+[23:26:49] INFO   After NMS: 2 items
+[23:26:49] INFO Saved visualization to batch_results_v5_test/images/Cluster_142_frame_frame_122427_00/visualization.jpg
+[23:26:49] INFO   Done: S1=2.61s + S2=0.83s = 3.44s total, 2 items
+[23:26:49] INFO 
+[5/10] Cluster_169_frame_frame_042617_00  (done=4, ETA=2m 28s)
+[23:26:49] INFO   Stage 1 (2.6s): 2 items described
+[23:26:50] INFO Segmented 'white rice grains forming a mound on the' (3 points) at thresh 0.1, score=0.944
+[23:26:50] INFO Segmented 'dark brown, textured meat pieces with vi' (3 points) at thresh 0.1, score=0.854
+[23:26:50] INFO Segmented 2 items from 2 visual descriptions
+[23:26:50] INFO   Stage 2 (0.9s): 2 items segmented
+[23:26:50] INFO   After NMS: 2 items
+[23:26:50] INFO Saved visualization to batch_results_v5_test/images/Cluster_169_frame_frame_042617_00/visualization.jpg
+[23:26:50] INFO   Done: S1=2.61s + S2=0.92s = 3.53s total, 2 items
+[23:26:50] INFO 
+[6/10] Cluster_175_frame_frame_135677_00  (done=5, ETA=1m 40s)
+[23:26:50] INFO   Stage 1 (2.6s): 1 items described
+[23:26:51] INFO Segmented 'a single piece of cooked meat with a bro' (3 points) at thresh 0.1, score=0.787
+[23:26:51] INFO Segmented 1 items from 1 visual descriptions
+[23:26:51] INFO   Stage 2 (0.5s): 1 items segmented
+[23:26:51] INFO   After NMS: 1 items
+[23:26:51] INFO Saved visualization to batch_results_v5_test/images/Cluster_175_frame_frame_135677_00/visualization.jpg
+[23:26:51] INFO   Done: S1=2.61s + S2=0.48s = 3.09s total, 1 items
+[23:26:51] INFO 
+[7/10] Cluster_184_frame_frame_059890_00  (done=6, ETA=1m 7s)
+[23:26:51] INFO   Stage 1 (2.6s): 2 items described
+[23:26:51] INFO Segmented 'yellowish rice grains with small orange ' (3 points) at thresh 0.1, score=0.915
+[23:26:52] INFO Segmented 'dark brown glazed meat pieces with irreg' (3 points) at thresh 0.1, score=0.898
+[23:26:52] INFO Segmented 2 items from 2 visual descriptions
+[23:26:52] INFO   Stage 2 (0.9s): 2 items segmented
+[23:26:52] INFO   After NMS: 2 items
+[23:26:52] INFO Saved visualization to batch_results_v5_test/images/Cluster_184_frame_frame_059890_00/visualization.jpg
+[23:26:52] INFO   Done: S1=2.61s + S2=0.94s = 3.55s total, 2 items
+[23:26:52] INFO 
+[8/10] Cluster_53_frame_frame_059972_00  (done=7, ETA=43s)
+[23:26:52] INFO   Stage 1 (2.6s): 3 items described
+[23:26:52] INFO Segmented 'yellowish rice grains with small orange ' (3 points) at thresh 0.1, score=0.881
+[23:26:53] INFO Segmented 'dark brown glazed meat pieces with irreg' (3 points) at thresh 0.1, score=0.888
+[23:26:53] INFO Segmented 'dark brown glazed meat pieces with visib' (3 points) at thresh 0.1, score=0.822
+[23:26:53] INFO Segmented 3 items from 3 visual descriptions
+[23:26:53] INFO   Stage 2 (1.3s): 3 items segmented
+[23:26:53] INFO   After NMS: 3 items
+[23:26:53] INFO Saved visualization to batch_results_v5_test/images/Cluster_53_frame_frame_059972_00/visualization.jpg
+[23:26:53] INFO   Done: S1=2.61s + S2=1.37s = 3.98s total, 3 items
+[23:26:53] INFO 
+[9/10] Cluster_83_frame_frame_074170_00  (done=8, ETA=25s)
+[23:26:53] INFO   Stage 1 (2.6s): 2 items described
+[23:26:53] INFO Segmented 'thin, light orange pasta strands coated ' (3 points) at thresh 0.1, score=0.975
+[23:26:54] INFO Segmented 'dark brown, textured, irregularly shaped' (3 points) at thresh 0.1, score=0.937
+[23:26:54] INFO Segmented 2 items from 2 visual descriptions
+[23:26:54] INFO   Stage 2 (0.8s): 2 items segmented
+[23:26:54] INFO   After NMS: 2 items
+[23:26:54] INFO Saved visualization to batch_results_v5_test/images/Cluster_83_frame_frame_074170_00/visualization.jpg
+[23:26:54] INFO   Done: S1=2.61s + S2=0.86s = 3.47s total, 2 items
+[23:26:54] INFO 
+[10/10] Cluster_85_frame_frame_104404_00  (done=9, ETA=11s)
+[23:26:54] INFO   Stage 1 (2.6s): 1 items described
+[23:26:54] INFO Segmented 'dark brown, charred, irregularly shaped ' (3 points) at thresh 0.1, score=0.909
+[23:26:54] INFO Segmented 1 items from 1 visual descriptions
+[23:26:54] INFO   Stage 2 (0.5s): 1 items segmented
+[23:26:54] INFO   After NMS: 1 items
+[23:26:54] INFO Saved visualization to batch_results_v5_test/images/Cluster_85_frame_frame_104404_00/visualization.jpg
+[23:26:54] INFO   Done: S1=2.61s + S2=0.53s = 3.14s total, 1 items
+[23:26:54] INFO 
+Batch complete in 104s
+[23:26:54] INFO   Success: 8, Failed: 2, Skipped: 0
+[23:26:54] INFO   Timing per image: mean=3.46s, min=3.09s, max=3.98s
+[23:26:54] INFO   Stage 1 (VLM):    mean=2.61s, total=20.9s
+[23:26:54] INFO   Stage 2 (SAM):    mean=0.85s, total=6.8s
+[23:26:54] INFO   Output: batch_results_v5_test

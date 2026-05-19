@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_219_frame_frame_096242_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "coleslaw salad",
+      "description": "shredded pale yellow cabbage with orange carrot slivers and green leafy garnish",
+      "bbox": [
+        8,
+        144,
+        842,
+        883
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9865
+    }
+  ],
+  "stage1_time": 1.48,
+  "stage2_time": 0.15,
+  "match_results": null
+}

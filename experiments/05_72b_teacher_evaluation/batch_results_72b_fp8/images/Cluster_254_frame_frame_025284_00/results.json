@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_254_frame_frame_025284_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "chunks of golden-brown chicken with crispy skin and some red sauce",
+      "bbox": [
+        205,
+        575,
+        1257,
+        1100
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.981
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow lemon slice with visible pulp and rind",
+      "bbox": [
+        552,
+        1056,
+        799,
+        1203
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9759
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with yellowish tint and scattered orange slivers",
+      "bbox": [
+        217,
+        26,
+        1097,
+        770
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9714
+    }
+  ],
+  "stage1_time": 2.16,
+  "stage2_time": 0.57,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_100_frame_frame_097858_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with scattered black specks",
+      "bbox": [
+        132,
+        4,
+        1261,
+        719
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9849
+    },
+    {
+      "index": 1,
+      "name": "mixed meat stew",
+      "description": "chunks of browned meat with orange carrot pieces, green beans, and yellow corn kernels",
+      "bbox": [
+        87,
+        289,
+        1373,
+        1307
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9801
+    }
+  ],
+  "stage1_time": 2.98,
+  "stage2_time": 0.6,
+  "match_results": null
+}

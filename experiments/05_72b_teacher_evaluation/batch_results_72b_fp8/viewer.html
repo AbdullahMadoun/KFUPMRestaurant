@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KFUPM Food Pipeline Results</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* Header */
+  #header { background: #16213e; padding: 12px 20px; display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #0f3460; flex-shrink: 0; }
+  #header h1 { font-size: 18px; color: #e94560; white-space: nowrap; }
+  .stat-chip { background: #0f3460; padding: 4px 10px; border-radius: 12px; font-size: 13px; white-space: nowrap; }
+  .stat-chip.green { color: #4ecca3; }
+  .stat-chip.red { color: #e94560; }
+  .stat-chip.blue { color: #7ec8e3; }
+  #stats-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+  /* Main layout */
+  #main { display: flex; flex: 1; overflow: hidden; }
+
+  /* Sidebar */
+  #sidebar { width: 280px; min-width: 280px; background: #16213e; border-right: 1px solid #0f3460; display: flex; flex-direction: column; }
+  #search-box { padding: 10px; border-bottom: 1px solid #0f3460; display: flex; flex-direction: column; gap: 6px; }
+  #search-input { background: #1a1a2e; border: 1px solid #0f3460; color: #e0e0e0; padding: 8px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search-input:focus { border-color: #e94560; }
+  #filter-select { background: #1a1a2e; border: 1px solid #0f3460; color: #e0e0e0; padding: 6px 8px; border-radius: 6px; font-size: 13px; outline: none; }
+  #image-list { flex: 1; overflow-y: auto; }
+  .img-entry { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid #0f3460; display: flex; align-items: center; gap: 10px; transition: background 0.15s; }
+  .img-entry:hover { background: #1a1a2e; }
+  .img-entry.active { background: #0f3460; border-left: 3px solid #e94560; }
+  .img-entry .status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .img-entry .status-dot.success { background: #4ecca3; }
+  .img-entry .status-dot.failed { background: #e94560; }
+  .img-entry .entry-text { flex: 1; min-width: 0; }
+  .img-entry .entry-id { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .img-entry .badge { background: #0f3460; color: #7ec8e3; padding: 2px 7px; border-radius: 10px; font-size: 11px; flex-shrink: 0; }
+  .img-entry.active .badge { background: #16213e; }
+  #list-count { padding: 6px 14px; font-size: 12px; color: #888; border-bottom: 1px solid #0f3460; }
+
+  /* Detail panel */
+  #detail { flex: 1; overflow-y: auto; padding: 20px; }
+  #detail.empty { display: flex; align-items: center; justify-content: center; }
+  #empty-msg { color: #555; font-size: 16px; }
+  .image-row { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .image-box { flex: 1; min-width: 280px; }
+  .image-box label { display: block; font-size: 12px; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .image-box img { width: 100%; border-radius: 8px; border: 1px solid #0f3460; }
+  #items-heading { font-size: 16px; margin-bottom: 12px; color: #7ec8e3; }
+  .crops-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .crop-card { background: #16213e; border-radius: 10px; border: 1px solid #0f3460; overflow: hidden; transition: border-color 0.2s; }
+  .crop-card:hover { border-color: #e94560; }
+  .crop-card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .crop-card .card-body { padding: 12px; }
+  .crop-card .desc { font-size: 13px; line-height: 1.4; margin-bottom: 8px; color: #ccc; }
+  .crop-card .meta { font-size: 12px; color: #888; display: flex; flex-direction: column; gap: 3px; }
+  .crop-card .meta .sam-score { color: #4ecca3; font-weight: 600; }
+  .crop-card .meta .sam-score.low { color: #e9a345; }
+  .crop-card .meta .sam-score.vlow { color: #e94560; }
+  .timing-row { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .timing-chip { background: #0f3460; padding: 4px 10px; border-radius: 8px; font-size: 12px; color: #7ec8e3; }
+  #failed-msg { color: #e94560; font-size: 18px; text-align: center; padding: 40px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1a1a2e; }
+  ::-webkit-scrollbar-thumb { background: #0f3460; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #e94560; }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1>KFUPM Food Pipeline Results</h1>
+  <div id="stats-bar"></div>
+</div>
+
+<div id="main">
+  <div id="sidebar">
+    <div id="search-box">
+      <input id="search-input" type="text" placeholder="Search by image ID...">
+      <select id="filter-select">
+        <option value="all">All items</option>
+        <option value="0">0 items (failed)</option>
+        <option value="1">1 item</option>
+        <option value="2">2 items</option>
+        <option value="3">3 items</option>
+        <option value="4+">4+ items</option>
+      </select>
+    </div>
+    <div id="list-count"></div>
+    <div id="image-list"></div>
+  </div>
+
+  <div id="detail" class="empty">
+    <span id="empty-msg">Select an image from the sidebar</span>
+  </div>
+</div>
+
+<script>
+let indexData = null;
+let filtered = [];
+let activeIdx = -1;
+const resultsCache = {};
+
+async function init() {
+  const resp = await fetch('index.json');
+  indexData = await resp.json();
+  renderStats();
+  applyFilters();
+  document.getElementById('search-input').addEventListener('input', applyFilters);
+  document.getElementById('filter-select').addEventListener('change', applyFilters);
+  document.addEventListener('keydown', onKey);
+}
+
+function renderStats() {
+  const imgs = indexData.images;
+  const success = imgs.filter(i => i.status === 'success').length;
+  const fail = imgs.length - success;
+  const totalItems = imgs.reduce((s, i) => s + i.num_items, 0);
+  const avg = success > 0 ? (totalItems / success).toFixed(1) : 0;
+  const bar = document.getElementById('stats-bar');
+  bar.innerHTML =
+    `<span class="stat-chip">${imgs.length} images</span>` +
+    `<span class="stat-chip green">${success} success</span>` +
+    `<span class="stat-chip red">${fail} failed</span>` +
+    `<span class="stat-chip blue">avg ${avg} items/image</span>`;
+}
+
+function applyFilters() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const f = document.getElementById('filter-select').value;
+  filtered = indexData.images.filter(img => {
+    if (q && !img.id.toLowerCase().includes(q)) return false;
+    if (f === 'all') return true;
+    if (f === '4+') return img.num_items >= 4;
+    return img.num_items === parseInt(f);
+  });
+  renderList();
+}
+
+function renderList() {
+  const list = document.getElementById('image-list');
+  document.getElementById('list-count').textContent = `Showing ${filtered.length} of ${indexData.images.length}`;
+  list.innerHTML = '';
+  const frag = document.createDocumentFragment();
+  filtered.forEach((img, idx) => {
+    const div = document.createElement('div');
+    div.className = 'img-entry' + (idx === activeIdx ? ' active' : '');
+    div.innerHTML =
+      `<span class="status-dot ${img.status}"></span>` +
+      `<span class="entry-text"><span class="entry-id" title="${img.id}">${img.id}</span></span>` +
+      `<span class="badge">${img.num_items}</span>`;
+    div.addEventListener('click', () => selectImage(idx));
+    frag.appendChild(div);
+  });
+  list.appendChild(frag);
+}
+
+async function selectImage(idx) {
+  if (idx < 0 || idx >= filtered.length) return;
+  activeIdx = idx;
+  // Update active class
+  const entries = document.querySelectorAll('.img-entry');
+  entries.forEach((el, i) => el.classList.toggle('active', i === idx));
+  entries[idx]?.scrollIntoView({ block: 'nearest' });
+
+  const img = filtered[idx];
+  const detail = document.getElementById('detail');
+  detail.className = '';
+
+  if (img.status !== 'success') {
+    detail.innerHTML = `<div id="failed-msg">This image failed processing.<br><br><div class="image-row"><div class="image-box"><label>Original</label><img src="${img.path}/original.jpg"></div></div></div>`;
+    return;
+  }
+
+  // Load results.json (cached)
+  if (!resultsCache[img.id]) {
+    try {
+      const resp = await fetch(`${img.path}/results.json`);
+      resultsCache[img.id] = await resp.json();
+    } catch (e) {
+      detail.innerHTML = `<div id="failed-msg">Could not load results.json for ${img.id}</div>`;
+      return;
+    }
+  }
+  const r = resultsCache[img.id];
+  renderDetail(r, img.path);
+}
+
+function renderDetail(r, basePath) {
+  const detail = document.getElementById('detail');
+  let html = '';
+
+  // Original + Visualization
+  html += '<div class="image-row">';
+  html += `<div class="image-box"><label>Original</label><img src="${basePath}/${r.original}"></div>`;
+  if (r.visualization) {
+    html += `<div class="image-box"><label>Visualization</label><img src="${basePath}/${r.visualization}"></div>`;
+  }
+  html += '</div>';
+
+  // Items heading
+  html += `<div id="items-heading">Detected Items (${r.num_items})</div>`;
+
+  // Crop cards
+  if (r.items && r.items.length > 0) {
+    html += '<div class="crops-grid">';
+    r.items.forEach(item => {
+      const score = item.sam_score;
+      let cls = 'sam-score';
+      if (score < 0.7) cls += ' vlow';
+      else if (score < 0.85) cls += ' low';
+      const bbox = item.bbox ? `[${item.bbox.join(', ')}]` : '';
+      html += `<div class="crop-card">
+        <img src="${basePath}/${item.crop}" alt="Item ${item.index}">
+        <div class="card-body">
+          ${item.name ? `<div class="desc" style="font-weight:600;color:#e94560;margin-bottom:4px">${escHtml(item.name)}</div>` : ''}
+          <div class="desc">${escHtml(item.description)}</div>
+          <div class="meta">
+            <span class="${cls}">SAM: ${score.toFixed(4)}</span>
+            <span>bbox: ${bbox}</span>
+          </div>
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  // Timing
+  const chips = [];
+  if (r.stage1_time != null) chips.push(`S1 (VLM): ${r.stage1_time.toFixed(2)}s`);
+  if (r.stage2_time != null) chips.push(`S2 (SAM): ${r.stage2_time.toFixed(2)}s`);
+  if (r.stage3_time != null) chips.push(`S3 (Match): ${r.stage3_time.toFixed(2)}s`);
+  if (chips.length) {
+    html += '<div class="timing-row">';
+    chips.forEach(c => html += `<span class="timing-chip">${c}</span>`);
+    html += '</div>';
+  }
+
+  detail.innerHTML = html;
+  detail.scrollTop = 0;
+}
+
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function onKey(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+    e.preventDefault();
+    selectImage(activeIdx + 1);
+  } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    selectImage(activeIdx - 1);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

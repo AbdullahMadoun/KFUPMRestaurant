@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_0_frame_frame_080809_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "soup",
+      "description": "pale yellow liquid with small bubbles and a smooth surface",
+      "bbox": [
+        2,
+        1,
+        500,
+        500
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9936
+    }
+  ],
+  "stage1_time": 2.98,
+  "stage2_time": 0.15,
+  "match_results": null
+}

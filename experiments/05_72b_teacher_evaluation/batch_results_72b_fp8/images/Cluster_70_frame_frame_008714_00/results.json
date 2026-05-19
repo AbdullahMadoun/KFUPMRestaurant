@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_70_frame_frame_008714_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stir-fry",
+      "description": "colorful mix of orange, yellow, and green vegetables with a glossy sauce",
+      "bbox": [
+        445,
+        269,
+        1358,
+        1282
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9907
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        208,
+        45,
+        1061,
+        1102
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9715
+    }
+  ],
+  "stage1_time": 1.45,
+  "stage2_time": 0.39,
+  "match_results": null
+}

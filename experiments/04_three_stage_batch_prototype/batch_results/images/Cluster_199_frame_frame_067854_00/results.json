@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_199_frame_frame_067854_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "green broccoli florets with white stems, scattered across the plate",
+      "bbox": [
+        67,
+        47,
+        648,
+        480
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9714
+    },
+    {
+      "index": 1,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        62,
+        44,
+        352,
+        295
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9554
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        336,
+        46,
+        604,
+        296
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9113
+    }
+  ],
+  "stage1_time": 1.54,
+  "stage2_time": 0.62,
+  "match_results": null
+}

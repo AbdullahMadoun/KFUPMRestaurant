@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_178_frame_frame_004520_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish-orange glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        391,
+        52,
+        892,
+        537
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9898
+    },
+    {
+      "index": 1,
+      "description": "white rice grains with small green peas, covering the bottom half of the plate",
+      "bbox": [
+        59,
+        373,
+        1052,
+        1228
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9754
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.66,
+  "match_results": null
+}

@@ -1,0 +1,89 @@
+{
+  "total_images": 10,
+  "success": 8,
+  "failed": 2,
+  "skipped": 0,
+  "total_time_seconds": 110.9,
+  "avg_time_per_image": 13.9,
+  "timing": {
+    "stage1_vlm": {
+      "mean": 2.77,
+      "min": 2.77,
+      "max": 2.77,
+      "total": 22.2
+    },
+    "stage2_sam": {
+      "mean": 1.06,
+      "min": 0.54,
+      "max": 1.79,
+      "total": 8.5
+    },
+    "per_image": {
+      "mean": 3.83,
+      "min": 3.31,
+      "max": 4.57
+    }
+  },
+  "per_image_log": [
+    {
+      "id": "Cluster_107_frame_frame_099108_00",
+      "s1": 2.77,
+      "s2": 0.95,
+      "total": 3.72,
+      "items": 1
+    },
+    {
+      "id": "Cluster_142_frame_frame_122427_00",
+      "s1": 2.77,
+      "s2": 0.96,
+      "total": 3.74,
+      "items": 2
+    },
+    {
+      "id": "Cluster_169_frame_frame_042617_00",
+      "s1": 2.77,
+      "s2": 1.07,
+      "total": 3.84,
+      "items": 2
+    },
+    {
+      "id": "Cluster_175_frame_frame_135677_00",
+      "s1": 2.77,
+      "s2": 0.54,
+      "total": 3.31,
+      "items": 1
+    },
+    {
+      "id": "Cluster_184_frame_frame_059890_00",
+      "s1": 2.77,
+      "s2": 1.07,
+      "total": 3.84,
+      "items": 2
+    },
+    {
+      "id": "Cluster_53_frame_frame_059972_00",
+      "s1": 2.77,
+      "s2": 1.51,
+      "total": 4.28,
+      "items": 3
+    },
+    {
+      "id": "Cluster_83_frame_frame_074170_00",
+      "s1": 2.77,
+      "s2": 1.79,
+      "total": 4.57,
+      "items": 3
+    },
+    {
+      "id": "Cluster_85_frame_frame_104404_00",
+      "s1": 2.77,
+      "s2": 0.59,
+      "total": 3.36,
+      "items": 1
+    }
+  ],
+  "seed": 42,
+  "stage3_enabled": false,
+  "source_dir": "/workspace/KFUPMRestaurant/Sampled_Images_All",
+  "device": "cuda"
+}

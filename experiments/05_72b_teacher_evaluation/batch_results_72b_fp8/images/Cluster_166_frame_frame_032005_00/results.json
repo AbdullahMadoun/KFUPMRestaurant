@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_166_frame_frame_032005_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "scrambled eggs",
+      "description": "creamy yellow mixture with a slightly uneven surface",
+      "bbox": [
+        185,
+        250,
+        1223,
+        975
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9935
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.19,
+  "match_results": null
+}

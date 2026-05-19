@@ -1,0 +1,66 @@
+{
+  "total_images": 10,
+  "seed": 42,
+  "images": [
+    {
+      "id": "Cluster_107_frame_frame_099108_00",
+      "path": "images/Cluster_107_frame_frame_099108_00",
+      "num_items": 3,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_130_frame_frame_103663_00",
+      "path": "images/Cluster_130_frame_frame_103663_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_134_frame_frame_034248_00",
+      "path": "images/Cluster_134_frame_frame_034248_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_142_frame_frame_122427_00",
+      "path": "images/Cluster_142_frame_frame_122427_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_169_frame_frame_042617_00",
+      "path": "images/Cluster_169_frame_frame_042617_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_175_frame_frame_135677_00",
+      "path": "images/Cluster_175_frame_frame_135677_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_184_frame_frame_059890_00",
+      "path": "images/Cluster_184_frame_frame_059890_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_53_frame_frame_059972_00",
+      "path": "images/Cluster_53_frame_frame_059972_00",
+      "num_items": 2,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_83_frame_frame_074170_00",
+      "path": "images/Cluster_83_frame_frame_074170_00",
+      "num_items": 3,
+      "status": "success"
+    },
+    {
+      "id": "Cluster_85_frame_frame_104404_00",
+      "path": "images/Cluster_85_frame_frame_104404_00",
+      "num_items": 3,
+      "status": "success"
+    }
+  ]
+}

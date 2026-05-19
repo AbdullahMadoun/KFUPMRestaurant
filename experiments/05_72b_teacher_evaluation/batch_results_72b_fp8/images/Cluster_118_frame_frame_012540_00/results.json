@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_118_frame_frame_012540_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "cheesy eggplant casserole",
+      "description": "golden-brown melted cheese with dark purple eggplant slices",
+      "bbox": [
+        136,
+        173,
+        921,
+        977
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9896
+    },
+    {
+      "index": 1,
+      "name": "spiced meat",
+      "description": "dark brown, shredded meat with visible spices and herbs",
+      "bbox": [
+        484,
+        314,
+        1293,
+        1266
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9786
+    }
+  ],
+  "stage1_time": 1.92,
+  "stage2_time": 0.45,
+  "match_results": null
+}

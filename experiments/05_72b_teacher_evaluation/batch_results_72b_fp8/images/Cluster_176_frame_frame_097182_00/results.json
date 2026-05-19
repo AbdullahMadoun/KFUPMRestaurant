@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_176_frame_frame_097182_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "eggplant stew",
+      "description": "chunks of eggplant in a rich, dark brown sauce with visible seeds and a glossy surface",
+      "bbox": [
+        110,
+        143,
+        756,
+        760
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9914
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow, semi-circular slice with a textured rind and visible pulp",
+      "bbox": [
+        31,
+        77,
+        190,
+        259
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9844
+    }
+  ],
+  "stage1_time": 1.99,
+  "stage2_time": 0.3,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_105_frame_frame_076697_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "falafel",
+      "description": "golden-brown round fritters with a slightly rough texture",
+      "bbox": [
+        263,
+        166,
+        1104,
+        591
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9831
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a few red specks",
+      "bbox": [
+        191,
+        340,
+        1171,
+        1148
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9795
+    }
+  ],
+  "stage1_time": 2.41,
+  "stage2_time": 0.42,
+  "match_results": null
+}

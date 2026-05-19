@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_130_frame_frame_103663_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "Brownish meat chunks mixed with orange and green vegetable pieces, appearing stewed and moist, occupying the right side of the plate",
+      "bbox": [
+        414,
+        26,
+        916,
+        889
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.8374
+    },
+    {
+      "index": 1,
+      "description": "Yellowish-white rice with visible grains, some speckled with orange and green, forming a mound on the left side of the plate",
+      "bbox": [
+        128,
+        377,
+        509,
+        806
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.6504
+    }
+  ],
+  "stage1_time": 2.3,
+  "stage2_time": 1.07,
+  "match_results": null
+}

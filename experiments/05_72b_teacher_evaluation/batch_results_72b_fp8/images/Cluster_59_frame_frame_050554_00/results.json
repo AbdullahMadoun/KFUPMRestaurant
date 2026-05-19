@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_59_frame_frame_050554_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "egg salad",
+      "description": "chunks of yellow and white egg pieces mixed with green leafy vegetables",
+      "bbox": [
+        46,
+        35,
+        729,
+        668
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9846
+    }
+  ],
+  "stage1_time": 2.12,
+  "stage2_time": 0.15,
+  "match_results": null
+}

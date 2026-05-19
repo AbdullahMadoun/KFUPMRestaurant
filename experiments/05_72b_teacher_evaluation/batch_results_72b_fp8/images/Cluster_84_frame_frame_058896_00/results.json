@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_84_frame_frame_058896_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed vegetables",
+      "description": "assorted vegetables including green beans, carrots, and cauliflower with a creamy texture",
+      "bbox": [
+        214,
+        125,
+        1237,
+        776
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9851
+    },
+    {
+      "index": 1,
+      "name": "grilled meat skewers",
+      "description": "brown grilled meat pieces on skewers with visible grill marks and some charred edges",
+      "bbox": [
+        235,
+        447,
+        1070,
+        1252
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9845
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.41,
+  "match_results": null
+}

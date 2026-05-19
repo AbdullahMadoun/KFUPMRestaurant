@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_33_frame_frame_066423_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "steamed cauliflower",
+      "description": "pale yellow florets with a soft, slightly textured surface",
+      "bbox": [
+        285,
+        191,
+        754,
+        553
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9868
+    },
+    {
+      "index": 1,
+      "name": "grilled chicken",
+      "description": "golden-brown chicken with charred spots and crispy skin",
+      "bbox": [
+        272,
+        660,
+        845,
+        1110
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9868
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "fluffy white rice with specks of green and orange",
+      "bbox": [
+        121,
+        475,
+        1091,
+        1028
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9835
+    },
+    {
+      "index": 3,
+      "name": "steamed broccoli",
+      "description": "bright green florets with a slightly glossy surface",
+      "bbox": [
+        741,
+        363,
+        1177,
+        710
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9732
+    }
+  ],
+  "stage1_time": 2.55,
+  "stage2_time": 0.67,
+  "match_results": null
+}

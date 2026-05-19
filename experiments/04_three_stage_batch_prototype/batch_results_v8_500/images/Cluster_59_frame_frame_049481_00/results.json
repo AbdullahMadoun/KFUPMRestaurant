@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_59_frame_frame_049481_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white and yellowish food item with a glossy surface, possibly a fried or baked item, located in the center of the plate",
+      "bbox": [
+        253,
+        246,
+        526,
+        424
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9763
+    },
+    {
+      "index": 1,
+      "description": "green leafy vegetables with a mix of light and dark green shades, irregular shapes, and slightly crinkled texture, covering the bottom half of the plate",
+      "bbox": [
+        10,
+        103,
+        710,
+        700
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9672
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.55,
+  "match_results": null
+}

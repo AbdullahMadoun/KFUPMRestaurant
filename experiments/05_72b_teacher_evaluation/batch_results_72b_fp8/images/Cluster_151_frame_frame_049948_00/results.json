@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_151_frame_frame_049948_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pilaf rice",
+      "description": "orange-brown rice grains with a slightly rough texture and visible bits of vegetables",
+      "bbox": [
+        71,
+        102,
+        813,
+        799
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9935
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.16,
+  "match_results": null
+}

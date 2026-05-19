@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_234_frame_frame_054382_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "braised lamb",
+      "description": "brown meat with visible bone and sinew, cooked in a rich sauce",
+      "bbox": [
+        74,
+        54,
+        902,
+        830
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9898
+    },
+    {
+      "index": 1,
+      "name": "lemon wedge",
+      "description": "yellow, triangular slice with visible pulp and rind",
+      "bbox": [
+        688,
+        36,
+        824,
+        226
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9777
+    },
+    {
+      "index": 2,
+      "name": "carrot slice",
+      "description": "orange, circular slice with a smooth texture",
+      "bbox": [
+        730,
+        218,
+        872,
+        410
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9717
+    }
+  ],
+  "stage1_time": 1.85,
+  "stage2_time": 0.51,
+  "match_results": null
+}

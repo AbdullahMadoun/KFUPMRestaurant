@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_88_frame_frame_056935_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "soda can",
+      "description": "metallic silver surface with green border and printed text",
+      "bbox": [
+        1,
+        1,
+        344,
+        367
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9317
+    }
+  ],
+  "stage1_time": 1.3,
+  "stage2_time": 0.14,
+  "match_results": null
+}

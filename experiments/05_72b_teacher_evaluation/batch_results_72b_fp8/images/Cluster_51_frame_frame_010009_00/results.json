@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_51_frame_frame_010009_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced meat",
+      "description": "dark brown, shredded meat with visible spices and a glossy surface",
+      "bbox": [
+        640,
+        245,
+        1372,
+        1192
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9875
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a slightly glossy surface",
+      "bbox": [
+        77,
+        257,
+        920,
+        1240
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9844
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.43,
+  "match_results": null
+}

@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_269_frame_frame_079800_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "green leafy vegetables with a lemon wedge on top, partially covered by plastic wrap",
+      "bbox": [
+        411,
+        6,
+        1201,
+        847
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9896
+    },
+    {
+      "index": 1,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        4,
+        308,
+        485,
+        1122
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9803
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        508,
+        926,
+        1089,
+        1058
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.7597
+    }
+  ],
+  "stage1_time": 1.81,
+  "stage2_time": 0.67,
+  "match_results": null
+}

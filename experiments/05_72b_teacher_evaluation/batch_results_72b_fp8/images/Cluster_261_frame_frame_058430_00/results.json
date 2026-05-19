@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_261_frame_frame_058430_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "stuffed peppers",
+      "description": "yellow and red bell peppers stuffed with a light brown, textured filling",
+      "bbox": [
+        198,
+        162,
+        958,
+        891
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9873
+    }
+  ],
+  "stage1_time": 1.71,
+  "stage2_time": 0.16,
+  "match_results": null
+}

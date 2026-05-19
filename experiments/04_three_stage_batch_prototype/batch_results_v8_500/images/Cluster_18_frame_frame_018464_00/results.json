@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_18_frame_frame_018464_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white creamy sauce with green herbs and yellow drizzle, central portion of plate",
+      "bbox": [
+        146,
+        127,
+        745,
+        744
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9854
+    },
+    {
+      "index": 1,
+      "description": "green leafy garnish on top of creamy sauce, central portion of plate",
+      "bbox": [
+        364,
+        370,
+        610,
+        576
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9782
+    }
+  ],
+  "stage1_time": 0.58,
+  "stage2_time": 0.62,
+  "match_results": null
+}

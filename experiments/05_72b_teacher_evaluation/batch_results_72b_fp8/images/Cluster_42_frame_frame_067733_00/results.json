@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_42_frame_frame_067733_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white rice grains with specks of yellow and orange carrot pieces",
+      "bbox": [
+        287,
+        125,
+        1276,
+        1107
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9799
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 0.26,
+  "match_results": null
+}

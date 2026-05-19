@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_39_frame_frame_017877_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "braised beef",
+      "description": "dark brown meat chunks with yellowish connective tissue and bits of red tomato",
+      "bbox": [
+        131,
+        144,
+        843,
+        795
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9933
+    }
+  ],
+  "stage1_time": 1.51,
+  "stage2_time": 0.15,
+  "match_results": null
+}

@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_77_frame_frame_050820_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta with meat sauce",
+      "description": "yellow penne pasta with a reddish-brown crumbly meat sauce and green flecks",
+      "bbox": [
+        17,
+        1,
+        812,
+        746
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9872
+    }
+  ],
+  "stage1_time": 1.68,
+  "stage2_time": 0.15,
+  "match_results": null
+}

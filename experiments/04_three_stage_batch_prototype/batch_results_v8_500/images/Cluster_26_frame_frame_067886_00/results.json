@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_26_frame_frame_067886_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of lemon with visible segments, located on the left side of the plate",
+      "bbox": [
+        122,
+        520,
+        374,
+        757
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9846
+    },
+    {
+      "index": 1,
+      "description": "green leafy salad with purple and red leafy greens, small orange pieces, and white flowers, occupying the center and left side of the plate",
+      "bbox": [
+        93,
+        68,
+        748,
+        733
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9715
+    }
+  ],
+  "stage1_time": 0.65,
+  "stage2_time": 0.57,
+  "match_results": null
+}

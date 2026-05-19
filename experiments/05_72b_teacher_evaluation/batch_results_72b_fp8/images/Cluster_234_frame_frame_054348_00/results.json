@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_234_frame_frame_054348_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "braised meat",
+      "description": "brown meat with visible bone and sinew, mixed with yellowish vegetables",
+      "bbox": [
+        101,
+        88,
+        959,
+        849
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9903
+    },
+    {
+      "index": 1,
+      "name": "carrot slice",
+      "description": "orange, smooth, circular slice",
+      "bbox": [
+        656,
+        143,
+        819,
+        348
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9763
+    },
+    {
+      "index": 2,
+      "name": "lemon wedge",
+      "description": "yellow, smooth, triangular slice",
+      "bbox": [
+        556,
+        4,
+        726,
+        193
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9759
+    }
+  ],
+  "stage1_time": 2.08,
+  "stage2_time": 0.5,
+  "match_results": null
+}

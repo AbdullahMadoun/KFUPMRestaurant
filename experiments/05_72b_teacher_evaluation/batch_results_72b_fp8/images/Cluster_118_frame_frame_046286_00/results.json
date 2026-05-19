@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_118_frame_frame_046286_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "stewed meat",
+      "description": "brown chunks with a glossy surface, mixed with orange and green bits",
+      "bbox": [
+        217,
+        20,
+        1032,
+        604
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9826
+    },
+    {
+      "index": 1,
+      "name": "mashed vegetables",
+      "description": "orange-yellow mash with a rough texture and small bits of red and green",
+      "bbox": [
+        152,
+        461,
+        972,
+        1126
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9681
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.38,
+  "match_results": null
+}

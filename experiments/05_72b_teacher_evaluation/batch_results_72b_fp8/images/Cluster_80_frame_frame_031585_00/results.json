@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_80_frame_frame_031585_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed pasta dish",
+      "description": "creamy pasta with chunks of meat, green and yellow bell peppers, and a smooth sauce",
+      "bbox": [
+        181,
+        205,
+        1300,
+        1237
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.984
+    },
+    {
+      "index": 1,
+      "name": "broccoli",
+      "description": "green florets with a textured surface",
+      "bbox": [
+        967,
+        553,
+        1303,
+        999
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9831
+    },
+    {
+      "index": 2,
+      "name": "tomato slices",
+      "description": "bright red slices with a juicy texture",
+      "bbox": [
+        929,
+        185,
+        1239,
+        537
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9828
+    },
+    {
+      "index": 3,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a fluffy texture",
+      "bbox": [
+        34,
+        34,
+        870,
+        876
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9732
+    }
+  ],
+  "stage1_time": 2.36,
+  "stage2_time": 0.86,
+  "match_results": null
+}

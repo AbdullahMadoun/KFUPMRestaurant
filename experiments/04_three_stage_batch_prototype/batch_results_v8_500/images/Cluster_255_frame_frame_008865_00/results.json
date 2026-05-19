@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_255_frame_frame_008865_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        656,
+        163,
+        1206,
+        666
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9873
+    },
+    {
+      "index": 1,
+      "description": "white rice grains with smooth texture, covering left half of plate",
+      "bbox": [
+        158,
+        183,
+        1150,
+        1191
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9741
+    }
+  ],
+  "stage1_time": 0.65,
+  "stage2_time": 0.64,
+  "match_results": null
+}

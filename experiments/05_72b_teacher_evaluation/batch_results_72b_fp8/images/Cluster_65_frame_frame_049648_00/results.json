@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_65_frame_frame_049648_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "fried fish",
+      "description": "golden-brown fish with a crispy, flaky texture and a slightly charred surface",
+      "bbox": [
+        212,
+        141,
+        851,
+        868
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9928
+    },
+    {
+      "index": 1,
+      "name": "lemon wedge",
+      "description": "yellow lemon slice with a smooth, curved surface and a slightly textured rind",
+      "bbox": [
+        257,
+        147,
+        445,
+        371
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9821
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.34,
+  "match_results": null
+}

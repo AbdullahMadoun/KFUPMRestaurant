@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_70_frame_frame_128206_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "curried chicken",
+      "description": "golden-brown pieces with a textured, saucy surface",
+      "bbox": [
+        188,
+        238,
+        899,
+        904
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9918
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a light sheen",
+      "bbox": [
+        119,
+        13,
+        1048,
+        937
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9896
+    }
+  ],
+  "stage1_time": 2.42,
+  "stage2_time": 0.36,
+  "match_results": null
+}

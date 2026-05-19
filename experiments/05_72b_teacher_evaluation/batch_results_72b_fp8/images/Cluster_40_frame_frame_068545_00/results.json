@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_40_frame_frame_068545_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "chocolate cake",
+      "description": "dark brown rectangular cake with a glossy surface and a cluster of dark blueberries on top",
+      "bbox": [
+        272,
+        152,
+        507,
+        663
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9875
+    }
+  ],
+  "stage1_time": 1.65,
+  "stage2_time": 0.15,
+  "match_results": null
+}

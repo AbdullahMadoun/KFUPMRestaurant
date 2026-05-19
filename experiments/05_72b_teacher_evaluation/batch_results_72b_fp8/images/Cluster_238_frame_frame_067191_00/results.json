@@ -1,0 +1,81 @@
+{
+  "image_id": "Cluster_238_frame_frame_067191_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white grains with a slightly sticky texture",
+      "bbox": [
+        687,
+        360,
+        1399,
+        1286
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9819
+    },
+    {
+      "index": 1,
+      "name": "steamed cauliflower",
+      "description": "white florets with a slightly rough texture",
+      "bbox": [
+        273,
+        1009,
+        760,
+        1376
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.981
+    },
+    {
+      "index": 2,
+      "name": "beef curry",
+      "description": "brown chunks of meat with a glossy, saucy texture",
+      "bbox": [
+        452,
+        227,
+        1213,
+        824
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9771
+    },
+    {
+      "index": 3,
+      "name": "steamed cauliflower",
+      "description": "white florets with a slightly rough texture",
+      "bbox": [
+        602,
+        784,
+        865,
+        998
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.977
+    },
+    {
+      "index": 4,
+      "name": "steamed broccoli",
+      "description": "green florets with a slightly shiny surface",
+      "bbox": [
+        226,
+        514,
+        735,
+        1339
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9661
+    }
+  ],
+  "stage1_time": 2.29,
+  "stage2_time": 1.14,
+  "match_results": null
+}

@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_80_frame_frame_031576_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "mixed pasta dish",
+      "description": "yellow pasta with chunks of brown meat, green broccoli, red tomato slices, and yellow bell pepper pieces",
+      "bbox": [
+        179,
+        195,
+        1301,
+        1243
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9846
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        32,
+        48,
+        869,
+        885
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9716
+    }
+  ],
+  "stage1_time": 2.36,
+  "stage2_time": 0.43,
+  "match_results": null
+}

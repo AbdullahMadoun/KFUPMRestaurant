@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_241_frame_frame_040826_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "a mound of rice grains with small orange carrot pieces, covering the left half of the plate",
+      "bbox": [
+        46,
+        313,
+        520,
+        836
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9843
+    },
+    {
+      "index": 1,
+      "description": "a slice of lemon, positioned on the right side of the plate",
+      "bbox": [
+        525,
+        116,
+        778,
+        433
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.978
+    },
+    {
+      "index": 2,
+      "description": "green leafy vegetables with a few orange carrot sticks, covering the left side of the plate",
+      "bbox": [
+        46,
+        78,
+        531,
+        839
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9693
+    }
+  ],
+  "stage1_time": 2.15,
+  "stage2_time": 0.85,
+  "match_results": null
+}

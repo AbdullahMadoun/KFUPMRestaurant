@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_183_frame_frame_104528_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "omelette",
+      "description": "yellowish with bits of brown and white, slightly glossy surface",
+      "bbox": [
+        282,
+        193,
+        882,
+        1174
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9668
+    },
+    {
+      "index": 1,
+      "name": "dried fruit",
+      "description": "brown, shriveled, irregular shapes",
+      "bbox": [
+        878,
+        920,
+        987,
+        1091
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9495
+    },
+    {
+      "index": 2,
+      "name": "green vegetable",
+      "description": "small, round, green pieces",
+      "bbox": [
+        1282,
+        1087,
+        1326,
+        1128
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.7787
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.73,
+  "match_results": null
+}

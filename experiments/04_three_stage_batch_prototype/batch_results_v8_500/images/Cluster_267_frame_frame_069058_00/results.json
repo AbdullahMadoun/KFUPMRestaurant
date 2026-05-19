@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_267_frame_frame_069058_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "black plate with text on the edge, partially visible",
+      "bbox": [
+        40,
+        4,
+        1085,
+        1030
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9927
+    },
+    {
+      "index": 1,
+      "description": "yellowish spaghetti with light brown sauce, occupying most of the plate",
+      "bbox": [
+        178,
+        106,
+        1026,
+        995
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9894
+    }
+  ],
+  "stage1_time": 0.65,
+  "stage2_time": 0.57,
+  "match_results": null
+}

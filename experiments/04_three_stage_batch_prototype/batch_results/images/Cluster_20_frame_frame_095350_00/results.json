@@ -1,0 +1,50 @@
+{
+  "image_id": "Cluster_20_frame_frame_095350_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        214,
+        118,
+        739,
+        823
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9735
+    },
+    {
+      "index": 1,
+      "description": "green bell pepper pieces with small red tomato pieces, scattered around the plate",
+      "bbox": [
+        59,
+        33,
+        466,
+        379
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9623
+    },
+    {
+      "index": 2,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        4,
+        289,
+        357,
+        776
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9616
+    }
+  ],
+  "stage1_time": 1.6,
+  "stage2_time": 0.63,
+  "match_results": null
+}

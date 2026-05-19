@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_208_frame_frame_002937_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "banana pudding",
+      "description": "creamy yellow custard with small red and white speckles",
+      "bbox": [
+        113,
+        54,
+        735,
+        728
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9862
+    }
+  ],
+  "stage1_time": 1.32,
+  "stage2_time": 0.15,
+  "match_results": null
+}

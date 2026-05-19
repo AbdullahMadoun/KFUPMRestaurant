@@ -1,0 +1,81 @@
+{
+  "image_id": "Cluster_54_frame_frame_073175_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled fish",
+      "description": "golden-brown fish fillet with a crispy, slightly charred surface",
+      "bbox": [
+        329,
+        285,
+        915,
+        802
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.99
+    },
+    {
+      "index": 1,
+      "name": "spaghetti",
+      "description": "long, thin pasta strands coated in a reddish-brown sauce",
+      "bbox": [
+        301,
+        656,
+        1052,
+        1267
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.983
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "fluffy white rice grains with specks of yellow and orange",
+      "bbox": [
+        676,
+        132,
+        1383,
+        988
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9676
+    },
+    {
+      "index": 3,
+      "name": "salad",
+      "description": "green leafy vegetables with a mix of colors and textures",
+      "bbox": [
+        155,
+        86,
+        384,
+        284
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9211
+    },
+    {
+      "index": 4,
+      "name": "dip",
+      "description": "smooth, light yellow paste",
+      "bbox": [
+        5,
+        764,
+        132,
+        1101
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9162
+    }
+  ],
+  "stage1_time": 2.49,
+  "stage2_time": 0.88,
+  "match_results": null
+}

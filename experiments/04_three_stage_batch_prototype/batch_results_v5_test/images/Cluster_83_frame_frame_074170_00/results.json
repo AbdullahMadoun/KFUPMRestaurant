@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_83_frame_frame_074170_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "thin, light orange pasta strands coated in red sauce, forming a mound in the center of the plate",
+      "bbox": [
+        5,
+        4,
+        1014,
+        1018
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9755
+    },
+    {
+      "index": 1,
+      "description": "dark brown, textured, irregularly shaped meat chunks with visible seasoning, located on top of the pasta",
+      "bbox": [
+        146,
+        8,
+        1007,
+        770
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9375
+    }
+  ],
+  "stage1_time": 2.61,
+  "stage2_time": 0.8,
+  "match_results": null
+}

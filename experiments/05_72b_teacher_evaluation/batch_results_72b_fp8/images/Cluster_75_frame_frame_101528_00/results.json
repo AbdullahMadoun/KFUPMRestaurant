@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_75_frame_frame_101528_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable stew",
+      "description": "mixed vegetables including green peas, orange carrots, and yellow corn with a brownish sauce",
+      "bbox": [
+        95,
+        19,
+        983,
+        928
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9917
+    }
+  ],
+  "stage1_time": 1.45,
+  "stage2_time": 0.15,
+  "match_results": null
+}

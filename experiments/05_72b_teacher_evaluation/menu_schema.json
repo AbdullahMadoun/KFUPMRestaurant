@@ -1,0 +1,62 @@
+{
+  "chicken": {
+    "category": "protein",
+    "price": 15.0,
+    "description": "Grilled or fried chicken pieces with golden brown skin"
+  },
+  "meat": {
+    "category": "protein",
+    "price": 20.0,
+    "description": "Cooked meat pieces or slices, brown to dark brown"
+  },
+  "fish": {
+    "category": "protein",
+    "price": 18.0,
+    "description": "Fried or grilled fish fillet, light golden to white"
+  },
+  "rice": {
+    "category": "carb",
+    "price": 5.0,
+    "description": "White or yellow steamed rice, loose grains"
+  },
+  "bread": {
+    "category": "carb",
+    "price": 3.0,
+    "description": "Flatbread or pita, round with light brown spots"
+  },
+  "pasta": {
+    "category": "carb",
+    "price": 8.0,
+    "description": "Pasta noodles with sauce, typically pale yellow or red-coated"
+  },
+  "salad": {
+    "category": "salad",
+    "price": 8.0,
+    "description": "Mixed green salad with vegetables, colorful medley"
+  },
+  "hummus": {
+    "category": "side",
+    "price": 6.0,
+    "description": "Smooth beige dip in a bowl, often with olive oil drizzle"
+  },
+  "fries": {
+    "category": "side",
+    "price": 5.0,
+    "description": "Golden yellow fried potato strips, crispy surface"
+  },
+  "soup": {
+    "category": "soup",
+    "price": 7.0,
+    "description": "Liquid dish in a bowl, often with visible chunks or herbs"
+  },
+  "juice": {
+    "category": "drink",
+    "price": 5.0,
+    "description": "Colorful liquid beverage in a glass or cup"
+  },
+  "dessert": {
+    "category": "dessert",
+    "price": 10.0,
+    "description": "Sweet dish, often decorated with cream, syrup, or powdered sugar"
+  }
+}

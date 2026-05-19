@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_169_frame_frame_042617_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "white, fluffy rice with individual grains visible, forming a mound on the left side of the plate",
+      "bbox": [
+        45,
+        369,
+        705,
+        1012
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9453
+    },
+    {
+      "index": 1,
+      "description": "dark brown, textured meat pieces with visible red and orange vegetable pieces mixed in, forming a cluster on the right side of the plate",
+      "bbox": [
+        370,
+        281,
+        961,
+        703
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9378
+    }
+  ],
+  "stage1_time": 2.23,
+  "stage2_time": 0.57,
+  "match_results": null
+}

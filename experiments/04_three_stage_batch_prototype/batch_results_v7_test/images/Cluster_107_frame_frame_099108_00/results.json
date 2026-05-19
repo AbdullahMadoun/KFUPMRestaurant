@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_107_frame_frame_099108_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "green leafy mixture with small red pieces, covering most of the plate",
+      "bbox": [
+        5,
+        45,
+        976,
+        949
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9873
+    },
+    {
+      "index": 1,
+      "description": "yellow lemon wedge, placed on top of the green leafy mixture",
+      "bbox": [
+        494,
+        355,
+        682,
+        726
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9832
+    }
+  ],
+  "stage1_time": 1.8,
+  "stage2_time": 1.19,
+  "match_results": null
+}

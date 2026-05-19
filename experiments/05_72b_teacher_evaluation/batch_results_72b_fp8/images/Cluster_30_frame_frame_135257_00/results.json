@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_30_frame_frame_135257_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "charred brown chicken leg with crispy skin",
+      "bbox": [
+        703,
+        362,
+        1105,
+        839
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9814
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white rice grains",
+      "bbox": [
+        202,
+        481,
+        865,
+        1054
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9752
+    },
+    {
+      "index": 2,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        247,
+        17,
+        1081,
+        667
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9561
+    }
+  ],
+  "stage1_time": 1.95,
+  "stage2_time": 0.5,
+  "match_results": null
+}

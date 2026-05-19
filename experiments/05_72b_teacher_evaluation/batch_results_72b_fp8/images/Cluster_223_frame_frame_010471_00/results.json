@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_223_frame_frame_010471_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "eggplant casserole",
+      "description": "golden-brown melted cheese with a textured surface of minced meat and corn kernels",
+      "bbox": [
+        55,
+        54,
+        829,
+        815
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.994
+    }
+  ],
+  "stage1_time": 1.89,
+  "stage2_time": 0.17,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_143_frame_frame_078830_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "vegetable curry",
+      "description": "chunky mixture of green and yellow vegetables in a reddish-brown sauce with visible spices",
+      "bbox": [
+        279,
+        218,
+        1292,
+        789
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9856
+    },
+    {
+      "index": 1,
+      "name": "white rice",
+      "description": "fluffy white grains with a light texture",
+      "bbox": [
+        222,
+        29,
+        1305,
+        1195
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9783
+    },
+    {
+      "index": 2,
+      "name": "fried meatballs",
+      "description": "brown, textured, and slightly crispy meatballs",
+      "bbox": [
+        404,
+        621,
+        918,
+        1261
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.969
+    }
+  ],
+  "stage1_time": 1.98,
+  "stage2_time": 0.6,
+  "match_results": null
+}

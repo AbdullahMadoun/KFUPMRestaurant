@@ -1,0 +1,81 @@
+{
+  "image_id": "Cluster_161_frame_frame_091151_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 5,
+  "items": [
+    {
+      "index": 0,
+      "name": "lemon slice",
+      "description": "yellow slice with a smooth, shiny surface and visible pulp",
+      "bbox": [
+        909,
+        747,
+        1173,
+        1012
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9824
+    },
+    {
+      "index": 1,
+      "name": "broccoli",
+      "description": "green florets with a slightly rough texture",
+      "bbox": [
+        8,
+        281,
+        469,
+        888
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9752
+    },
+    {
+      "index": 2,
+      "name": "vegetable stew",
+      "description": "dark brown sauce with visible chunks of vegetables and onions",
+      "bbox": [
+        338,
+        27,
+        1193,
+        778
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9729
+    },
+    {
+      "index": 3,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with a slightly shiny surface",
+      "bbox": [
+        262,
+        716,
+        1003,
+        1200
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9695
+    },
+    {
+      "index": 4,
+      "name": "grilled chicken",
+      "description": "brownish-yellow pieces with a slightly charred texture",
+      "bbox": [
+        544,
+        511,
+        993,
+        885
+      ],
+      "crop": "crops/item_004.jpg",
+      "mask": "masks/item_004_mask.png",
+      "sam_score": 0.9498
+    }
+  ],
+  "stage1_time": 2.9,
+  "stage2_time": 1.03,
+  "match_results": null
+}

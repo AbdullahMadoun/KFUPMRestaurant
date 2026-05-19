@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_257_frame_frame_037325_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "white rice",
+      "description": "fluffy white grains with a light sheen",
+      "bbox": [
+        135,
+        36,
+        1181,
+        824
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9852
+    },
+    {
+      "index": 1,
+      "name": "falafel",
+      "description": "brown, textured balls with visible herbs and spices",
+      "bbox": [
+        416,
+        718,
+        1138,
+        1229
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.973
+    },
+    {
+      "index": 2,
+      "name": "bell peppers",
+      "description": "chunks of red and yellow bell peppers with a glossy surface",
+      "bbox": [
+        249,
+        619,
+        859,
+        1027
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9705
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.61,
+  "match_results": null
+}

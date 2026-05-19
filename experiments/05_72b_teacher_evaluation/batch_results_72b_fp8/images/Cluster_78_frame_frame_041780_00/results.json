@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_78_frame_frame_041780_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta with tuna",
+      "description": "yellow penne pasta mixed with flaky brown tuna and green specks",
+      "bbox": [
+        84,
+        60,
+        900,
+        837
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9917
+    }
+  ],
+  "stage1_time": 1.68,
+  "stage2_time": 0.16,
+  "match_results": null
+}

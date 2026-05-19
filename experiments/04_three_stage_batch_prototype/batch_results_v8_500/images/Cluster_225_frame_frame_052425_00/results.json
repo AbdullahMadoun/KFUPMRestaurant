@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_225_frame_frame_052425_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "pasta with creamy white sauce, penne shape, covering most of the plate, with a lemon wedge on the side",
+      "bbox": [
+        69,
+        2,
+        841,
+        761
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9922
+    },
+    {
+      "index": 1,
+      "description": "lemon wedge, bright yellow, partially submerged in the creamy sauce, bottom left of the plate",
+      "bbox": [
+        146,
+        556,
+        425,
+        729
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9801
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.57,
+  "match_results": null
+}

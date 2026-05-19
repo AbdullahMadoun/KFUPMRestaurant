@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_86_frame_frame_015824_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "spiced meat",
+      "description": "dark brown, textured pieces with visible spices and some yellow and red bits",
+      "bbox": [
+        100,
+        431,
+        991,
+        1198
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9889
+    },
+    {
+      "index": 1,
+      "name": "basmati rice",
+      "description": "long, fluffy white rice grains with a light sheen",
+      "bbox": [
+        132,
+        132,
+        1232,
+        1140
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9808
+    }
+  ],
+  "stage1_time": 1.78,
+  "stage2_time": 0.41,
+  "match_results": null
+}

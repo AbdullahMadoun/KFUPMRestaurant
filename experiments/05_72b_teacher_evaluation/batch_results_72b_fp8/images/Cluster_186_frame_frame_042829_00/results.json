@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_186_frame_frame_042829_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "basmati rice",
+      "description": "white, long-grain rice with a fluffy texture",
+      "bbox": [
+        28,
+        -1,
+        1045,
+        687
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9908
+    },
+    {
+      "index": 1,
+      "name": "spiced chicken",
+      "description": "golden-brown chicken with a crispy skin and a sauce that includes green and yellow specks",
+      "bbox": [
+        81,
+        361,
+        608,
+        749
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.988
+    }
+  ],
+  "stage1_time": 2.1,
+  "stage2_time": 0.33,
+  "match_results": null
+}

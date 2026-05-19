@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_134_frame_frame_034248_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "Golden-brown cooked chicken pieces, some with red pepper garnish, clustered on the right side of the plate",
+      "bbox": [
+        638,
+        137,
+        878,
+        422
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.8055
+    },
+    {
+      "index": 1,
+      "description": "Yellow-orange rice with visible grains, some red flecks, piled in a mound on the left side of the plate",
+      "bbox": [
+        147,
+        225,
+        434,
+        725
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.6923
+    }
+  ],
+  "stage1_time": 2.3,
+  "stage2_time": 1.02,
+  "match_results": null
+}

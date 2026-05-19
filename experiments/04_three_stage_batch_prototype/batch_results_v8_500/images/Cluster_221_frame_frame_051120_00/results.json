@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_221_frame_frame_051120_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "pasta with creamy white sauce, penne shape, covering most of plate",
+      "bbox": [
+        113,
+        93,
+        1022,
+        959
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.993
+    },
+    {
+      "index": 1,
+      "description": "black plate with text \"KELLYM SERVICES\" on top left corner",
+      "bbox": [
+        5,
+        4,
+        1020,
+        1018
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9902
+    }
+  ],
+  "stage1_time": 0.52,
+  "stage2_time": 0.58,
+  "match_results": null
+}

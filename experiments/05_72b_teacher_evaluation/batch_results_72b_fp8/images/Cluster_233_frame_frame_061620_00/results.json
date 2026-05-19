@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_233_frame_frame_061620_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "hummus",
+      "description": "smooth beige paste with a slightly rough texture",
+      "bbox": [
+        76,
+        133,
+        908,
+        901
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9948
+    },
+    {
+      "index": 1,
+      "name": "lemon slice",
+      "description": "yellow slice with visible white pith and juice vesicles",
+      "bbox": [
+        691,
+        196,
+        898,
+        499
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9817
+    }
+  ],
+  "stage1_time": 2.08,
+  "stage2_time": 0.36,
+  "match_results": null
+}

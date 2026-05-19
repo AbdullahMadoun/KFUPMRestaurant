@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_120_frame_frame_041770_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "black plate with white text, occupies the right half of the image",
+      "bbox": [
+        144,
+        36,
+        986,
+        736
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9792
+    }
+  ],
+  "stage1_time": 0.76,
+  "stage2_time": 0.59,
+  "match_results": null
+}

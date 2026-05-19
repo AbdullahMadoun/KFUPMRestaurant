@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_18_frame_frame_018464_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "hummus",
+      "description": "smooth beige paste with green oil drizzle and parsley garnish",
+      "bbox": [
+        145,
+        127,
+        756,
+        746
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9898
+    }
+  ],
+  "stage1_time": 1.7,
+  "stage2_time": 0.16,
+  "match_results": null
+}

@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_266_frame_frame_026788_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "kabsa rice",
+      "description": "fluffy white and golden-yellow rice grains with orange carrot slivers",
+      "bbox": [
+        210,
+        237,
+        1209,
+        1113
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9865
+    },
+    {
+      "index": 1,
+      "name": "lemon wedge",
+      "description": "yellow lemon slice with visible pulp and rind",
+      "bbox": [
+        285,
+        692,
+        423,
+        948
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9782
+    },
+    {
+      "index": 2,
+      "name": "grilled chicken",
+      "description": "golden-brown crispy skin with visible seasoning and charred spots",
+      "bbox": [
+        235,
+        27,
+        723,
+        658
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9483
+    }
+  ],
+  "stage1_time": 1.93,
+  "stage2_time": 0.53,
+  "match_results": null
+}

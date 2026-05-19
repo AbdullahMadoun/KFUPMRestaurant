@@ -1,0 +1,67 @@
+{
+  "image_id": "Cluster_30_frame_frame_035629_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "name": "carrots",
+      "description": "orange slices with a smooth, glossy surface",
+      "bbox": [
+        258,
+        269,
+        1091,
+        690
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.984
+    },
+    {
+      "index": 1,
+      "name": "plantain slices",
+      "description": "golden-brown slices with a slightly crispy texture",
+      "bbox": [
+        166,
+        430,
+        949,
+        1208
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9822
+    },
+    {
+      "index": 2,
+      "name": "cauliflower",
+      "description": "pale yellow florets with a slightly rough texture",
+      "bbox": [
+        431,
+        61,
+        1004,
+        581
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9712
+    },
+    {
+      "index": 3,
+      "name": "white rice",
+      "description": "fluffy white grains with a slight sheen",
+      "bbox": [
+        303,
+        107,
+        1213,
+        1198
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9657
+    }
+  ],
+  "stage1_time": 1.95,
+  "stage2_time": 0.75,
+  "match_results": null
+}

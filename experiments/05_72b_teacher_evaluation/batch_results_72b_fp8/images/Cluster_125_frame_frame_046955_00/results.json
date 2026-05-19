@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_125_frame_frame_046955_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "pilaf rice",
+      "description": "orange-yellow rice grains mixed with small green and red specks",
+      "bbox": [
+        103,
+        27,
+        852,
+        795
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9942
+    }
+  ],
+  "stage1_time": 1.42,
+  "stage2_time": 0.17,
+  "match_results": null
+}

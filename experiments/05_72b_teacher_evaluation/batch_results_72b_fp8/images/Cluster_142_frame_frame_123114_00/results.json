@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_142_frame_frame_123114_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "scrambled eggs",
+      "description": "yellow-orange fluffy texture with bits of red and white",
+      "bbox": [
+        122,
+        131,
+        734,
+        701
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.99
+    }
+  ],
+  "stage1_time": 1.98,
+  "stage2_time": 0.16,
+  "match_results": null
+}

@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_24_frame_frame_095046_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "slice of lemon on the left side of the plate",
+      "bbox": [
+        27,
+        685,
+        377,
+        1089
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9848
+    },
+    {
+      "index": 1,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        493,
+        606,
+        1328,
+        1335
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9837
+    },
+    {
+      "index": 2,
+      "description": "yellowish rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        200,
+        188,
+        1359,
+        1207
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9673
+    },
+    {
+      "index": 3,
+      "description": "red chili pepper on the bottom right of the plate",
+      "bbox": [
+        465,
+        1044,
+        635,
+        1261
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9668
+    }
+  ],
+  "stage1_time": 2.33,
+  "stage2_time": 0.94,
+  "match_results": null
+}

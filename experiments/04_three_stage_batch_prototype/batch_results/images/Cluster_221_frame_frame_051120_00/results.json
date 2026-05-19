@@ -1,0 +1,24 @@
+{
+  "image_id": "Cluster_221_frame_frame_051120_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish pasta with a creamy sauce, mound covering the center and right side of the plate",
+      "bbox": [
+        113,
+        93,
+        1022,
+        959
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.995
+    }
+  ],
+  "stage1_time": 0.79,
+  "stage2_time": 0.22,
+  "match_results": null
+}

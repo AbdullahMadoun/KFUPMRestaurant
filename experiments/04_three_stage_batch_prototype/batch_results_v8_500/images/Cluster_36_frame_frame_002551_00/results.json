@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_36_frame_frame_002551_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "yellowish pasta with orange sauce, covering most of the plate",
+      "bbox": [
+        85,
+        104,
+        983,
+        875
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9929
+    },
+    {
+      "index": 1,
+      "description": "dark gray plate with text on the left side",
+      "bbox": [
+        5,
+        3,
+        1019,
+        1016
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9921
+    }
+  ],
+  "stage1_time": 0.56,
+  "stage2_time": 0.57,
+  "match_results": null
+}

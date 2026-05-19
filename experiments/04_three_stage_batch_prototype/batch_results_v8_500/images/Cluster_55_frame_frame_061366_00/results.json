@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_55_frame_frame_061366_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "pasta with creamy sauce, mixed with chunks of vegetables (carrots, cauliflower, cucumber), occupying the right side of the plate",
+      "bbox": [
+        406,
+        218,
+        1242,
+        1253
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9816
+    },
+    {
+      "index": 1,
+      "description": "golden-brown fried meat pieces with crispy texture, occupying the left side of the plate",
+      "bbox": [
+        212,
+        345,
+        625,
+        1026
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9729
+    }
+  ],
+  "stage1_time": 0.6,
+  "stage2_time": 0.6,
+  "match_results": null
+}

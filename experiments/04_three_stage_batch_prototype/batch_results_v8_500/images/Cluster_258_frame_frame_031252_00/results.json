@@ -1,0 +1,63 @@
+{
+  "image_id": "Cluster_258_frame_frame_031252_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 4,
+  "items": [
+    {
+      "index": 0,
+      "description": "chopped red and green bell peppers, small pieces scattered on rice",
+      "bbox": [
+        391,
+        399,
+        877,
+        796
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9825
+    },
+    {
+      "index": 1,
+      "description": "white rice grains with small orange carrot pieces, mound covering left half of plate",
+      "bbox": [
+        42,
+        294,
+        1007,
+        1268
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.982
+    },
+    {
+      "index": 2,
+      "description": "dark brown glazed meat pieces with irregular chunky shape, right side of plate",
+      "bbox": [
+        533,
+        118,
+        1129,
+        704
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9714
+    },
+    {
+      "index": 3,
+      "description": "thinly sliced red onion, small pieces on top of meat",
+      "bbox": [
+        827,
+        99,
+        1089,
+        299
+      ],
+      "crop": "crops/item_003.jpg",
+      "mask": "masks/item_003_mask.png",
+      "sam_score": 0.9571
+    }
+  ],
+  "stage1_time": 0.65,
+  "stage2_time": 1.23,
+  "match_results": null
+}

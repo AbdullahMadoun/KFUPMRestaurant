@@ -1,0 +1,53 @@
+{
+  "image_id": "Cluster_68_frame_frame_030479_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 3,
+  "items": [
+    {
+      "index": 0,
+      "name": "grilled chicken",
+      "description": "brown and golden-brown grilled chicken pieces with visible seasoning and herbs",
+      "bbox": [
+        667,
+        345,
+        1270,
+        866
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9752
+    },
+    {
+      "index": 1,
+      "name": "kabsa rice",
+      "description": "golden-yellow rice grains with bits of vegetables",
+      "bbox": [
+        183,
+        121,
+        1040,
+        751
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9723
+    },
+    {
+      "index": 2,
+      "name": "pasta dish",
+      "description": "yellow bow-tie pasta with creamy sauce, red tomato pieces, and purple onion chunks",
+      "bbox": [
+        157,
+        576,
+        1200,
+        1333
+      ],
+      "crop": "crops/item_002.jpg",
+      "mask": "masks/item_002_mask.png",
+      "sam_score": 0.9419
+    }
+  ],
+  "stage1_time": 2.06,
+  "stage2_time": 0.64,
+  "match_results": null
+}

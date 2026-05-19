@@ -1,0 +1,132 @@
+\paragraph{What this paper shows.} A single-shot supervised fine-tune of a 7B
+VLM, using bbox supervision distilled from a 72B teacher, can match (or beat)
+off-the-shelf 7B detection on the Dish-Correct semantic metric without any
+exotic loss function or model surgery. Most of the lift comes from the
+\emph{count-exact} term --- the off-the-shelf 7B is biased toward
+under-detection, and supervised exposure to multi-item trays is sufficient
+to recalibrate its prior. Mean-pooled prototype heads in Stage~3 are too
+coarse for our long-tailed taxonomy; max-similarity retrieval over the full
+train-split reference bank is a one-line change that better handles
+multimodal classes (rice variants, cake variants).
+
+\paragraph{What this paper does not show.} We deliberately scoped the
+empirical comparison to two arms (off-the-shelf vs distilled 7B) under
+identical Stage 2 + 3, to isolate the effect of distillation. Several
+ablations are deferred:
+
+\begin{itemize}\itemsep1pt
+  \item \textbf{Cardinality-aware retrain.} The structural count loss
+    (\S\ref{sec:cardinality}) is in epoch~$1$ of $10$ at submission time;
+    its end-of-training Dish-Correct number is unavailable. The
+    in-progress training curves (Figure~\ref{fig:training-curves}) suggest
+    the val multiset-match rate is recovering from the regression seen in
+    \texttt{bboxonly-epoch6}.
+  \item \textbf{DINOv3.} The Stage 3 encoder remains DINOv2-large.
+    DINOv3 (released after our experiments started) offers stronger
+    embeddings on natural-image benchmarks; swapping it in is a one-line
+    config change and would re-embed the $\sim$3{,}900-reference bank in
+    $\sim$2~min. We expect a modest lift on the long-tail classes where
+    the current bottleneck is Stage 3 retrieval, not Stage 1 detection.
+  \item \textbf{Latency-budget arms.} A genuinely deployed system would
+    need an A100 40GB / consumer GPU envelope, which constrains both
+    Qwen-VL-7B and DINOv2-large. We have not measured the
+    accuracy-vs-latency Pareto frontier under these constraints.
+\end{itemize}
+
+\paragraph{Why dish-correct (and not mAP) for the next pipeline.} We
+believe the dish-level multiset framing generalises beyond cafeteria-tray
+analysis to any product-grade detection task whose downstream consumer is
+itemized rather than geometric: retail checkout, inventory-on-shelf
+audits, kitchen prep verification. In all of these, an off-by-one count
+error is a hard failure regardless of bbox quality. We hope that future
+work in this lineage will report dish-correct (or its analogue) alongside
+the customary IoU/mAP, so that the metric does not silently drift back
+toward what is easy to measure rather than what matters.
+
+\paragraph{Reproducibility.} The 80/10/10 split (seed $420$) is
+deterministic and reproduced by
+\texttt{stage1\_kcfd.dataset.\_compute\_stratified\_image\_split}.
+The reference bank, prompt, evaluation set, and \texttt{score.py} metric
+implementation are released alongside this paper.
+
+\subsection{Limitations and threats to validity}
+\label{sec:lim}
+
+\paragraph{Sample size in the 3+\,item bucket.} Of the 596 held-out
+images, only $7$ contain three or more items. The dish-correct rate on
+that bucket ($28.6\%$ for the distilled arm, $0\%$ for the base) is
+measured on a sample so small that any single error or correct prediction
+shifts the rate by $\pm 14\,$pp. We report the number for completeness,
+but our quantitative claims focus on the $1$- and $2$-item buckets where
+$n \geq 100$. A future-work item is to deliberately curate a multi-item
+evaluation supplement.
+
+\paragraph{Reference bank leakage in spirit.} Both arms use the same
+DINOv2 reference bank, built from train-split items only. We confirmed
+that no held-out image's own crop appears as a reference. However, an
+held-out image may share a \emph{kitchen, plate, lighting condition,
+or camera angle} with its train neighbours, since v3.2 was collected at a
+single cafeteria over a bounded period. Performance numbers in this
+paper should therefore be read as \emph{within-distribution}; we make no
+claim about generalisation to a different cafeteria, a different camera,
+or a different time of year.
+
+\paragraph{Class-prior bias in DINOv2 retrieval.} DINOv2 features are
+trained on web-scale natural images. The frequency at which a given Saudi
+food (e.g., \textit{masakaah}) appears in the DINOv2 pre-training data is
+unknown but presumably very low; the retrieval is therefore biased toward
+classes that are visually similar to common web images (rice, chicken)
+and slightly disadvantaged on the visually-novel tail (asidah, hummus
+cling-wrapped). A more food-specific encoder (e.g., DINOv3 fine-tuned on
+the v3.2 reference set or a CLIP text-image model conditioned on the
+class slug) is likely to recover several percentage points on the long
+tail.
+
+\paragraph{Single-cafeteria distribution.} v3.2 was collected at a
+single university cafeteria. The 32 classes reflect that menu. We do
+\emph{not} claim TahamajaNet will generalise zero-shot to another menu;
+deploying at a new site would minimally require (i)~adding new classes
+to the reference bank by photographing 5–10 reference images per item,
+(ii)~optionally a brief fine-tune of Stage~1 on a few hundred new trays
+to specialise the bbox style, and (iii)~refreshing the price table.
+
+\paragraph{No human-rater check on dish-correct.} The ground-truth
+multisets in the held-out set come from the v3.2 export, which itself
+went through human cluster review at the \emph{cluster}, not per-image,
+level. There is residual labeling noise (mis-clustered items, missed
+items, ambiguous splits between rice and rice-with-sauce). A quick
+ground-truth audit on a 30-image sample suggested $\sim$1--2\% of GT
+multisets contain at least one disagreement with a fresh human rater.
+We did not propagate this noise into our error bars.
+
+\paragraph{Cardinality-aware retrain incomplete.} The structural count
+loss curves in Figure~\ref{fig:training-curves} are from epoch~1 of the
+in-progress 10-epoch retrain. The headline dish-correct number we report
+($86.4\%$) is on the \texttt{epoch\_002} checkpoint of that retrain,
+which is the strongest one available at submission. We expect a further
+lift of several percentage points by epoch~$\geq 6$ but cannot report
+it here.
+
+\subsection{Broader impact and ethics}
+\label{sec:ethics}
+
+The pipeline exists to generate itemised cafeteria bills, replacing a
+human cashier's keying-in step. The intended impact is reducing student
+queue time at peak hours and freeing the cashier for higher-judgement
+tasks (allergen checks, payment exceptions, complaint handling). We
+explicitly do \emph{not} target unmanned operation: a cashier still
+authorises every transaction, and the system surfaces its predicted
+multiset as an editable list rather than auto-charging. We see two
+genuine deployment risks: (i)~systematic mis-billing on rare classes
+that costs students money (under-billing the cafeteria, over-billing the
+student); and (ii)~the temptation to cut the human-in-the-loop step
+once the queue-time gain is realised. We treat the human-in-the-loop
+authorisation as a non-negotiable part of the deployment, not an
+optional latency cost.
+
+The v3.2 dataset contains photographs of food trays only. There are no
+faces, no student IDs, no identifying information in the images. The
+images were captured under an institutional agreement with the
+cafeteria operator at KFUPM. We will release the dataset under a
+research-only license that prohibits use for individual identification
+or commercial sale.

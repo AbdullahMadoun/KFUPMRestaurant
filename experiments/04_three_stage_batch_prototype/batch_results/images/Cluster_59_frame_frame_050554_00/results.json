@@ -1,0 +1,37 @@
+{
+  "image_id": "Cluster_59_frame_frame_050554_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "description": "green leafy vegetables with small yellowish pieces, covering the top half of the plate",
+      "bbox": [
+        46,
+        37,
+        729,
+        672
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9883
+    },
+    {
+      "index": 1,
+      "description": "white and yellowish egg pieces with a slightly glossy surface, positioned in the center of the plate",
+      "bbox": [
+        255,
+        232,
+        563,
+        590
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9871
+    }
+  ],
+  "stage1_time": 1.2,
+  "stage2_time": 0.42,
+  "match_results": null
+}

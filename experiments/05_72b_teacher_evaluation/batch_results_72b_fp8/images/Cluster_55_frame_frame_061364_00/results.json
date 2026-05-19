@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_55_frame_frame_061364_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "pasta salad",
+      "description": "creamy yellow pasta with chunks of red and green vegetables",
+      "bbox": [
+        525,
+        236,
+        1351,
+        1279
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9807
+    },
+    {
+      "index": 1,
+      "name": "fried chicken wings",
+      "description": "golden-brown, crispy, irregularly shaped pieces",
+      "bbox": [
+        320,
+        360,
+        845,
+        1046
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.97
+    }
+  ],
+  "stage1_time": 2.49,
+  "stage2_time": 0.39,
+  "match_results": null
+}

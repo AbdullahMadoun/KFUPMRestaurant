@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_267_frame_frame_068990_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "spaghetti",
+      "description": "long, thin, yellowish strands with a slightly glossy surface",
+      "bbox": [
+        55,
+        10,
+        1005,
+        944
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9926
+    }
+  ],
+  "stage1_time": 1.95,
+  "stage2_time": 0.16,
+  "match_results": null
+}

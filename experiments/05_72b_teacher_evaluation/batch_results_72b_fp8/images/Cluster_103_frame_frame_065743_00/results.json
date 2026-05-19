@@ -1,0 +1,39 @@
+{
+  "image_id": "Cluster_103_frame_frame_065743_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 2,
+  "items": [
+    {
+      "index": 0,
+      "name": "lentil curry",
+      "description": "orange-brown lentils with a chunky texture, mixed with visible pieces of vegetables and spices",
+      "bbox": [
+        167,
+        215,
+        989,
+        1041
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9851
+    },
+    {
+      "index": 1,
+      "name": "yogurt sauce",
+      "description": "creamy white sauce with a smooth texture",
+      "bbox": [
+        45,
+        556,
+        340,
+        1032
+      ],
+      "crop": "crops/item_001.jpg",
+      "mask": "masks/item_001_mask.png",
+      "sam_score": 0.9676
+    }
+  ],
+  "stage1_time": 2.41,
+  "stage2_time": 0.38,
+  "match_results": null
+}

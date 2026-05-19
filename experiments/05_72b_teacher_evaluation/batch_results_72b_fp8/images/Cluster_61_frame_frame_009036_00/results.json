@@ -1,0 +1,25 @@
+{
+  "image_id": "Cluster_61_frame_frame_009036_00",
+  "original": "original.jpg",
+  "visualization": "visualization.jpg",
+  "num_items": 1,
+  "items": [
+    {
+      "index": 0,
+      "name": "chickpea salad",
+      "description": "mixed greens, chickpeas, and red berries with a lemon wedge",
+      "bbox": [
+        92,
+        13,
+        785,
+        790
+      ],
+      "crop": "crops/item_000.jpg",
+      "mask": "masks/item_000_mask.png",
+      "sam_score": 0.9759
+    }
+  ],
+  "stage1_time": 1.79,
+  "stage2_time": 0.17,
+  "match_results": null
+}
