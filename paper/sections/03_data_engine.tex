@@ -12,7 +12,7 @@ chicken, rice (second helping), lemon. The student inference pipeline
 \end{figure*}
 
 The teacher labeling pipeline is itself a three-stage cascade, run \emph{once}
-on a curated 4{,}999-image subset of cafeteria tray photos. The output is a
+on a curated 3{,}702-image subset of cafeteria tray photos. The output is a
 labeled training set; no part of this pipeline runs at inference time.
 Figure~\ref{fig:pipeline-teacher} shows the full architecture --- note the
 deliberate symmetry with the student pipeline (Figure~\ref{fig:pipeline-student}):
@@ -31,7 +31,7 @@ the inference scale.
                    align=center, fill=gray!8, font=\scriptsize},
   arrow/.style={-{Latex[length=2mm]}, thick}
 ]
-  \node[artifact]              (raw)   {4{,}999 raw\\tray images};
+  \node[artifact]              (raw)   {3{,}702 raw\\tray images};
   \node[stage, right=of raw]   (vlm)   {\textbf{Stage 1}\\Qwen2.5-VL\\72B-AWQ\\(frozen)};
   \node[stage, right=of vlm]   (sam)   {\textbf{Stage 2}\\SAM3\\(frozen)};
   \node[stage, right=of sam]   (clu)   {\textbf{Stage 3}\\DINOv2 +\\SigLIP +\\HDBSCAN};
@@ -95,7 +95,7 @@ single most important constraint --- it is what distinguishes ``rice with sauce'
 \label{fig:prompt-template}
 \end{figure}
 
-The 72B teacher succeeds on 4{,}999 / 4{,}999 images (zero JSON-parse failures)
+The 72B teacher succeeds on 3{,}702 / 3{,}702 images (zero JSON-parse failures)
 in 5{,}778~s of wall-clock time (roughly $1.16$~s/image at the AWQ-quantised
 weight precision).
 
@@ -107,7 +107,7 @@ pixel-accurate mask. We apply a confidence cascade
 ($0.10 \rightarrow 0.05 \rightarrow 0.02 \rightarrow 0.01$) so that
 low-contrast items are not silently dropped, and a global mask-IoU NMS at
 $0.7$ to suppress duplicate masks within the same image. SAM3 succeeds on
-$4{,}948$ / $4{,}999$ images; the $51$ failures (1.0\%) are primarily very
+$3{,}665$ / $3{,}702$ images; the $37$ failures (1.0\%) are primarily very
 small or very low-contrast regions and are excluded from training rather than
 heuristically recovered.
 
@@ -153,9 +153,9 @@ of all items; five tail classes have fewer than ten items each.}
 \centering\small
 \begin{tabular}{l r}
 \toprule
-Source images (deduplicated)         & 4{,}999 \\
-72B-VLM successful detections        & 4{,}999 (100.0\%) \\
-SAM3 successful segmentations        & 4{,}948 (99.0\%) \\
+Source images (deduplicated)         & 3{,}702 \\
+72B-VLM successful detections        & 3{,}702 (100.0\%) \\
+SAM3 successful segmentations        & 3{,}665 (99.0\%) \\
 Wall-clock teacher run-time          & 5{,}778~s ($\approx$96~min) \\
 Raw HDBSCAN clusters                 & 467 \\
 Noise items (HDBSCAN)                & 1{,}744 \\

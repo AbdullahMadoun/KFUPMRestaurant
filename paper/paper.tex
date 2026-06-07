@@ -50,7 +50,7 @@ generate a bill, and we identify the central failure mode of generative-VLM
 detection on this task: \emph{for VLM-as-detector, syntax and localization
 are not the bottleneck; cardinality is}. We make four contributions.
 \textbf{(i)~A 72B$\rightarrow$7B distillation pipeline}: a 72B teacher
-labels $4{,}999$ trays once offline (Qwen2.5-VL-72B-AWQ\,$\rightarrow$\,SAM3\,$\rightarrow$\,DINOv2/SigLIP cluster
+labels $3{,}702$ trays once offline (Qwen2.5-VL-72B-AWQ\,$\rightarrow$\,SAM3\,$\rightarrow$\,DINOv2/SigLIP cluster
 review) and a 7B student runs the same three stages online. \textbf{(ii)~A
 cardinality-aware structural loss} that addresses an asymmetric overcount
 regression we measure quantitatively: matched bbox IoU climbs from $0.32$ to
@@ -88,9 +88,9 @@ and utensils.
 We bridge these regimes with four contributions.
 
 \textbf{(1)~A 72B$\rightarrow$7B distillation pipeline (\S\ref{sec:dataengine},
-\S\ref{sec:student}).} A Qwen2.5-VL-72B-AWQ teacher labels 4{,}999 cafeteria
+\S\ref{sec:student}).} A Qwen2.5-VL-72B-AWQ teacher labels 3{,}702 cafeteria
 images via a structured-JSON prompt, followed by SAM3 segmentation, DINOv2 +
-SigLIP clustering, and human cluster curation. The resulting 4{,}629-item
+SigLIP clustering, and human cluster curation. The resulting 4{,}938-item
 dataset (32 classes) trains a Qwen2.5-VL-7B student via LoRA on the language
 model and an unfrozen vision encoder. The teacher pipeline runs once,
 offline; the student runs at every inference.
@@ -213,7 +213,7 @@ geometry is just an internal coordinate, not a deliverable.
 \input{sections/05_cardinality.tex}
 
 %-----------------------------------------------------------------------------
-\section{Dish-Correct: An End-to-End Semantic Metric}
+\section{Exact Subset Accuracy (Dish-Correct): An End-to-End Semantic Metric}
 \label{sec:metric}
 
 \input{sections/06_metric.tex}
